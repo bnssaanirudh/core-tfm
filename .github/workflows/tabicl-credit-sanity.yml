@@ -1,0 +1,39 @@
+name: TabICLv2 Credit sanity
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - experiments/tabicl_credit_sanity.py
+      - .github/workflows/tabicl-credit-sanity.yml
+
+permissions:
+  contents: write
+
+jobs:
+  run-sanity:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install core and TabICL
+        run: |
+          python -m pip install --upgrade pip
+          pip install -e .
+          pip install tabicl openml
+      - name: Run Credit sanity experiment
+        run: PYTHONPATH=src python experiments/tabicl_credit_sanity.py
+      - name: Commit result
+        run: |
+          git config user.name "Badampudi Agasthya Anirudh"
+          git config user.email "anirudhbadampudi@gmail.com"
+          git add results/real_sanity_credit_tabiclv2.json
+          if git diff --cached --quiet; then
+            echo "No result changes"
+          else
+            git commit -m "Record TabICLv2 Credit sanity result"
+            git push
+          fi
