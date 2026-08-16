@@ -36,18 +36,17 @@ jobs:
           chunks=[]; bad=[]
           for p in files:
               b=p.read_bytes(); got=hashlib.sha1(b'blob '+str(len(b)).encode()+b'\0'+b).hexdigest(); exp=expected_blobs.get(p.name)
-              print(p.name, len(b), got, 'OK' if got==exp else f'EXPECTED {exp}')
-              if got!=exp: bad.append(p.name)
+              if got!=exp: bad.append(f'{p.name}: {got} != {exp}')
               chunks.append(p.read_text())
-          if bad: raise SystemExit('blob mismatch: '+', '.join(bad))
+          if bad: raise SystemExit('blob mismatch: '+ '; '.join(bad))
           s=''.join(chunks)
           data=base64.b64decode(s, validate=True)
-          got=hashlib.sha256(data).hexdigest(); exp='e552cd9553fef71f2bcf6c522ffed0a0cb5da28bbc88078403d1c56d887f2d0b'
+          got=hashlib.sha256(data).hexdigest(); exp='2a120deff68371e7f734be3a95406fd3434f4363b5ddfae3e3c013e2dbb7cbf5'
           print('payload chars=',len(s),'decoded=',len(data),'sha256=',got)
           if got!=exp: raise SystemExit(f'payload checksum mismatch: {got} != {exp}')
           Path('/tmp/core_tfm_update.tar.gz').write_bytes(data)
           PY
-          tar -tzf /tmp/core_tfm_update.tar.gz > /tmp/payload_listing.txt
+          tar -tzf /tmp/core_tfm_update.tar.gz
           tar -xzf /tmp/core_tfm_update.tar.gz -C .
           rm -f repo_update_payload.part-* repo_update_payload.ready
           rm -f .github/workflows/apply-research-update.yml .github/workflows/build-draft-pdf.yml
@@ -59,11 +58,6 @@ jobs:
           python -m pip install --upgrade pip
           pip install -e '.[test]'
           PYTHONPATH=src pytest -q
-
-      - name: Generate JMLR figures
-        run: |
-          pip install pandas matplotlib
-          python paper/jmlr/generate_figures.py
 
       - name: Install TeX and PDF tools
         run: |
