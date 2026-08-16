@@ -20,9 +20,11 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: Reconstruct and unpack prepared research update
+      - name: Reconstruct and verify prepared research update
         run: |
-          cat repo_update_payload.part-* | base64 -d > /tmp/core_tfm_update.tar.gz
+          cat repo_update_payload.part-* | base64 --decode --ignore-garbage > /tmp/core_tfm_update.tar.gz
+          echo 'e552cd9553fef71f2bcf6c522ffed0a0cb5da28bbc88078403d1c56d887f2d0b  /tmp/core_tfm_update.tar.gz' | sha256sum -c -
+          tar -tzf /tmp/core_tfm_update.tar.gz > /tmp/payload_listing.txt
           tar -xzf /tmp/core_tfm_update.tar.gz -C .
           rm -f repo_update_payload.part-* repo_update_payload.ready
           rm -f .github/workflows/apply-research-update.yml
