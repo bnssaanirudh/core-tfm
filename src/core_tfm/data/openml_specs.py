@@ -1,0 +1,14 @@
+"""Pinned classification datasets from Klötergens et al. (2026), Appendix B."""
+
+CLASSIFICATION_DATASETS = {
+    "anneal": {"openml_id": 46906, "target_a": "classes", "target_b": "steel"},
+    "credit": {"openml_id": 46918, "target_a": "good_or_bad_customer", "target_b": "checking_status"},
+    "phishing": {"openml_id": 46963, "target_a": "WebsiteType", "target_b": "SFH"},
+    "mic": {"openml_id": 46980, "target_a": "LET_IS", "target_b": "ASP_S_n"},
+    "customer": {"openml_id": 46938, "target_a": "bad_client_target", "target_b": "education"},
+    "car": {"openml_id": 40975, "target_a": "class", "target_b": "safety"},
+    "marketing": {"openml_id": 46940, "target_a": "Response", "target_b": "Marital_Status"},
+    "nursery": {"openml_id": 26, "target_a": "class", "target_b": "health"},
+    "diamonds": {"openml_id": 42225, "target_a": "cut", "target_b": "color"},
+    "wine": {"openml_ids": [40691, 40498], "target_a": "class", "target_b": "color"},
+}

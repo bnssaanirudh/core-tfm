@@ -1,0 +1,12 @@
+# Research defaults. Heavy model packages/checkpoints are optional.
+tabpfn3:
+  constructor: tabpfn.TabPFNClassifier
+
+tabiclv2:
+  constructor: tabicl.TabICLClassifier
+  kv_cache: true
+  random_state: 42
+
+tabfm:
+  constructor: tabfm.TabFMClassifier
+  backend: pytorch
