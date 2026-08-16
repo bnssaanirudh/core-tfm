@@ -1,0 +1,44 @@
+name: Build public draft PDF
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/build_public_draft_pdf.py'
+      - '.github/workflows/build-draft-pdf.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build-draft:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install PDF dependency
+        run: python -m pip install --upgrade reportlab
+
+      - name: Build working draft PDF
+        run: |
+          mkdir -p paper
+          python scripts/build_public_draft_pdf.py
+
+      - name: Commit generated PDF
+        run: |
+          git config user.name 'Badampudi Agasthya Anirudh'
+          git config user.email 'anirudhbadampudi@gmail.com'
+          git add paper/CoRe_TFM_Public_Working_Draft.pdf
+          if git diff --cached --quiet; then
+            echo 'Draft PDF is already up to date.'
+          else
+            git commit -m 'Build public working draft PDF'
+            git push
+          fi
