@@ -1,0 +1,64 @@
+name: Apply research manuscript update
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'repo_update_payload.b64'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Unpack prepared research update
+        run: |
+          base64 -d repo_update_payload.b64 > /tmp/core_tfm_update.tar.gz
+          tar -xzf /tmp/core_tfm_update.tar.gz -C .
+          rm -f repo_update_payload.b64
+          rm -f .github/workflows/apply-research-update.yml
+          rm -f .github/workflows/build-draft-pdf.yml
+          rm -f scripts/build_public_draft_pdf.py
+          rm -f paper/CoRe_TFM_Public_Working_Draft.pdf
+
+      - name: Verify Python research code
+        run: |
+          python -m pip install --upgrade pip
+          pip install -e '.[test]'
+          PYTHONPATH=src pytest -q
+
+      - name: Generate JMLR figures
+        run: |
+          pip install pandas matplotlib
+          python paper/jmlr/generate_figures.py
+
+      - name: Install TeX and PDF tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y latexmk texlive-latex-base texlive-latex-extra texlive-fonts-recommended poppler-utils
+
+      - name: Compile with official JMLR style
+        working-directory: paper/jmlr
+        run: |
+          curl -fsSLo jmlr2e.sty https://raw.githubusercontent.com/JmlrOrg/jmlr-style-file/master/jmlr2e.sty
+          latexmk -pdf -interaction=nonstopmode -halt-on-error main.tex
+          cp main.pdf CoRe_TFM_JMLR_Draft.pdf
+          pdfinfo CoRe_TFM_JMLR_Draft.pdf | tee pdfinfo.txt
+          rm -f jmlr2e.sty main.aux main.bbl main.blg main.fdb_latexmk main.fls main.log main.out main.pdf pdfinfo.txt
+
+      - name: Commit complete journal-grade update
+        run: |
+          git config user.name 'Badampudi Agasthya Anirudh'
+          git config user.email 'anirudhbadampudi@gmail.com'
+          git add -A
+          git commit -m 'Upgrade manuscript to JMLR-grade selective reconciliation study'
+          git push
