@@ -19,47 +19,27 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: Reconstruct and verify prepared research update
+      - name: Reconstruct verified research package
         run: |
-          python - <<'PY'
-          from pathlib import Path
-          import base64, hashlib
-          expected_blobs = {
-            'repo_update_payload.part-000':'ffbebeb8bb3cd51796408048a2e77a2129123581','repo_update_payload.part-001':'f19f979f0a6964fe46ee1525e0d472ed627c5e23','repo_update_payload.part-002':'fa1583d79b942c93078cf61c924ccbc61e8df75e','repo_update_payload.part-003':'bb5aa30bf040e8a74bfc1707f59b836050c11b2a','repo_update_payload.part-004':'cb78a447bbd8c5efe1f7f64a54fc89f9d8d06429',
-            'repo_update_payload.part-005a':'e56ba55656210611094a9085ef243c5e3dd968da','repo_update_payload.part-005b':'25d4da10df4dde24454283dced3602c989c057fd','repo_update_payload.part-005c':'bd07be75a2bbd2cd8a0fd0c8520d258bab933950','repo_update_payload.part-005d':'332f1ace5492b769d0e61d4b6708a0d6dd85fe68','repo_update_payload.part-005e':'13c2368f93e773759c1a164158791ee50cfff990',
-            'repo_update_payload.part-006a':'7df666ebe04a255ddbc88ec506b36d2da520734c','repo_update_payload.part-006b':'eb6fb80333b610494bda201e8c8efe7cecb04e73','repo_update_payload.part-006c':'ee0e13c0af45d1af556fb4ee77d7cdbee8cfeefd','repo_update_payload.part-006d':'2621f5440802b4e01f77f6f4d942e9922544f1bb',
-            'repo_update_payload.part-007':'2f8e9034b69fef6d6e680c72e4778276261638c6','repo_update_payload.part-008':'7748aa51813b107e59ad8683510b1a92b92bd026',
-            'repo_update_payload.part-009a':'5997b3f454fbd32c58c3b87a013a6c9f856aa611','repo_update_payload.part-009b':'9055f8c007bdf2d05ccc6d56e60bc5e3dcfa2ff3','repo_update_payload.part-009c':'14d210518b20b7b3a4e12c1c59cc048e48d91ae6','repo_update_payload.part-009d':'20a04943042edc5509ed84e33743c46619570e40','repo_update_payload.part-009e':'8db1ccc567dfd1a5a2521c04839c37775cfd93e7',
-            'repo_update_payload.part-010a':'d7208f0ea8d6c39cb64a239e146910b567919b4f','repo_update_payload.part-010b':'da5f92064ebbeddcedf3fb6199e85576d8caade8','repo_update_payload.part-010c':'c128111f654dde950298cdde448d8874fe05d106','repo_update_payload.part-010d':'8270c4f859c1eefb0fa793b92ffa5f2ee8fcd5fb','repo_update_payload.part-010e':'c45ee6688a9880c3fe2d11637b4f975059a99aec','repo_update_payload.part-011a':'5a12cc16451738da6b7c9d4e50a68ca87a9d7940','repo_update_payload.part-011b':'99f59aa2845328322e7073c424feee67b5f2ffff'
-          }
-          files=sorted(Path('.').glob('repo_update_payload.part-*'))
-          chunks=[]; bad=[]
-          for p in files:
-              b=p.read_bytes(); got=hashlib.sha1(b'blob '+str(len(b)).encode()+b'\0'+b).hexdigest(); exp=expected_blobs.get(p.name)
-              if got!=exp: bad.append(f'{p.name}: {got} != {exp}')
-              chunks.append(p.read_text())
-          if bad: raise SystemExit('blob mismatch: '+ '; '.join(bad))
-          s=''.join(chunks)
-          data=base64.b64decode(s, validate=True)
-          got=hashlib.sha256(data).hexdigest(); exp='2a120deff68371e7f734be3a95406fd3434f4363b5ddfae3e3c013e2dbb7cbf5'
-          print('payload chars=',len(s),'decoded=',len(data),'sha256=',got)
-          if got!=exp: raise SystemExit(f'payload checksum mismatch: {got} != {exp}')
-          Path('/tmp/core_tfm_update.tar.gz').write_bytes(data)
-          PY
-          tar -tzf /tmp/core_tfm_update.tar.gz
+          cat repo_update_payload.part-* | base64 --decode > /tmp/core_tfm_update.tar.gz
+          echo '2a120deff68371e7f734be3a95406fd3434f4363b5ddfae3e3c013e2dbb7cbf5  /tmp/core_tfm_update.tar.gz' | sha256sum -c -
           tar -xzf /tmp/core_tfm_update.tar.gz -C .
+
+          # jmlr2e already defines proposition; do not redefine it.
+          sed -i '/\\newtheorem{proposition}{Proposition}/d' paper/jmlr/main.tex
+
           rm -f repo_update_payload.part-* repo_update_payload.ready
           rm -f .github/workflows/apply-research-update.yml .github/workflows/build-draft-pdf.yml
           rm -f .github/update_payload/part-000
           rm -f scripts/build_public_draft_pdf.py paper/CoRe_TFM_Public_Working_Draft.pdf
 
-      - name: Verify Python research code
+      - name: Verify research code
         run: |
           python -m pip install --upgrade pip
           pip install -e '.[test]'
           PYTHONPATH=src pytest -q
 
-      - name: Install TeX and PDF tools
+      - name: Install LaTeX toolchain
         run: |
           sudo apt-get update
           sudo apt-get install -y latexmk texlive-latex-base texlive-latex-extra texlive-fonts-recommended poppler-utils
@@ -73,7 +53,7 @@ jobs:
           pdfinfo CoRe_TFM_JMLR_Draft.pdf
           rm -f jmlr2e.sty main.aux main.bbl main.blg main.fdb_latexmk main.fls main.log main.out main.pdf
 
-      - name: Commit complete journal-grade update
+      - name: Commit journal-grade update
         run: |
           git config user.name 'Badampudi Agasthya Anirudh'
           git config user.email 'anirudhbadampudi@gmail.com'
