@@ -4,7 +4,7 @@ on:
   push:
     branches: [main]
     paths:
-      - 'repo_update_payload.b64'
+      - 'repo_update_payload.ready'
   workflow_dispatch:
 
 permissions:
@@ -20,11 +20,11 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: Unpack prepared research update
+      - name: Reconstruct and unpack prepared research update
         run: |
-          base64 -d repo_update_payload.b64 > /tmp/core_tfm_update.tar.gz
+          cat repo_update_payload.part-* | base64 -d > /tmp/core_tfm_update.tar.gz
           tar -xzf /tmp/core_tfm_update.tar.gz -C .
-          rm -f repo_update_payload.b64
+          rm -f repo_update_payload.part-* repo_update_payload.ready
           rm -f .github/workflows/apply-research-update.yml
           rm -f .github/workflows/build-draft-pdf.yml
           rm -f scripts/build_public_draft_pdf.py
