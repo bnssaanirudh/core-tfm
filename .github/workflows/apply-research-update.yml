@@ -15,15 +15,34 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
 
       - name: Reconstruct and verify prepared research update
         run: |
-          cat repo_update_payload.part-* | base64 --decode --ignore-garbage > /tmp/core_tfm_update.tar.gz
-          echo 'e552cd9553fef71f2bcf6c522ffed0a0cb5da28bbc88078403d1c56d887f2d0b  /tmp/core_tfm_update.tar.gz' | sha256sum -c -
+          python - <<'PY'
+          from pathlib import Path
+          import base64, hashlib, re
+          files = sorted(Path('.').glob('repo_update_payload.part-*'))
+          alphabet = set('ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=')
+          chunks=[]
+          for p in files:
+              raw=p.read_text()
+              bad=sorted(set(raw)-alphabet-set('\r\n\t '))
+              clean=''.join(ch for ch in raw if ch in alphabet)
+              print(p.name, 'raw=',len(raw),'clean=',len(clean),'bad=',bad,'ends=',clean[-8:])
+              chunks.append(clean)
+          s=''.join(chunks)
+          print('total=',len(s),'mod4=',len(s)%4,'padding_count=',s.count('='),'first_padding=',s.find('='))
+          data=base64.b64decode(s, validate=True)
+          got=hashlib.sha256(data).hexdigest()
+          expected='e552cd9553fef71f2bcf6c522ffed0a0cb5da28bbc88078403d1c56d887f2d0b'
+          print('decoded_bytes=',len(data),'sha256=',got)
+          if got != expected:
+              raise SystemExit(f'checksum mismatch: {got} != {expected}')
+          Path('/tmp/core_tfm_update.tar.gz').write_bytes(data)
+          PY
           tar -tzf /tmp/core_tfm_update.tar.gz > /tmp/payload_listing.txt
           tar -xzf /tmp/core_tfm_update.tar.gz -C .
           rm -f repo_update_payload.part-* repo_update_payload.ready
