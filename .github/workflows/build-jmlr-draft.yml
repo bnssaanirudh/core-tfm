@@ -9,7 +9,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
 
 jobs:
   build:
@@ -20,7 +20,7 @@ jobs:
       - name: Install TeX
         run: |
           sudo apt-get update
-          sudo apt-get install -y latexmk texlive-latex-base texlive-latex-extra texlive-fonts-recommended
+          sudo apt-get install -y latexmk texlive-latex-base texlive-latex-extra texlive-fonts-recommended poppler-utils
 
       - name: Fetch official JMLR style
         working-directory: paper/jmlr
@@ -31,23 +31,17 @@ jobs:
         working-directory: paper/jmlr
         run: |
           latexmk -pdf -interaction=nonstopmode -halt-on-error main.tex
-          cp main.pdf CoRe_TFM_JMLR_Draft.pdf
 
-      - name: Basic PDF checks
+      - name: Validate compiled PDF
+        working-directory: paper/jmlr
+        run: |
+          test -s main.pdf
+          pdfinfo main.pdf | tee pdfinfo.txt
+          test "$(stat -c%s main.pdf)" -lt 5000000
+          test "$(pdfinfo main.pdf | awk '/^Pages:/ {print $2}')" -gt 0
+
+      - name: Verify committed draft exists
         working-directory: paper/jmlr
         run: |
           test -s CoRe_TFM_JMLR_Draft.pdf
-          pdfinfo CoRe_TFM_JMLR_Draft.pdf | tee pdfinfo.txt
-          test "$(stat -c%s CoRe_TFM_JMLR_Draft.pdf)" -lt 5000000
-
-      - name: Commit compiled draft when changed
-        run: |
-          git config user.name "bnssaanirudh"
-          git config user.email "anirudhbadampudi@gmail.com"
-          git add paper/jmlr/CoRe_TFM_JMLR_Draft.pdf
-          if git diff --cached --quiet; then
-            echo "No PDF change"
-          else
-            git commit -m "Build current JMLR draft PDF"
-            git push
-          fi
+          echo "Official-style compilation and committed draft checks passed."
