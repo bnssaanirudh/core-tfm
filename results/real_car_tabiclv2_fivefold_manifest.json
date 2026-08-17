@@ -1,0 +1,44 @@
+{
+  "artifact": "results/real_car_tabiclv2_fivefold.json",
+  "status": "provenance-manifest",
+  "dataset": {
+    "name": "UCI Car Evaluation",
+    "uci_id": 19,
+    "doi": "10.24432/C5JP48",
+    "target_a": "class",
+    "target_b": "safety",
+    "n_rows": 1728
+  },
+  "model": {
+    "name": "TabICLv2",
+    "python_package": "tabicl",
+    "package_version": "2.1.1",
+    "checkpoint_version": "tabicl-classifier-v2-20260212.ckpt",
+    "device": "cpu",
+    "n_estimators": 1,
+    "kv_cache": true,
+    "random_state": 42,
+    "n_jobs": 4
+  },
+  "runtime": {
+    "python": "3.11.15",
+    "torch": "2.13.0",
+    "os": "Ubuntu 24.04.4 LTS",
+    "github_runner_image": "ubuntu-24.04",
+    "github_runner_image_version": "20260810.271.1"
+  },
+  "split": {
+    "type": "StratifiedKFold",
+    "n_splits": 5,
+    "shuffle": true,
+    "random_state": 42,
+    "stratify_target": "class"
+  },
+  "execution": {
+    "github_actions_run_id": 31992187552,
+    "workflow": ".github/workflows/tabicl-car-sanity.yml",
+    "source_commit": "b19407faf82b334c9c1f38882155057e1711b1b7",
+    "result_generated_utc_date": "2026-08-17"
+  },
+  "comparability_note": "This is a small real-model benchmark, not an exact reproduction of the source paper: its fold seed is unpublished and this CPU run uses n_estimators=1. The checkpoint filename is the TabICLv2 classifier checkpoint reported by the run and by the official TabICL documentation."
+}
