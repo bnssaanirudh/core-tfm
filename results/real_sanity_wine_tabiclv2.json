@@ -1,0 +1,90 @@
+{
+  "status": "sanity-only",
+  "dataset": "Wine (source-equivalent OpenML 40691 + 40498 reconstruction)",
+  "data_provenance": {
+    "route": "source-equivalent reconstruction from canonical UCI files",
+    "canonical_source": "https://archive.ics.uci.edu/static/public/186/wine+quality.zip",
+    "source_paper_openml_ids": [
+      40691,
+      40498
+    ],
+    "transformation": "red quality unchanged; white quality = raw quality - 2; add color",
+    "archive_sha256": "3ed56667f4b828242bd732d7d1dd7f2861e54432239d7fa63877014cbb0304d4",
+    "red_csv_sha256": "4a402cf041b025d4566d954c3b9ba8635a3a8a01e039005d97d6a710278cf05e",
+    "white_csv_sha256": "76c3f809815c17c07212622f776311faeb31e87610d52c26d87d6e361b169836",
+    "red_rows": 1599,
+    "white_rows": 4898
+  },
+  "model": "TabICLv2",
+  "model_config": {
+    "checkpoint_version": "tabicl-classifier-v2-20260212.ckpt",
+    "device": "cpu",
+    "n_estimators": 1,
+    "kv_cache": true,
+    "random_state": 42
+  },
+  "environment": {
+    "python": "3.11.15",
+    "tabicl": "2.1.1",
+    "torch": "2.13.0"
+  },
+  "fold": 1,
+  "n_total": 6497,
+  "n_train": 5197,
+  "n_test": 1300,
+  "k_a": 8,
+  "k_b": 2,
+  "source_paper_tabiclv2_factorization_tv": {
+    "mean": 0.0193,
+    "fold_std": 0.0007
+  },
+  "factorization_tv_mean": 0.022773835418125405,
+  "factorization_tv_median": 0.01531534268973903,
+  "factorization_tv_max": 0.27412234801499175,
+  "marginalization_tv_a_mean": 0.02251784434675185,
+  "marginalization_tv_b_mean": 0.0013843517743239728,
+  "methods": [
+    {
+      "method": "j1_b_then_a",
+      "joint_nll": 0.7650539001990926,
+      "joint_brier": 0.41135303027303194,
+      "marginal_distortion": 0.011258922173375941
+    },
+    {
+      "method": "j2_a_then_b",
+      "joint_nll": 0.7736455298460072,
+      "joint_brier": 0.4136301696297701,
+      "marginal_distortion": 0.0006921758871620002
+    },
+    {
+      "method": "independent",
+      "joint_nll": 0.7798552775672524,
+      "joint_brier": 0.41382247708886083,
+      "marginal_distortion": 2.897476828295504e-17
+    },
+    {
+      "method": "arithmetic",
+      "joint_nll": 0.7660756019050724,
+      "joint_brier": 0.4120621678802137,
+      "marginal_distortion": 0.005975549030268955
+    },
+    {
+      "method": "geometric",
+      "joint_nll": 0.7679838123941974,
+      "joint_brier": 0.41206669685316166,
+      "marginal_distortion": 0.006108434407439461
+    },
+    {
+      "method": "hard_core",
+      "joint_nll": 0.7700673568207985,
+      "joint_brier": 0.41368511824624404,
+      "marginal_distortion": 1.7660821702300562e-14
+    },
+    {
+      "method": "soft_core_lambda_1",
+      "joint_nll": 0.768258541780358,
+      "joint_brier": 0.4126706466959158,
+      "marginal_distortion": 0.003253572160594122
+    }
+  ]
+}
