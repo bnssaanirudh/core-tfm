@@ -43,7 +43,7 @@ The repository now contains three complementary controlled studies:
 2. **Exact-view perturbations** that independently corrupt the two marginals and two conditional families, showing when hard marginal preservation helps or hurts.
 3. **Heterogeneous task mixtures** in which view reliability changes by task. In the current 60-task full-oracle study, Selective CoRe beats the best fixed method (arithmetic pooling) by about `0.00581` mean exact NLL, wins 41/60 paired tasks, and has Wilcoxon `p = 5.79e-7`. A separate validation-size study shows selection regret decreasing as held-out validation data increase.
 
-These are controlled method results, **not yet released-TFM performance claims**.
+The repository also contains a **five-fold released-model pilot** on TabICLv2 + UCI Car Evaluation. Mean factorization TV is `0.06931 ± 0.00354`; the best mean joint NLL is the unreconciled `B→A` chain (`1.12089`), ahead of geometric pooling (`1.13434`), Soft CoRe with `lambda=1` (`1.13840`), and Hard CoRe (`1.20412`). This supports selective rather than unconditional repair. It is one model–dataset cell, not an average released-TFM performance claim.
 
 ## Reproduce core tests
 
