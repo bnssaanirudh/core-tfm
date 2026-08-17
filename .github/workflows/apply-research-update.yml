@@ -25,16 +25,11 @@ jobs:
           echo '2a120deff68371e7f734be3a95406fd3434f4363b5ddfae3e3c013e2dbb7cbf5  /tmp/core_tfm_update.tar.gz' | sha256sum -c -
           tar -xzf /tmp/core_tfm_update.tar.gz -C .
 
-          # Capture intended workflow definitions in logs; restore the existing
-          # workflow directory before committing because GITHUB_TOKEN cannot
-          # create/update workflow files in this repository.
-          echo '--- BEGIN build-jmlr-draft.yml ---'
-          cat .github/workflows/build-jmlr-draft.yml
-          echo '--- END build-jmlr-draft.yml ---'
-          echo '--- BEGIN tabicl-car-sanity.yml ---'
-          cat .github/workflows/tabicl-car-sanity.yml
-          echo '--- END tabicl-car-sanity.yml ---'
+          # Keep workflow mutations out of the Actions-token commit. The exact
+          # intended workflow definitions were captured in run 31991127984 and
+          # will be installed through the GitHub connector after publication.
           git checkout HEAD -- .github/workflows
+          rm -f .github/workflows/build-jmlr-draft.yml .github/workflows/tabicl-car-sanity.yml
 
           # jmlr2e already defines proposition; do not redefine it.
           sed -i '/\\newtheorem{proposition}{Proposition}/d' paper/jmlr/main.tex
@@ -70,5 +65,10 @@ jobs:
           git config user.name 'Badampudi Agasthya Anirudh'
           git config user.email 'anirudhbadampudi@gmail.com'
           git add -A
+          git diff --cached --name-only | tee /tmp/staged-files.txt
+          if grep -q '^.github/workflows/' /tmp/staged-files.txt; then
+            echo 'Refusing to push: workflow mutation is still staged.'
+            exit 1
+          fi
           git commit -m 'Upgrade manuscript to JMLR-grade selective reconciliation study'
           git push
