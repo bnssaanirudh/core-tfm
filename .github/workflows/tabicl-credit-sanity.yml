@@ -30,7 +30,7 @@ jobs:
         run: |
           git config user.name "Badampudi Agasthya Anirudh"
           git config user.email "anirudhbadampudi@gmail.com"
-          git add results/real_sanity_credit_tabiclv2.json
+          git add -f results/real_sanity_credit_tabiclv2.json
           if git diff --cached --quiet; then
             echo "No result changes"
           else
