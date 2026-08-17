@@ -1,0 +1,53 @@
+name: Build JMLR draft
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'paper/jmlr/**'
+      - '.github/workflows/build-jmlr-draft.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install TeX
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y latexmk texlive-latex-base texlive-latex-extra texlive-fonts-recommended
+
+      - name: Fetch official JMLR style
+        working-directory: paper/jmlr
+        run: |
+          curl -fsSLo jmlr2e.sty https://raw.githubusercontent.com/JmlrOrg/jmlr-style-file/master/jmlr2e.sty
+
+      - name: Compile with official style
+        working-directory: paper/jmlr
+        run: |
+          latexmk -pdf -interaction=nonstopmode -halt-on-error main.tex
+          cp main.pdf CoRe_TFM_JMLR_Draft.pdf
+
+      - name: Basic PDF checks
+        working-directory: paper/jmlr
+        run: |
+          test -s CoRe_TFM_JMLR_Draft.pdf
+          pdfinfo CoRe_TFM_JMLR_Draft.pdf | tee pdfinfo.txt
+          test "$(stat -c%s CoRe_TFM_JMLR_Draft.pdf)" -lt 5000000
+
+      - name: Commit compiled draft when changed
+        run: |
+          git config user.name "bnssaanirudh"
+          git config user.email "anirudhbadampudi@gmail.com"
+          git add paper/jmlr/CoRe_TFM_JMLR_Draft.pdf
+          if git diff --cached --quiet; then
+            echo "No PDF change"
+          else
+            git commit -m "Build current JMLR draft PDF"
+            git push
+          fi
