@@ -1,65 +1,73 @@
 # CoRe-TFM
 
-Research implementation for **post-hoc reconciliation of incompatible conditional predictions in tabular foundation models (TFMs)**.
+Research implementation for **post-hoc reconciliation of incompatible probability views from tabular foundation models (TFMs)**.
 
-## Current scope
+## Paper status
 
-Classification-only, pairwise target reconciliation. Given a frozen probabilistic classifier, the pipeline estimates:
+The current master manuscript is a **JMLR-formatted working draft** in [`paper/jmlr/`](paper/jmlr/). GitHub Actions downloads the official JMLR `jmlr2e` style directly from the JMLR style repository and compiles the public draft PDF. A Springer *Machine Learning* adaptation is maintained as a secondary target.
+
+The draft is **not submission-ready yet** because the controlled experiments must still be complemented by the complete released-model benchmark on TabPFN-3, TabICLv2, and TabFM.
+
+## Core problem
+
+For two categorical targets, a frozen predictor can expose four views:
 
 - `p(A | X)`
 - `p(B | X)`
-- `p(A | B, X)` for every observed class of `B`
-- `p(B | A, X)` for every observed class of `A`
+- `p(A | B, X)`
+- `p(B | A, X)`
 
-and constructs the two implied joints
+which induce
 
 `J1(A,B|X) = p(B|X) p(A|B,X)` and
 `J2(A,B|X) = p(A|X) p(B|A,X)`.
 
-The core proposed method, **Marginal-Preserving Reconciliation (MPR)**, forms a geometric consensus and KL-projects it onto the transportation polytope with the TFM's direct marginals. This preserves direct marginal predictions exactly while repairing the dependence structure.
+CoRe-TFM asks which coherent joint, if any, should replace incompatible views **without confusing coherence with calibration or predictive correctness**.
 
-## Implemented
+## Implemented methods
 
-- Exact classification joint construction
-- Factorization TV metric
-- Arithmetic, geometric/log, and independence baselines
-- Marginal-Preserving Reconciliation via IPF/Sinkhorn-style scaling
-- Batched soft reconciliation with tunable marginal-fidelity penalties
-- Validation-adaptive direction weighting and soft hyperparameter selection
-- Reconciliation Distortion and Marginal Distortion
-- Joint NLL, multiclass Brier score, and top-label ECE
-- Binary and multiclass synthetic DGPs with known conditional joints
-- Known-truth sweep runner
-- Generic batched conditional-extraction pipeline
-- Optional adapters for TabPFN-3, TabICLv2, and Google TabFM
-- Pinned OpenML dataset specifications
-- Unit tests and checkpoint-free synthetic experiments
+- arithmetic and geometric KL-barycenter baselines
+- Hard CoRe / marginal-preserving KL projection
+- Soft CoRe with generalized Sinkhorn-style scaling
+- validation-selected direction weighting and marginal penalty
+- Selective CoRe: validation-gated choice among raw orders, pooling, and reconciliation
+- joint/marginal/conditional proper scores and calibration diagnostics
+- truth-distance and dependence-fidelity metrics for controlled experiments
+- TabPFN-3, TabICLv2, and TabFM adapters
 
-## Install core
+## Current empirical evidence
+
+The repository now contains three complementary controlled studies:
+
+1. **Surrogate DGP sweeps** with exact conditional truth across dependence, sample size, dimensionality, class cardinality, and imbalance.
+2. **Exact-view perturbations** that independently corrupt the two marginals and two conditional families, showing when hard marginal preservation helps or hurts.
+3. **Heterogeneous task mixtures** in which view reliability changes by task. In the current 60-task full-oracle study, Selective CoRe beats the best fixed method (arithmetic pooling) by about `0.00581` mean exact NLL, wins 41/60 paired tasks, and has Wilcoxon `p = 5.79e-7`. A separate validation-size study shows selection regret decreasing as held-out validation data increase.
+
+These are controlled method results, **not yet released-TFM performance claims**.
+
+## Reproduce core tests
 
 ```bash
 python -m venv .venv
-source .venv/bin/activate  # Windows: .venv\\Scripts\\activate
+source .venv/bin/activate  # Windows: .venv\Scripts\activate
 pip install -e '.[test]'
 pytest
 ```
 
-## Smoke experiment
+Checkpoint-free smoke test:
 
 ```bash
-python experiments/smoke_synthetic.py
+PYTHONPATH=src python experiments/smoke_synthetic.py
 ```
 
-This intentionally uses logistic regression so the reconciliation code can be validated without downloading a foundation-model checkpoint.
+Key empirical scripts:
 
-## Reproducibility target
-
-The first external checkpoint sanity test is **Credit + TabPFN-3**, followed by five-fold evaluation and the full real-data benchmark.
+```bash
+PYTHONPATH=src python experiments/run_exact_view_perturbation.py
+PYTHONPATH=src python experiments/run_selective_mixture.py
+PYTHONPATH=src python experiments/run_selective_validation_size.py
+```
 
 ## Research guardrail
 
-A repaired joint is internally coherent by construction. The research contribution is therefore evaluated through **distortion, proper scoring rules, calibration, conditional performance, and distance to known synthetic ground truth**, rather than by claiming zero post-repair factorization inconsistency as the empirical result.
-
-## Status
-
-The method and synthetic evaluation pipeline are implemented. Real TabPFN-3, TabICLv2, and TabFM checkpoint experiments are the next validation stage.
+Any normalized joint is internally coherent. Therefore, **zero inconsistency after reconciliation is not treated as evidence of usefulness**. The paper evaluates proper scoring, conditional prediction, calibration, distortion, dependence fidelity, truth distance when available, and validation-selected consistency tax/dividend.
