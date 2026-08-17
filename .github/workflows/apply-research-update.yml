@@ -25,13 +25,23 @@ jobs:
           echo '2a120deff68371e7f734be3a95406fd3434f4363b5ddfae3e3c013e2dbb7cbf5  /tmp/core_tfm_update.tar.gz' | sha256sum -c -
           tar -xzf /tmp/core_tfm_update.tar.gz -C .
 
+          # Capture intended workflow definitions in logs; restore the existing
+          # workflow directory before committing because GITHUB_TOKEN cannot
+          # create/update workflow files in this repository.
+          echo '--- BEGIN build-jmlr-draft.yml ---'
+          cat .github/workflows/build-jmlr-draft.yml
+          echo '--- END build-jmlr-draft.yml ---'
+          echo '--- BEGIN tabicl-car-sanity.yml ---'
+          cat .github/workflows/tabicl-car-sanity.yml
+          echo '--- END tabicl-car-sanity.yml ---'
+          git checkout HEAD -- .github/workflows
+
           # jmlr2e already defines proposition; do not redefine it.
           sed -i '/\\newtheorem{proposition}{Proposition}/d' paper/jmlr/main.tex
           # A bracket immediately after \\ is parsed as optional vertical spacing.
           sed -i 's/       \[Institution and postal address to be completed\]\\\\/       Institution and postal address to be completed\\\\/' paper/jmlr/main.tex
 
           rm -f repo_update_payload.part-* repo_update_payload.ready
-          rm -f .github/workflows/apply-research-update.yml .github/workflows/build-draft-pdf.yml
           rm -f .github/update_payload/part-000
           rm -f scripts/build_public_draft_pdf.py paper/CoRe_TFM_Public_Working_Draft.pdf
 
@@ -55,7 +65,7 @@ jobs:
           pdfinfo CoRe_TFM_JMLR_Draft.pdf
           rm -f jmlr2e.sty main.aux main.bbl main.blg main.fdb_latexmk main.fls main.log main.out main.pdf
 
-      - name: Commit journal-grade update
+      - name: Commit non-workflow journal update
         run: |
           git config user.name 'Badampudi Agasthya Anirudh'
           git config user.email 'anirudhbadampudi@gmail.com'
