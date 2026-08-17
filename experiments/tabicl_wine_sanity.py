@@ -1,22 +1,29 @@
 """One-fold TabICLv2 sanity benchmark on the source-paper Wine reconstruction.
 
-Uses the exact pinned OpenML tables from Klötergens et al. (2026): red ID 40691
-and white ID 40498, concatenated with source-table color as B. The white target
-keeps its OpenML index encoding, so the merged A target has eight levels, matching
-Appendix B of the source paper. This is a one-fold connectivity/protocol sanity
-run before a five-fold benchmark.
+Klötergens et al. (2026) concatenate OpenML red-wine ID 40691 and white-wine
+ID 40498, add source-table color as B, keep red quality at raw values 3--8,
+and use index-encoded white quality values 1--7. OpenML's metadata API is
+currently returning HTTP 504 from GitHub-hosted runners, so this script
+reconstructs the same representation from the canonical UCI Wine Quality files:
+red quality is unchanged and white quality is transformed as quality - 2.
+The UCI archive and member hashes are recorded in the result.
 """
 from __future__ import annotations
 
+import hashlib
 import importlib.metadata
+import io
 import json
 import sys
+import urllib.request
+import zipfile
 from pathlib import Path
 
 import numpy as np
+import pandas as pd
 from sklearn.model_selection import StratifiedKFold
 
-from core_tfm.data.openml import load_pair_dataset
+from core_tfm.data.openml import PairDataset
 from core_tfm.inference.extract import extract_pair_predictions
 from core_tfm.metrics.distributions import marginal_distortion, total_variation
 from core_tfm.metrics.scoring import joint_brier, joint_log_loss
@@ -26,6 +33,57 @@ from core_tfm.reconciliation.mpr import marginal_preserving_reconciliation
 from core_tfm.reconciliation.soft import soft_reconciliation
 
 CHECKPOINT = "tabicl-classifier-v2-20260212.ckpt"
+UCI_ZIP = "https://archive.ics.uci.edu/static/public/186/wine+quality.zip"
+
+
+def _sha256(data: bytes) -> str:
+    return hashlib.sha256(data).hexdigest()
+
+
+def load_source_equivalent_wine() -> tuple[PairDataset, dict]:
+    with urllib.request.urlopen(UCI_ZIP, timeout=60) as response:
+        archive = response.read()
+    with zipfile.ZipFile(io.BytesIO(archive)) as zf:
+        red_bytes = zf.read("winequality-red.csv")
+        white_bytes = zf.read("winequality-white.csv")
+
+    red = pd.read_csv(io.BytesIO(red_bytes), sep=";")
+    white = pd.read_csv(io.BytesIO(white_bytes), sep=";")
+    if len(red) != 1599 or len(white) != 4898:
+        raise RuntimeError(f"Unexpected UCI Wine row counts: red={len(red)}, white={len(white)}")
+    if list(red.columns) != list(white.columns):
+        raise RuntimeError("Red/white UCI Wine schemas differ unexpectedly")
+    if "quality" not in red.columns:
+        raise RuntimeError("Expected UCI quality column is missing")
+
+    red_x = red.drop(columns=["quality"]).copy()
+    white_x = white.drop(columns=["quality"]).copy()
+    red_a = red["quality"].astype(int)
+    # Source Appendix B: the white OpenML table stores its seven ordered quality
+    # levels (raw 3--9) as indices 1--7.
+    white_a = white["quality"].astype(int) - 2
+    if sorted(red_a.unique().tolist()) != [3, 4, 5, 6, 7, 8]:
+        raise RuntimeError("Unexpected red-wine quality levels")
+    if sorted(white_a.unique().tolist()) != [1, 2, 3, 4, 5, 6, 7]:
+        raise RuntimeError("Unexpected encoded white-wine quality levels")
+
+    X = pd.concat([red_x, white_x], ignore_index=True)
+    a = pd.concat([red_a, white_a], ignore_index=True).astype("category")
+    b = pd.Series(
+        ["red"] * len(red) + ["white"] * len(white), name="color", dtype="category"
+    )
+    provenance = {
+        "route": "source-equivalent reconstruction from canonical UCI files",
+        "canonical_source": UCI_ZIP,
+        "source_paper_openml_ids": [40691, 40498],
+        "transformation": "red quality unchanged; white quality = raw quality - 2; add color",
+        "archive_sha256": _sha256(archive),
+        "red_csv_sha256": _sha256(red_bytes),
+        "white_csv_sha256": _sha256(white_bytes),
+        "red_rows": int(len(red)),
+        "white_rows": int(len(white)),
+    }
+    return PairDataset("wine", X, a, b), provenance
 
 
 def factory():
@@ -41,7 +99,7 @@ def factory():
 
 
 def main():
-    data = load_pair_dataset("wine")
+    data, provenance = load_source_equivalent_wine()
     X, a, b = data.X, data.a, data.b
     tr, te = next(
         iter(StratifiedKFold(n_splits=5, shuffle=True, random_state=42).split(X, a))
@@ -85,7 +143,8 @@ def main():
     tv = total_variation(j1, j2)
     result = {
         "status": "sanity-only",
-        "dataset": "Wine (OpenML 40691 + 40498)",
+        "dataset": "Wine (source-equivalent OpenML 40691 + 40498 reconstruction)",
+        "data_provenance": provenance,
         "model": "TabICLv2",
         "model_config": {
             "checkpoint_version": CHECKPOINT,
