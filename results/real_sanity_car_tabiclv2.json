@@ -1,0 +1,80 @@
+{
+  "status": "sanity-only",
+  "dataset": "UCI Car Evaluation",
+  "dataset_doi": "10.24432/C5JP48",
+  "model": "TabICLv2",
+  "model_config": {
+    "device": "cpu",
+    "n_estimators": 1,
+    "kv_cache": true,
+    "random_state": 42
+  },
+  "fold": 1,
+  "n_train": 1382,
+  "n_test": 346,
+  "k_a": 4,
+  "k_b": 3,
+  "factorization_tv_mean": 0.06977724096489908,
+  "factorization_tv_median": 0.03625255074090885,
+  "factorization_tv_max": 0.5050713664910531,
+  "marginalization_tv_a_mean": 0.04818087876989612,
+  "marginalization_tv_b_mean": 0.041692023138490956,
+  "methods": [
+    {
+      "method": "j1_b_then_a",
+      "joint_nll": 1.1232027940718026,
+      "joint_brier": 0.6756964041712502,
+      "a_given_b_nll": 0.022602304318187317,
+      "b_given_a_nll": 0.7165568162117577,
+      "marginal_distortion": 0.024090439384948082
+    },
+    {
+      "method": "j2_a_then_b",
+      "joint_nll": 1.1950482261676068,
+      "joint_brier": 0.6985998616096741,
+      "a_given_b_nll": 0.07376075265693341,
+      "b_given_a_nll": 0.747763182987045,
+      "marginal_distortion": 0.020846011569245503
+    },
+    {
+      "method": "independent",
+      "joint_nll": 1.547885532934177,
+      "joint_brier": 0.7640222357775784,
+      "a_given_b_nll": 0.4472850431805616,
+      "b_given_a_nll": 1.1006004897536152,
+      "marginal_distortion": 2.962260071122174e-17
+    },
+    {
+      "method": "arithmetic",
+      "joint_nll": 1.1512903963181158,
+      "joint_brier": 0.6835905273594575,
+      "a_given_b_nll": 0.04296812309569215,
+      "b_given_a_nll": 0.7290835704005538,
+      "marginal_distortion": 0.022468225477096773
+    },
+    {
+      "method": "geometric",
+      "joint_nll": 1.1392509669463389,
+      "joint_brier": 0.6836018204040393,
+      "a_given_b_nll": 0.028207546976350004,
+      "b_given_a_nll": 0.7211767987761183,
+      "marginal_distortion": 0.02703687406688819
+    },
+    {
+      "method": "hard_core",
+      "joint_nll": 1.221113825365532,
+      "joint_brier": 0.6970654817107621,
+      "a_given_b_nll": 0.12051333561191667,
+      "b_given_a_nll": 0.7738287821840283,
+      "marginal_distortion": 3.6224036524355906e-13
+    },
+    {
+      "method": "soft_core_lambda_1",
+      "joint_nll": 1.1447775923403656,
+      "joint_brier": 0.683887561765955,
+      "a_given_b_nll": 0.03735184013075434,
+      "b_given_a_nll": 0.7217461958993755,
+      "marginal_distortion": 0.021794612870346772
+    }
+  ]
+}
