@@ -1,0 +1,186 @@
+{
+  "status": "small-real-selective-benchmark",
+  "dataset": "UCI Car Evaluation",
+  "dataset_doi": "10.24432/C5JP48",
+  "model": "TabICLv2",
+  "model_config": {
+    "checkpoint_version": "tabicl-classifier-v2-20260212.ckpt",
+    "device": "cpu",
+    "n_estimators": 1,
+    "kv_cache": true,
+    "random_state": 42,
+    "n_jobs": 4
+  },
+  "environment": {
+    "python": "3.11.15",
+    "platform": "Linux-6.17.0-1022-azure-x86_64-with-glibc2.39",
+    "tabicl": "2.1.1",
+    "torch": "2.13.0"
+  },
+  "outer_split": {
+    "type": "StratifiedKFold",
+    "n_splits": 5,
+    "shuffle": true,
+    "random_state": 42,
+    "stratify_target": "class"
+  },
+  "selection": {
+    "validation_fraction": 0.2,
+    "validation_seed_rule": "1000 + outer_fold",
+    "weights": [
+      0.0,
+      0.25,
+      0.5,
+      0.75,
+      1.0
+    ],
+    "marginal_penalties": [
+      0.03,
+      0.1,
+      0.3,
+      1.0,
+      3.0,
+      10.0,
+      30.0
+    ],
+    "candidate_family_note": "Two original orders, arithmetic pool, weighted geometric pool, weighted hard CoRe, and weighted soft CoRe. Selection uses only inner-validation labels; outer-test labels are never used for selection."
+  },
+  "folds": [
+    {
+      "fold": 1,
+      "n_outer_train": 1382,
+      "n_inner_train": 1105,
+      "n_validation": 277,
+      "n_test": 346,
+      "selected_policy": {
+        "name": "j1_b_then_a",
+        "weight": null,
+        "marginal_penalty": null,
+        "validation_joint_nll": 1.132701699712177
+      },
+      "factorization_tv_mean": 0.06977724096489908,
+      "test_joint_nll_selected": 1.1232027940718026,
+      "test_joint_brier_selected": 0.6756964041712502,
+      "test_marginal_distortion_selected": 0.024090439384948082,
+      "test_joint_nll_j1": 1.1232027940718026,
+      "test_joint_nll_j2": 1.1950482261676068,
+      "test_joint_nll_best_original": 1.1232027940718026,
+      "selected_minus_best_original_nll": 0.0
+    },
+    {
+      "fold": 2,
+      "n_outer_train": 1382,
+      "n_inner_train": 1105,
+      "n_validation": 277,
+      "n_test": 346,
+      "selected_policy": {
+        "name": "j1_b_then_a",
+        "weight": null,
+        "marginal_penalty": null,
+        "validation_joint_nll": 1.124377585801289
+      },
+      "factorization_tv_mean": 0.06830327054280749,
+      "test_joint_nll_selected": 1.1207190474779802,
+      "test_joint_brier_selected": 0.6742499702866132,
+      "test_marginal_distortion_selected": 0.021862810612275917,
+      "test_joint_nll_j1": 1.1207190474779802,
+      "test_joint_nll_j2": 1.1752607379854403,
+      "test_joint_nll_best_original": 1.1207190474779802,
+      "selected_minus_best_original_nll": 0.0
+    },
+    {
+      "fold": 3,
+      "n_outer_train": 1382,
+      "n_inner_train": 1105,
+      "n_validation": 277,
+      "n_test": 346,
+      "selected_policy": {
+        "name": "soft",
+        "weight": 1.0,
+        "marginal_penalty": 0.1,
+        "validation_joint_nll": 1.1167118827400984
+      },
+      "factorization_tv_mean": 0.06398707562281632,
+      "test_joint_nll_selected": 1.1236154060022607,
+      "test_joint_brier_selected": 0.6766805563704836,
+      "test_marginal_distortion_selected": 0.02269555035896686,
+      "test_joint_nll_j1": 1.1222588983566586,
+      "test_joint_nll_j2": 1.1858063011934257,
+      "test_joint_nll_best_original": 1.1222588983566586,
+      "selected_minus_best_original_nll": 0.001356507645602134
+    },
+    {
+      "fold": 4,
+      "n_outer_train": 1383,
+      "n_inner_train": 1106,
+      "n_validation": 277,
+      "n_test": 345,
+      "selected_policy": {
+        "name": "j1_b_then_a",
+        "weight": null,
+        "marginal_penalty": null,
+        "validation_joint_nll": 1.1119640037916665
+      },
+      "factorization_tv_mean": 0.07096334659145807,
+      "test_joint_nll_selected": 1.125278681863808,
+      "test_joint_brier_selected": 0.6759520598441449,
+      "test_marginal_distortion_selected": 0.02773095192980476,
+      "test_joint_nll_j1": 1.125278681863808,
+      "test_joint_nll_j2": 1.18999772136493,
+      "test_joint_nll_best_original": 1.125278681863808,
+      "selected_minus_best_original_nll": 0.0
+    },
+    {
+      "fold": 5,
+      "n_outer_train": 1383,
+      "n_inner_train": 1106,
+      "n_validation": 277,
+      "n_test": 345,
+      "selected_policy": {
+        "name": "j1_b_then_a",
+        "weight": null,
+        "marginal_penalty": null,
+        "validation_joint_nll": 1.1815975712018894
+      },
+      "factorization_tv_mean": 0.07353214059702722,
+      "test_joint_nll_selected": 1.1129967139730212,
+      "test_joint_brier_selected": 0.6732003405697301,
+      "test_marginal_distortion_selected": 0.028355093857841816,
+      "test_joint_nll_j1": 1.1129967139730212,
+      "test_joint_nll_j2": 1.1738855161560138,
+      "test_joint_nll_best_original": 1.1129967139730212,
+      "selected_minus_best_original_nll": 0.0
+    }
+  ],
+  "aggregate": {
+    "factorization_tv_mean": {
+      "mean": 0.06931261486380164,
+      "std": 0.003539962366659535
+    },
+    "selected_joint_nll": {
+      "mean": 1.1211625286777747,
+      "std": 0.004847659550362347
+    },
+    "selected_joint_brier": {
+      "mean": 0.6751558662484445,
+      "std": 0.0014049478308680021
+    },
+    "selected_marginal_distortion": {
+      "mean": 0.02494696922876749,
+      "std": 0.002944504960061396
+    },
+    "best_original_joint_nll": {
+      "mean": 1.1208912271486542,
+      "std": 0.0047121282126593176
+    },
+    "selected_minus_best_original_nll": {
+      "mean": 0.00027130152912042683,
+      "std": 0.0006066486615129131
+    },
+    "policy_name_counts": {
+      "j1_b_then_a": 4,
+      "soft": 1
+    },
+    "selected_policy_is_original_folds": 4
+  }
+}
