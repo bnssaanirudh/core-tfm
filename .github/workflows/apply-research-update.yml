@@ -15,13 +15,50 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
 
-      - name: Inspect extracted JMLR title block
+      - name: Reconstruct verified research package
         run: |
           cat repo_update_payload.part-* | base64 --decode > /tmp/core_tfm_update.tar.gz
           echo '2a120deff68371e7f734be3a95406fd3434f4363b5ddfae3e3c013e2dbb7cbf5  /tmp/core_tfm_update.tar.gz' | sha256sum -c -
           tar -xzf /tmp/core_tfm_update.tar.gz -C .
-          echo '--- paper/jmlr/main.tex lines 1-70 ---'
-          nl -ba paper/jmlr/main.tex | sed -n '1,70p'
-          echo '--- end title block diagnostic ---'
-          exit 1
+
+          # jmlr2e already defines proposition; do not redefine it.
+          sed -i '/\\newtheorem{proposition}{Proposition}/d' paper/jmlr/main.tex
+          # A bracket immediately after \\ is parsed as optional vertical spacing.
+          sed -i 's/       \[Institution and postal address to be completed\]\\\\/       Institution and postal address to be completed\\\\/' paper/jmlr/main.tex
+
+          rm -f repo_update_payload.part-* repo_update_payload.ready
+          rm -f .github/workflows/apply-research-update.yml .github/workflows/build-draft-pdf.yml
+          rm -f .github/update_payload/part-000
+          rm -f scripts/build_public_draft_pdf.py paper/CoRe_TFM_Public_Working_Draft.pdf
+
+      - name: Verify research code
+        run: |
+          python -m pip install --upgrade pip
+          pip install -e '.[test]'
+          PYTHONPATH=src pytest -q
+
+      - name: Install LaTeX toolchain
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y latexmk texlive-latex-base texlive-latex-extra texlive-fonts-recommended poppler-utils
+
+      - name: Compile with official JMLR style
+        working-directory: paper/jmlr
+        run: |
+          curl -fsSLo jmlr2e.sty https://raw.githubusercontent.com/JmlrOrg/jmlr-style-file/master/jmlr2e.sty
+          latexmk -pdf -interaction=nonstopmode -halt-on-error main.tex
+          cp main.pdf CoRe_TFM_JMLR_Draft.pdf
+          pdfinfo CoRe_TFM_JMLR_Draft.pdf
+          rm -f jmlr2e.sty main.aux main.bbl main.blg main.fdb_latexmk main.fls main.log main.out main.pdf
+
+      - name: Commit journal-grade update
+        run: |
+          git config user.name 'Badampudi Agasthya Anirudh'
+          git config user.email 'anirudhbadampudi@gmail.com'
+          git add -A
+          git commit -m 'Upgrade manuscript to JMLR-grade selective reconciliation study'
+          git push
