@@ -14,12 +14,12 @@
 - Required Machine Learning Contribution Information Sheet.
 
 ## Submission blockers
-1. Complete the real released-TFM cross-validation benchmark; no general TFM performance claim should be made before this.
+1. Complete the broader released-TFM cross-validation benchmark; the completed five-fold Car and Wine TabICLv2 pilots are two cells, not support for a general TFM performance claim.
 2. Fill exact university/department/postal affiliation.
 3. Confirm funding, competing interests, final author list/contributions and GenAI disclosure wording.
 4. Recheck all reference metadata and novelty immediately before submission.
 5. Build with the official Springer Nature LaTeX v3.1 (December 2024) package and archive the exact submitted source/PDF.
 6. Create an immutable code/data release (for example Zenodo) and add DOI if available.
 
-## Real-model sanity status
-The first TabICLv2 + Credit CI attempt installed TabICLv2 successfully but OpenML returned HTTP 504 before inference. The failure is infrastructure-only and is not counted as a model result. A retry has been launched.
+## Real-model status
+Five-fold leakage-free TabICLv2 results are committed for Car and Wine. Car has factorization TV `0.06931 ± 0.00354`; Selective CoRe chooses raw $B\rightarrow A$ in 4/5 folds and reaches `1.12116 ± 0.00485` joint NLL. Wine has factorization TV `0.02445 ± 0.00319`; fixed arithmetic pooling is best (`0.74433 ± 0.03139`) and Selective CoRe mixes raw, pooling, and Soft CoRe (`0.74602 ± 0.03205`). Wine uses a source-equivalent canonical-UCI reconstruction with archived hashes. The earlier Credit OpenML HTTP 504 is infrastructure-only and is not a model result.

@@ -4,7 +4,7 @@ Research implementation for **post-hoc reconciliation of incompatible probabilit
 
 ## Paper status
 
-The current master manuscript is a **JMLR-formatted working draft** in [`paper/jmlr/`](paper/jmlr/). GitHub Actions downloads the official JMLR `jmlr2e` style directly from the JMLR style repository and compiles the public draft PDF. A Springer *Machine Learning* adaptation is maintained as a secondary target.
+The evidence currently fits **Transactions on Machine Learning Research (TMLR)** best: its technical-correctness emphasis matches a rigorous method paper with two real TabICLv2 cells but without a full multi-model matrix. The repository retains a JMLR-formatted working draft in [`paper/jmlr/`](paper/jmlr/) and a Springer *Machine Learning* adaptation in [`paper/springer/`](paper/springer/) as synchronized alternatives. GitHub Actions compiles the JMLR draft with the official `jmlr2e` style.
 
 The draft is **not submission-ready yet** because the controlled experiments must still be complemented by the complete released-model benchmark on TabPFN-3, TabICLv2, and TabFM.
 
@@ -43,7 +43,7 @@ The repository now contains three complementary controlled studies:
 2. **Exact-view perturbations** that independently corrupt the two marginals and two conditional families, showing when hard marginal preservation helps or hurts.
 3. **Heterogeneous task mixtures** in which view reliability changes by task. In the current 60-task full-oracle study, Selective CoRe beats the best fixed method (arithmetic pooling) by about `0.00581` mean exact NLL, wins 41/60 paired tasks, and has Wilcoxon `p = 5.79e-7`. A separate validation-size study shows selection regret decreasing as held-out validation data increase.
 
-The repository also contains a **five-fold released-model pilot** on TabICLv2 + UCI Car Evaluation. Mean factorization TV is `0.06931 ± 0.00354`; the best mean joint NLL is the unreconciled `B→A` chain (`1.12089`), ahead of geometric pooling (`1.13434`), Soft CoRe with `lambda=1` (`1.13840`), and Hard CoRe (`1.20412`). A leakage-free five-fold Selective CoRe run chooses the raw `B→A` direction in 4/5 folds and a mild Soft CoRe policy once, reaching `1.12116 ± 0.00485` mean joint NLL—only `0.00027` above the per-fold best original direction. This supports selective rather than unconditional repair. It is one model–dataset cell, not an average released-TFM performance claim.
+The repository also contains **two five-fold released-model pilots** on TabICLv2. On UCI Car Evaluation, factorization TV is `0.06931 ± 0.00354`; the raw `B→A` chain has the best mean NLL (`1.12089 ± 0.00471`) and leakage-free Selective CoRe chooses it in 4/5 folds (`1.12116 ± 0.00485`). On Wine, reconstructed from canonical UCI red/white source files with recorded SHA-256 hashes, factorization TV is `0.02445 ± 0.00319`; arithmetic pooling has the best fixed mean NLL (`0.74433 ± 0.03139`), while Selective CoRe mixes raw, pooling, and Soft CoRe policies (`0.74602 ± 0.03205`). Neither cell supports unconditional projection. These are two data-set cells for one released model, not an average released-TFM performance claim.
 
 ## Reproduce core tests
 

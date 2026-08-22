@@ -15,7 +15,7 @@ Recent work shows that tabular foundation models can produce direct marginal and
 
 \textbf{2. What precise evidence supports the claim?}
 
-Two controlled protocols provide known conditional truth. Multiclass synthetic DGP sweeps vary dependence, sample size, feature dimension, class cardinality, and imbalance over 10 paired seeds while separating inner validation and outer testing. A new exact-view perturbation benchmark independently corrupts two direct marginals and two conditional families over six reliability regimes and 20 paired seeds. When direct marginals are reliable, Hard CoRe improves over arithmetic pooling by 0.0138 expected NLL on average (Holm-adjusted paired Wilcoxon $p<10^{-4}$); when marginals are noisy but conditionals are reliable, Hard CoRe is worse than arithmetic by 0.1423 NLL ($p<10^{-4}$). Directionally reliable regimes favor the corresponding original factorization, while symmetric noise often favors arithmetic/geometric pooling. These results support selective rather than unconditional reconciliation. The final real-TFM benchmark is pre-specified and remains a submission blocker until complete.
+Two controlled protocols provide known conditional truth. Multiclass synthetic DGP sweeps vary dependence, sample size, feature dimension, class cardinality, and imbalance over 10 paired seeds while separating inner validation and outer testing. A new exact-view perturbation benchmark independently corrupts two direct marginals and two conditional families over six reliability regimes and 20 paired seeds. When direct marginals are reliable, Hard CoRe improves over arithmetic pooling by 0.0138 expected NLL on average (Holm-adjusted paired Wilcoxon $p<10^{-4}$); when marginals are noisy but conditionals are reliable, Hard CoRe is worse than arithmetic by 0.1423 NLL ($p<10^{-4}$). We additionally run leakage-free five-fold TabICLv2 pilots on Car and Wine. Factorization TV is $0.06931\pm0.00354$ (Car) and $0.02445\pm0.00319$ (Wine); fixed projection is not best in either cell, while Selective CoRe selects raw, pooling, and mild-repair policies according to held-out validation. These results support selective rather than unconditional reconciliation. The broader multi-model real-TFM benchmark remains a submission blocker.
 
 \textbf{3. What are the closest related contributions and how does this paper differ?}
 
@@ -26,5 +26,5 @@ The closest precursor is Kloetergens et al. (2026), \emph{Do Tabular Foundation 
 No manuscript containing these CoRe-TFM methods or experiments has been published. The public GitHub repository is a research-code and working-draft repository. Any preprint status must be updated here if the manuscript is posted before journal submission.
 
 \vfill
-\textit{Working version: complete the real-TFM evidence and final author declarations before submission.}
+\textit{Working version: complete the broader multi-model real-TFM evidence and final author declarations before submission.}
 \end{document}

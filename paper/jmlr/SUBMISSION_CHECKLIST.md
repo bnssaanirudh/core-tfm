@@ -16,7 +16,7 @@ This checklist follows the current JMLR author information and formatting guidan
 
 ## Scientific blockers before submission
 
-- [ ] Complete five-fold real-model benchmark on released TabPFN-3, TabICLv2, and TabFM configurations.
+- [ ] Complete broader five-fold real-model benchmark on released TabPFN-3, TabICLv2, and TabFM configurations. (Car and Wine TabICLv2 pilots are complete.)
 - [ ] Report model/checkpoint versions, inference budgets, hardware, and weight-license conditions.
 - [ ] Re-run all adaptive choices using validation data disjoint from final test folds.
 - [ ] Add paired statistical comparisons across real datasets/folds and report effect sizes.
