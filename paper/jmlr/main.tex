@@ -33,7 +33,7 @@
 \maketitle
 
 \begin{abstract}
-Tabular foundation models (TFMs) expose predictive probabilities that can be composed autoregressively for multivariate inference, but recent evidence shows that direct marginals and conditional predictions from the same frozen TFM need not correspond to a common joint distribution. We study post-hoc reconciliation of four views, $p(A\mid X)$, $p(B\mid X)$, $p(A\mid B,X)$, and $p(B\mid A,X)$, without retraining the underlying model. CoRe-TFM treats the two chain-rule joints as competing probabilistic views. Hard CoRe performs an information projection that exactly preserves direct marginals; Soft CoRe relaxes marginal preservation through KL penalties and admits generalized Sinkhorn-style updates; Selective CoRe uses held-out validation data to choose among unrepaired factorizations, pooling, and reconciliation. Controlled experiments with known conditional truth show that coherence, calibration, and probabilistic correctness are distinct. Exact-view perturbations identify when hard marginal preservation helps or hurts, while a heterogeneous task-mixture benchmark shows that Selective CoRe significantly outperforms the best fixed method and approaches a non-deployable candidate-family oracle. A five-fold TabICLv2 pilot on UCI Car Evaluation independently confirms substantial cross-query incompatibility and shows that the best unreconciled chain direction can still outperform both hard and soft reconciliation. A leakage-free inner-validation Selective CoRe policy chooses that raw direction in four of five outer folds and incurs only 0.00027 mean joint-NLL regret to the per-fold best original direction. The results support selective rather than unconditional reconciliation; a broader released-model matrix remains necessary before making average TFM performance claims.
+Tabular foundation models (TFMs) expose predictive probabilities that can be composed autoregressively for multivariate inference, but recent evidence shows that direct marginals and conditional predictions from the same frozen TFM need not correspond to a common joint distribution. We study post-hoc reconciliation of four views, $p(A\mid X)$, $p(B\mid X)$, $p(A\mid B,X)$, and $p(B\mid A,X)$, without retraining the underlying model. CoRe-TFM treats the two chain-rule joints as competing probabilistic views. Hard CoRe performs an information projection that exactly preserves direct marginals; Soft CoRe relaxes marginal preservation through KL penalties and admits generalized Sinkhorn-style updates; Selective CoRe uses held-out validation data to choose among unrepaired factorizations, pooling, and reconciliation. Controlled experiments with known conditional truth show that coherence, calibration, and probabilistic correctness are distinct. Exact-view perturbations identify when hard marginal preservation helps or hurts, while a heterogeneous task-mixture benchmark shows that Selective CoRe significantly outperforms the best fixed method and approaches a non-deployable candidate-family oracle. Two leakage-free five-fold TabICLv2 cells on UCI Car Evaluation and Wine independently confirm measurable cross-query incompatibility, while fixed projection is not the best joint-NLL policy in either cell. Selective CoRe stays within $0.00005$ and $0.00106$ mean NLL, respectively, of the per-fold best raw direction. The results support selective rather than unconditional reconciliation; a broader released-model matrix remains necessary before making average TFM performance claims.
 \end{abstract}
 
 \begin{keywords}
@@ -305,37 +305,37 @@ On a local batch of 5,000 $5\times5$ joints, generalized scaling reaches the sam
 The controlled evidence establishes how reconciliation behaves when probability-view reliability can be measured or manipulated. We now add two released-model pilots, while keeping the broader model--data set matrix pre-specified rather than claiming that two cells establish average TFM gains.
 
 \subsection{Five-fold TabICLv2 pilots on Car Evaluation and Wine}
-We evaluate TabICLv2 on UCI Car Evaluation, using $A=$ class and $B=$ safety, with the remaining five categorical attributes as $X$ \citep{bohanec1988car}. The data contain 1,728 rows. We use five-fold stratified cross-validation on $A$ with shuffle enabled and random seed 42. For CPU tractability, the pilot uses one TabICLv2 estimator, key--value caching, and the released 2026 checkpoint. This is therefore not an exact reproduction of \citet{klotergens2026agree}: their fold seed is not published and their default inference configuration differs.
+We evaluate TabICLv2 on UCI Car Evaluation, using $A=$ class and $B=$ safety, with the remaining five categorical attributes as $X$ \citep{bohanec1988car}. The data contain 1,728 rows. We use five-fold stratified cross-validation on $A$ with shuffle enabled and random seed 42. The reproducibility archive records TabICL 2.1.1 and uses one estimator with key--value caching. This is therefore not an exact reproduction of \citet{klotergens2026agree}: their fold seed and inference configuration differ.
 
-Across the five folds, mean factorization inconsistency is $0.06931\pm0.00354$ TV. The corresponding value reported by \citet{klotergens2026agree} for TabICLv2 on Car is $0.0644\pm0.0058$. Given the non-identical split and inference configuration, we treat this only as a qualitative reproduction of the inconsistency scale, not as a numerical replication.
+Across the five folds, mean factorization inconsistency is $0.06956\pm0.00475$ TV. The corresponding value reported by \citet{klotergens2026agree} for TabICLv2 on Car is $0.0644\pm0.0058$. Given the non-identical split and inference configuration, we treat this only as a qualitative reproduction of the inconsistency scale, not as a numerical replication.
 
-Table~\ref{tab:realpilot} reports joint NLL and marginal distortion. The key fixed-policy result is negative but informative: the $B\!\rightarrow\!A$ factorization is the best mean-NLL method on every aggregate comparison, at $1.12089\pm0.00471$. Geometric pooling reaches $1.13434\pm0.00786$, Soft CoRe with $\lambda_A=\lambda_B=1$ reaches $1.13840\pm0.00982$, and Hard CoRe reaches $1.20412\pm0.02819$. Thus the released model exhibits clear incompatibility, yet enforcing a single repaired joint does not improve the best raw factorization. Hard CoRe nearly eliminates marginal distortion by construction, but that structural success coincides with worse predictive score.
+Table~\ref{tab:realpilot} reports joint NLL and marginal distortion. The key fixed-policy result is negative but informative: the $B\!\rightarrow\!A$ factorization is the best mean-NLL method, at $1.11686\pm0.00786$. Geometric pooling reaches $1.13082\pm0.01138$, Soft CoRe with $\lambda_A=\lambda_B=1$ reaches $1.13616\pm0.01008$, and Hard CoRe reaches $1.19977\pm0.01661$. Thus the released model exhibits clear incompatibility, yet enforcing a single repaired joint does not improve the best raw factorization. Hard CoRe nearly eliminates marginal distortion by construction, but that structural success coincides with worse predictive score.
 
-We therefore run the full Selective CoRe candidate family using a leakage-free inner split: 20\% of each outer-training fold is held out for policy selection, the policy is frozen, all four probability views are refit on the complete outer-training fold, and the untouched outer test fold is scored. Selective CoRe chooses the raw $B\!\rightarrow\!A$ factorization in four folds and Soft CoRe with $w=1,\lambda=0.1$ in one fold. Its mean test joint NLL is $1.12116\pm0.00485$, only $0.00027$ above the per-fold best original direction. This is the intended behavior of selective reconciliation: validation mostly rejects unnecessary repair and pays only a small cost in the one fold where it selects a mild repair.
+We therefore run the full Selective CoRe candidate family using a leakage-free inner split: 20\% of each outer-training fold is held out for policy selection, the policy is frozen, all four probability views are refit on the complete outer-training fold, and the untouched outer test fold is scored. Selective CoRe chooses the raw $B\!\rightarrow\!A$ factorization in four folds and Soft CoRe with $w=1,\lambda=0.1$ in one fold. Its mean test joint NLL is $1.11691\pm0.00786$, only $0.00005$ above the per-fold best original direction. This is the intended behavior of selective reconciliation: validation mostly rejects unnecessary repair and pays only a small cost in the one fold where it selects a mild repair.
 
 \begin{table}[t]
 \centering
-\caption{Five-fold TabICLv2 pilot on UCI Car Evaluation. Values are fold mean $\pm$ sample standard deviation. Lower is better for both metrics. This CPU pilot uses one estimator and is not an exact reproduction of prior published settings.}
+\caption{Five-fold TabICLv2 pilot on UCI Car Evaluation. Values are fold mean $\pm$ sample standard deviation. Lower is better for both metrics. The archived TabICL 2.1.1 run uses one estimator and is not an exact reproduction of prior published settings.}
 \label{tab:realpilot}
 \begin{tabular}{lcc}
 \toprule
 Method & Joint NLL & Marginal distortion \\
 \midrule
-$B\!\rightarrow\!A$ ($\Jone$) & $1.12089\pm0.00471$ & $0.02495\pm0.00294$ \\
-$A\!\rightarrow\!B$ ($\Jtwo$) & $1.18400\pm0.00922$ & $0.02162\pm0.00118$ \\
-Independent & $1.55117\pm0.01643$ & $0.00000\pm0.00000$ \\
-Arithmetic pool & $1.14625\pm0.00559$ & $0.02329\pm0.00205$ \\
-Geometric pool & $1.13434\pm0.00786$ & $0.02762\pm0.00177$ \\
-Hard CoRe & $1.20412\pm0.02819$ & $<2\times10^{-13}$ \\
-Soft CoRe ($\lambda=1$) & $1.13840\pm0.00982$ & $0.02253\pm0.00183$ \\
-Selective CoRe & $1.12116\pm0.00485$ & $0.02495\pm0.00294$ \\
+$B\!\rightarrow\!A$ ($\Jone$) & $1.11686\pm0.00786$ & $0.02547\pm0.00299$ \\
+$A\!\rightarrow\!B$ ($\Jtwo$) & $1.18081\pm0.01334$ & $0.02177\pm0.00100$ \\
+Independent & $1.54826\pm0.01656$ & $0.00000\pm0.00000$ \\
+Arithmetic pool & $1.14217\pm0.00968$ & $0.02362\pm0.00142$ \\
+Geometric pool & $1.13082\pm0.01138$ & $0.02805\pm0.00265$ \\
+Hard CoRe & $1.19977\pm0.01661$ & $<2\times10^{-13}$ \\
+Soft CoRe ($\lambda=1$) & $1.13616\pm0.01008$ & $0.02301\pm0.00187$ \\
+Selective CoRe & $1.11691\pm0.00786$ & $0.02546\pm0.00300$ \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-We repeat the identical leakage-free outer/inner protocol on Wine, with $A=$ quality class and $B=$ color. To preserve the representation used by \citet{klotergens2026agree} while avoiding the unavailable OpenML endpoint, we reconstruct Wine from the canonical UCI red and white CSVs: red quality is unchanged, white quality is encoded as raw quality minus two, and color is added as $B$ \citep{cortez2009wine}. The reconstruction contains 6,497 rows and records SHA-256 hashes for the archive and both source files. Mean factorization TV is $0.02445\pm0.00319$, comparable in scale to the reported TabICLv2 Wine value $0.0193\pm0.0007$, but not an exact numerical reproduction because split and inference configurations differ.
+We repeat the identical leakage-free outer/inner protocol on Wine, with $A=$ quality class and $B=$ color. To preserve the representation used by \citet{klotergens2026agree} while avoiding the unavailable OpenML endpoint, we reconstruct Wine from the canonical UCI red and white CSVs: red quality is unchanged, white quality is encoded as raw quality minus two, and color is added as $B$ \citep{cortez2009wine}. The reconstruction contains 6,497 rows and records SHA-256 hashes for the archive and both source files. Mean factorization TV is $0.02450\pm0.00200$, comparable in scale to the reported TabICLv2 Wine value $0.0193\pm0.0007$, but not an exact numerical reproduction because split and inference configurations differ.
 
-Table~\ref{tab:realwine} shows a different but compatible selective pattern. Arithmetic pooling has the best mean fixed-policy NLL ($0.74433\pm0.03139$), marginally ahead of the raw $B\!\rightarrow\!A$ chain ($0.74438\pm0.03167$); Hard CoRe is worse ($0.74800\pm0.03195$). Selective CoRe chooses the raw $B\!\rightarrow\!A$ chain in two folds, arithmetic pooling in one, geometric pooling in one, and Soft CoRe in one. Its mean NLL is $0.74602\pm0.03205$, a mean cost of $0.001645$ to the per-fold best raw direction. Thus neither real-data cell supports mandatory projection: selection uses a raw order on Car and mixes raw and lightly reconciled/pooling policies on Wine.
+Table~\ref{tab:realwine} shows a different but compatible selective pattern. Arithmetic pooling has the best mean fixed-policy NLL ($0.71678\pm0.01085$), marginally ahead of the raw $B\!\rightarrow\!A$ chain ($0.71737\pm0.01022$); Hard CoRe is worse ($0.72027\pm0.01327$). Selective CoRe chooses arithmetic pooling in two folds and Soft CoRe in three. Its mean NLL is $0.71797\pm0.01237$, a mean cost of $0.001062$ to the per-fold best raw direction. Thus neither real-data cell supports mandatory projection: selection uses a raw order on Car and mixes pooling and mild reconciliation on Wine.
 
 \begin{table}[t]
 \centering
@@ -345,19 +345,19 @@ Table~\ref{tab:realwine} shows a different but compatible selective pattern. Ari
 \toprule
 Method & Joint NLL \\
 \midrule
-$B\!\rightarrow\!A$ ($\Jone$) & $0.74438\pm0.03167$ \\
-$A\!\rightarrow\!B$ ($\Jtwo$) & $0.75017\pm0.03350$ \\
-Arithmetic pool & $\mathbf{0.74433\pm0.03139}$ \\
-Geometric pool & $0.74561\pm0.03244$ \\
-Hard CoRe & $0.74800\pm0.03195$ \\
-Soft CoRe ($\lambda=1$) & $0.74599\pm0.03220$ \\
-Selective CoRe & $0.74602\pm0.03205$ \\
+$B\!\rightarrow\!A$ ($\Jone$) & $0.71737\pm0.01022$ \\
+$A\!\rightarrow\!B$ ($\Jtwo$) & $0.72037\pm0.01311$ \\
+Arithmetic pool & $\mathbf{0.71678\pm0.01085}$ \\
+Geometric pool & $0.71720\pm0.01140$ \\
+Hard CoRe & $0.72027\pm0.01327$ \\
+Soft CoRe ($\lambda=1$) & $0.71798\pm0.01195$ \\
+Selective CoRe & $0.71797\pm0.01237$ \\
 \bottomrule
 \end{tabular}
 \end{table}
 
 \subsection{Pre-specified broader benchmark}
-The pre-specified model set remains TabPFN-3 \citep{grinsztajn2026tabpfn3}, TabICLv2 \citep{qu2026tabiclv2}, and TabFM \citep{google2026tabfm}. The initial data set list follows the categorical target pairs of \citet{klotergens2026agree}: Anneal, Credit, Phishing, MIC, Customer, Car, Marketing, Wine, Nursery, and Diamonds. Each outer fold must extract all four probability views; an inner split chooses direction weight, marginal penalty, or Selective CoRe policy; no test information may influence selection. Cross-dataset comparisons use data set--model cells as statistical units rather than treating individual rows as independent replications.
+The pre-specified model set remains TabPFN-3 \citep{grinsztajn2026tabpfn3}, TabICLv2 \citep{qu2026tabiclv2}, and TabFM \citep{google2026tabfm}. The final data set list is Anneal, Adult, Credit, Phishing, MIC, Customer, Car, Wine, Nursery, and Diamonds. Adult ($A=$ income class, $B=$ marital status; OpenML 1590) replaces Marketing before the final benchmark because Marketing contains a rare response class that cannot be represented in every training partition under the fixed five-fold protocol. Each outer fold must extract all four probability views; an inner split chooses direction weight, marginal penalty, or Selective CoRe policy; no test information may influence selection. Cross-dataset comparisons use data set--model cells as statistical units rather than treating individual rows as independent replications.
 
 The two pilots demonstrate that the implemented four-view extraction and reconciliation pipeline operates on a released TFM across two distinct categorical data sets. They are not sufficient for an average-performance claim across TFMs or data sets. Until the broader matrix is complete, this document remains a working draft rather than a submission-ready manuscript.
 

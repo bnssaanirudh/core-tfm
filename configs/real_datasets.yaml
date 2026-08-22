@@ -5,7 +5,9 @@ phishing:  {openml_id: 46963, target_a: WebsiteType, target_b: SFH}
 mic:       {openml_id: 46980, target_a: LET_IS, target_b: ASP_S_n}
 customer:  {openml_id: 46938, target_a: bad_client_target, target_b: education}
 car:       {openml_id: 40975, target_a: class, target_b: safety}
-marketing: {openml_id: 46940, target_a: Response, target_b: Marital_Status}
+# Marketing is infeasible under fixed five-fold evaluation because of a rare
+# response class. Adult replaces it before the final benchmark is run.
+adult:     {openml_id: 1590, target_a: class, target_b: marital-status}
 nursery:   {openml_id: 26, target_a: class, target_b: health}
 diamonds:  {openml_id: 42225, target_a: cut, target_b: color}
 wine:

@@ -7,7 +7,10 @@ CLASSIFICATION_DATASETS = {
     "mic": {"openml_id": 46980, "target_a": "LET_IS", "target_b": "ASP_S_n"},
     "customer": {"openml_id": 46938, "target_a": "bad_client_target", "target_b": "education"},
     "car": {"openml_id": 40975, "target_a": "class", "target_b": "safety"},
-    "marketing": {"openml_id": 46940, "target_a": "Response", "target_b": "Marital_Status"},
+    # Marketing is excluded: its rare ``Absurd`` response cannot appear in
+    # every training partition under the fixed five-fold protocol.  Adult is
+    # a standard public replacement with stable support for both targets.
+    "adult": {"openml_id": 1590, "target_a": "class", "target_b": "marital-status"},
     "nursery": {"openml_id": 26, "target_a": "class", "target_b": "health"},
     "diamonds": {"openml_id": 42225, "target_a": "cut", "target_b": "color"},
     "wine": {"openml_ids": [40691, 40498], "target_a": "class", "target_b": "color"},

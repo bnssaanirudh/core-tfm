@@ -4,7 +4,10 @@ tabpfn3:
 
 tabiclv2:
   constructor: tabicl.TabICLClassifier
-  kv_cache: true
+  # Uniform final-matrix setting: cache is incompatible with unseen test
+  # categories on Diamonds and can otherwise change the feasible cell set.
+  kv_cache: false
+  n_estimators: 4
   random_state: 42
 
 tabfm:
