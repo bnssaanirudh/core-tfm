@@ -1,11 +1,9 @@
 % CoRe-TFM manuscript for Machine Learning (Springer Nature)
 % Target: Springer Nature LaTeX template v3.1 (December 2024).
-\documentclass[pdflatex,sn-basic,NameDate]{sn-jnl}
+\documentclass[pdflatex,sn-basic]{sn-jnl}
 \usepackage{graphicx}
-\usepackage{multirow}
 \usepackage{amsmath,amssymb,amsfonts}
 \usepackage{amsthm}
-\usepackage{mathrsfs}
 \usepackage{booktabs}
 \usepackage{xcolor}
 \usepackage{url}
@@ -24,7 +22,7 @@
 \author*[1]{\fnm{Badampudi Agasthya} \sur{Anirudh}}\email{anirudhbadampudi@gmail.com}
 \affil*[1]{\orgdiv{Integrated M.Tech Data Science}, \orgname{[Institution to be completed]}, \orgaddress{\country{India}}}
 
-\abstract{Tabular foundation models (TFMs) expose predictive probabilities that can be composed autoregressively for multivariate inference. Recent evidence shows, however, that direct marginal predictions and conditional predictions from the same frozen TFM need not correspond to any common joint distribution. We study post-hoc reconciliation of four such views: $p(A\mid X)$, $p(B\mid X)$, $p(A\mid B,X)$, and $p(B\mid A,X)$. CoRe-TFM constructs consensus joints using KL barycenters and then either enforces direct marginals exactly (Hard CoRe), relaxes them through KL penalties (Soft CoRe), or uses held-out validation data to decide whether repair should be applied (Selective CoRe). The soft problem admits generalized Sinkhorn-style multiplicative updates. Controlled experiments with known truth show that coherence, calibration, and probabilistic correctness are distinct. Two leakage-free five-fold TabICLv2 pilots extend this finding to UCI Car Evaluation and Wine: factorization TV is $0.06956\pm0.00475$ and $0.02450\pm0.00200$, respectively, while fixed projection is not the best joint-NLL policy in either cell. Selective CoRe chooses the raw $B\!\rightarrow\!A$ chain in four of five Car folds; on Wine it chooses pooling in two folds and mild reconciliation in three. The results motivate selective rather than unconditional reconciliation; a broader TabPFN-3/TabICLv2/TabFM matrix remains necessary for average-performance claims.}
+\abstract{Tabular foundation models (TFMs) can expose direct marginal and conditional probabilities that do not correspond to a common joint distribution. We study post-hoc reconciliation of four views without retraining the underlying model. Hard CoRe exactly preserves direct marginals, Soft CoRe relaxes marginal preservation through KL penalties, and Selective CoRe uses held-out labels to choose among raw factorizations, pooling, and reconciliation. Known-truth experiments show that hard preservation helps when direct marginals are reliable and hurts when they are not. Across 100 heterogeneous controlled tasks, Selective CoRe beats arithmetic pooling by $0.00666$ mean NLL. The conclusion reverses in a bounded real-model benchmark covering ten data sets, five folds, and two TFMs: Selective CoRe is worse than arithmetic by $0.001831$ NLL (95\% bootstrap CI $[0.000548,0.003301]$; Wilcoxon $p=0.0273$), while reducing marginal distortion. Effects reverse by upstream model. Probability reconciliation is therefore a reliability-dependent consistency--accuracy trade-off, and finite-validation selection is a principal deployment limitation.}
 \keywords{tabular foundation models, probabilistic consistency, probability reconciliation, calibration, proper scoring rules, Sinkhorn scaling}
 \maketitle
 
@@ -39,15 +37,16 @@ That second question is harder than it initially appears. Constructing any singl
 
 We formulate four-view reconciliation as a family of information projections. Two autoregressive factorizations are first treated as competing joint views. Their arithmetic and geometric pools have KL-barycenter interpretations. Hard CoRe takes a consensus and projects it onto the transportation polytope defined by the two direct marginals. Soft CoRe replaces the hard marginal constraints with KL penalties, yielding a generalized matrix-scaling problem. Selective CoRe treats reconciliation as a decision: a validation set may choose an original factorization, a pool, or a repair rather than forcing coherence on every problem.
 
-The empirical design is diagnostic rather than winner-takes-all. First, a surrogate multiclass data-generating process provides exact $P^*(A,B\mid X)$ while model-based prediction error is induced by finite-data logistic estimators. Second, a new exact-view perturbation benchmark starts from the exact conditional joint and independently corrupts its two marginals and two conditional families. This separates marginal error from conditional error and identifies conditions under which hard preservation, soft relaxation, pooling, or direction selection should be preferred. The present paper treats these controlled studies as method evidence; a pre-specified TFM benchmark is required before any universal claim about released foundation models.
+The empirical design is diagnostic rather than winner-takes-all. A surrogate data-generating process and exact-view perturbations provide known truth; a heterogeneous 100-task mixture tests adaptive selection; and a completed bounded-context matrix evaluates two released TFMs across ten data sets. Together these experiments identify both the regimes in which reconciliation helps and the finite-validation regimes in which simple pooling is stronger.
 
 Our contributions are:
 \begin{enumerate}
 \item a four-view formulation of TFM probability reconciliation that distinguishes compatibility from calibration and predictive correctness;
 \item Hard and Soft CoRe objectives, including generalized Sinkhorn-style updates for the soft marginal-penalty problem;
-\item a Selective CoRe protocol that uses validation data to avoid an empirically measurable \emph{consistency tax};
-\item an exact-view perturbation benchmark that identifies which prediction errors make hard marginal preservation beneficial or harmful; and
-\item a reproducible evaluation framework with joint, marginal, conditional, calibration, truth-distance, dependence-fidelity, runtime, and paired statistical metrics.
+\item a Selective CoRe protocol whose finite-validation selection cost is measured explicitly;
+\item exact-view and heterogeneous-task benchmarks that identify when marginal preservation or adaptive selection helps;
+\item a completed bounded-context benchmark over ten data sets, two released TFMs, and a non-TFM boundary baseline; and
+\item an auditable evaluation framework with fold outputs, checksums, ablations, sensitivity analyses, and dataset-blocked inference.
 \end{enumerate}
 
 \section{Related work}\label{sec:related}
@@ -163,16 +162,16 @@ Our first controlled benchmark uses a multiclass DGP with a known chain factoriz
 \subsection{Exact-view perturbation benchmark}\label{sec:viewperturb}
 The surrogate benchmark entangles estimation error across all four model queries. We therefore introduce a complementary mechanism-identification experiment. For each seed we generate an exact multiclass $P^*(A,B\mid X)$, derive its compatible $p_A^*$, $p_B^*$, $p_{A\mid B}^*$ and $p_{B\mid A}^*$, and independently perturb each view in log-probability space. After renormalization, this produces incompatible but controlled inputs to the reconciliation methods. The test score is the exact expectation under unperturbed $P^*$.
 
-We study six regimes with 20 paired seeds: (i) uniformly low noise; (ii) reliable direct marginals and noisy conditionals; (iii) noisy marginals and reliable conditionals; (iv) a reliable $B\rightarrow A$ factorization; (v) a reliable $A\rightarrow B$ factorization; and (vi) uniformly high noise. This benchmark is intentionally not a model simulator. Its purpose is to test the assumptions encoded by the reconciliation objective.
+We study six regimes with 50 paired seeds: (i) uniformly low noise; (ii) reliable direct marginals and noisy conditionals; (iii) noisy marginals and reliable conditionals; (iv) a reliable $B\rightarrow A$ factorization; (v) a reliable $A\rightarrow B$ factorization; and (vi) uniformly high noise. This benchmark is intentionally not a model simulator. Its purpose is to test the assumptions encoded by the reconciliation objective.
 
 \subsection{Statistical protocol}
 All adaptive decisions use validation data disjoint from test observations. In the DGP sweep, paired effects are computed within seed and summarized with bootstrap confidence intervals. In the exact-view study, four comparisons are pre-specified per regime: Hard CoRe versus arithmetic pooling, Adaptive Soft versus arithmetic, Adaptive Soft versus Hard CoRe, and Adaptive Soft versus validation-selected order. We use two-sided paired Wilcoxon signed-rank tests and Holm correction within each regime. Effect direction and magnitude are reported alongside corrected $p$-values rather than treating significance as the sole criterion.
 
-\subsection{Real-TFM benchmark protocol}\label{sec:tfmprotocol}
-The broader validation layer uses released TFMs and the classification target pairs reported by \citet{klotergens2026agree}. The initial model set is TabPFN-3 \citep{grinsztajn2026tabpfn3}, TabICLv2 \citep{qu2026tabiclv2}, and TabFM \citep{google2026tabfm}. Each outer fold fits or conditions the four required predictive contexts, while an inner split selects reliability weight, soft penalty, or selective policy. Dataset--model cells, rather than individual rows, are the unit of cross-dataset statistical comparison to avoid pseudoreplication. The Car and Wine TabICLv2 cells are complete; the remaining cells are pre-specified.
+\subsection{Bounded real-model benchmark protocol}\label{sec:tfmprotocol}
+The completed validation layer uses TabICLv2 2.1.1 and TabPFN 8.4.0 as the primary TFMs, plus CatBoost 1.2.10 as a non-TFM boundary baseline. Each of five deterministic outer folds uses at most 256 training, 52 validation, and 128 test observations. TabFM was excluded before comparative outcome inspection because its released implementation was operationally incompatible with the bounded Colab protocol and prohibitively slow; CatBoost is not counted as its replacement in TFM claims. Primary inference averages the two TFMs within each dataset and uses the ten datasets as paired units.
 
 \begin{table}[t]
-\caption{Classification target pairs pre-specified for the real-TFM benchmark. Dataset identifiers and target choices follow the recent consistency study.}\label{tab:datasets}
+\caption{Classification target pairs used in the completed bounded benchmark.}\label{tab:datasets}
 \centering\small
 \begin{tabular}{lrrll}
 \toprule
@@ -181,10 +180,10 @@ Dataset & OpenML ID & Rows & Target $A$ & Target $B$\\
 Anneal & 46906 & 898 & classes & steel\\
 Credit & 46918 & 1,000 & good/bad customer & checking status\\
 Phishing & 46963 & 1,353 & WebsiteType & SFH\\
-MIC & 46980 & 1,596 & LET\_IS & ASP\_S\_n\\
+MIC & 46980 & 1,674 & LET\_IS & ASP\_S\_n\\
 Customer & 46938 & 1,723 & bad-client target & education\\
 Car & 40975 & 1,728 & class & safety\\
-Adult & 1590 & 48,842 & income class & marital-status\\
+Marketing & 46940 & 2,216 & Response & Marital\_Status\\
 Wine & 40691+40498 & 6,497 & quality class & color\\
 Nursery & 26 & 12,960 & class & health\\
 Diamonds & 42225 & 53,940 & cut & color\\
@@ -204,35 +203,46 @@ A second diagnostic concerns whether inconsistency size predicts repair utility.
 Table~\ref{tab:exactview} and Fig.~\ref{fig:exactview} summarize the mechanism-identification study. The central result is not that one method dominates, but that method rankings follow the reliability structure of the four inputs.
 
 \begin{table}[t]
-\caption{Best mean exact expected NLL in each exact-view perturbation regime (20 paired seeds). Lower is better.}\label{tab:exactview}
+\caption{Best mean exact expected NLL in each exact-view perturbation regime (50 paired seeds). Lower is better.}\label{tab:exactview}
 \centering\small
 \begin{tabular}{lll}
 \toprule
 Perturbation regime & Best method & Expected NLL\\
 \midrule
-Uniform low noise & Geometric pool & 1.452772\\
-Direct marginals reliable & Soft CoRe ($\lambda=10$) & 1.460180\\
-Conditionals reliable & Arithmetic pool & 1.481462\\
-$B\rightarrow A$ factorization reliable & $\Jone$ & 1.448507\\
-$A\rightarrow B$ factorization reliable & $\Jtwo$ & 1.449996\\
-All four views noisy & Arithmetic pool & 1.512490\\
+Uniform low noise & Geometric pool & 1.478604\\
+Direct marginals reliable & Soft CoRe ($\lambda=10$) & 1.486760\\
+Conditionals reliable & Arithmetic pool & 1.508830\\
+$B\rightarrow A$ factorization reliable & $\Jone$ & 1.475308\\
+$A\rightarrow B$ factorization reliable & $\Jtwo$ & 1.475326\\
+All four views noisy & Arithmetic pool & 1.538679\\
 \bottomrule
 \end{tabular}
 \end{table}
 
 \begin{figure}[t]
 \centering
-\includegraphics[width=\linewidth]{Fig1.pdf}
+\includegraphics[width=\linewidth]{figures/Fig1_exact_view_regret.pdf}
 \caption{Expected NLL regret relative to the best method within each exact-view perturbation regime. Strong marginal preservation is useful when direct marginals are reliable, but can incur a large cost when they are noisy.}\label{fig:exactview}
 \end{figure}
 
-When direct marginals are reliable and conditional views are noisy, Hard CoRe improves over arithmetic pooling by $0.0138$ NLL on average (Hard minus arithmetic), with Holm-adjusted paired Wilcoxon $p<10^{-4}$. Soft CoRe with a strong marginal penalty ($\lambda=10$) is marginally better still. This is the regime that most closely matches the modeling assumption behind Hard CoRe.
+When direct marginals are reliable and conditional views are noisy, Hard CoRe improves over arithmetic pooling by $0.01327$ NLL on average (Hard minus arithmetic), with Holm-adjusted paired Wilcoxon $p=7.11\times10^{-15}$. Soft CoRe with a strong marginal penalty ($\lambda=10$) is marginally better still. This is the regime that most closely matches the modeling assumption behind Hard CoRe.
 
-The conclusion reverses when conditionals are reliable but direct marginals are noisy. Hard CoRe is worse than arithmetic by $0.1423$ NLL on average ($p_{\mathrm{Holm}}<10^{-4}$). Adaptive Soft is $0.1388$ better than Hard CoRe ($p_{\mathrm{Holm}}<10^{-4}$) but remains slightly worse than arithmetic. Exact marginal preservation can therefore amplify a bad marginal forecast rather than repair the joint.
+The conclusion reverses when conditionals are reliable but direct marginals are noisy. Hard CoRe is worse than arithmetic by $0.15048$ NLL on average ($p_{\mathrm{Holm}}=7.11\times10^{-15}$). Adaptive Soft is $0.14660$ better than Hard CoRe but remains $0.00388$ worse than arithmetic. Exact marginal preservation can therefore amplify a bad marginal forecast rather than repair the joint.
 
 Directional regimes provide a third sanity check. When the $B\rightarrow A$ chain is reliable, $\Jone$ and the validation-selected order are best; Adaptive Soft is only $0.00054$ NLL worse than the selected order. The analogous result holds for $\Jtwo$. A reconciliation algorithm cannot create information absent from its inputs, so a correct policy should be able to retain a trustworthy direction. This motivates Selective CoRe rather than mandatory repair.
 
 Finally, under symmetric low or high noise, arithmetic/geometric pooling is difficult to beat. This negative result matters: averaging can be statistically efficient when input errors are roughly exchangeable, and a more structured projection is not justified solely because the inputs disagree.
+
+\subsection{Adaptive selection succeeds in heterogeneous controlled tasks}
+Across 100 tasks with independently varying view reliability, Selective CoRe obtains mean exact NLL 1.483684, compared with 1.490344 for the best fixed method, arithmetic pooling. The paired difference is $-0.006660$; Selective CoRe wins 68/100 tasks and the two-sided Wilcoxon $p$-value is $1.25\times10^{-11}$. Its mean regret to a non-deployable full-family oracle is 0.000710. It selects Soft CoRe 38 times, geometric pooling 33 times, a raw order 19 times, and arithmetic pooling 10 times.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\linewidth]{figures/Fig2_selective_task_gain.pdf}
+\caption{Task-level Selective-CoRe effect relative to arithmetic pooling across 100 controlled reliability tasks. Negative values favor Selective CoRe.}\label{fig:mixture}
+\end{figure}
+
+A separate 50-task study increases nested validation size from 100 to 800 observations. Mean full-oracle regret decreases from 0.005602 to 0.001155, while mean gain over arithmetic increases from 0.000670 to 0.005118. This monotone controlled result does not imply that the same pattern must hold with the much smaller validation sets in the real benchmark.
 
 \subsection{Hard versus soft reconciliation is a reliability question}
 The exact-view study provides an empirical interpretation of the marginal penalty. Large $\lambda$ expresses trust in direct marginals; $\lambda\rightarrow\infty$ approaches hard preservation, whereas small $\lambda$ allows the reconciled joint to move its marginals toward conditional evidence. The best $\lambda$ is therefore not merely a numerical tuning parameter. It estimates a task-specific reliability trade-off among four TFM views. This interpretation explains why validation-adaptive penalties are preferable to a universal constant.
@@ -243,31 +253,52 @@ A natural label-free heuristic is to trust the factorization whose implied missi
 \subsection{Computational overhead}
 On a local batch of 5,000 $5\times5$ joints, the generalized scaling solver reached the same soft objective as an independently implemented exponentiated-gradient optimizer while requiring approximately $0.022$ seconds versus $0.101$ seconds. The intended interpretation is practical rather than algorithmic novelty: reconciliation is lightweight relative to foundation-model inference. Formal optimization novelty is not claimed because generalized Sinkhorn methods for KL-relaxed marginal problems are established \citep{chizat2018scaling}.
 
-\section{Real-TFM pilots and remaining validation}\label{sec:realstatus}
-We completed leakage-free five-fold TabICLv2 pilots on two categorical data sets. On UCI Car Evaluation ($A=$ class, $B=$ safety; 1,728 rows), mean factorization TV is $0.06956\pm0.00475$. Selective CoRe chooses the raw $B\!\rightarrow\!A$ chain in four of five folds and Soft CoRe with $w=1,\lambda=0.1$ once, attaining $1.11691\pm0.00786$ joint NLL, only $0.00005$ above the per-fold best raw direction. The corresponding fixed raw chain has mean NLL $1.11686\pm0.00786$; Hard CoRe is materially worse at $1.19977\pm0.01661$.
+\section{Bounded real-model results}\label{sec:realstatus}
+The completed matrix contains 150 dataset--model--fold tasks and 1,200 method rows. All primary comparisons use datasets as units after averaging five folds within each of TabICLv2 and TabPFN-3 and then averaging the two TFMs. CatBoost is descriptive only. Mean factorization TV is 0.06249 across the 20 primary cells, confirming measurable cross-query incompatibility.
 
-On Wine ($A=$ quality class, $B=$ color; 6,497 rows), we reconstruct the source-study representation from canonical UCI red/white CSVs: red quality is unchanged, white quality is encoded as quality minus two, and color is added as the second target \citep{cortez2009wine}. Archive and CSV SHA-256 hashes are retained with the result. Mean factorization TV is $0.02450\pm0.00200$. Arithmetic pooling has the best fixed mean NLL ($0.71678\pm0.01085$), marginally ahead of the raw $B\!\rightarrow\!A$ chain ($0.71737\pm0.01022$); Hard CoRe reaches $0.72027\pm0.01327$. Selective CoRe chooses arithmetic pooling twice and Soft CoRe three times, with $0.71797\pm0.01237$ NLL and a $0.001062$ mean cost to the per-fold best raw direction.
+\begin{table}[t]
+\caption{Dataset-blocked Selective-CoRe effects relative to arithmetic pooling across two TFMs and ten datasets. Negative values favor Selective CoRe.}\label{tab:realprimary}
+\centering\small
+\begin{tabular}{lrrrr}
+\toprule
+Metric & Mean difference & 95\% bootstrap CI & Wins & $p$\\
+\midrule
+Joint NLL & $+0.001831$ & $[+0.000548,+0.003301]$ & 2/10 & 0.02734\\
+Joint Brier & $+0.000646$ & $[+0.000288,+0.001059]$ & 1/10 & 0.00586\\
+ECE (15 bins) & $+0.000096$ & $[-0.002706,+0.003017]$ & 6/10 & 1.00000\\
+Marginal distortion & $-0.003855$ & $[-0.005563,-0.002212]$ & 9/10 & 0.00391\\
+\bottomrule
+\end{tabular}
+\end{table}
 
-These pilots establish reproducible released-model feasibility in two data-set cells, not average improvement across TFMs or data sets. The Credit OpenML failure remains an infrastructure-only event and is not a result. TabPFN-3 checkpoint use will comply with its access and license conditions. The full matrix in Sec.~\ref{sec:tfmprotocol} remains required before journal submission.
+Selective CoRe therefore improves agreement with direct marginals but worsens both proper scores. Its NLL effect is positive in eight of ten datasets and under every leave-one-dataset-out mean. Hard CoRe nearly eliminates marginal distortion yet is worse than arithmetic by 0.02056 NLL on every primary dataset ($p=0.00195$). Geometric pooling is descriptively 0.000492 better than arithmetic but not significantly so ($p=0.7695$).
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.82\linewidth]{figures/Fig4_real_dataset_effects.pdf}
+\caption{Dataset-blocked Selective-CoRe joint-NLL effect relative to arithmetic pooling.}\label{fig:realeffects}
+\end{figure}
+
+The effect reverses by upstream model: Selective CoRe is worse than arithmetic by 0.006694 NLL on TabICLv2 but better by 0.003031 on TabPFN-3. Their paired difference is 0.009725 ($p=0.00977$; exploratory). The selection-family ablation also exposes finite-validation cost: pool-only mean NLL is 1.375591 across all active cells, compared with 1.376046 for the full family. Real-data validation-fraction results are non-monotone, so the controlled validation-size trend must not be generalized to this bounded setting.
 
 \section{Discussion}\label{sec:discussion}
 \subsection{Coherence is a constraint, not an accuracy metric}
 The experiments support a distinction that is easy to lose in a consistency paper. Compatibility asks whether predictions can be represented by a single joint. Calibration asks whether stated probabilities match empirical frequencies. Proper scoring asks whether the full forecast assigns probability effectively to realized outcomes. Distributional distance to an exact posterior asks yet another question. These criteria can disagree. The independent baseline is coherent and can be poor; Adaptive Soft can improve log loss while not minimizing TV to truth; and a hard projection can preserve two accurate marginals or two inaccurate ones with equal mathematical success.
 
-\subsection{Why selective reconciliation is the practical endpoint}
-The mechanism study implies that unconditional projection is poorly matched to a heterogeneous foundation-model setting. Released TFMs differ by architecture, pretraining prior, dataset scale, and inference strategy. Even within one model, relative quality of direct and conditional queries can change by dataset. Selective CoRe operationalizes this uncertainty by placing original directions and simple pools in the candidate set rather than presuming that a repaired distribution is always superior.
+\subsection{Selection is useful only with enough evidence}
+Unconditional projection is poorly matched to heterogeneous view reliability, but the real benchmark shows that a large selector is not automatically the solution. Searching 48 candidates with 52 validation labels can lose to arithmetic pooling. Raw directions and pools must remain available, while selector complexity must be matched to the evidence budget and upstream model.
 
 \subsection{Relation to label shift and OOD robustness}
 CoRe-TFM addresses incompatibility among simultaneous probability views; it is not designed to correct class-prior shift. DistPFN \citep{lee2026distpfn} is complementary rather than a baseline that CoRe subsumes. Similarly, OOD degradation \citep{loza2026ood} can change all four views together while leaving them relatively compatible. Future work should test whether distribution shift changes not only predictive performance but also the reliability ordering among direct and conditional views.
 
 \section{Limitations and threats to validity}\label{sec:limitations}
-First, the current formulation is pairwise and categorical. Extending pairwise joints to a globally coherent multi-target joint introduces additional compatibility constraints and potentially exponential state spaces. Second, regression and mixed discrete--continuous targets are deferred because continuous TFM predictive heads require a density representation or controlled discretization. Third, synthetic and exact-view studies provide diagnostic control but are not substitutes for the released-model benchmark. Fourth, validation selection consumes data and can overfit in small samples, as suggested by the $n=250$ surrogate regime. Fifth, ECE is included only as a descriptive calibration summary; conclusions rely primarily on proper scores and exact truth distances where available. Finally, the TFM literature is moving rapidly, so the novelty audit must be repeated immediately before submission.
+First, the formulation is pairwise and categorical. Second, the real benchmark uses two TFMs; CatBoost is not a third foundation model. Third, every primary fold uses one deterministic constrained sample with at most 256 training observations, so independent sampling seeds and larger context sizes are required. Fourth, Marketing and Nursery contain extremely rare target classes and require an exclusion sensitivity. Fifth, the 48-candidate selector is large relative to 52 validation labels. Sixth, ECE is descriptive. Finally, the controlled mixture is a designed reliability stress test, not an estimate of naturally occurring TFM error regimes.
 
 \section{Reproducibility and data protocol}\label{sec:repro}
-The implementation, unit tests, synthetic generators, pinned target specifications, reconciliation solvers, and experiment scripts are maintained at \url{https://github.com/bnssaanirudh/core-tfm}. Random seeds and validation/test separation are explicit. Fold-level Car and Wine outputs are committed; the Wine reconstruction records hashes for canonical UCI inputs. For the full matrix, model package versions, checkpoint identifiers, license/access conditions, hardware, inference settings, and wall-clock times will be archived alongside raw fold-level outputs. Statistical tables and figures will be generated only from committed result files.
+The repository at \url{https://github.com/bnssaanirudh/core-tfm} contains the exact Colab notebook, 1,200 fold-level rows, controlled replications, ablations, validation sensitivity, fold manifests, source and data hashes, package versions, hardware metadata, plots, and a checksum manifest. A repository-native audit command validates the matrix and regenerates dataset-blocked effects. The run used Python 3.13.15, PyTorch 2.11.0 with CUDA 12.8, TabICL 2.1.1, TabPFN 8.4.0, CatBoost 1.2.10, and a Tesla T4. Access credentials are never stored.
 
 \section{Conclusion}\label{sec:conclusion}
-We formulated post-hoc probability reconciliation for tabular foundation models as a four-view problem rather than a simple projection task. Hard CoRe preserves direct marginals exactly; Soft CoRe exposes marginal trust as a continuous reliability parameter; and Selective CoRe permits data to reject reconciliation. Controlled experiments demonstrate why that flexibility is necessary. The completed Car and Wine TabICLv2 pilots show the same operational point: incompatibility is measurable, but fixed projection is not best in either cell. The principal scientific conclusion is therefore conditional: probability compatibility is useful only when the constraints used to obtain it reflect relative reliability of the underlying views. Completing the pre-specified TabPFN-3, TabICLv2, and TabFM benchmark is required before making a general empirical claim about released TFMs.
+CoRe-TFM treats probability compatibility as a four-view reliability problem. Controlled experiments establish that marginal preservation helps only when the marginals deserve trust and that adaptive selection can work with adequate validation evidence. The bounded real-model benchmark supplies the counterexample needed for a credible conclusion: Selective CoRe reduces marginal distortion but is significantly worse than arithmetic pooling on NLL and Brier score, and its effect reverses between TabICLv2 and TabPFN-3. Reconciliation should therefore be deployed conditionally, with complexity matched to the reliability structure and validation budget. Sampling-seed, context-size, and rare-class robustness remain submission requirements.
 
 \backmatter
 \bmhead{Acknowledgements}

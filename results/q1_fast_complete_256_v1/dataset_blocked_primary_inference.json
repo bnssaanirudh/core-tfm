@@ -1,0 +1,15 @@
+{
+  "unit": "dataset after averaging TabICLv2 and TabPFN-3",
+  "models": [
+    "tabiclv2",
+    "tabpfn3"
+  ],
+  "n_datasets": 10,
+  "mean_selective_minus_arithmetic_nll": 0.0018312631894443544,
+  "bootstrap_95_ci_low": 0.000542096560635466,
+  "bootstrap_95_ci_high": 0.0032911665282163004,
+  "selective_wins": 2,
+  "pre_specified_comparator": "arithmetic pooling",
+  "catboost_excluded_from_primary_tfm_claim": true,
+  "wilcoxon_two_sided_p": 0.02734375
+}

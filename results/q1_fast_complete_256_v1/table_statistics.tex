@@ -1,0 +1,16 @@
+\begin{table}
+\caption{Cell-level paired comparisons. Lower NLL favors Selective CoRe.}
+\label{tab:real_statistics}
+\begin{tabular}{lrrrrrrr}
+\toprule
+comparison & n\_cells & mean\_nll\_difference & bootstrap\_95\_ci\_low & bootstrap\_95\_ci\_high & wilcoxon\_p\_raw & primary\_confirmatory & wilcoxon\_p\_holm \\
+\midrule
+selective\_core - arithmetic & 30 & 0.001810 & -0.001300 & 0.004940 & 0.146000 & True & NaN \\
+selective\_core - j1\_b\_then\_a & 30 & -0.000830 & -0.004870 & 0.003350 & 0.477110 & False & 0.954210 \\
+selective\_core - j2\_a\_then\_b & 30 & -0.007610 & -0.014370 & -0.001760 & 0.084070 & False & 0.336260 \\
+selective\_core - geometric & 30 & 0.002740 & -0.000230 & 0.005780 & 0.096100 & False & 0.336260 \\
+selective\_core - hard\_core & 30 & -0.014020 & -0.022490 & -0.006460 & 0.000870 & False & 0.004360 \\
+selective\_core - soft\_core\_lambda\_1 & 30 & 0.000430 & -0.002470 & 0.003370 & 0.967670 & False & 0.967670 \\
+\bottomrule
+\end{tabular}
+\end{table}

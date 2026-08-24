@@ -69,7 +69,7 @@ def run_task(seed,n,d,k,gamma):
     row.update({f'nll_{k}':v for k,v in losses.items()}); return row
 
 def main():
-    ap=argparse.ArgumentParser(); ap.add_argument('--tasks',type=int,default=80); ap.add_argument('--n',type=int,default=2200)
+    ap=argparse.ArgumentParser(); ap.add_argument('--tasks',type=int,default=100); ap.add_argument('--n',type=int,default=2200)
     ap.add_argument('--d',type=int,default=12); ap.add_argument('--k',type=int,default=3); ap.add_argument('--gamma',type=float,default=2.0)
     ap.add_argument('--output',default='results/selective_mixture.csv'); a=ap.parse_args(); rows=[]
     for seed in range(a.tasks):

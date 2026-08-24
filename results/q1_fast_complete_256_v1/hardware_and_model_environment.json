@@ -1,0 +1,38 @@
+{
+  "python": "3.13.15 (main, Aug  6 2026, 11:06:23) [GCC 11.4.0]",
+  "platform": "Linux-6.6.122+-x86_64-with-glibc2.35",
+  "cuda_available": true,
+  "cuda_version": "12.8",
+  "torch": "2.11.0+cu128",
+  "tabicl": "2.1.1",
+  "tabpfn": "8.4.0",
+  "catboost": "1.2.10",
+  "active_models": [
+    "tabiclv2",
+    "tabpfn3",
+    "catboost"
+  ],
+  "primary_tfm_models": [
+    "tabiclv2",
+    "tabpfn3"
+  ],
+  "boundary_models": [
+    "catboost"
+  ],
+  "frozen_revisions": {
+    "core_tfm_commit": "3c32c02d9ba573509d8d8a8bc117fa3cb8cd279d",
+    "protocol_revision": "v7_bounded_256x128_complete_2026-08-23",
+    "excluded_model": "tabfm",
+    "exclusion_reason": "Operational incompatibility and prohibitive Colab runtime; replacement chosen without using comparative outcome scores.",
+    "replacement_boundary_baseline": "catboost",
+    "bounded_context_protocol": {
+      "max_train_rows": 256,
+      "max_test_rows": 128
+    },
+    "catboost_version": "1.2.10"
+  },
+  "gpu_names": [
+    "Tesla T4"
+  ],
+  "nvidia_smi": "Tesla T4, 15360 MiB, 580.82.07"
+}

@@ -1,0 +1,2 @@
+best_fixed,selective_mean_minus_fixed,selective_wins,n_tasks,wilcoxon_stat,p,selective_mean_full_oracle_regret
+arithmetic,-0.006660064390835096,68,100,364.0,1.2537361426267812e-11,0.0007104060309343119

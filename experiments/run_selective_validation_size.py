@@ -28,7 +28,7 @@ def family(j1,j2,pa,pb):
     return o
 
 def main():
-    ap=argparse.ArgumentParser(); ap.add_argument('--tasks',type=int,default=40); ap.add_argument('--n',type=int,default=3200)
+    ap=argparse.ArgumentParser(); ap.add_argument('--tasks',type=int,default=50); ap.add_argument('--n',type=int,default=3200)
     ap.add_argument('--output',default='results/selective_validation_size.csv'); a=ap.parse_args(); vals=(100,250,500,800); rows=[]
     for seed in range(a.tasks):
         if seed%10==0: print('task',seed,flush=True)

@@ -2,11 +2,27 @@
 
 ## Recommended current target: Transactions on Machine Learning Research (TMLR)
 
-TMLR is the best fit for the current evidence package. Its official scope includes new algorithms with sound empirical validation and studies that yield insight into learning-system behavior, and it explicitly emphasizes technical correctness over subjective significance. CoRe-TFM's strongest result is a rigorously bounded, reproducible characterization of when reconciliation helps or hurts; the completed Car and Wine pilots extend that conclusion to two released-TabICLv2 cells, but do not yet justify broad multi-model performance claims. TMLR's rolling, double-blind workflow is therefore the recommended first route.
+TMLR remains the best fit. Its official venue description explicitly emphasizes
+technical correctness over subjective significance and supports rolling,
+double-blind review. CoRe-TFM now has a complete negative/conditional real-model
+result rather than an incomplete matrix: incompatibility is measurable, marginal
+distortion can be reduced, but the 48-candidate selector loses to arithmetic pooling
+under a 52-label validation budget and reverses sign by upstream model. That
+technically careful behavior study fits TMLR better than a performance-led claim.
+
+Official scope: https://openreview.net/group?id=TMLR
 
 ## Retained alternative: Journal of Machine Learning Research (JMLR)
 
-JMLR remains an aspirational target once the released-TFM matrix is substantially expanded. Its official author guidance favors principled algorithms with sound empirical validation and broad ML interest. The JMLR draft is intentionally not submission-ready until the released-TFM benchmark, affiliation, and disclosures are complete.
+JMLR remains aspirational. Its official author guidance requires clearly supported
+claims, reproducible experiments, and broad machine-learning interest. Before a
+JMLR submission, complete independent sampling-seed and training-context
+sensitivity, resolve the rare-class dataset design, and preferably add a third
+released TFM. The current negative finding is acceptable in principle, but the
+evidence must demonstrate that the model interaction is stable beyond one bounded
+sampling realization.
+
+Official author information: https://www.jmlr.org/author-info.html
 
 ## Secondary target: Machine Learning (Springer Nature)
 
@@ -18,5 +34,8 @@ A Springer `sn-jnl` adaptation is retained as a strong secondary target. *Machin
 2. Do not claim invention of conditional compatibility, KL projection, IPF, or Sinkhorn scaling.
 3. Do not claim first post-hoc TFM probability correction; DistPFN already addresses label shift.
 4. Cite broader conditional-consistency theory, including Majid et al. (AISTATS 2025).
-5. State the completed Car and Wine pilots accurately; do not claim average real-TFM gains until the broader model--data set matrix is complete.
+5. State the completed bounded benchmark accurately; do not claim an average
+   Selective-CoRe gain, because the primary result significantly favors arithmetic.
 6. Keep proper scoring, conditional performance, calibration, distortion, and truth-distance separate.
+7. Never label the 30 dataset--model cells as independent confirmatory units; the
+   primary analysis uses ten datasets after averaging the two TFMs.

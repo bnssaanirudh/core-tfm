@@ -4,9 +4,26 @@ Research implementation for **post-hoc reconciliation of incompatible probabilit
 
 ## Paper status
 
-The evidence currently fits **Transactions on Machine Learning Research (TMLR)** best: its technical-correctness emphasis matches a rigorous method paper with two real TabICLv2 cells but without a full multi-model matrix. The repository retains a JMLR-formatted working draft in [`paper/jmlr/`](paper/jmlr/) and a Springer *Machine Learning* adaptation in [`paper/springer/`](paper/springer/) as synchronized alternatives. GitHub Actions compiles the JMLR draft with the official `jmlr2e` style.
+The repository now contains a complete bounded-context benchmark: 10 datasets,
+five outer folds, two primary released TFMs (TabICLv2 and TabPFN-3), and CatBoost
+as a non-TFM boundary baseline. Every fold uses at most 256 training, 52 validation,
+and 128 test observations. The evidence package, exact notebook, protocol amendment,
+checksums, environment record, and generated plots are under
+[`results/q1_fast_complete_256_v1/`](results/q1_fast_complete_256_v1/) and
+[`notebooks/`](notebooks/).
 
-The draft is **not submission-ready yet** because the controlled experiments must still be complemented by the complete released-model benchmark on TabPFN-3, TabICLv2, and TabFM.
+The result is scientifically informative but not a performance win. Averaging the
+two TFMs within each dataset, Selective CoRe is worse than arithmetic pooling by
+`+0.001831` joint NLL (95% bootstrap CI `[+0.000548, +0.003301]`; 2/10 wins;
+two-sided Wilcoxon `p=0.02734`). It reduces marginal distortion by `0.003855` but
+worsens Brier score by `0.000646`. The manuscripts therefore frame CoRe-TFM as a
+diagnostic reliability and consistency--accuracy trade-off, not as an unconditional
+improvement over pooling.
+
+The draft remains **not submission-ready** until sampling-seed and training-size
+sensitivity are completed, the rare-class dataset choice is resolved, and author
+metadata/disclosures are finalized. A third released TFM is strongly recommended
+for broad cross-TFM claims; CatBoost is not treated as its substitute.
 
 ## Core problem
 
@@ -41,9 +58,19 @@ The repository now contains three complementary controlled studies:
 
 1. **Surrogate DGP sweeps** with exact conditional truth across dependence, sample size, dimensionality, class cardinality, and imbalance.
 2. **Exact-view perturbations** that independently corrupt the two marginals and two conditional families, showing when hard marginal preservation helps or hurts.
-3. **Heterogeneous task mixtures** in which view reliability changes by task. In the current 60-task full-oracle study, Selective CoRe beats the best fixed method (arithmetic pooling) by about `0.00581` mean exact NLL, wins 41/60 paired tasks, and has Wilcoxon `p = 5.79e-7`. A separate validation-size study shows selection regret decreasing as held-out validation data increase.
+3. **Heterogeneous task mixtures** in which view reliability changes by task. In
+   the completed 100-task study, Selective CoRe beats the best fixed method,
+   arithmetic pooling, by `0.006660` mean exact NLL, wins 68/100 paired tasks,
+   and has Wilcoxon `p=1.25e-11`. Its mean regret to the non-deployable full-family
+   oracle is `0.000710`. Controlled validation-size experiments reduce oracle regret
+   from `0.005602` at 100 labels to `0.001155` at 800 labels.
 
-The repository also contains **two five-fold released-model pilots** on TabICLv2 2.1.1. On UCI Car Evaluation, factorization TV is `0.06956 ± 0.00475`; the raw `B→A` chain has the best mean NLL (`1.11686 ± 0.00786`) and leakage-free Selective CoRe chooses it in 4/5 folds (`1.11691 ± 0.00786`). On Wine, reconstructed from canonical UCI red/white source files with recorded SHA-256 hashes, factorization TV is `0.02450 ± 0.00200`; arithmetic pooling has the best fixed mean NLL (`0.71678 ± 0.01085`), while Selective CoRe chooses arithmetic pooling in 2/5 folds and Soft CoRe in 3/5 (`0.71797 ± 0.01237`). Neither cell supports unconditional projection. These are two data-set cells for one released model, not an average released-TFM performance claim.
+The real benchmark confirms measurable incompatibility (mean factorization TV
+`0.06249` across the primary TFMs) but shows that a 48-candidate selector can
+overfit a 52-example validation set. Pool-only selection has slightly lower mean
+NLL than the full family, while Hard CoRe removes marginal distortion at a clear
+proper-score cost. Effects reverse by model: Selective CoRe is worse on TabICLv2
+by `0.006694` and better on TabPFN-3 by `0.003031` on average.
 
 ## Reproduce core tests
 
@@ -66,6 +93,7 @@ Key empirical scripts:
 PYTHONPATH=src python experiments/run_exact_view_perturbation.py
 PYTHONPATH=src python experiments/run_selective_mixture.py
 PYTHONPATH=src python experiments/run_selective_validation_size.py
+PYTHONPATH=src python experiments/analyze_q1_benchmark.py
 ```
 
 ## Research guardrail

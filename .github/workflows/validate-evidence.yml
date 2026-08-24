@@ -1,0 +1,36 @@
+name: Validate evidence and tests
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install project
+        run: python -m pip install -e '.[test]'
+      - name: Unit tests
+        run: pytest -q
+      - name: Synthetic smoke test
+        run: python experiments/smoke_synthetic.py
+      - name: Audit committed benchmark
+        run: python experiments/analyze_q1_benchmark.py > benchmark-audit.json
+      - name: Ensure primary conclusion is unchanged
+        run: |
+          python - <<'PY'
+          import json
+          report = json.load(open('benchmark-audit.json'))
+          effect = report['selective_minus_arithmetic']['joint_nll']
+          assert effect['n_datasets'] == 10
+          assert effect['wins'] == 2 and effect['losses'] == 8
+          assert abs(effect['mean_difference'] - 0.0018312631894443544) < 1e-12
+          PY

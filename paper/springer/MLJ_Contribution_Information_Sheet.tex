@@ -1,7 +1,8 @@
 \documentclass[11pt]{article}
 \usepackage[a4paper,margin=25mm]{geometry}
-\usepackage{parskip}
 \usepackage{hyperref}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt}
 \begin{document}
 \begin{center}
 {\Large\bfseries Machine Learning -- Contribution Information Sheet}\\[6pt]
@@ -11,11 +12,11 @@ Badampudi Agasthya Anirudh
 
 \textbf{1. What is the main claim of the paper and why is it important?}
 
-Recent work shows that tabular foundation models can produce direct marginal and conditional probabilities that cannot all arise from one joint distribution. The main claim is not that enforcing coherence is automatically beneficial. Rather, useful post-hoc correction requires \emph{selective four-view reconciliation}: trust in direct marginals versus conditional predictions must depend on their relative reliability, and validation should be allowed to retain an original factorization or simple pool when projection would impose a predictive cost. This matters for downstream uses that compose TFM probabilities into multivariate simulations, conditional queries, imputation, or uncertainty propagation.
+Recent work shows that tabular foundation models can produce direct marginal and conditional probabilities that cannot all arise from one joint distribution. The main claim is not that enforcing coherence is automatically beneficial. Useful post-hoc correction depends on the relative reliability of the four views and on the amount of validation evidence. A selector should be allowed to retain a raw factorization or simple pool, but a large candidate family can itself impose a finite-validation cost. This matters for multivariate simulation, conditional queries, imputation, and uncertainty propagation.
 
 \textbf{2. What precise evidence supports the claim?}
 
-Two controlled protocols provide known conditional truth. Multiclass synthetic DGP sweeps vary dependence, sample size, feature dimension, class cardinality, and imbalance over 10 paired seeds while separating inner validation and outer testing. A new exact-view perturbation benchmark independently corrupts two direct marginals and two conditional families over six reliability regimes and 20 paired seeds. When direct marginals are reliable, Hard CoRe improves over arithmetic pooling by 0.0138 expected NLL on average (Holm-adjusted paired Wilcoxon $p<10^{-4}$); when marginals are noisy but conditionals are reliable, Hard CoRe is worse than arithmetic by 0.1423 NLL ($p<10^{-4}$). We additionally run leakage-free five-fold TabICLv2 2.1.1 pilots on Car and Wine. Factorization TV is $0.06956\pm0.00475$ (Car) and $0.02450\pm0.00200$ (Wine); fixed projection is not best in either cell, while Selective CoRe selects raw or mild repair on Car and pooling or mild repair on Wine according to held-out validation. These results support selective rather than unconditional reconciliation. The broader multi-model real-TFM benchmark remains a submission blocker.
+Controlled protocols provide known conditional truth. Exact-view perturbations cover six reliability regimes and 50 paired seeds. When direct marginals are reliable, Hard CoRe improves over arithmetic by 0.01327 expected NLL; when marginals are noisy but conditionals are reliable, it is worse by 0.15048 NLL (both Holm-adjusted $p=7.11\times10^{-15}$). Across 100 heterogeneous controlled tasks, Selective CoRe beats arithmetic by 0.006660 NLL and wins 68 tasks ($p=1.25\times10^{-11}$). The completed bounded real benchmark contains ten datasets, two TFMs, CatBoost as a non-TFM boundary baseline, five folds, and 1,200 method rows. In the primary dataset-blocked comparison, Selective CoRe is worse than arithmetic by 0.001831 NLL (95\% CI $[0.000548,0.003301]$, $p=0.02734$) while reducing marginal distortion by 0.003855. The effect reverses between TabICLv2 and TabPFN-3. These results support a conditional reliability account, not a universal performance claim.
 
 \textbf{3. What are the closest related contributions and how does this paper differ?}
 
@@ -26,5 +27,5 @@ The closest precursor is Kloetergens et al. (2026), \emph{Do Tabular Foundation 
 No manuscript containing these CoRe-TFM methods or experiments has been published. The public GitHub repository is a research-code and working-draft repository. Any preprint status must be updated here if the manuscript is posted before journal submission.
 
 \vfill
-\textit{Working version: complete the broader multi-model real-TFM evidence and final author declarations before submission.}
+\textit{Working version: complete sampling-seed, context-size, and rare-class robustness and final author declarations before submission.}
 \end{document}

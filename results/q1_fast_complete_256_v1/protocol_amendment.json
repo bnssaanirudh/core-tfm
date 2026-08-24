@@ -1,0 +1,7 @@
+{
+  "date": "2026-08-23",
+  "change": "Bound every fold to 256 training and 128 test rows; use two TabICL estimators; reuse fitted validation predictions for sensitivity.",
+  "reason": "Make the complete five-fold, ten-dataset, three-model protocol feasible in standard Colab sessions.",
+  "outcome_scores_used_to_choose_replacement": false,
+  "claim_guard": "Claims apply to the bounded-context protocol; CatBoost is not a TFM and is excluded from the cross-TFM primary claim."
+}

@@ -1,0 +1,16 @@
+paper/jmlr/CoRe_TFM_JMLR_Draft.pdf
+paper/jmlr/COVER_LETTER_TEMPLATE.md
+paper/jmlr/Fig1_exact_view_regret.pdf
+paper/jmlr/Fig2_selective_task_gain.pdf
+paper/jmlr/Fig3_validation_size.pdf
+paper/jmlr/main.tex
+paper/jmlr/README.md
+paper/jmlr/references.bib
+paper/jmlr/SUBMISSION_CHECKLIST.md
+paper/JOURNAL_TARGETS.md
+paper/springer/generate_figures.py
+paper/springer/main.tex
+paper/springer/MLJ_Contribution_Information_Sheet.tex
+paper/springer/README.md
+paper/springer/references.bib
+paper/springer/SUBMISSION_STATUS.md

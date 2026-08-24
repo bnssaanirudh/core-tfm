@@ -1,15 +1,30 @@
-# Research defaults. Heavy model packages/checkpoints are optional.
+# Completed bounded-context profile. TabICLv2 and TabPFN-3 are the primary TFM
+# models. CatBoost is a boundary baseline and must not be counted as a TFM.
 tabpfn3:
   constructor: tabpfn.TabPFNClassifier
+  package_version: 8.4.0
+  role: primary_tfm
 
 tabiclv2:
   constructor: tabicl.TabICLClassifier
-  # Uniform final-matrix setting: cache is incompatible with unseen test
-  # categories on Diamonds and can otherwise change the feasible cell set.
   kv_cache: false
-  n_estimators: 4
+  n_estimators: 2
   random_state: 42
+  package_version: 2.1.1
+  role: primary_tfm
 
-tabfm:
-  constructor: tabfm.TabFMClassifier
-  backend: pytorch
+catboost:
+  constructor: catboost.CatBoostClassifier
+  iterations: 100
+  depth: 6
+  learning_rate: 0.05
+  package_version: 1.2.10
+  role: boundary_baseline
+
+# TabFM was excluded before comparative outcome inspection because its released
+# implementation was operationally incompatible with the bounded Colab run and
+# prohibitively slow. It is not silently replaced by CatBoost in TFM claims.
+excluded:
+  tabfm:
+    constructor: tabfm.TabFMClassifier
+    reason: operational_incompatibility_and_runtime

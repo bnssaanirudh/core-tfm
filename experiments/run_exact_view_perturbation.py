@@ -236,7 +236,7 @@ def summarize(frame: pd.DataFrame) -> tuple[pd.DataFrame, pd.DataFrame]:
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--seeds", type=int, default=20)
+    ap.add_argument("--seeds", type=int, default=50)
     ap.add_argument("--n", type=int, default=3000)
     ap.add_argument("--d", type=int, default=12)
     ap.add_argument("--k", type=int, default=3)

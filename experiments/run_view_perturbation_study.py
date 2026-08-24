@@ -133,7 +133,7 @@ def evaluate_seed(seed: int, regime: Regime, n: int, gamma: float):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--seeds", type=int, default=100)
+    ap.add_argument("--seeds", type=int, default=50)
     ap.add_argument("--n", type=int, default=2000)
     ap.add_argument("--gamma", type=float, default=2.0)
     ap.add_argument("--output", default="results/view_perturbation_study.csv")

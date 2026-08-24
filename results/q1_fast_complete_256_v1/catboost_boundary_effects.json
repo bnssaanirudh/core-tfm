@@ -1,0 +1,52 @@
+[
+  {
+    "dataset": "anneal",
+    "model": "catboost",
+    "selective_minus_arithmetic": 0.01995476453046463
+  },
+  {
+    "dataset": "car",
+    "model": "catboost",
+    "selective_minus_arithmetic": -0.00460288404185083
+  },
+  {
+    "dataset": "credit",
+    "model": "catboost",
+    "selective_minus_arithmetic": -0.0011409811166933626
+  },
+  {
+    "dataset": "customer",
+    "model": "catboost",
+    "selective_minus_arithmetic": 0.0030661446490598543
+  },
+  {
+    "dataset": "diamonds",
+    "model": "catboost",
+    "selective_minus_arithmetic": 0.0080852115514074
+  },
+  {
+    "dataset": "marketing",
+    "model": "catboost",
+    "selective_minus_arithmetic": 0.0050611023261974974
+  },
+  {
+    "dataset": "mic",
+    "model": "catboost",
+    "selective_minus_arithmetic": 0.004975570609738522
+  },
+  {
+    "dataset": "nursery",
+    "model": "catboost",
+    "selective_minus_arithmetic": 0.006821921332685443
+  },
+  {
+    "dataset": "phishing",
+    "model": "catboost",
+    "selective_minus_arithmetic": -0.009246066643468387
+  },
+  {
+    "dataset": "wine",
+    "model": "catboost",
+    "selective_minus_arithmetic": -0.015265000393878125
+  }
+]

@@ -1,0 +1,31 @@
+{
+  "protocol_revision": "v7_bounded_256x128_complete_2026-08-23",
+  "active_models": [
+    "tabiclv2",
+    "tabpfn3",
+    "catboost"
+  ],
+  "primary_tfm_models": [
+    "tabiclv2",
+    "tabpfn3"
+  ],
+  "boundary_models": [
+    "catboost"
+  ],
+  "primary_cells_completed": 30,
+  "primary_cells_required": 30,
+  "primary_folds_completed": 150,
+  "primary_folds_required": 150,
+  "datasets_completed": 10,
+  "models_completed": 3,
+  "controlled_replications_present": true,
+  "selection_ablation_present": true,
+  "validation_sensitivity_present": true,
+  "dataset_blocked_inference_present": true,
+  "boundary_analysis_present": true,
+  "visualizations_present": true,
+  "source_freeze_present": true,
+  "protocol_amendment_present": true,
+  "catboost_version_pinned": true,
+  "evidence_ready": true
+}

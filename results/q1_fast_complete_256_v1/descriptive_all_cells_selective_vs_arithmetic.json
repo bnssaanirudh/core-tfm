@@ -1,0 +1,7 @@
+{
+  "scope": "descriptive active cells; primary dataset-blocked TFM inference is in Cell 25",
+  "n_cells": 30,
+  "mean_selective_minus_arithmetic_nll": 0.0018111682197516576,
+  "selective_wins": 11,
+  "ties": 0
+}

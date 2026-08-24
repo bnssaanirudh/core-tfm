@@ -1,0 +1,10 @@
+{
+  "protocol_revision": "v7_bounded_256x128_complete_2026-08-23",
+  "archived_model": "tabfm",
+  "invalidated_and_rerun_datasets": [
+    "diamonds",
+    "mic",
+    "nursery"
+  ],
+  "reason": "Corrected target construction and training-class coverage."
+}

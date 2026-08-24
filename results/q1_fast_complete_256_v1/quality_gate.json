@@ -1,0 +1,21 @@
+{
+  "completed_cells": 30,
+  "requested_cells": 30,
+  "completed_folds": 150,
+  "requested_folds": 150,
+  "distinct_models": 3,
+  "distinct_datasets": 10,
+  "active_models": [
+    "tabiclv2",
+    "tabpfn3",
+    "catboost"
+  ],
+  "primary_tfm_models": [
+    "tabiclv2",
+    "tabpfn3"
+  ],
+  "boundary_models": [
+    "catboost"
+  ],
+  "primary_matrix_complete": true
+}
