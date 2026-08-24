@@ -1,6 +1,7 @@
 import numpy as np
 
 from core_tfm.research_extensions import (
+    audit_probability_views,
     complexity_penalty,
     decision_regret,
     inconsistency_accuracy_counterexamples,
@@ -10,6 +11,16 @@ from core_tfm.research_extensions import (
     safe_select_from_scores,
     support_adaptive_penalties,
 )
+
+
+def test_audit_zero_for_consistent_views():
+    j = np.array([[[0.3, 0.2], [0.1, 0.4]]])
+    pa = j.sum(axis=2)
+    pb = j.sum(axis=1)
+    audit = audit_probability_views(j, j, pa, pb)
+    assert np.isclose(audit["mean_factorization_tv"], 0.0)
+    assert np.isclose(audit["mean_marginalization_defect_a"], 0.0)
+    assert np.isclose(audit["mean_marginalization_defect_b"], 0.0)
 
 
 def test_js_dispersion_zero_for_identical_members():
