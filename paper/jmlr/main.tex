@@ -16,16 +16,20 @@
 \newcommand{\Qsoft}{Q_{\mathrm{soft}}}
 \newcommand{\Cset}{\mathcal{C}}
 
-\ShortHeadings{Selective Four-View Probability Reconciliation}{Anirudh}
+\ShortHeadings{Selective Four-View Probability Reconciliation}{Anirudh and Bogineni}
 \firstpageno{1}
 
 \begin{document}
 
 \title{CoRe-TFM: Selective Four-View Probability Reconciliation for Tabular Foundation Models}
 
-\author{\name Badampudi Agasthya Anirudh \email anirudhbadampudi@gmail.com \\
+\author{\name Badampudi Agasthya Anirudh \email badampudi.agasthya2023@vitstudent.ac.in \\
        \addr Integrated M.Tech (Data Science)\\
        Institution and postal address to be completed\\
+       India
+       \AND
+       \name Harshita Bogineni \email harshita.bogineni2023@vitstudent.ac.in \\
+       \addr Institution and postal address to be completed\\
        India}
 
 \maketitle
@@ -363,7 +367,7 @@ The repository contains the exact 33-cell Colab notebook, 1,200 fold-level resul
 \section{Conclusion}
 CoRe-TFM reframes probability consistency as a four-view reliability problem rather than a projection problem with a universal answer. Controlled experiments establish the mechanism: marginal preservation helps only when the marginals deserve trust, and Selective CoRe can adapt when validation evidence is abundant. The bounded real-model result adds the necessary counterweight. Across ten datasets, Selective CoRe reduces marginal distortion but is significantly worse than arithmetic pooling on NLL and Brier score; its effect reverses between TabICLv2 and TabPFN-3, and pool-only selection beats the full family. The defensible conclusion is therefore conditional: reconcile when the reliability structure and validation budget support it, and otherwise retain a strong simple pool. Independent sampling seeds, context-size sensitivity, rare-class robustness, and preferably a third released TFM remain necessary before submission.
 
-\acks{Funding and competing-interest disclosures will be completed before submission. No external funding has been declared in this working draft. The author remains responsible for verifying all experimental results, code, claims, citations, and the final manuscript.}
+\acks{Funding and competing-interest disclosures will be completed before submission. No external funding has been declared in this working draft. The authors remain responsible for verifying all experimental results, code, claims, citations, and the final manuscript.}
 
 \appendix
 \section{Additional Derivations}
