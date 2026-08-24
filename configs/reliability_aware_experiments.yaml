@@ -1,0 +1,84 @@
+version: 1
+
+# This config separates analyses that can be run immediately from the archived
+# bounded benchmark from experiments that require fresh TFM inference.
+
+archive_analysis:
+  fold_results: results/q1_fast_complete_256_v1/fold_results.csv
+  output_dir: results/reliability_aware_v1
+
+safe_selective:
+  nested_families:
+    fallback: [arithmetic]
+    raw_pool: [j1_b_then_a, j2_a_then_b, arithmetic, geometric]
+    repair_small: [arithmetic, geometric, soft]
+    full: [j1_b_then_a, j2_a_then_b, arithmetic, geometric, mpr, soft]
+  delta: 0.05
+  beta_grid: [0.25, 0.5, 1.0, 2.0]
+  validation_sizes: [26, 52, 104, 208]
+
+seed_robustness:
+  seeds: [11, 23, 42, 71, 101]
+  folds: 5
+  train_limit: 256
+  validation_limit: 52
+  test_limit: 128
+
+context_size:
+  train_sizes: [64, 128, 256, 512, 1024]
+  seeds: [23, 42, 71]
+  folds: 5
+
+models:
+  primary: [tabiclv2, tabpfn3]
+  # Add a third released TFM only after an operational preflight succeeds.
+  third_tfm: null
+
+view_reliability_archive:
+  save_direct_marginal_metrics: true
+  save_conditional_metrics: true
+  save_per_class_metrics: true
+  save_prediction_entropy: true
+  save_factorization_tv_per_example: true
+  save_marginalization_defects_per_example: true
+
+inference_dispersion:
+  enabled: true
+  members: 8
+  perturbations: [feature_permutation, context_resample]
+  dispersion: jensen_shannon
+  temperatures: [0.01, 0.03, 0.1, 0.3, 1.0]
+  note: "Treat as inference instability until correlation with held-out error is established."
+
+rare_class_sensitivity:
+  minimum_support_thresholds: [1, 2, 5, 10]
+  support_adaptive_penalty:
+    enabled: true
+    base_lambdas: [1.0, 3.0, 10.0]
+    taus: [2.0, 5.0, 10.0, 20.0]
+
+policy_transfer:
+  modes:
+    - leave_one_dataset_out
+    - model_global
+    - universal_global
+
+utility_experiment:
+  enabled: true
+  source: controlled_known_truth
+  utility_seeds: [7, 19, 41, 73, 109]
+  n_actions: [3, 5, 10]
+
+multi_target_followup:
+  status: future_work
+  approach: chow_liu_tree_pairwise_reconciliation
+
+online_followup:
+  status: future_work
+
+conformal_followup:
+  status: future_work
+
+wasserstein_followup:
+  status: future_work
+  condition: ordinal_or_semantically_embedded_targets_only
