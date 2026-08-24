@@ -47,6 +47,40 @@ def predictive_entropy(p: ArrayLike, eps: float = 1e-15) -> FloatArray:
     return -np.sum(pa * np.log(pa), axis=-1)
 
 
+def audit_probability_views(j1: ArrayLike, j2: ArrayLike, p_a: ArrayLike, p_b: ArrayLike) -> dict[str, FloatArray | float]:
+    """Lightweight consistency audit for four-view probability outputs.
+
+    Returns per-example factorization TV, marginalization defects, and entropy
+    diagnostics plus their means. This is descriptive only: the audit does not
+    claim that high inconsistency implies poor predictive accuracy.
+    """
+    j1a = np.asarray(j1, dtype=float)
+    j2a = np.asarray(j2, dtype=float)
+    pa = np.asarray(p_a, dtype=float)
+    pb = np.asarray(p_b, dtype=float)
+    if j1a.shape != j2a.shape or j1a.ndim != 3:
+        raise ValueError("j1 and j2 must share shape (n, k_a, k_b)")
+    if pa.shape != (j1a.shape[0], j1a.shape[1]):
+        raise ValueError("p_a must have shape (n, k_a)")
+    if pb.shape != (j1a.shape[0], j1a.shape[2]):
+        raise ValueError("p_b must have shape (n, k_b)")
+    factor_tv = total_variation(j1a, j2a)
+    implied_a_from_j1 = j1a.sum(axis=2)
+    implied_b_from_j2 = j2a.sum(axis=1)
+    defect_a = total_variation(implied_a_from_j1, pa)
+    defect_b = total_variation(implied_b_from_j2, pb)
+    return {
+        "factorization_tv": factor_tv,
+        "marginalization_defect_a": defect_a,
+        "marginalization_defect_b": defect_b,
+        "entropy_direct_a": predictive_entropy(pa),
+        "entropy_direct_b": predictive_entropy(pb),
+        "mean_factorization_tv": float(np.mean(factor_tv)),
+        "mean_marginalization_defect_a": float(np.mean(defect_a)),
+        "mean_marginalization_defect_b": float(np.mean(defect_b)),
+    }
+
+
 def jensen_shannon_dispersion(predictions: ArrayLike, eps: float = 1e-15) -> FloatArray:
     """Per-example dispersion across repeated probability predictions.
 
@@ -216,7 +250,6 @@ def inconsistency_accuracy_counterexamples(eps_values: Sequence[float] | None = 
     truth = np.array([[0.7, 0.1], [0.1, 0.1]], dtype=float)
     for e in values:
         e = float(e)
-        # A: move up to e mass from the high-probability true cell.
         d = min(e, 0.69)
         j1 = truth.copy()
         j2 = truth.copy()
@@ -228,7 +261,6 @@ def inconsistency_accuracy_counterexamples(eps_values: Sequence[float] | None = 
         nll_arith = -math.log(arithmetic[0, 0])
         out["large_tv_no_need_to_repair"].append({"epsilon": e, "tv": tv, "arithmetic_regret": nll_arith - nll_truth})
 
-        # B: symmetric errors cancel exactly under arithmetic pooling.
         d = min(e, 0.09)
         j1 = truth.copy(); j2 = truth.copy()
         j1[0, 0] -= d; j1[0, 1] += d
