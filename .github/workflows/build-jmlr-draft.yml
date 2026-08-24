@@ -2,7 +2,7 @@ name: Build JMLR draft
 
 on:
   push:
-    branches: [main]
+    branches: [main, research/reliability-aware-enhancements]
     paths:
       - 'paper/jmlr/**'
       - 'paper/generate_benchmark_figures.py'
@@ -57,3 +57,16 @@ jobs:
         run: |
           test -s CoRe_TFM_JMLR_Draft.pdf
           echo "Official-style compilation and committed draft checks passed."
+
+      - name: Stage updated manuscript artifact
+        run: |
+          mkdir -p build-artifact
+          cp paper/jmlr/main.pdf build-artifact/CoRe_TFM_JMLR_Updated_Manuscript.pdf
+          cp paper/jmlr/pdfinfo.txt build-artifact/pdfinfo.txt
+
+      - name: Upload updated manuscript
+        uses: actions/upload-artifact@v4
+        with:
+          name: CoRe-TFM-JMLR-Updated-Manuscript
+          path: build-artifact/
+          if-no-files-found: error
