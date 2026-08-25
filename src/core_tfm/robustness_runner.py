@@ -1,31 +1,32 @@
-"""Utilities for executing parameterized robustness variants of the frozen Q1 notebook.
+"""Utilities for executing parameterized robustness variants of the Q1 notebook.
 
-The goal is to reuse the original inference implementation rather than maintain a
-second benchmark stack. A caller loads the original notebook, patches only
-predeclared protocol constants (run id, sampling seed, context limit, output
-location, time budget, and optional expensive post-processing flags), and then
-executes code cells through shard 12E.
-
-The original frozen result directory is never targeted by these helpers.
+The robustness workflow deliberately reuses the original Q1 inference stack.  A
+caller patches only prespecified protocol constants and executes the original
+cells through shard 12E.  These helpers never target the frozen Q1 result folder.
 """
 from __future__ import annotations
 
 from copy import deepcopy
 import json
 from pathlib import Path
-from typing import Iterable
 
 import pandas as pd
 
 EXPECTED_METHODS = 8
 EXPECTED_DATASETS = 10
-EXPECTED_MODELS = 3  # two TFMs + CatBoost boundary baseline, matching Q1 notebook
+EXPECTED_MODELS = 3  # two TFMs + CatBoost boundary baseline, matching Q1
 EXPECTED_FOLDS = 5
 EXPECTED_ROWS = EXPECTED_DATASETS * EXPECTED_MODELS * EXPECTED_FOLDS * EXPECTED_METHODS
 
 
 def load_notebook(path: str | Path) -> dict:
-    return json.loads(Path(path).read_text(encoding="utf-8"))
+    path = Path(path)
+    if not path.exists():
+        raise FileNotFoundError(path)
+    nb = json.loads(path.read_text(encoding="utf-8"))
+    if nb.get("nbformat") != 4 or not isinstance(nb.get("cells"), list):
+        raise ValueError(f"Not a valid nbformat-4 notebook: {path}")
+    return nb
 
 
 def _replace_once(text: str, old: str, new: str, *, required: bool = True) -> str:
@@ -44,32 +45,43 @@ def patch_q1_notebook(
     seed: int,
     train_limit: int,
     test_limit: int = 128,
-    drive_base: str = "/content/drive/MyDrive/CoRe_TFM_Q1/core_tfm_jmlr_robustness_v2",
-    session_minutes: int = 720,
+    drive_base: str = "/content/drive/MyDrive/CoRe_TFM_Q1/core_tfm_jmlr_robustness_v2_1",
+    session_minutes: int = 120,
+    shard_minutes: int | None = None,
     disable_controlled_replications: bool = True,
     disable_selection_ablations: bool = True,
     disable_validation_sensitivity: bool = True,
 ) -> dict:
-    """Return a patched copy of the original Q1 notebook.
+    """Return a protocol-patched copy of the original Q1 notebook.
 
-    Only protocol constants are changed. The inference/data/reconciliation code
-    remains the original notebook implementation.
+    Only run/output/sampling/time-budget constants are changed.  Inference,
+    dataset preparation, reconciliation, validation selection, and scoring remain
+    the Q1 implementation.
     """
+    if not run_id or run_id.startswith("/") or ".." in Path(run_id).parts:
+        raise ValueError("run_id must be a non-empty relative path without '..'")
     if train_limit <= 0 or test_limit <= 0:
         raise ValueError("train_limit and test_limit must be positive")
     if session_minutes <= 0:
         raise ValueError("session_minutes must be positive")
+    if shard_minutes is None:
+        shard_minutes = session_minutes
+    if shard_minutes <= 0:
+        raise ValueError("shard_minutes must be positive")
 
     nb = deepcopy(notebook)
-    all_source = "\n".join(
-        "".join(c.get("source", [])) for c in nb.get("cells", []) if c.get("cell_type") == "code"
-    )
+    code_sources = [
+        "".join(c.get("source", []))
+        for c in nb.get("cells", [])
+        if c.get("cell_type") == "code"
+    ]
+    all_source = "\n".join(code_sources)
 
-    replacements = [
+    replacements: list[tuple[str, str]] = [
         ('RUN_ID = "core_tfm_q1_fast_complete_256_v1"', f'RUN_ID = "{run_id}"'),
         (
             'PROTOCOL_REVISION = "v7_bounded_256x128_complete_2026-08-23"',
-            f'PROTOCOL_REVISION = "jmlr_robustness_v2_seed{seed}_train{train_limit}"',
+            f'PROTOCOL_REVISION = "jmlr_robustness_v2_1_seed{int(seed)}_train{int(train_limit)}"',
         ),
         (
             'DRIVE_BASE = Path("/content/drive/MyDrive/CoRe_TFM_Q1")',
@@ -81,8 +93,13 @@ def patch_q1_notebook(
         ),
         ('SEED = 42', f'SEED = {int(seed)}'),
         ('SESSION_TIME_BUDGET_MINUTES = 30', f'SESSION_TIME_BUDGET_MINUTES = {int(session_minutes)}'),
+        ('SHARD_TIME_BUDGET_MINUTES = 30', f'SHARD_TIME_BUDGET_MINUTES = {int(shard_minutes)}'),
         ('MAX_TRAIN_ROWS = 256 if FULL_Q1_RUN else 192', f'MAX_TRAIN_ROWS = {int(train_limit)}'),
         ('MAX_TEST_ROWS = 128 if FULL_Q1_RUN else 96', f'MAX_TEST_ROWS = {int(test_limit)}'),
+        (
+            '"bounded_context_protocol": {"max_train_rows": 256, "max_test_rows": 128}',
+            f'"bounded_context_protocol": {{"max_train_rows": {int(train_limit)}, "max_test_rows": {int(test_limit)}}}',
+        ),
     ]
     if disable_controlled_replications:
         replacements.append(('RUN_CONTROLLED_REPLICATIONS = FULL_Q1_RUN', 'RUN_CONTROLLED_REPLICATIONS = False'))
@@ -91,9 +108,14 @@ def patch_q1_notebook(
     if disable_validation_sensitivity:
         replacements.append(('RUN_VALIDATION_SENSITIVITY = FULL_Q1_RUN', 'RUN_VALIDATION_SENSITIVITY = False'))
 
+    # Require one global occurrence for every patch target.  This catches template
+    # drift before any GPU inference starts.
     for old, _ in replacements:
-        if old not in all_source:
-            raise ValueError(f"Template drift detected; patch target missing: {old}")
+        count = all_source.count(old)
+        if count != 1:
+            raise ValueError(
+                f"Template drift detected for {old!r}: expected exactly 1 occurrence, found {count}"
+            )
 
     for cell in nb.get("cells", []):
         if cell.get("cell_type") != "code":
@@ -107,19 +129,29 @@ def patch_q1_notebook(
 
 
 def code_cells_through_shard_12e(notebook: dict) -> list[str]:
-    """Return code sources from setup through the final 12E inference shard.
-
-    Stops before the original notebook's post-processing/manuscript cells.
-    """
+    """Return executable Python cell sources through the final 12E shard."""
     out: list[str] = []
     found_12e = False
     for cell in notebook.get("cells", []):
         if cell.get("cell_type") != "code":
             continue
         src = "".join(cell.get("source", []))
+        if not src.strip():
+            continue
+        # The Q1 notebook intentionally contains regular Python only through 12E.
+        # Fail early if a future edit introduces notebook magics that raw exec()
+        # cannot execute.
+        for line in src.splitlines():
+            stripped = line.lstrip()
+            if stripped.startswith(("%", "!")):
+                raise ValueError(
+                    "Q1 engine contains IPython-only syntax before 12E; raw Python execution is unsafe: "
+                    + stripped
+                )
+        compile(src, "<q1_engine_static_check>", "exec")
         out.append(src)
-        first = src.lstrip().splitlines()[0] if src.strip() else ""
-        if "Cell 12E" in first or "12E" in first and "Cell" in first:
+        first = src.lstrip().splitlines()[0]
+        if "Cell 12E" in first or ("12E" in first and "Cell" in first):
             found_12e = True
             break
     if not found_12e:
@@ -127,33 +159,60 @@ def code_cells_through_shard_12e(notebook: dict) -> list[str]:
     return out
 
 
+def _failure_summary(run: Path) -> tuple[int, dict | None]:
+    path = run / "fold_failures.json"
+    if not path.exists() or path.stat().st_size == 0:
+        return 0, None
+    try:
+        failures = json.loads(path.read_text(encoding="utf-8"))
+    except Exception:
+        return -1, {"error": "fold_failures.json is not valid JSON"}
+    if not isinstance(failures, list):
+        return -1, {"error": "fold_failures.json must contain a list"}
+    return len(failures), (failures[-1] if failures else None)
+
+
 def fold_result_status(run_dir: str | Path) -> dict:
     run = Path(run_dir)
     path = run / "fold_results.csv"
+    failure_count, last_failure = _failure_summary(run)
+    base = {
+        "path": str(run),
+        "failure_count": failure_count,
+        "last_failure": last_failure,
+    }
     if not path.exists() or path.stat().st_size == 0:
-        return {"complete": False, "reason": "fold_results.csv missing or empty", "rows": 0}
-    df = pd.read_csv(path)
+        return {**base, "complete": False, "reason": "fold_results.csv missing or empty", "rows": 0, "fold_cells": 0}
+    try:
+        df = pd.read_csv(path)
+    except pd.errors.EmptyDataError:
+        return {**base, "complete": False, "reason": "fold_results.csv has no parseable columns", "rows": 0, "fold_cells": 0}
     required = {"dataset", "model", "fold", "method", "joint_nll"}
     missing = required - set(df.columns)
     if missing:
-        return {"complete": False, "reason": f"missing columns: {sorted(missing)}", "rows": int(len(df))}
+        return {**base, "complete": False, "reason": f"missing columns: {sorted(missing)}", "rows": int(len(df)), "fold_cells": 0}
+    if df.empty:
+        return {**base, "complete": False, "reason": "fold_results.csv contains headers but zero rows", "rows": 0, "fold_cells": 0}
+
     method_counts = df.groupby(["dataset", "model", "fold"])["method"].nunique()
+    fold_cells = int(df[["dataset", "model", "fold"]].drop_duplicates().shape[0])
     complete = (
         len(df) == EXPECTED_ROWS
         and df["dataset"].nunique() == EXPECTED_DATASETS
         and df["model"].nunique() == EXPECTED_MODELS
-        and df[["dataset", "model", "fold"]].drop_duplicates().shape[0]
-        == EXPECTED_DATASETS * EXPECTED_MODELS * EXPECTED_FOLDS
+        and fold_cells == EXPECTED_DATASETS * EXPECTED_MODELS * EXPECTED_FOLDS
         and int(method_counts.min()) == EXPECTED_METHODS
         and int(method_counts.max()) == EXPECTED_METHODS
     )
     return {
+        **base,
         "complete": bool(complete),
         "rows": int(len(df)),
         "expected_rows": EXPECTED_ROWS,
         "datasets": int(df["dataset"].nunique()),
         "models": int(df["model"].nunique()),
-        "fold_cells": int(df[["dataset", "model", "fold"]].drop_duplicates().shape[0]),
+        "fold_cells": fold_cells,
+        "expected_fold_cells": EXPECTED_DATASETS * EXPECTED_MODELS * EXPECTED_FOLDS,
         "methods_per_fold_min": int(method_counts.min()),
         "methods_per_fold_max": int(method_counts.max()),
     }
@@ -165,5 +224,8 @@ def write_complete_marker(run_dir: str | Path, payload: dict) -> Path:
     if not status.get("complete"):
         raise RuntimeError(f"Refusing COMPLETE marker for incomplete run: {status}")
     marker = run / "COMPLETE.json"
-    marker.write_text(json.dumps({**payload, "fold_result_status": status}, indent=2), encoding="utf-8")
+    marker.write_text(
+        json.dumps({"complete": True, **payload, "fold_result_status": status}, indent=2),
+        encoding="utf-8",
+    )
     return marker
