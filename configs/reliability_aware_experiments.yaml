@@ -1,0 +1,124 @@
+version: 2
+
+# Archive-derived analyses are read-only. Fresh robustness runs MUST write to a
+# different directory and protocol revision.
+archive_analysis:
+  fold_results: results/q1_fast_complete_256_v1/fold_results.csv
+  evidence_root: results/q1_fast_complete_256_v1
+  output_dir: results/reliability_aware_v1
+  frozen_source_commit: ec6ff45d709096a1665f2475840c466587bc3d26
+  audit_command: >-
+    PYTHONPATH=src python experiments/audit_evidence_package.py
+    --results results/q1_fast_complete_256_v1
+    --output results/reliability_aware_v1/evidence_audit.json
+
+fresh_evidence:
+  run_id: core_tfm_jmlr_robustness_v1
+  never_overwrite_frozen_q1: true
+  primary_inference_unit: dataset
+  descriptive_cell_level_only: true
+
+safe_selective:
+  fallback_method: arithmetic
+  nested_families:
+    fallback: [arithmetic]
+    raw_pool: [j1_b_then_a, j2_a_then_b, arithmetic, geometric]
+    repair_small: [arithmetic, geometric, soft]
+    full: [j1_b_then_a, j2_a_then_b, arithmetic, geometric, mpr, soft]
+  delta: 0.05
+  beta_grid: [0.25, 0.5, 1.0, 2.0]
+  validation_sizes: [26, 52, 104, 208]
+  save_all_validation_candidate_scores: true
+  forbid_test_set_tuning: true
+
+seed_robustness:
+  seeds: [11, 23, 42, 71, 101]
+  folds: 5
+  train_limit: 256
+  validation_limit: 52
+  test_limit: 128
+  analysis: hierarchical_dataset_blocked
+
+context_size:
+  train_sizes: [64, 128, 256, 512, 1024]
+  seeds: [23, 42, 71]
+  folds: 5
+  test_limit: 128
+  record_operationally_unsupported_cells: true
+
+models:
+  primary: [tabiclv2, tabpfn3]
+  boundary: [catboost]
+  # Set only after released-checkpoint/API, probability-access, conditional-query,
+  # license, and runtime preflight succeeds.
+  third_tfm: null
+
+view_reliability_archive:
+  save_direct_marginal_metrics: true
+  save_conditional_metrics: true
+  save_per_class_metrics: true
+  save_prediction_entropy: true
+  save_factorization_tv_per_example: true
+  save_marginalization_defects_per_example: true
+  save_selected_policy_per_example_or_fold: true
+
+inference_dispersion:
+  enabled: true
+  members: 8
+  perturbations: [feature_permutation, context_resample]
+  dispersion: jensen_shannon
+  temperatures: [0.01, 0.03, 0.1, 0.3, 1.0]
+  note: Treat as inference instability/predictive dispersion until correlation with held-out error is established.
+
+rare_class_sensitivity:
+  audited_low_support_datasets:
+    customer: 3
+    marketing: 2
+    nursery: 2
+  minimum_support_thresholds: [1, 2, 5, 10]
+  exclusion_sensitivity: true
+  support_adaptive_penalty:
+    enabled: true
+    base_lambdas: [1.0, 3.0, 10.0]
+    taus: [2.0, 5.0, 10.0, 20.0]
+    tune_on_validation_only: true
+
+oracle_decomposition:
+  enabled: true
+  opportunity: arithmetic_minus_oracle
+  selection_regret: selected_minus_oracle
+  oracle_is_analysis_only: true
+
+policy_transfer:
+  modes:
+    - leave_one_dataset_out
+    - model_global
+    - universal_global
+
+utility_experiment:
+  enabled: true
+  source: controlled_known_truth
+  utility_seeds: [7, 19, 41, 73, 109]
+  n_actions: [3, 5, 10]
+
+completion_gate:
+  required_groups: [multi_seed, context_size, rare_class, safe_selective, view_reliability]
+  require_manifests: true
+  require_failure_logs: true
+  require_environment_metadata: true
+  require_checksums: true
+  require_dataset_blocked_statistics: true
+
+multi_target_followup:
+  status: future_work
+  approach: chow_liu_tree_pairwise_reconciliation
+
+online_followup:
+  status: future_work
+
+conformal_followup:
+  status: future_work
+
+wasserstein_followup:
+  status: future_work
+  condition: ordinal_or_semantically_embedded_targets_only

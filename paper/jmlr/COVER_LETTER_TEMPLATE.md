@@ -3,7 +3,9 @@
 **Manuscript:** CoRe-TFM: Selective Four-View Probability Reconciliation for Tabular Foundation Models
 
 **Corresponding author:** Badampudi Agasthya Anirudh  
-**Email:** anirudhbadampudi@gmail.com  
+**Email:** badampudi.agasthya2023@vitstudent.ac.in  
+**Second author:** Harshita Bogineni  
+**Email:** harshita.bogineni2023@vitstudent.ac.in  
 **Affiliation/postal address:** [COMPLETE BEFORE SUBMISSION]
 
 ## Previous/overlapping publication disclosure
@@ -12,7 +14,7 @@ This manuscript has not been published in a journal. [List any workshop, confere
 
 ## Author consent
 
-All listed authors are aware of this submission and consent to its review by JMLR. [For the current single-author draft, verify before submission.]
+All listed authors are aware of this submission and consent to its review by JMLR. Verify author order, affiliations, ORCID details if used, and submission consent immediately before submission.
 
 ## Conflicts of interest
 

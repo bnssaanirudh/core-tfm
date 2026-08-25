@@ -72,6 +72,46 @@ NLL than the full family, while Hard CoRe removes marginal distortion at a clear
 proper-score cost. Effects reverse by model: Selective CoRe is worse on TabICLv2
 by `0.006694` and better on TabPFN-3 by `0.003031` on average.
 
+## Reliability-aware research extension
+
+The next-stage research branch reframes the paper around **when reconciliation is
+statistically justified**, rather than treating reconciliation as a universal
+post-processing step. The runnable entry point is:
+
+[`notebooks/CoRe_TFM_RELIABILITY_AWARE_EXPERIMENTS.ipynb`](notebooks/CoRe_TFM_RELIABILITY_AWARE_EXPERIMENTS.ipynb)
+
+The reusable analysis runner is:
+
+```bash
+PYTHONPATH=src python experiments/run_reliability_aware_suite.py \
+  --fold-results results/q1_fast_complete_256_v1/fold_results.csv \
+  --output results/reliability_aware_v1
+```
+
+Implemented/scaffolded additions include:
+
+- analytic counterexamples showing that factorization TV is not an accuracy signal;
+- inconsistency-versus-reconciliation-gain correlation analysis;
+- oracle opportunity versus validation-selection-regret decomposition;
+- model-specific raw-view reliability diagnostics for the TabICLv2/TabPFN-3 reversal;
+- structural-risk/complexity penalties for **Safe Selective CoRe**;
+- Jensen-Shannon inference-dispersion utilities for future label-free reliability weighting;
+- support-adaptive rare-class penalty utilities;
+- policy-transfer and candidate-family headroom analyses;
+- known-truth downstream decision-regret evaluation utilities;
+- a canonical experiment matrix for independent sampling seeds, context sizes,
+  a third TFM, per-view calibration archives, and inference-perturbation studies.
+
+The full experiment specification is in
+[`configs/reliability_aware_experiments.yaml`](configs/reliability_aware_experiments.yaml).
+Fresh-inference experiments are intentionally marked as pending; no unexecuted
+result is represented as established evidence.
+
+Multi-target graphical reconciliation, online/streaming adaptation, conformalized
+reconciliation, and Wasserstein objectives are retained as follow-up research
+tracks rather than being mixed into the main submission before the pairwise
+reliability story is complete.
+
 ## Reproduce core tests
 
 ```bash
@@ -94,8 +134,9 @@ PYTHONPATH=src python experiments/run_exact_view_perturbation.py
 PYTHONPATH=src python experiments/run_selective_mixture.py
 PYTHONPATH=src python experiments/run_selective_validation_size.py
 PYTHONPATH=src python experiments/analyze_q1_benchmark.py
+PYTHONPATH=src python experiments/run_reliability_aware_suite.py
 ```
 
 ## Research guardrail
 
-Any normalized joint is internally coherent. Therefore, **zero inconsistency after reconciliation is not treated as evidence of usefulness**. The paper evaluates proper scoring, conditional prediction, calibration, distortion, dependence fidelity, truth distance when available, and validation-selected consistency tax/dividend.
+Any normalized joint is internally coherent. Therefore, **zero inconsistency after reconciliation is not treated as evidence of usefulness**. The paper evaluates proper scoring, conditional prediction, calibration, distortion, dependence fidelity, truth distance when available, decision utility when truth is available, and validation-selected consistency tax/dividend.

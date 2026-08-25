@@ -40,14 +40,69 @@ The expected primary joint-NLL effect is Selective CoRe minus arithmetic pooling
 Negative values would favor Selective CoRe; this completed result therefore favors
 arithmetic pooling.
 
-## Required robustness extensions
+## Reliability-aware extension: immediately runnable
 
-Before journal submission, freeze a new protocol amendment and run at least three
-independent constrained-sampling seeds. Add a training-context sensitivity on a
-representative subset at 256, 512, 1,024, and full feasible training size. Resolve
-the Marketing/rare-class design explicitly and report a sensitivity excluding
-rare-class datasets. These extensions must be labeled confirmatory or exploratory
-before inspecting their comparative scores.
+The extension notebook is:
+
+`notebooks/CoRe_TFM_RELIABILITY_AWARE_EXPERIMENTS.ipynb`
+
+It reuses the archived benchmark and does not require downloading TFM checkpoints for
+its first analysis block. Run the equivalent CLI pipeline with:
+
+```bash
+PYTHONPATH=src python experiments/run_reliability_aware_suite.py \
+  --fold-results results/q1_fast_complete_256_v1/fold_results.csv \
+  --output results/reliability_aware_v1
+```
+
+This writes only derived results into `results/reliability_aware_v1/` and never
+modifies the frozen Q1 evidence package. Outputs include:
+
+- oracle opportunity vs validation-selection-regret decomposition;
+- factorization-TV vs reconciliation-gain correlations;
+- analytic counterexamples showing that inconsistency is not an accuracy metric;
+- model-specific raw-view reliability proxies;
+- candidate-family headroom summaries;
+- method-transfer proxies across datasets/models.
+
+The notebook also demonstrates reusable utilities for inference-dispersion weighting,
+support-adaptive rare-class penalties, structural-risk complexity penalties, and
+known-truth decision regret. Those demonstrations are mechanisms, not new empirical
+claims about the TFMs.
+
+## Fresh-inference experiment protocol
+
+Canonical settings are in `configs/reliability_aware_experiments.yaml`. Before a
+revised journal submission, run and archive the following as a new evidence package:
+
+1. five independent constrained-sampling seeds across the ten datasets and five folds;
+2. context-size sensitivity at 64, 128, 256, 512, and 1,024 examples where supported;
+3. at least one third released TFM after an operational preflight;
+4. direct-marginal and conditional NLL/Brier/ECE plus per-class reliability metrics;
+5. per-example factorization TV, marginalization defects, predictive entropy, and
+   inference dispersion under admissible perturbations;
+6. complete validation candidate-score traces, enabling Safe Selective CoRe to be
+   evaluated without test leakage;
+7. rare-class exclusion and support-adaptive penalty sensitivity;
+8. leave-one-dataset-out/model-global policy-transfer evaluation; and
+9. downstream expected-utility regret on controlled tasks where the true joint is known.
+
+Do not reuse the current test set to tune candidate-family complexity, dispersion
+temperatures, class-adaptive penalties, or any new policy. These must be chosen in an
+inner validation/cross-fitting layer or pre-registered before comparative test scores
+are examined.
+
+## Follow-up research kept outside the main submission
+
+The current extension intentionally does not mix in every promising direction. The
+following are tracked as separate follow-up projects unless the pairwise reliability
+story is complete first:
+
+- Chow-Liu/tree-structured multi-target reconciliation;
+- learned per-instance gating/meta-reconciliation;
+- online/streaming policy adaptation;
+- conformalized reconciled predictive sets; and
+- Wasserstein/optimal-transport reconciliation for ordinal or embedded categories.
 
 ## Reproduction caveat
 
