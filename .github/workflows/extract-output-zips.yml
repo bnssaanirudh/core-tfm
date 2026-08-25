@@ -1,0 +1,43 @@
+name: Extract output ZIPs
+
+on:
+  push:
+    paths:
+      - '.github/workflows/extract-output-zips.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  extract:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Extract dataset output archives
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf outputs_dataset1 outputs_dataset2
+          mkdir -p outputs_dataset1 outputs_dataset2
+          unzip -o outputs_dataset1.zip -d outputs_dataset1
+          unzip -o outputs_dataset2.zip -d outputs_dataset2
+          echo 'Dataset 1 files:'
+          find outputs_dataset1 -type f | sort
+          echo 'Dataset 2 files:'
+          find outputs_dataset2 -type f | sort
+
+      - name: Commit extracted outputs
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add outputs_dataset1 outputs_dataset2
+          if git diff --cached --quiet; then
+            echo 'No extraction changes to commit.'
+            exit 0
+          fi
+          git commit -m 'Extract dataset output archives'
+          git push
