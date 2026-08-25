@@ -1,8 +1,8 @@
 """Utilities for executing parameterized robustness variants of the Q1 notebook.
 
-The robustness workflow deliberately reuses the original Q1 inference stack.  A
+The robustness workflow deliberately reuses the original Q1 inference stack. A
 caller patches only prespecified protocol constants and executes the original
-cells through shard 12E.  These helpers never target the frozen Q1 result folder.
+cells through shard 12E. These helpers never target the frozen Q1 result folder.
 """
 from __future__ import annotations
 
@@ -54,7 +54,7 @@ def patch_q1_notebook(
 ) -> dict:
     """Return a protocol-patched copy of the original Q1 notebook.
 
-    Only run/output/sampling/time-budget constants are changed.  Inference,
+    Only run/output/sampling/time-budget constants are changed. Inference,
     dataset preparation, reconciliation, validation selection, and scoring remain
     the Q1 implementation.
     """
@@ -108,7 +108,7 @@ def patch_q1_notebook(
     if disable_validation_sensitivity:
         replacements.append(('RUN_VALIDATION_SENSITIVITY = FULL_Q1_RUN', 'RUN_VALIDATION_SENSITIVITY = False'))
 
-    # Require one global occurrence for every patch target.  This catches template
+    # Require one global occurrence for every patch target. This catches template
     # drift before any GPU inference starts.
     for old, _ in replacements:
         count = all_source.count(old)
@@ -129,26 +129,32 @@ def patch_q1_notebook(
 
 
 def code_cells_through_shard_12e(notebook: dict) -> list[str]:
-    """Return executable Python cell sources through the final 12E shard."""
+    """Return executable Python cell sources through the final 12E shard.
+
+    Python's compiler is the authoritative syntax check. This intentionally does
+    not classify lines by their first character: valid continuation lines such as
+    ``!= (...)`` can begin with ``!`` after indentation is stripped. True IPython
+    magics/shell escapes fail normal Python compilation and are reported with the
+    originating engine-cell index.
+    """
     out: list[str] = []
     found_12e = False
+    engine_index = 0
     for cell in notebook.get("cells", []):
         if cell.get("cell_type") != "code":
             continue
         src = "".join(cell.get("source", []))
         if not src.strip():
             continue
-        # The Q1 notebook intentionally contains regular Python only through 12E.
-        # Fail early if a future edit introduces notebook magics that raw exec()
-        # cannot execute.
-        for line in src.splitlines():
-            stripped = line.lstrip()
-            if stripped.startswith(("%", "!")):
-                raise ValueError(
-                    "Q1 engine contains IPython-only syntax before 12E; raw Python execution is unsafe: "
-                    + stripped
-                )
-        compile(src, "<q1_engine_static_check>", "exec")
+        engine_index += 1
+        try:
+            compile(src, f"<q1_engine_static_check_{engine_index}>", "exec")
+        except SyntaxError as exc:
+            first = src.lstrip().splitlines()[0] if src.strip() else "<empty>"
+            raise ValueError(
+                f"Q1 engine cell {engine_index} is not valid regular Python before 12E "
+                f"({first!r}): {exc.msg} at line {exc.lineno}"
+            ) from exc
         out.append(src)
         first = src.lstrip().splitlines()[0]
         if "Cell 12E" in first or ("12E" in first and "Cell" in first):
@@ -185,8 +191,8 @@ def fold_result_status(run_dir: str | Path) -> dict:
         return {**base, "complete": False, "reason": "fold_results.csv missing or empty", "rows": 0, "fold_cells": 0}
     try:
         df = pd.read_csv(path)
-    except pd.errors.EmptyDataError:
-        return {**base, "complete": False, "reason": "fold_results.csv has no parseable columns", "rows": 0, "fold_cells": 0}
+    except (pd.errors.EmptyDataError, pd.errors.ParserError):
+        return {**base, "complete": False, "reason": "fold_results.csv is empty or unparseable", "rows": 0, "fold_cells": 0}
     required = {"dataset", "model", "fold", "method", "joint_nll"}
     missing = required - set(df.columns)
     if missing:
