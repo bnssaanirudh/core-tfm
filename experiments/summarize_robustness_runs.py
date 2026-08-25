@@ -221,16 +221,18 @@ def main():
     ap.add_argument("--seeds", default="11,23,42,71,101")
     ap.add_argument("--context-seeds", default="23,42,71")
     ap.add_argument("--context-sizes", default="64,128,256,512,1024")
+    ap.add_argument("--rare-thresholds", default="1,2,5,10")
     args = ap.parse_args()
     args.root.mkdir(parents=True, exist_ok=True)
     seeds = [int(x) for x in args.seeds.split(",") if x]
     cseeds = [int(x) for x in args.context_seeds.split(",") if x]
     sizes = [int(x) for x in args.context_sizes.split(",") if x]
+    thresholds = [int(x) for x in args.rare_thresholds.split(",") if x]
     support_map = {"customer": 3, "marketing": 2, "nursery": 2}
     report = {
         "multi_seed": aggregate_multi_seed(args.root, seeds),
         "context_size": aggregate_context(args.root, cseeds, sizes),
-        "rare_class": rare_class_from_multiseed(args.root, seeds, support_map, [2, 5, 10]),
+        "rare_class": rare_class_from_multiseed(args.root, seeds, support_map, thresholds),
     }
     (args.root / "ROBUSTNESS_STATUS.json").write_text(json.dumps(report, indent=2), encoding="utf-8")
     print(json.dumps({k: v.get("complete") for k, v in report.items()}, indent=2))
