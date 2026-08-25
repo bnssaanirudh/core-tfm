@@ -1,0 +1,69 @@
+name: Build report support artifacts
+
+on:
+  push:
+    paths:
+      - '.github/workflows/build-report-support.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  derive:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Derive confusion matrices and error breakdowns
+        run: |
+          python - <<'PY'
+          import csv, os
+          from collections import Counter
+
+          labels = ['negative','neutral','positive']
+          os.makedirs('report_support', exist_ok=True)
+
+          for ds in ('1','2'):
+              path = f'outputs_dataset{ds}/outputs_dataset{ds}/CSV/test_predictions.csv'
+              rows = list(csv.DictReader(open(path, encoding='utf-8')))
+              cm = {a:{p:0 for p in labels} for a in labels}
+              for r in rows:
+                  a, p = r['actual_label'], r['predicted_label']
+                  if a in cm and p in cm[a]: cm[a][p] += 1
+
+              with open(f'report_support/confusion_matrix_D{ds}.csv','w',newline='',encoding='utf-8') as f:
+                  w=csv.writer(f); w.writerow(['Actual\\Predicted']+labels)
+                  for a in labels: w.writerow([a]+[cm[a][p] for p in labels])
+
+              with open(f'report_support/normalized_confusion_matrix_D{ds}.csv','w',newline='',encoding='utf-8') as f:
+                  w=csv.writer(f); w.writerow(['Actual\\Predicted']+labels)
+                  for a in labels:
+                      n=sum(cm[a].values())
+                      w.writerow([a]+[round(cm[a][p]/n,4) if n else 0 for p in labels])
+
+              with open(f'report_support/per_class_metrics_D{ds}.csv','w',newline='',encoding='utf-8') as f:
+                  w=csv.writer(f); w.writerow(['Class','Precision','Recall','F1','Support'])
+                  for c in labels:
+                      tp=cm[c][c]
+                      fp=sum(cm[a][c] for a in labels if a!=c)
+                      fn=sum(cm[c][p] for p in labels if p!=c)
+                      support=sum(cm[c].values())
+                      precision=tp/(tp+fp) if tp+fp else 0
+                      recall=tp/(tp+fn) if tp+fn else 0
+                      f1=2*precision*recall/(precision+recall) if precision+recall else 0
+                      w.writerow([c,round(precision,6),round(recall,6),round(f1,6),support])
+
+              with open(f'report_support/error_breakdown_D{ds}.csv','w',newline='',encoding='utf-8') as f:
+                  w=csv.writer(f); w.writerow(['Actual','Predicted','Count'])
+                  for a in labels:
+                      for p in labels:
+                          if a!=p: w.writerow([a,p,cm[a][p]])
+          PY
+      - name: Commit report support artifacts
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add report_support
+          git diff --cached --quiet && exit 0
+          git commit -m 'Add derived report support artifacts'
+          git push
