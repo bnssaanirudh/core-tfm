@@ -1,0 +1,4 @@
+Actual\Predicted,negative,neutral,positive
+negative,0.4215,0.4776,0.101
+neutral,0.1398,0.6729,0.1873
+positive,0.0446,0.3166,0.6387

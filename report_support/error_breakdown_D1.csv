@@ -1,0 +1,7 @@
+Actual,Predicted,Count
+negative,neutral,1897
+negative,positive,401
+neutral,negative,830
+neutral,positive,1112
+positive,negative,106
+positive,neutral,752

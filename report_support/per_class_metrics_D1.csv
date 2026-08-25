@@ -1,0 +1,4 @@
+Class,Precision,Recall,F1,Support
+negative,0.641379,0.42145,0.50866,3972
+neutral,0.601294,0.672899,0.635085,5937
+positive,0.50066,0.638737,0.561332,2375
