@@ -1,3 +1,13 @@
-# Install PyTorch with ROCm separately first; do NOT let pip replace it with a CUDA wheel.
-# Frozen research-model/package versions
--tabpfn-placeholder
+# PyTorch is intentionally NOT listed here.
+# Install a ROCm build of PyTorch first using the official PyTorch selector.
+tabicl==2.1.1
+tabpfn==8.4.0
+catboost==1.2.10
+ucimlrepo
+pyyaml
+nbformat
+nbclient
+jupyter_client
+ipykernel
+hf_transfer
+seaborn
