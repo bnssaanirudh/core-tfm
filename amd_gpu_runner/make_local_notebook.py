@@ -1,7 +1,6 @@
 from __future__ import annotations
 
 import argparse
-import json
 from pathlib import Path
 
 import nbformat
@@ -124,8 +123,6 @@ def build_notebook(
         disable_validation_sensitivity=True,
     )
 
-    # Replace only the first code cell (the Colab-specific setup). All benchmark
-    # data/model/evaluator/shard cells remain from the original Q1 notebook.
     first_code = next(i for i, c in enumerate(patched["cells"]) if c.get("cell_type") == "code")
     patched["cells"][first_code]["source"] = _local_setup_source(
         root=root,
@@ -136,7 +133,6 @@ def build_notebook(
         test_limit=test_limit,
     ).splitlines(keepends=True)
 
-    # Correct the human-readable amendment text for non-256 context variants.
     for cell in patched["cells"]:
         if cell.get("cell_type") != "code":
             continue
@@ -147,8 +143,6 @@ def build_notebook(
         )
         cell["source"] = src.splitlines(keepends=True)
 
-    # Keep cells only through 12E. This avoids Q1 manuscript/controlled-study
-    # post-processing and makes each robustness variant a pure inference run.
     kept = []
     found_12e = False
     for cell in patched["cells"]:
@@ -163,10 +157,9 @@ def build_notebook(
         raise RuntimeError("Could not find Cell 12E in Q1 template.")
     patched["cells"] = kept
 
-    # Clear stale execution artifacts from the template.
     for cell in patched["cells"]:
-        cell["execution_count"] = None
         if cell.get("cell_type") == "code":
+            cell["execution_count"] = None
             cell["outputs"] = []
 
     return nbformat.from_dict(patched)
