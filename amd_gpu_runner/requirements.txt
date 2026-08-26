@@ -1,0 +1,3 @@
+# Install PyTorch with ROCm separately first; do NOT let pip replace it with a CUDA wheel.
+# Frozen research-model/package versions
+-tabpfn-placeholder
