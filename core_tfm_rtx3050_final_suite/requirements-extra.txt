@@ -1,0 +1,9 @@
+pyyaml>=6.0
+nbformat>=5.10
+nbclient>=0.10
+ipykernel>=6.29
+ucimlrepo>=0.0.7
+seaborn>=0.13
+catboost==1.2.10
+tabicl==2.1.1
+tabpfn

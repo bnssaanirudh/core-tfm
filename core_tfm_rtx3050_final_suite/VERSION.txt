@@ -1,0 +1,2 @@
+core_tfm_rtx3050_final_suite_v1
+Built for core-tfm main protocol as of 2026-08-28

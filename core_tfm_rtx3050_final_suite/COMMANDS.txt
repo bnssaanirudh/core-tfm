@@ -1,0 +1,61 @@
+EXPECTED LAYOUT
+===============
+core-tfm\
+  .git\
+  src\
+  notebooks\
+  experiments\
+  core_tfm_rtx3050_final_suite\   <-- extract this ZIP here
+
+ONE-TIME SETUP (PowerShell)
+===========================
+cd C:\path\to\core-tfm\core_tfm_rtx3050_final_suite
+Set-ExecutionPolicy -Scope Process Bypass
+.\setup_windows.ps1
+
+Set token in the SAME PowerShell session (do not commit it):
+$env:TABPFN_TOKEN = "YOUR_TABPFN_TOKEN"
+
+PRE-FLIGHT
+==========
+.\preflight_windows.ps1
+
+RUN EVERYTHING
+==============
+.\run_final_suite.ps1
+
+RESUME AFTER REBOOT/INTERRUPTION
+===============================
+cd C:\path\to\core-tfm\core_tfm_rtx3050_final_suite
+$env:TABPFN_TOKEN = "YOUR_TABPFN_TOKEN"
+.\resume_final_suite.ps1
+
+GPU MATRIX ONLY
+===============
+.\run_gpu_matrix.ps1 -Profile paper
+
+MULTI-SEED ONLY
+===============
+.\run_gpu_matrix.ps1 -Profile multi_seed
+
+CONTEXT-SIZE ONLY
+=================
+.\run_gpu_matrix.ps1 -Profile context
+
+ONE VARIANT
+===========
+.\run_one_variant.ps1 -Seed 23 -TrainLimit 128 -Group context
+
+POST-PROCESS EXISTING RUNS
+==========================
+.\run_postprocessing.ps1
+
+DIRECT PYTHON EQUIVALENTS
+=========================
+..\.venv\Scripts\python.exe -m core_tfm_rtx3050_suite.preflight --repo .. --strict-token
+..\.venv\Scripts\python.exe -m core_tfm_rtx3050_suite.run_cpu_experiments --repo ..
+..\.venv\Scripts\python.exe -m core_tfm_rtx3050_suite.run_matrix --repo .. --profile paper
+..\.venv\Scripts\python.exe -m core_tfm_rtx3050_suite.aggregate --repo ..
+..\.venv\Scripts\python.exe -m core_tfm_rtx3050_suite.rare_class --repo ..
+..\.venv\Scripts\python.exe -m core_tfm_rtx3050_suite.completion_gate --repo ..
+..\.venv\Scripts\python.exe -m core_tfm_rtx3050_suite.make_paper_bundle --repo ..
