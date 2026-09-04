@@ -1,0 +1,109 @@
+{
+  "preset": "full",
+  "gpu_notebook_variants": 17,
+  "variants": [
+    {
+      "group": "multi_seed",
+      "seed": 11,
+      "train_limit": 256,
+      "test_limit": 128
+    },
+    {
+      "group": "multi_seed",
+      "seed": 23,
+      "train_limit": 256,
+      "test_limit": 128
+    },
+    {
+      "group": "multi_seed",
+      "seed": 42,
+      "train_limit": 256,
+      "test_limit": 128
+    },
+    {
+      "group": "multi_seed",
+      "seed": 71,
+      "train_limit": 256,
+      "test_limit": 128
+    },
+    {
+      "group": "multi_seed",
+      "seed": 101,
+      "train_limit": 256,
+      "test_limit": 128
+    },
+    {
+      "group": "context",
+      "seed": 23,
+      "train_limit": 64,
+      "test_limit": 128
+    },
+    {
+      "group": "context",
+      "seed": 23,
+      "train_limit": 128,
+      "test_limit": 128
+    },
+    {
+      "group": "context",
+      "seed": 23,
+      "train_limit": 512,
+      "test_limit": 128
+    },
+    {
+      "group": "context",
+      "seed": 23,
+      "train_limit": 1024,
+      "test_limit": 128
+    },
+    {
+      "group": "context",
+      "seed": 42,
+      "train_limit": 64,
+      "test_limit": 128
+    },
+    {
+      "group": "context",
+      "seed": 42,
+      "train_limit": 128,
+      "test_limit": 128
+    },
+    {
+      "group": "context",
+      "seed": 42,
+      "train_limit": 512,
+      "test_limit": 128
+    },
+    {
+      "group": "context",
+      "seed": 42,
+      "train_limit": 1024,
+      "test_limit": 128
+    },
+    {
+      "group": "context",
+      "seed": 71,
+      "train_limit": 64,
+      "test_limit": 128
+    },
+    {
+      "group": "context",
+      "seed": 71,
+      "train_limit": 128,
+      "test_limit": 128
+    },
+    {
+      "group": "context",
+      "seed": 71,
+      "train_limit": 512,
+      "test_limit": 128
+    },
+    {
+      "group": "context",
+      "seed": 71,
+      "train_limit": 1024,
+      "test_limit": 128
+    }
+  ],
+  "note": "A variant executes the repository's bounded notebook matrix. This file is a plan, not evidence."
+}

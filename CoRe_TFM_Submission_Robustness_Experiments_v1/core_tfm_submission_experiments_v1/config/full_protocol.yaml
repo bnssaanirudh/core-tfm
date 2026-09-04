@@ -1,0 +1,49 @@
+version: 1
+suite_name: core_tfm_submission_full_v1
+output_root: results/core_tfm_submission_full_v1
+
+hardware:
+  expected_gpu: NVIDIA RTX 3050 Laptop GPU
+  expected_vram_gb: 4
+  require_cuda: true
+  cuda_allocator: expandable_segments:True
+
+benchmark:
+  template: notebooks/CoRe_TFM_Q1_FAST_COMPLETE_256_Colab.ipynb
+  test_limit: 128
+  shard_minutes: 120
+  keep_through_cell: 12E
+  enable_selection_ablations: true
+  enable_validation_sensitivity: true
+  disable_controlled_replications_in_tfm_runs: true
+
+multi_seed:
+  seeds: [11, 23, 42, 71, 101]
+  train_limit: 256
+
+context_size:
+  seeds: [23, 42, 71]
+  train_sizes: [64, 128, 256, 512, 1024]
+
+primary_models: [tabiclv2, tabpfn3]
+boundary_models: [catboost]
+
+rare_class_thresholds: [1, 2, 5, 10]
+
+controlled_safe:
+  tasks: 100
+  n: 2200
+  beta: 1.0
+  delta: 0.05
+  certified_delta: 0.05
+  probability_floor: 1.0e-12
+
+completion_gate:
+  require_multi_seed: true
+  require_context_size: true
+  require_selection_ablations: true
+  require_validation_sensitivity: true
+  require_view_reliability: true
+  require_rare_class_sensitivity: true
+  require_controlled_safe: true
+  allow_operationally_unsupported_context_cells: true

@@ -1,0 +1,11 @@
+{
+  "datasets": 10,
+  "lowest_support": 1,
+  "note": "Exclusion sensitivity uses the dataset-level minimum target-class support from the pinned pair datasets; model inference is not repeated for this post-hoc sensitivity analysis.",
+  "thresholds": [
+    1,
+    2,
+    5,
+    10
+  ]
+}

@@ -1,0 +1,5 @@
+minimum_support_threshold,datasets_kept,dataset_names,mean_selective_minus_arithmetic,dataset_wins,dataset_losses,wilcoxon_p
+1,10,"anneal,car,credit,customer,diamonds,marketing,mic,nursery,phishing,wine",0.0008510181331391508,2,8,0.10546875
+2,9,"anneal,car,credit,customer,marketing,mic,nursery,phishing,wine",0.0008331217751014973,2,7,0.1640625
+5,6,"anneal,car,credit,mic,phishing,wine",0.0009769295663373423,1,5,0.4375
+10,5,"car,credit,mic,phishing,wine",0.0007350334350330789,1,4,0.625

@@ -1,0 +1,20 @@
+{
+  "CHECKLIST.txt": "64ac4044432e6482e9cae0d3a4c6ca717cd2dec169ea872995071ed72d0ccccd",
+  "EXPECTED_OUTPUTS.md": "3eb4c37a22102b4886ac60a22b94643352b5b61c05d37bcecefaaa7dd91de95c",
+  "EXPERIMENT_DESIGN.md": "68f0db8db7496a9769c87638669121f9fc9316ff956777c9c2d8ae4c4a8ff2a7",
+  "README.md": "f9d5c49f52dd8b822bc6bd4d837868b13e63c26bb474d7c9f94e75ec9c8f793d",
+  "STATUS_RULES.md": "7cc35a8e33ee74a1a36d0ff90f2740d2aa3372a8117f23af60d4a5e84a16b64b",
+  "VERSION.txt": "0ae8a40380cec0891aa474c55c0fcbd083b405b6a10473604a234cd6b1aca7a6",
+  "config/experiment_protocol.json": "c6a1db33b1cf5da50ef8c9b31a066c50f3e1d36ea3a26422822f9664b2548816",
+  "config/full_protocol.yaml": "b086524a27169811e535c0e15742e2e28b5a8dc06a2135eb64cdb0b3d0999c27",
+  "config/minimal_submission.yaml": "3d7ac67b3de8f086ac3ae57fdae78e825e864ff4206f3f7c5434771e1eed5363",
+  "run_full_linux.sh": "6a4626341e588a0caf5702f621c4d192431de9b419dcbef0d3e1c82912f2e537",
+  "run_full_windows.ps1": "964a17fe7ce0dbb8c3db9937304f0b279bb19d7fe8d4d29ab7d14ba47a9d4e2e",
+  "run_minimal_linux.sh": "6a5655e67ee13ccae08618dccc55d967ad49a0ce744ad3491923c43af1a5b558",
+  "run_minimal_windows.ps1": "10a77d04e0cc5a2ffc92aaac9b107e75900946510e226b568a29e5e5155c7621",
+  "scripts/finalize_submission.py": "4e1a595ab41793e352fc69160ba29b813473d091248bbe7fa3c199d95e340184",
+  "scripts/plan_matrix.py": "f7dfa1eb5920b9784eba1fe80f3c0e78759cdf2270116657dbeac8442b965972",
+  "scripts/preflight_submission.py": "37f441533c47d8b4739db5c0e32c729c9416f532a00357d81bce646b06b3b0ee",
+  "scripts/run_suite.py": "7c6d85d840b56e943988067927301003bd25fdba0cfe3c5e6aa0564d9de21a4a",
+  "templates/NEW_RESULTS_STATUS.md": "2ba57dc3aed5b11b11cbbcd3155e6a8fcfe8d683483a78e18dddad8e755223a6"
+}

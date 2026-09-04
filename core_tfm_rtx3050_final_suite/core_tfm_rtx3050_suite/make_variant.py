@@ -82,28 +82,24 @@ except Exception:
     pass
 
 tabpfn_token = os.environ.get("TABPFN_TOKEN", "").strip()
-if not tabpfn_token:
-    raise RuntimeError(
-        "TABPFN_TOKEN is not set in this PowerShell session. Set $env:TABPFN_TOKEN before running."
-    )
-os.environ["TABPFN_TOKEN"] = tabpfn_token
-
-# Headless license/token validation when the installed TabPFN exposes this API.
-try:
-    from tabpfn.browser_auth import ensure_license_accepted, verify_token
-    from tabpfn.errors import TabPFNLicenseError
-    from tabpfn.settings import settings
-    token_status = verify_token(tabpfn_token, settings.tabpfn.auth_api_url)
-    if token_status is not True:
-        raise RuntimeError("TABPFN_TOKEN is invalid or the Prior Labs server is unreachable.")
+if tabpfn_token:
+    os.environ["TABPFN_TOKEN"] = tabpfn_token
+    # Headless license/token validation when the installed TabPFN exposes this API.
     try:
-        ensure_license_accepted(hf_repo_id="tabpfn_3")
-    except TabPFNLicenseError as exc:
-        if "browser login is disabled" in str(exc):
-            raise RuntimeError("Accept the TabPFN-3 license in the Prior Labs account and rerun.") from exc
-        raise
-except ImportError:
-    pass
+        from tabpfn.browser_auth import ensure_license_accepted, verify_token
+        from tabpfn.errors import TabPFNLicenseError
+        from tabpfn.settings import settings
+        token_status = verify_token(tabpfn_token, settings.tabpfn.auth_api_url)
+        if token_status is not True:
+            raise RuntimeError("TABPFN_TOKEN is invalid or the Prior Labs server is unreachable.")
+        try:
+            ensure_license_accepted(hf_repo_id="tabpfn_3")
+        except TabPFNLicenseError as exc:
+            if "browser login is disabled" in str(exc):
+                raise RuntimeError("Accept the TabPFN-3 license in the Prior Labs account and rerun.") from exc
+            raise
+    except ImportError:
+        pass
 
 ENV_PATH = RUN / "environment_metadata.json"
 env_payload = {{

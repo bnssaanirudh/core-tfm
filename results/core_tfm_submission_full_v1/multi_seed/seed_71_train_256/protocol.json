@@ -1,0 +1,81 @@
+{
+  "run_id": "multi_seed/seed_71_train_256",
+  "protocol_revision": "rtx3050_cuda_seed71_train256_test128",
+  "profile": "q1_full",
+  "datasets": [
+    "anneal",
+    "car",
+    "credit",
+    "customer",
+    "marketing",
+    "mic",
+    "nursery",
+    "phishing",
+    "wine",
+    "diamonds"
+  ],
+  "models": [
+    "tabiclv2",
+    "tabpfn3",
+    "catboost"
+  ],
+  "tfm_models_for_primary_claim": [
+    "tabiclv2",
+    "tabpfn3"
+  ],
+  "boundary_models_for_secondary_analysis": [
+    "catboost"
+  ],
+  "excluded_models": [
+    "tabfm"
+  ],
+  "outer_folds": 5,
+  "inner_validation_fraction": 0.2,
+  "sensitivity_datasets": [
+    "anneal",
+    "car",
+    "credit",
+    "customer",
+    "diamonds",
+    "marketing",
+    "mic",
+    "nursery",
+    "phishing",
+    "wine"
+  ],
+  "sensitivity_fractions": [
+    0.25,
+    0.5,
+    1.0
+  ],
+  "seed": 71,
+  "weights": [
+    0.0,
+    0.25,
+    0.5,
+    0.75,
+    1.0
+  ],
+  "penalties": [
+    0.03,
+    0.1,
+    0.3,
+    1.0,
+    3.0,
+    10.0,
+    30.0
+  ],
+  "tabicl_n_estimators": 2,
+  "max_train_rows_per_outer_fold": 256,
+  "max_test_rows_per_outer_fold": 128,
+  "sampling": "deterministic; training target-class coverage guaranteed",
+  "sensitivity_design": "nested label subsets of one fitted validation pool; no refitting",
+  "catboost": {
+    "version": "1.2.10",
+    "iterations": 100,
+    "depth": 6,
+    "learning_rate": 0.05
+  },
+  "session_time_budget_minutes": 120,
+  "amendment_is_outcome_blind": true
+}

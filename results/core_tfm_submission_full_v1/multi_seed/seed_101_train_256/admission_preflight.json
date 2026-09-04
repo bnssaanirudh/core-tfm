@@ -1,0 +1,204 @@
+{
+  "datasets": {
+    "anneal": {
+      "ok": true,
+      "rows": 898,
+      "features": 37,
+      "stratification": "joint(A,B); seed=101; train-class coverage checked",
+      "classes_a": 5,
+      "classes_b": 8,
+      "min_class_a": 8,
+      "min_class_b": 10,
+      "provenance": {
+        "route": "OpenML through repository loader",
+        "dataset": "anneal",
+        "post_preprocessing_sha256": "b5fb6ed4b470778c12def10c5bdc353fc846e5fc1b45ece07172f9417d777c2d",
+        "target_rows_removed_by_notebook": 0,
+        "post_clean_rows": 898,
+        "target_cleaning": "drop true missing, empty-string, and literal 'nan' targets"
+      }
+    },
+    "car": {
+      "ok": true,
+      "rows": 1728,
+      "features": 5,
+      "stratification": "joint(A,B); seed=101; train-class coverage checked",
+      "classes_a": 4,
+      "classes_b": 3,
+      "min_class_a": 65,
+      "min_class_b": 576,
+      "provenance": {
+        "route": "OpenML through repository loader",
+        "dataset": "car",
+        "post_preprocessing_sha256": "6f426ba57467c77a703707b0442638a3c6870028e79ac81bce763b147c3f036d",
+        "target_rows_removed_by_notebook": 0,
+        "post_clean_rows": 1728,
+        "target_cleaning": "drop true missing, empty-string, and literal 'nan' targets"
+      }
+    },
+    "credit": {
+      "ok": true,
+      "rows": 1000,
+      "features": 19,
+      "stratification": "joint(A,B); seed=101; train-class coverage checked",
+      "classes_a": 2,
+      "classes_b": 4,
+      "min_class_a": 300,
+      "min_class_b": 63,
+      "provenance": {
+        "route": "OpenML through repository loader",
+        "dataset": "credit",
+        "post_preprocessing_sha256": "bad31fac9c18d22f40fe13ba7d0e9c5d8a338bb748d26f1667925c6d814ae6c0",
+        "target_rows_removed_by_notebook": 0,
+        "post_clean_rows": 1000,
+        "target_cleaning": "drop true missing, empty-string, and literal 'nan' targets"
+      }
+    },
+    "customer": {
+      "ok": true,
+      "rows": 1723,
+      "features": 12,
+      "stratification": "joint(A,B); seed=101; train-class coverage checked",
+      "classes_a": 2,
+      "classes_b": 6,
+      "min_class_a": 196,
+      "min_class_b": 3,
+      "provenance": {
+        "route": "OpenML through repository loader",
+        "dataset": "customer",
+        "post_preprocessing_sha256": "e84f943d4f633be9ef5535cf00c634fd5dac15292870533312fbc6678c069b52",
+        "target_rows_removed_by_notebook": 0,
+        "post_clean_rows": 1723,
+        "target_cleaning": "drop true missing, empty-string, and literal 'nan' targets"
+      }
+    },
+    "marketing": {
+      "ok": true,
+      "rows": 2216,
+      "features": 24,
+      "stratification": "joint(A,B); seed=101; train-class coverage checked",
+      "classes_a": 2,
+      "classes_b": 8,
+      "min_class_a": 333,
+      "min_class_b": 2,
+      "provenance": {
+        "route": "OpenML through repository loader",
+        "dataset": "marketing",
+        "post_preprocessing_sha256": "17cd89dc5b5058d6c76a4936938e275c545a91cb2e6174eb140f91760555323e",
+        "target_rows_removed_by_notebook": 0,
+        "post_clean_rows": 2216,
+        "target_cleaning": "drop true missing, empty-string, and literal 'nan' targets"
+      }
+    },
+    "mic": {
+      "ok": true,
+      "rows": 1674,
+      "features": 95,
+      "stratification": "joint(A,B); seed=101; train-class coverage checked",
+      "classes_a": 8,
+      "classes_b": 2,
+      "min_class_a": 12,
+      "min_class_b": 429,
+      "provenance": {
+        "route": "OpenML through repository loader",
+        "dataset": "mic",
+        "post_preprocessing_sha256": "7e223c35ef39574c25c459587e305df4f741f38deefd90113de8d5924764d694",
+        "target_rows_removed_by_notebook": 12,
+        "post_clean_rows": 1674,
+        "target_cleaning": "drop true missing, empty-string, and literal 'nan' targets"
+      }
+    },
+    "nursery": {
+      "ok": true,
+      "rows": 12960,
+      "features": 7,
+      "stratification": "joint(A,B); seed=101; train-class coverage checked",
+      "classes_a": 5,
+      "classes_b": 3,
+      "min_class_a": 2,
+      "min_class_b": 4320,
+      "provenance": {
+        "route": "OpenML through repository loader",
+        "dataset": "nursery",
+        "post_preprocessing_sha256": "ec85c54719d29e94f8118b686f5aac82aa291245c806601df61857efee374951",
+        "target_rows_removed_by_notebook": 0,
+        "post_clean_rows": 12960,
+        "target_cleaning": "drop true missing, empty-string, and literal 'nan' targets"
+      }
+    },
+    "phishing": {
+      "ok": true,
+      "rows": 1353,
+      "features": 8,
+      "stratification": "joint(A,B); seed=101; train-class coverage checked",
+      "classes_a": 3,
+      "classes_b": 3,
+      "min_class_a": 103,
+      "min_class_b": 141,
+      "provenance": {
+        "route": "OpenML through repository loader",
+        "dataset": "phishing",
+        "post_preprocessing_sha256": "f785a5f5310609f5592c0b6e7617044e8105e8c52086336f05632a5c3138821b",
+        "target_rows_removed_by_notebook": 0,
+        "post_clean_rows": 1353,
+        "target_cleaning": "drop true missing, empty-string, and literal 'nan' targets"
+      }
+    },
+    "wine": {
+      "ok": true,
+      "rows": 6497,
+      "features": 11,
+      "stratification": "joint(A,B); seed=101; train-class coverage checked",
+      "classes_a": 8,
+      "classes_b": 2,
+      "min_class_a": 18,
+      "min_class_b": 1599,
+      "provenance": {
+        "route": "canonical UCI reconstruction",
+        "url": "https://archive.ics.uci.edu/static/public/186/wine+quality.zip",
+        "archive_sha256": "3ed56667f4b828242bd732d7d1dd7f2861e54432239d7fa63877014cbb0304d4",
+        "red_csv_sha256": "4a402cf041b025d4566d954c3b9ba8635a3a8a01e039005d97d6a710278cf05e",
+        "white_csv_sha256": "76c3f809815c17c07212622f776311faeb31e87610d52c26d87d6e361b169836",
+        "target_rows_removed_by_notebook": 0,
+        "post_clean_rows": 6497,
+        "target_cleaning": "drop true missing, empty-string, and literal 'nan' targets"
+      }
+    },
+    "diamonds": {
+      "ok": true,
+      "rows": 53940,
+      "features": 8,
+      "stratification": "joint(A,B); seed=101; train-class coverage checked",
+      "classes_a": 5,
+      "classes_b": 7,
+      "min_class_a": 1610,
+      "min_class_b": 2808,
+      "provenance": {
+        "route": "OpenML full-frame categorical-pair reconstruction",
+        "openml_id": 42225,
+        "declared_openml_target": "['price']",
+        "target_a": "cut",
+        "target_b": "color",
+        "price_role": "predictor",
+        "post_reconstruction_sha256": "33b26fedbd2356d35a357130e588a499ca5ba8fe6a299061a76439ac248f5550",
+        "target_rows_removed_by_notebook": 0,
+        "post_clean_rows": 53940,
+        "target_cleaning": "drop true missing, empty-string, and literal 'nan' targets"
+      }
+    }
+  },
+  "real_model_integration": {
+    "tabiclv2": {
+      "ok": true,
+      "seconds": 5.305980682373047
+    },
+    "tabpfn3": {
+      "ok": true,
+      "seconds": 24.303184032440186
+    },
+    "catboost": {
+      "ok": true,
+      "seconds": 6.216369390487671
+    }
+  }
+}

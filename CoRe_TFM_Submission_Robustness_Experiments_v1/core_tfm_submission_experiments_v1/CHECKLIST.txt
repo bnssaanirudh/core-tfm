@@ -1,0 +1,23 @@
+CORE-TFM PRE-SUBMISSION ROBUSTNESS CHECKLIST
+
+[ ] Keep results/q1_fast_complete_256_v1 unchanged.
+[ ] Set a valid TABPFN_TOKEN.
+[ ] Record repository commit before the new run.
+[ ] Run preflight_submission.py.
+[ ] Save PLANNED_MATRIX.json before inference.
+[ ] Run CPU controlled Safe-Selective experiment.
+[ ] Run requested GPU matrix.
+[ ] Keep all EXECUTION_ERROR.json files.
+[ ] Do not silently drop unsupported context/model cells.
+[ ] Run aggregate analysis.
+[ ] Run rare-class sensitivity.
+[ ] Run completion gate.
+[ ] Run finalize_submission.py.
+[ ] Verify frozen_evidence_audit.json passes.
+[ ] Open the suite completion-gate JSON and verify PASS.
+[ ] Verify final_submission_audit/sha256_manifest.json exists.
+[ ] Only then label new experiments NEW_COMPLETE.
+[ ] Keep primary inferential unit = dataset.
+[ ] Keep CatBoost descriptive/non-TFM.
+[ ] If no third TFM is added, restrict claims to TabICLv2 + TabPFN-3.
+[ ] Do not report partial notebook outputs as completed results.

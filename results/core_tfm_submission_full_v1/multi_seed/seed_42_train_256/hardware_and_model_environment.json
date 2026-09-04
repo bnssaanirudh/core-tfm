@@ -1,0 +1,36 @@
+{
+  "python": "3.11.0 (main, Oct 24 2022, 18:26:48) [MSC v.1933 64 bit (AMD64)]",
+  "platform": "Windows-10-10.0.26200-SP0",
+  "cuda_available": true,
+  "cuda_version": "12.8",
+  "torch": "2.11.0+cu128",
+  "tabicl": "2.1.1",
+  "tabpfn": "8.5.0",
+  "catboost": "1.2.10",
+  "active_models": [
+    "tabiclv2",
+    "tabpfn3",
+    "catboost"
+  ],
+  "primary_tfm_models": [
+    "tabiclv2",
+    "tabpfn3"
+  ],
+  "boundary_models": [
+    "catboost"
+  ],
+  "frozen_revisions": {
+    "core_tfm_commit": "3b7e927dc1e47dc58e1ebd792820bc6f153caf88",
+    "protocol_revision": "rtx3050_cuda_seed42_train256_test128",
+    "execution_platform": "windows_local_nvidia_cuda",
+    "bounded_context_protocol": {
+      "max_train_rows": 256,
+      "max_test_rows": 128
+    },
+    "hardware_target": "RTX 3050 Laptop 4GB"
+  },
+  "gpu_names": [
+    "NVIDIA GeForce RTX 3050 Laptop GPU"
+  ],
+  "nvidia_smi": "NVIDIA GeForce RTX 3050 Laptop GPU, 4096 MiB, 546.92"
+}

@@ -1,0 +1,80 @@
+{
+  "bundle_version": "1.0",
+  "status": "PLANNED_NOT_RUN",
+  "frozen_primary_claim": {
+    "primary_models": [
+      "tabiclv2",
+      "tabpfn3"
+    ],
+    "boundary_models": [
+      "catboost"
+    ],
+    "datasets": 10,
+    "folds": 5,
+    "primary_inference_unit": "dataset_after_averaging_primary_tfms",
+    "frozen_result_directory": "results/q1_fast_complete_256_v1",
+    "never_overwrite": true
+  },
+  "full_protocol": {
+    "multi_seed": {
+      "seeds": [
+        11,
+        23,
+        42,
+        71,
+        101
+      ],
+      "folds": 5,
+      "train_limit": 256,
+      "validation_limit": 52,
+      "test_limit": 128
+    },
+    "context_size": {
+      "train_sizes": [
+        64,
+        128,
+        256,
+        512,
+        1024
+      ],
+      "seeds": [
+        23,
+        42,
+        71
+      ],
+      "folds": 5,
+      "test_limit": 128
+    },
+    "safe_selective": {
+      "fallback": "arithmetic",
+      "validation_sizes": [
+        26,
+        52,
+        104,
+        208
+      ],
+      "beta_grid": [
+        0.25,
+        0.5,
+        1.0,
+        2.0
+      ],
+      "delta": 0.05,
+      "forbid_test_set_tuning": true
+    },
+    "rare_class": {
+      "datasets": {
+        "customer": 3,
+        "marketing": 2,
+        "nursery": 2
+      },
+      "thresholds": [
+        1,
+        2,
+        5,
+        10
+      ],
+      "exclusion_sensitivity": true
+    }
+  }
+}
