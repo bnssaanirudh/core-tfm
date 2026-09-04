@@ -1,0 +1,9 @@
+{
+  "dataset_losses": 8,
+  "dataset_wins": 2,
+  "mean_selective_minus_arithmetic": 0.0008510181331391487,
+  "n_datasets": 10,
+  "n_seeds": 5,
+  "train_limit": 256,
+  "wilcoxon_p_dataset_averaged_across_seeds": 0.10546875
+}

@@ -1,0 +1,14 @@
+{
+  "tabiclv2": {
+    "ok": true,
+    "seconds": 2.923746109008789
+  },
+  "tabpfn3": {
+    "ok": true,
+    "seconds": 5.1120147705078125
+  },
+  "catboost": {
+    "ok": true,
+    "seconds": 0.3357834815979004
+  }
+}

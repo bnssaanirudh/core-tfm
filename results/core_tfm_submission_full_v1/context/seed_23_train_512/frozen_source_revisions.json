@@ -1,0 +1,10 @@
+{
+  "core_tfm_commit": "3b7e927dc1e47dc58e1ebd792820bc6f153caf88",
+  "protocol_revision": "rtx3050_cuda_seed23_train512_test128",
+  "execution_platform": "windows_local_nvidia_cuda",
+  "bounded_context_protocol": {
+    "max_train_rows": 512,
+    "max_test_rows": 128
+  },
+  "hardware_target": "RTX 3050 Laptop 4GB"
+}

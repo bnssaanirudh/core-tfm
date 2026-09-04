@@ -10,3 +10,10 @@ results/*.json
 *.egg-info/
 dist/
 build/
+**/model_cache/
+*.ckpt
+*.bin
+*.pt
+*.safetensors
+*.zip
+results/core_tfm_submission_minimal_v1/

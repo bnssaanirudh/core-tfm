@@ -1,0 +1,17 @@
+{
+  "complete": true,
+  "scope": "controlled_known_truth",
+  "n_tasks": 100,
+  "mean_safe_minus_arithmetic": 0.0,
+  "safe_wins": 0,
+  "wilcoxon_stat": 0.0,
+  "wilcoxon_p": NaN,
+  "mean_safe_oracle_regret": 0.006513505676741509,
+  "selection_counts": {
+    "arithmetic": 100
+  },
+  "family_counts": {
+    "fallback": 100
+  },
+  "guardrail": "All family/candidate choices use validation labels only; exact test truth is used only after selection is frozen."
+}

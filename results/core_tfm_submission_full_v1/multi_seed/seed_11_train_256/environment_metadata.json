@@ -1,0 +1,12 @@
+{
+  "source_commit": "3b7e927dc1e47dc58e1ebd792820bc6f153caf88",
+  "platform": "Windows-10-10.0.26200-SP0",
+  "python": "3.11.0 (main, Oct 24 2022, 18:26:48) [MSC v.1933 64 bit (AMD64)]",
+  "torch": "2.11.0+cu128",
+  "torch_cuda": "12.8",
+  "gpu": "NVIDIA GeForce RTX 3050 Laptop GPU",
+  "vram_bytes": 4294443008,
+  "seed": 11,
+  "train_limit": 256,
+  "test_limit": 128
+}

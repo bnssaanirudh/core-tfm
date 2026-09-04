@@ -1,0 +1,220 @@
+{
+  "checks": {
+    "artifacts": {
+      "aggregate": {
+        "ok": true,
+        "path": "D:\\core-tfm\\results\\core_tfm_submission_full_v1\\analysis\\ANALYSIS_SUMMARY.json"
+      },
+      "context_summary": {
+        "ok": true,
+        "path": "D:\\core-tfm\\results\\core_tfm_submission_full_v1\\analysis\\context_summary.csv"
+      },
+      "multi_seed_summary": {
+        "ok": true,
+        "path": "D:\\core-tfm\\results\\core_tfm_submission_full_v1\\analysis\\multi_seed_summary.json"
+      },
+      "preflight": {
+        "ok": true,
+        "path": "D:\\core-tfm\\results\\core_tfm_submission_full_v1\\PREFLIGHT.json"
+      },
+      "pytest_cpu_gate": {
+        "ok": true,
+        "path": "D:\\core-tfm\\results\\core_tfm_submission_full_v1\\cpu_experiments\\CPU_EXPERIMENTS_COMPLETE.json"
+      },
+      "rare_class_support": {
+        "ok": true,
+        "path": "D:\\core-tfm\\results\\core_tfm_submission_full_v1\\analysis\\rare_class\\dataset_support.csv"
+      },
+      "rare_class_thresholds": {
+        "ok": true,
+        "path": "D:\\core-tfm\\results\\core_tfm_submission_full_v1\\analysis\\rare_class\\threshold_effects.csv"
+      },
+      "safe_selective_controlled": {
+        "ok": true,
+        "path": "D:\\core-tfm\\results\\core_tfm_submission_full_v1\\cpu_experiments\\safe_selective_controlled\\COMPLETE.json"
+      },
+      "selection_ablations": {
+        "ok": true,
+        "path": "D:\\core-tfm\\results\\core_tfm_submission_full_v1\\analysis\\all_selection_ablations.csv"
+      },
+      "validation_sensitivity": {
+        "ok": true,
+        "path": "D:\\core-tfm\\results\\core_tfm_submission_full_v1\\analysis\\all_validation_fraction_sensitivity.csv"
+      },
+      "view_reliability": {
+        "ok": true,
+        "path": "D:\\core-tfm\\results\\core_tfm_submission_full_v1\\analysis\\view_reliability.csv"
+      },
+      "view_reliability_summary": {
+        "ok": true,
+        "path": "D:\\core-tfm\\results\\core_tfm_submission_full_v1\\analysis\\view_reliability_summary.csv"
+      }
+    },
+    "context_size": [
+      {
+        "complete": false,
+        "cuda_oom": false,
+        "run": "D:\\core-tfm\\results\\core_tfm_submission_full_v1\\context\\seed_23_train_64",
+        "seed": 23,
+        "source": "context",
+        "train_limit": 64
+      },
+      {
+        "complete": false,
+        "cuda_oom": false,
+        "run": "D:\\core-tfm\\results\\core_tfm_submission_full_v1\\context\\seed_23_train_128",
+        "seed": 23,
+        "source": "context",
+        "train_limit": 128
+      },
+      {
+        "complete": true,
+        "cuda_oom": false,
+        "run": "D:\\core-tfm\\results\\core_tfm_submission_full_v1\\multi_seed\\seed_23_train_256",
+        "seed": 23,
+        "source": "reused_multi_seed",
+        "train_limit": 256
+      },
+      {
+        "complete": false,
+        "cuda_oom": false,
+        "run": "D:\\core-tfm\\results\\core_tfm_submission_full_v1\\context\\seed_23_train_512",
+        "seed": 23,
+        "source": "context",
+        "train_limit": 512
+      },
+      {
+        "complete": false,
+        "cuda_oom": false,
+        "run": "D:\\core-tfm\\results\\core_tfm_submission_full_v1\\context\\seed_23_train_1024",
+        "seed": 23,
+        "source": "context",
+        "train_limit": 1024
+      },
+      {
+        "complete": false,
+        "cuda_oom": false,
+        "run": "D:\\core-tfm\\results\\core_tfm_submission_full_v1\\context\\seed_42_train_64",
+        "seed": 42,
+        "source": "context",
+        "train_limit": 64
+      },
+      {
+        "complete": false,
+        "cuda_oom": false,
+        "run": "D:\\core-tfm\\results\\core_tfm_submission_full_v1\\context\\seed_42_train_128",
+        "seed": 42,
+        "source": "context",
+        "train_limit": 128
+      },
+      {
+        "complete": true,
+        "cuda_oom": false,
+        "run": "D:\\core-tfm\\results\\core_tfm_submission_full_v1\\multi_seed\\seed_42_train_256",
+        "seed": 42,
+        "source": "reused_multi_seed",
+        "train_limit": 256
+      },
+      {
+        "complete": false,
+        "cuda_oom": false,
+        "run": "D:\\core-tfm\\results\\core_tfm_submission_full_v1\\context\\seed_42_train_512",
+        "seed": 42,
+        "source": "context",
+        "train_limit": 512
+      },
+      {
+        "complete": false,
+        "cuda_oom": false,
+        "run": "D:\\core-tfm\\results\\core_tfm_submission_full_v1\\context\\seed_42_train_1024",
+        "seed": 42,
+        "source": "context",
+        "train_limit": 1024
+      },
+      {
+        "complete": false,
+        "cuda_oom": false,
+        "run": "D:\\core-tfm\\results\\core_tfm_submission_full_v1\\context\\seed_71_train_64",
+        "seed": 71,
+        "source": "context",
+        "train_limit": 64
+      },
+      {
+        "complete": false,
+        "cuda_oom": false,
+        "run": "D:\\core-tfm\\results\\core_tfm_submission_full_v1\\context\\seed_71_train_128",
+        "seed": 71,
+        "source": "context",
+        "train_limit": 128
+      },
+      {
+        "complete": true,
+        "cuda_oom": false,
+        "run": "D:\\core-tfm\\results\\core_tfm_submission_full_v1\\multi_seed\\seed_71_train_256",
+        "seed": 71,
+        "source": "reused_multi_seed",
+        "train_limit": 256
+      },
+      {
+        "complete": false,
+        "cuda_oom": false,
+        "run": "D:\\core-tfm\\results\\core_tfm_submission_full_v1\\context\\seed_71_train_512",
+        "seed": 71,
+        "source": "context",
+        "train_limit": 512
+      },
+      {
+        "complete": false,
+        "cuda_oom": false,
+        "run": "D:\\core-tfm\\results\\core_tfm_submission_full_v1\\context\\seed_71_train_1024",
+        "seed": 71,
+        "source": "context",
+        "train_limit": 1024
+      }
+    ],
+    "multi_seed": [
+      {
+        "complete": true,
+        "run": "D:\\core-tfm\\results\\core_tfm_submission_full_v1\\multi_seed\\seed_11_train_256",
+        "seed": 11
+      },
+      {
+        "complete": true,
+        "run": "D:\\core-tfm\\results\\core_tfm_submission_full_v1\\multi_seed\\seed_23_train_256",
+        "seed": 23
+      },
+      {
+        "complete": true,
+        "run": "D:\\core-tfm\\results\\core_tfm_submission_full_v1\\multi_seed\\seed_42_train_256",
+        "seed": 42
+      },
+      {
+        "complete": true,
+        "run": "D:\\core-tfm\\results\\core_tfm_submission_full_v1\\multi_seed\\seed_71_train_256",
+        "seed": 71
+      },
+      {
+        "complete": true,
+        "run": "D:\\core-tfm\\results\\core_tfm_submission_full_v1\\multi_seed\\seed_101_train_256",
+        "seed": 101
+      }
+    ]
+  },
+  "complete": false,
+  "interpretation": "PASS means all required final evidence groups are present. Context cells explicitly recorded as CUDA OOM may be listed as operationally unsupported rather than silently omitted.",
+  "missing": [
+    "context seed=23 train=1024",
+    "context seed=23 train=128",
+    "context seed=23 train=512",
+    "context seed=23 train=64",
+    "context seed=42 train=1024",
+    "context seed=42 train=128",
+    "context seed=42 train=512",
+    "context seed=42 train=64",
+    "context seed=71 train=1024",
+    "context seed=71 train=128",
+    "context seed=71 train=512",
+    "context seed=71 train=64"
+  ],
+  "operationally_unsupported_but_recorded": []
+}

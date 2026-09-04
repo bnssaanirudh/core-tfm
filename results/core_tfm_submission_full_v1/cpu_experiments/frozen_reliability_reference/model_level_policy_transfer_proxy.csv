@@ -1,0 +1,17 @@
+model,rank,method,mean_dataset_nll
+tabiclv2,1,geometric,1.3008707606411363
+tabiclv2,2,arithmetic,1.3009440847198177
+tabiclv2,3,soft_core_lambda_1,1.3051740925063837
+tabiclv2,4,selective_core,1.3076377662306784
+tabiclv2,5,j1_b_then_a,1.3080379521113585
+tabiclv2,6,j2_a_then_b,1.310861729703522
+tabiclv2,7,hard_core,1.3257916647293224
+tabiclv2,8,independent,1.443298066044053
+tabpfn3,1,j1_b_then_a,1.3022811022324827
+tabpfn3,2,selective_core,1.30264560429147
+tabpfn3,3,geometric,1.3047651940476608
+tabpfn3,4,arithmetic,1.305676759423442
+tabpfn3,5,soft_core_lambda_1,1.3070321863742762
+tabpfn3,6,j2_a_then_b,1.3181110500188375
+tabpfn3,7,hard_core,1.3219418259366627
+tabpfn3,8,independent,1.4368008440549356

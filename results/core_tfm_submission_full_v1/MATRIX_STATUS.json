@@ -1,0 +1,96 @@
+{
+  "planned": 17,
+  "profile": "paper",
+  "variants": [
+    {
+      "fold_result_status": {
+        "complete": true,
+        "datasets": 10,
+        "expected_fold_cells": 150,
+        "expected_rows": 1200,
+        "failure_count": 0,
+        "fold_cells": 150,
+        "last_failure": null,
+        "methods_per_fold_max": 8,
+        "methods_per_fold_min": 8,
+        "models": 3,
+        "path": "D:\\core-tfm\\results\\core_tfm_submission_full_v1\\multi_seed\\seed_11_train_256",
+        "rows": 1200
+      },
+      "run_id": "multi_seed/seed_11_train_256",
+      "status": "already_complete"
+    },
+    {
+      "fold_result_status": {
+        "complete": true,
+        "datasets": 10,
+        "expected_fold_cells": 150,
+        "expected_rows": 1200,
+        "failure_count": 0,
+        "fold_cells": 150,
+        "last_failure": null,
+        "methods_per_fold_max": 8,
+        "methods_per_fold_min": 8,
+        "models": 3,
+        "path": "D:\\core-tfm\\results\\core_tfm_submission_full_v1\\multi_seed\\seed_23_train_256",
+        "rows": 1200
+      },
+      "run_id": "multi_seed/seed_23_train_256",
+      "status": "already_complete"
+    },
+    {
+      "fold_result_status": {
+        "complete": true,
+        "datasets": 10,
+        "expected_fold_cells": 150,
+        "expected_rows": 1200,
+        "failure_count": 0,
+        "fold_cells": 150,
+        "last_failure": null,
+        "methods_per_fold_max": 8,
+        "methods_per_fold_min": 8,
+        "models": 3,
+        "path": "D:\\core-tfm\\results\\core_tfm_submission_full_v1\\multi_seed\\seed_42_train_256",
+        "rows": 1200
+      },
+      "run_id": "multi_seed/seed_42_train_256",
+      "status": "already_complete"
+    },
+    {
+      "fold_result_status": {
+        "complete": true,
+        "datasets": 10,
+        "expected_fold_cells": 150,
+        "expected_rows": 1200,
+        "failure_count": 0,
+        "fold_cells": 150,
+        "last_failure": null,
+        "methods_per_fold_max": 8,
+        "methods_per_fold_min": 8,
+        "models": 3,
+        "path": "D:\\core-tfm\\results\\core_tfm_submission_full_v1\\multi_seed\\seed_71_train_256",
+        "rows": 1200
+      },
+      "run_id": "multi_seed/seed_71_train_256",
+      "status": "already_complete"
+    },
+    {
+      "fold_result_status": {
+        "complete": true,
+        "datasets": 10,
+        "expected_fold_cells": 150,
+        "expected_rows": 1200,
+        "failure_count": 0,
+        "fold_cells": 150,
+        "last_failure": null,
+        "methods_per_fold_max": 8,
+        "methods_per_fold_min": 8,
+        "models": 3,
+        "path": "D:\\core-tfm\\results\\core_tfm_submission_full_v1\\multi_seed\\seed_101_train_256",
+        "rows": 1200
+      },
+      "run_id": "multi_seed/seed_101_train_256",
+      "status": "already_complete"
+    }
+  ]
+}

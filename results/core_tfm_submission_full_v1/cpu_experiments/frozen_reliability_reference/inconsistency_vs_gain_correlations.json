@@ -1,0 +1,22 @@
+{
+  "all": {
+    "n": 150,
+    "pearson_tv_vs_gain": -0.1331971605824316,
+    "spearman_tv_vs_gain": -0.02552847263066
+  },
+  "catboost": {
+    "n": 50,
+    "pearson_tv_vs_gain": 0.11589546547964508,
+    "spearman_tv_vs_gain": 0.13142857142857142
+  },
+  "tabiclv2": {
+    "n": 50,
+    "pearson_tv_vs_gain": -0.42054103562618467,
+    "spearman_tv_vs_gain": -0.3816658264203686
+  },
+  "tabpfn3": {
+    "n": 50,
+    "pearson_tv_vs_gain": 0.30994663107222425,
+    "spearman_tv_vs_gain": 0.3712454081600239
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "complete": true,
+  "execution_platform": "windows_local_nvidia_cuda",
+  "source_commit": "3b7e927dc1e47dc58e1ebd792820bc6f153caf88",
+  "seed": 42,
+  "requested_train_limit": 256,
+  "requested_test_limit": 128,
+  "executed_notebook": "executed_variant.ipynb",
+  "selection_ablations_enabled": true,
+  "validation_sensitivity_enabled": true,
+  "fold_result_status": {
+    "path": "D:\\core-tfm\\results\\core_tfm_submission_full_v1\\multi_seed\\seed_42_train_256",
+    "failure_count": 0,
+    "last_failure": null,
+    "complete": true,
+    "rows": 1200,
+    "expected_rows": 1200,
+    "datasets": 10,
+    "models": 3,
+    "fold_cells": 150,
+    "expected_fold_cells": 150,
+    "methods_per_fold_min": 8,
+    "methods_per_fold_max": 8
+  }
+}

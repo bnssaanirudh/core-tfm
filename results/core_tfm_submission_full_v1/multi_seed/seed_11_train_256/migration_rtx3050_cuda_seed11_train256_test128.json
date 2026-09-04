@@ -1,0 +1,10 @@
+{
+  "protocol_revision": "rtx3050_cuda_seed11_train256_test128",
+  "archived_model": "tabfm",
+  "invalidated_and_rerun_datasets": [
+    "diamonds",
+    "mic",
+    "nursery"
+  ],
+  "reason": "Corrected target construction and training-class coverage."
+}

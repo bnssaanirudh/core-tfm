@@ -1,0 +1,83 @@
+{
+  "large_tv_no_need_to_repair": [
+    {
+      "arithmetic_regret": 7.143112257046447e-05,
+      "epsilon": 0.0001,
+      "tv": 9.999999999999593e-05
+    },
+    {
+      "arithmetic_regret": 0.0007145409378687129,
+      "epsilon": 0.001,
+      "tv": 0.0010000000000000009
+    },
+    {
+      "arithmetic_regret": 0.007168489478612539,
+      "epsilon": 0.01,
+      "tv": 0.010000000000000002
+    },
+    {
+      "arithmetic_regret": 0.0363676441708749,
+      "epsilon": 0.05,
+      "tv": 0.05000000000000003
+    },
+    {
+      "arithmetic_regret": 0.07410797215372195,
+      "epsilon": 0.1,
+      "tv": 0.09999999999999999
+    },
+    {
+      "arithmetic_regret": 0.15415067982725827,
+      "epsilon": 0.2,
+      "tv": 0.2
+    },
+    {
+      "arithmetic_regret": 0.33647223662121295,
+      "epsilon": 0.4,
+      "tv": 0.4
+    }
+  ],
+  "small_tv_repair_can_help": [
+    {
+      "arithmetic_regret": 0.0,
+      "epsilon": 0.0001,
+      "raw_regret": 0.00014286734791069122,
+      "tv": 0.00019999999999999185
+    },
+    {
+      "arithmetic_regret": 0.0,
+      "epsilon": 0.001,
+      "raw_regret": 0.0014295928095944266,
+      "tv": 0.0020000000000000018
+    },
+    {
+      "arithmetic_regret": 0.0,
+      "epsilon": 0.01,
+      "raw_regret": 0.01438873745209962,
+      "tv": 0.020000000000000004
+    },
+    {
+      "arithmetic_regret": 0.0,
+      "epsilon": 0.05,
+      "raw_regret": 0.07410797215372195,
+      "tv": 0.10000000000000006
+    },
+    {
+      "arithmetic_regret": 0.0,
+      "epsilon": 0.1,
+      "raw_regret": 0.13762137787604767,
+      "tv": 0.17999999999999997
+    },
+    {
+      "arithmetic_regret": 0.0,
+      "epsilon": 0.2,
+      "raw_regret": 0.13762137787604767,
+      "tv": 0.17999999999999997
+    },
+    {
+      "arithmetic_regret": 0.0,
+      "epsilon": 0.4,
+      "raw_regret": 0.13762137787604767,
+      "tv": 0.17999999999999997
+    }
+  ]
+}

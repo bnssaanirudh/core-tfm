@@ -25,10 +25,16 @@ def _drop_missing(X: pd.DataFrame, a: pd.Series, b: pd.Series):
 
 
 def _load_wine() -> PairDataset:
+    feature_names = [
+        "fixed_acidity", "volatile_acidity", "citric_acid", "residual_sugar",
+        "chlorides", "free_sulfur_dioxide", "total_sulfur_dioxide", "density",
+        "pH", "sulphates", "alcohol",
+    ]
     frames = []
     for data_id, color in ((40691, "red"), (40498, "white")):
         ds = fetch_openml(data_id=data_id, as_frame=True, parser="auto")
         X = ds.data.copy()
+        X.columns = feature_names
         a = pd.Series(ds.target, name="class")
         f = X.copy()
         f["__a__"] = a.to_numpy()

@@ -1,0 +1,31 @@
+{
+  "elapsed_seconds": 1304.3755083084106,
+  "error": null,
+  "fold_result_status": {
+    "complete": true,
+    "datasets": 10,
+    "expected_fold_cells": 150,
+    "expected_rows": 1200,
+    "failure_count": 0,
+    "fold_cells": 150,
+    "last_failure": null,
+    "methods_per_fold_max": 8,
+    "methods_per_fold_min": 8,
+    "models": 3,
+    "path": "D:\\core-tfm\\results\\core_tfm_submission_full_v1\\multi_seed\\seed_71_train_256",
+    "rows": 1200
+  },
+  "run_id": "multi_seed/seed_71_train_256",
+  "seed": 71,
+  "selection_ablations.csv": {
+    "bytes": 46912,
+    "exists": true
+  },
+  "source_commit": "3b7e927dc1e47dc58e1ebd792820bc6f153caf88",
+  "test_limit": 128,
+  "train_limit": 256,
+  "validation_fraction_sensitivity.csv": {
+    "bytes": 26273,
+    "exists": true
+  }
+}

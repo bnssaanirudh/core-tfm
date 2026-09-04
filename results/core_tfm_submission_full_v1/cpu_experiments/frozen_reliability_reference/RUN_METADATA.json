@@ -1,0 +1,31 @@
+{
+  "inconsistency_gain_rows": 150,
+  "next_runs": [
+    "multi-seed reruns",
+    "context-size sensitivity",
+    "third-TFM benchmark",
+    "direct marginal/conditional view calibration archive",
+    "inference-perturbation dispersion archive",
+    "validation-score traces for Safe Selective CoRe",
+    "rare-class sensitivity and support-adaptive penalties",
+    "known-truth downstream utility experiment"
+  ],
+  "note": "Derived analyses only; no new TFM inference was performed by this script.",
+  "oracle_rows": 150,
+  "primary_models": [
+    "tabiclv2",
+    "tabpfn3"
+  ],
+  "reliability_proxy_rows": 150,
+  "resolved_methods": {
+    "arithmetic": "arithmetic",
+    "geometric": "geometric",
+    "hard": "hard_core",
+    "j1": "j1_b_then_a",
+    "j2": "j2_a_then_b",
+    "selective": "selective_core",
+    "soft": "soft_core_lambda_1"
+  },
+  "rows": 1200,
+  "source": "D:\\core-tfm\\results\\q1_fast_complete_256_v1\\fold_results.csv"
+}
