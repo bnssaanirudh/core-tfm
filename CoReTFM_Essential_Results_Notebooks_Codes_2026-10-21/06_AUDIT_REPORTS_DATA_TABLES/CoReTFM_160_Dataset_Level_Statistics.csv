@@ -1,0 +1,3 @@
+model,n_datasets,n_repeats,mean_delta_nll_hard_vs_pool,datasets_harmed,split_settings_harmed,dataset_block_bootstrap95_low,dataset_block_bootstrap95_high,exploratory_wilcoxon_two_sided_p
+tabiclv2,10,40,0.018310459172693923,9,36,0.008925340064387267,0.028323769763902124,0.009765625
+tabpfn3,10,40,0.011780765116861358,9,31,0.00405896334743673,0.019413610639173046,0.01953125

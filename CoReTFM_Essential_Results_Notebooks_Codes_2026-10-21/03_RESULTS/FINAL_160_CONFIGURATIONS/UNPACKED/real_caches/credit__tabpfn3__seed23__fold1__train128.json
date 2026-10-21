@@ -1,0 +1,67 @@
+{
+  "artifact_kind": "real_tfm",
+  "checkpoint_identifier": "ModelVersion.V3",
+  "checkpoint_revision_confirmed": false,
+  "checkpoint_sha256": "NOT_VERIFIED",
+  "classes_a": [
+    "bad",
+    "good"
+  ],
+  "classes_b": [
+    "0 <= ... < 200 DM",
+    "<0 DM",
+    ">= 200 DM / salary assignments for >= 1 year",
+    "no checking account"
+  ],
+  "created_utc": "2026-10-19T19:13:45.577461+00:00",
+  "dataset": "credit",
+  "device": {
+    "cuda": true,
+    "gpu": "Tesla T4",
+    "torch": "2.11.0+cu130"
+  },
+  "elapsed_s": 4.275165019000042,
+  "evidence_caveat": "Checkpoint filename recorded; actual weight-byte SHA256 not obtained.",
+  "fold": 1,
+  "model": "tabpfn3",
+  "n_probabilities": 8453,
+  "n_test": 128,
+  "n_train": 128,
+  "n_val": 205,
+  "npz_sha256": "939e518dcd52a34aa9565b038f8b9806bcc80bfdfd2c967425db592efdae3a03",
+  "package_version": "9.2.0",
+  "protocol": "coretfm-v2-independent-fixed-test-2026-10-19",
+  "seed": 23,
+  "source": {
+    "openml_id": 46918,
+    "target_a": "good_or_bad_customer",
+    "target_b": "checking_status"
+  },
+  "split_sha256": "e243d9f4c906ec522efce7fc2211a29e4702f07983522b62a2c22725dacbc44c",
+  "test_ids_sha": "311f04816961e37b9fdc3ebdbaab41be5a8aacb6f19d881e3bf9c34f90f8576c",
+  "timing": {
+    "a": {
+      "fit_with_load_sec": 0.2038711019999937,
+      "n_predict_calls": 2,
+      "predict_sec": 0.3539845929999501
+    },
+    "a_given_b": {
+      "fit_with_load_sec": 0.20046063400013736,
+      "n_predict_calls": 8,
+      "predict_sec": 1.309619517000101
+    },
+    "b": {
+      "fit_with_load_sec": 0.2080193109998163,
+      "n_predict_calls": 2,
+      "predict_sec": 0.31751776200007953
+    },
+    "b_given_a": {
+      "fit_with_load_sec": 0.20416974299996582,
+      "n_predict_calls": 4,
+      "predict_sec": 0.6375087689998509
+    }
+  },
+  "train_cap": 128,
+  "train_ids_sha": "e46248e3691009a5175c423e8415e4ae99da083d29e385a16369f3278f13d217",
+  "val_ids_sha": "f7b31f8f48b80795950bb4d65a704701db32894aa014185816cf6690b556f4f5"
+}

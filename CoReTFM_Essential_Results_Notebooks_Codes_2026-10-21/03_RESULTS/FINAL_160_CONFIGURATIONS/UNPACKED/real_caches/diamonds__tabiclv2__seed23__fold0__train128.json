@@ -1,0 +1,73 @@
+{
+  "artifact_kind": "real_tfm",
+  "checkpoint_identifier": "tabicl-classifier-v2-20260212.ckpt",
+  "checkpoint_revision_confirmed": false,
+  "checkpoint_sha256": "NOT_VERIFIED",
+  "classes_a": [
+    "Very Good",
+    "Fair",
+    "Good",
+    "Ideal",
+    "Premium"
+  ],
+  "classes_b": [
+    "D",
+    "E",
+    "F",
+    "G",
+    "H",
+    "I",
+    "J"
+  ],
+  "created_utc": "2026-10-20T10:08:24.041345+00:00",
+  "dataset": "diamonds",
+  "device": {
+    "cuda": true,
+    "gpu": "Tesla T4",
+    "torch": "2.11.0+cu130"
+  },
+  "elapsed_s": 4.4137020019999795,
+  "evidence_caveat": "Checkpoint filename recorded; actual weight-byte SHA256 not obtained.",
+  "fold": 0,
+  "model": "tabiclv2",
+  "n_probabilities": 28433,
+  "n_test": 128,
+  "n_train": 128,
+  "n_val": 205,
+  "npz_sha256": "eeac582501c19fc7dd4a820d506a8929fdc94112a1af7e35a7dbd4073e538f63",
+  "package_version": "2.2.0",
+  "protocol": "coretfm-v2-independent-fixed-test-2026-10-19",
+  "seed": 23,
+  "source": {
+    "openml_id": 42225,
+    "target_a": "cut",
+    "target_b": "color"
+  },
+  "split_sha256": "dbe42ced826e99b85f2b16e6cc0a1a5fa57cb5f29988b4a52a6849f356962fcd",
+  "test_ids_sha": "b96ec9c07b374af08f614e4b6a54068089198b9a88649c62446f0b9cb1e6982e",
+  "timing": {
+    "a": {
+      "fit_with_load_sec": 0.44376606499997706,
+      "n_predict_calls": 2,
+      "predict_sec": 0.13221735999997009
+    },
+    "a_given_b": {
+      "fit_with_load_sec": 0.5107663200000161,
+      "n_predict_calls": 14,
+      "predict_sec": 0.9354019190000145
+    },
+    "b": {
+      "fit_with_load_sec": 0.4495337959999688,
+      "n_predict_calls": 2,
+      "predict_sec": 0.1335991440000157
+    },
+    "b_given_a": {
+      "fit_with_load_sec": 0.5147862299999701,
+      "n_predict_calls": 10,
+      "predict_sec": 0.6460826709999878
+    }
+  },
+  "train_cap": 128,
+  "train_ids_sha": "a4b8606080dd09ec986bc6af4f953af23ce8bc5501864a2fc151ffbfd4b89a2d",
+  "val_ids_sha": "80b12727c780ca36194837b2cf77ac7ddede2dd12d576d1a86cf789799bdd81f"
+}

@@ -1,0 +1,67 @@
+{
+  "artifact_kind": "real_tfm",
+  "checkpoint_identifier": "ModelVersion.V3",
+  "checkpoint_revision_confirmed": false,
+  "checkpoint_sha256": "NOT_VERIFIED",
+  "classes_a": [
+    "bad",
+    "good"
+  ],
+  "classes_b": [
+    "0 <= ... < 200 DM",
+    "<0 DM",
+    ">= 200 DM / salary assignments for >= 1 year",
+    "no checking account"
+  ],
+  "created_utc": "2026-10-19T19:16:07.734059+00:00",
+  "dataset": "credit",
+  "device": {
+    "cuda": true,
+    "gpu": "Tesla T4",
+    "torch": "2.11.0+cu130"
+  },
+  "elapsed_s": 4.287262302000272,
+  "evidence_caveat": "Checkpoint filename recorded; actual weight-byte SHA256 not obtained.",
+  "fold": 0,
+  "model": "tabpfn3",
+  "n_probabilities": 8581,
+  "n_test": 128,
+  "n_train": 256,
+  "n_val": 205,
+  "npz_sha256": "2dd2de5e66f3b98d7dd40bf04a0e6dcf7696937bc039eec3689a268c52fa1103",
+  "package_version": "9.2.0",
+  "protocol": "coretfm-v2-independent-fixed-test-2026-10-19",
+  "seed": 42,
+  "source": {
+    "openml_id": 46918,
+    "target_a": "good_or_bad_customer",
+    "target_b": "checking_status"
+  },
+  "split_sha256": "b9b659a90ffadc867a940aa9b1c809fe6e0b5cda4a9f796854d334f47bf130e1",
+  "test_ids_sha": "c57d43586c8908f126e792a0faf349dcfa5416414fdbe3a8c9dee2ebb70cfb2c",
+  "timing": {
+    "a": {
+      "fit_with_load_sec": 0.21149249199970654,
+      "n_predict_calls": 2,
+      "predict_sec": 0.3119846109998434
+    },
+    "a_given_b": {
+      "fit_with_load_sec": 0.2107625469998311,
+      "n_predict_calls": 8,
+      "predict_sec": 1.2806956019999234
+    },
+    "b": {
+      "fit_with_load_sec": 0.24235192200012534,
+      "n_predict_calls": 2,
+      "predict_sec": 0.31573612800002593
+    },
+    "b_given_a": {
+      "fit_with_load_sec": 0.21089008299986745,
+      "n_predict_calls": 4,
+      "predict_sec": 0.6606479860001855
+    }
+  },
+  "train_cap": 256,
+  "train_ids_sha": "25151092dc78e2efe9cd01f1a9b874d445f0011e5f6c42245660ba01e3768e27",
+  "val_ids_sha": "3606355ca45173518dafd8894b926b35e9fe45d90c16db49023e509390d1cab4"
+}

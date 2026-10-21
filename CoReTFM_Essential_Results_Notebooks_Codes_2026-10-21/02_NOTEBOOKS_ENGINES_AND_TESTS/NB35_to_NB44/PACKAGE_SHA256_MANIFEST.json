@@ -1,0 +1,77 @@
+[
+  {
+    "file": "README.md",
+    "sha256": "7d0425aa1e4fe79650bd6245b11073e279ebcc5911c1cd11a744516829534a22",
+    "bytes": 6799
+  },
+  {
+    "file": "requirements_cpu.txt",
+    "sha256": "7e70db53636c325a5194a006eba8b75cf1c4b534938b25b320145700bd514229",
+    "bytes": 93
+  },
+  {
+    "file": "coretfm_v2_engine.py",
+    "sha256": "2a8e2d4d5c69877d1466a6b1f1dc90e615f382692bcb66bf359376cf199748c6",
+    "bytes": 33621
+  },
+  {
+    "file": "make_notebooks.py",
+    "sha256": "1556c110b482e013fe7a303610d021b9feef42d85f4dbc9302653c0067f1e54e",
+    "bytes": 16504
+  },
+  {
+    "file": "tests/test_engine.py",
+    "sha256": "81a7a7fc3f5750d56e2c2a488a0b5d988bda4dbcfff4322c48c28df3c8df949e",
+    "bytes": 2593
+  },
+  {
+    "file": "notebooks/NB35.ipynb",
+    "sha256": "59d60f7182eab7feeac3df6c7bda1549628e609e49de565e19406bca17c6b21c",
+    "bytes": 20646
+  },
+  {
+    "file": "notebooks/NB36.ipynb",
+    "sha256": "f9c1f3494633a4e9b2062d52ea844f57eaf94075db2527fb275bc18ed68cff69",
+    "bytes": 20389
+  },
+  {
+    "file": "notebooks/NB37.ipynb",
+    "sha256": "f52442446e12e251f9f6f586ca98b78991629a2d7a6e6d7b8bc6c003736c86e1",
+    "bytes": 20412
+  },
+  {
+    "file": "notebooks/NB38.ipynb",
+    "sha256": "9cf0bf2d80654f32354d5b24d7f1dad2764ce54692c8e6ba58bb8dc1377cf62b",
+    "bytes": 20054
+  },
+  {
+    "file": "notebooks/NB39.ipynb",
+    "sha256": "2809458caeeacc0be4a9c2da8843f1e8c2ba615116f6d8fa294b59f76173d027",
+    "bytes": 21002
+  },
+  {
+    "file": "notebooks/NB40.ipynb",
+    "sha256": "d7c576d46bbdc68f96e546d1550287020532ab64271650d56ac09529cc0d128d",
+    "bytes": 19145
+  },
+  {
+    "file": "notebooks/NB41.ipynb",
+    "sha256": "e32d461fd14f45f8cbb6bb436d73dd529298dd9d2a7c2ef897038b302577dab4",
+    "bytes": 18983
+  },
+  {
+    "file": "notebooks/NB42.ipynb",
+    "sha256": "60140f9e44ec70802f24edad88c62794f398d3d7fc62022f1053af4f1d82574f",
+    "bytes": 19061
+  },
+  {
+    "file": "notebooks/NB43.ipynb",
+    "sha256": "7568434772181b208b56ed86c0074385ab2a095dcf898301faa1617315a41668",
+    "bytes": 19602
+  },
+  {
+    "file": "notebooks/NB44.ipynb",
+    "sha256": "145fdc17e8fc28a57ac374fd4acea7c1c6f1ac0096710390eda42836c1d50725",
+    "bytes": 19986
+  }
+]

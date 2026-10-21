@@ -1,0 +1,1442 @@
+[
+  {
+    "checkpoint_identifier": "tabicl-classifier-v2-20260212.ckpt",
+    "checkpoint_revision_confirmed": false,
+    "checkpoint_sha256": "NOT_VERIFIED",
+    "dataset": "car",
+    "device": {
+      "cuda": true,
+      "gpu": "Tesla T4",
+      "torch": "2.11.0+cu130"
+    },
+    "fold": 0,
+    "model": "tabiclv2",
+    "npz_sha256": "1779da472a247736e2796ede097ce4e9e724a7c2009a46ab05b2a5bcd6e5fa4c",
+    "package_version": "2.2.0",
+    "seed": 23,
+    "split_sha256": "dbbb2dca277cf4c9af8e549c8c57ac68dbbea2a934cdbe78ba92deb5861bdd0b",
+    "train_cap": 128
+  },
+  {
+    "checkpoint_identifier": "tabicl-classifier-v2-20260212.ckpt",
+    "checkpoint_revision_confirmed": false,
+    "checkpoint_sha256": "NOT_VERIFIED",
+    "dataset": "car",
+    "device": {
+      "cuda": true,
+      "gpu": "Tesla T4",
+      "torch": "2.11.0+cu130"
+    },
+    "fold": 0,
+    "model": "tabiclv2",
+    "npz_sha256": "993432a382777620cbc943a46fcb563d9408f08bd55ad8784c3b2a7f10c44b7c",
+    "package_version": "2.2.0",
+    "seed": 23,
+    "split_sha256": "dbbb2dca277cf4c9af8e549c8c57ac68dbbea2a934cdbe78ba92deb5861bdd0b",
+    "train_cap": 256
+  },
+  {
+    "checkpoint_identifier": "tabicl-classifier-v2-20260212.ckpt",
+    "checkpoint_revision_confirmed": false,
+    "checkpoint_sha256": "NOT_VERIFIED",
+    "dataset": "car",
+    "device": {
+      "cuda": true,
+      "gpu": "Tesla T4",
+      "torch": "2.11.0+cu130"
+    },
+    "fold": 1,
+    "model": "tabiclv2",
+    "npz_sha256": "734f35f76977b64e281c09914637699535adb591e13e2c6afe3fb9576efeda72",
+    "package_version": "2.2.0",
+    "seed": 23,
+    "split_sha256": "f6039e95cd6bf4e11262b52dc7fee5c65f3a3a9bedf71d613826d281d3fedc0a",
+    "train_cap": 128
+  },
+  {
+    "checkpoint_identifier": "tabicl-classifier-v2-20260212.ckpt",
+    "checkpoint_revision_confirmed": false,
+    "checkpoint_sha256": "NOT_VERIFIED",
+    "dataset": "car",
+    "device": {
+      "cuda": true,
+      "gpu": "Tesla T4",
+      "torch": "2.11.0+cu130"
+    },
+    "fold": 1,
+    "model": "tabiclv2",
+    "npz_sha256": "4b95fa56534ba6789f239e5c8c5ac16138d24b545398bccace76e6bcf5b2897c",
+    "package_version": "2.2.0",
+    "seed": 23,
+    "split_sha256": "f6039e95cd6bf4e11262b52dc7fee5c65f3a3a9bedf71d613826d281d3fedc0a",
+    "train_cap": 256
+  },
+  {
+    "checkpoint_identifier": "tabicl-classifier-v2-20260212.ckpt",
+    "checkpoint_revision_confirmed": false,
+    "checkpoint_sha256": "NOT_VERIFIED",
+    "dataset": "car",
+    "device": {
+      "cuda": true,
+      "gpu": "Tesla T4",
+      "torch": "2.11.0+cu130"
+    },
+    "fold": 0,
+    "model": "tabiclv2",
+    "npz_sha256": "6b3e9de29e699b78a1aa024a904448fe8743f2c672477826cb7279487890e153",
+    "package_version": "2.2.0",
+    "seed": 42,
+    "split_sha256": "6575bc5cbae6674842f2e4dff241e5e1035e7878bfca4c354f2ea412ea108b7e",
+    "train_cap": 128
+  },
+  {
+    "checkpoint_identifier": "tabicl-classifier-v2-20260212.ckpt",
+    "checkpoint_revision_confirmed": false,
+    "checkpoint_sha256": "NOT_VERIFIED",
+    "dataset": "car",
+    "device": {
+      "cuda": true,
+      "gpu": "Tesla T4",
+      "torch": "2.11.0+cu130"
+    },
+    "fold": 0,
+    "model": "tabiclv2",
+    "npz_sha256": "09927de07cd1253d40d04e1cdd52bdfa040b81e8a61beca2239b72f81812ea73",
+    "package_version": "2.2.0",
+    "seed": 42,
+    "split_sha256": "6575bc5cbae6674842f2e4dff241e5e1035e7878bfca4c354f2ea412ea108b7e",
+    "train_cap": 256
+  },
+  {
+    "checkpoint_identifier": "tabicl-classifier-v2-20260212.ckpt",
+    "checkpoint_revision_confirmed": false,
+    "checkpoint_sha256": "NOT_VERIFIED",
+    "dataset": "car",
+    "device": {
+      "cuda": true,
+      "gpu": "Tesla T4",
+      "torch": "2.11.0+cu130"
+    },
+    "fold": 0,
+    "model": "tabiclv2",
+    "npz_sha256": "2dc9a62a47e99546a846fc9daa4cb0ba7873b4a337fe75b21ecccf3749bc1a84",
+    "package_version": "2.2.0",
+    "seed": 71,
+    "split_sha256": "c8b5a5e0aa26570b3e4bdf9a9986098db36d5fb37c41555726bacbf796baf53f",
+    "train_cap": 128
+  },
+  {
+    "checkpoint_identifier": "tabicl-classifier-v2-20260212.ckpt",
+    "checkpoint_revision_confirmed": false,
+    "checkpoint_sha256": "NOT_VERIFIED",
+    "dataset": "car",
+    "device": {
+      "cuda": true,
+      "gpu": "Tesla T4",
+      "torch": "2.11.0+cu130"
+    },
+    "fold": 0,
+    "model": "tabiclv2",
+    "npz_sha256": "96e6c403fc296a4a2c1766c180ac6e3805abe824791b56d901130069e5fabeec",
+    "package_version": "2.2.0",
+    "seed": 71,
+    "split_sha256": "c8b5a5e0aa26570b3e4bdf9a9986098db36d5fb37c41555726bacbf796baf53f",
+    "train_cap": 256
+  },
+  {
+    "checkpoint_identifier": "ModelVersion.V3",
+    "checkpoint_revision_confirmed": false,
+    "checkpoint_sha256": "NOT_VERIFIED",
+    "dataset": "car",
+    "device": {
+      "cuda": true,
+      "gpu": "Tesla T4",
+      "torch": "2.11.0+cu130"
+    },
+    "fold": 0,
+    "model": "tabpfn3",
+    "npz_sha256": "f7126ae78328cabf4a071bf3f29d68853ab2b8011d8e47e8bc5d87da19c85fa7",
+    "package_version": "9.2.0",
+    "seed": 23,
+    "split_sha256": "dbbb2dca277cf4c9af8e549c8c57ac68dbbea2a934cdbe78ba92deb5861bdd0b",
+    "train_cap": 128
+  },
+  {
+    "checkpoint_identifier": "ModelVersion.V3",
+    "checkpoint_revision_confirmed": false,
+    "checkpoint_sha256": "NOT_VERIFIED",
+    "dataset": "car",
+    "device": {
+      "cuda": true,
+      "gpu": "Tesla T4",
+      "torch": "2.11.0+cu130"
+    },
+    "fold": 0,
+    "model": "tabpfn3",
+    "npz_sha256": "c03f1f2dc210b152319e381cb974b7560c1406867ed062ce0119ead088635a45",
+    "package_version": "9.2.0",
+    "seed": 23,
+    "split_sha256": "dbbb2dca277cf4c9af8e549c8c57ac68dbbea2a934cdbe78ba92deb5861bdd0b",
+    "train_cap": 256
+  },
+  {
+    "checkpoint_identifier": "ModelVersion.V3",
+    "checkpoint_revision_confirmed": false,
+    "checkpoint_sha256": "NOT_VERIFIED",
+    "dataset": "car",
+    "device": {
+      "cuda": true,
+      "gpu": "Tesla T4",
+      "torch": "2.11.0+cu130"
+    },
+    "fold": 1,
+    "model": "tabpfn3",
+    "npz_sha256": "6a79c6cc7f9f737212697c1fda24aed91105efb76539cfe44c9b3e6024dee706",
+    "package_version": "9.2.0",
+    "seed": 23,
+    "split_sha256": "f6039e95cd6bf4e11262b52dc7fee5c65f3a3a9bedf71d613826d281d3fedc0a",
+    "train_cap": 128
+  },
+  {
+    "checkpoint_identifier": "ModelVersion.V3",
+    "checkpoint_revision_confirmed": false,
+    "checkpoint_sha256": "NOT_VERIFIED",
+    "dataset": "car",
+    "device": {
+      "cuda": true,
+      "gpu": "Tesla T4",
+      "torch": "2.11.0+cu130"
+    },
+    "fold": 1,
+    "model": "tabpfn3",
+    "npz_sha256": "57fe7d0277ce1d2399ceab2ee1b5eb557d6a8d014e738dac374e2c1f33e2040e",
+    "package_version": "9.2.0",
+    "seed": 23,
+    "split_sha256": "f6039e95cd6bf4e11262b52dc7fee5c65f3a3a9bedf71d613826d281d3fedc0a",
+    "train_cap": 256
+  },
+  {
+    "checkpoint_identifier": "ModelVersion.V3",
+    "checkpoint_revision_confirmed": false,
+    "checkpoint_sha256": "NOT_VERIFIED",
+    "dataset": "car",
+    "device": {
+      "cuda": true,
+      "gpu": "Tesla T4",
+      "torch": "2.11.0+cu130"
+    },
+    "fold": 0,
+    "model": "tabpfn3",
+    "npz_sha256": "6746721300332e63b49f11c02b8cb46ac1c03bd0a608edcc5477697f487323a3",
+    "package_version": "9.2.0",
+    "seed": 42,
+    "split_sha256": "6575bc5cbae6674842f2e4dff241e5e1035e7878bfca4c354f2ea412ea108b7e",
+    "train_cap": 128
+  },
+  {
+    "checkpoint_identifier": "ModelVersion.V3",
+    "checkpoint_revision_confirmed": false,
+    "checkpoint_sha256": "NOT_VERIFIED",
+    "dataset": "car",
+    "device": {
+      "cuda": true,
+      "gpu": "Tesla T4",
+      "torch": "2.11.0+cu130"
+    },
+    "fold": 0,
+    "model": "tabpfn3",
+    "npz_sha256": "f502608408c39cc6c311bcc28e4a13e9af20a9a3729c14709fbd1a12643b1b82",
+    "package_version": "9.2.0",
+    "seed": 42,
+    "split_sha256": "6575bc5cbae6674842f2e4dff241e5e1035e7878bfca4c354f2ea412ea108b7e",
+    "train_cap": 256
+  },
+  {
+    "checkpoint_identifier": "ModelVersion.V3",
+    "checkpoint_revision_confirmed": false,
+    "checkpoint_sha256": "NOT_VERIFIED",
+    "dataset": "car",
+    "device": {
+      "cuda": true,
+      "gpu": "Tesla T4",
+      "torch": "2.11.0+cu130"
+    },
+    "fold": 0,
+    "model": "tabpfn3",
+    "npz_sha256": "6814902c49b211c2e1152b7dffd1400b0caaaa3eddb65f0e875a8a9c09b80687",
+    "package_version": "9.2.0",
+    "seed": 71,
+    "split_sha256": "c8b5a5e0aa26570b3e4bdf9a9986098db36d5fb37c41555726bacbf796baf53f",
+    "train_cap": 128
+  },
+  {
+    "checkpoint_identifier": "ModelVersion.V3",
+    "checkpoint_revision_confirmed": false,
+    "checkpoint_sha256": "NOT_VERIFIED",
+    "dataset": "car",
+    "device": {
+      "cuda": true,
+      "gpu": "Tesla T4",
+      "torch": "2.11.0+cu130"
+    },
+    "fold": 0,
+    "model": "tabpfn3",
+    "npz_sha256": "bda575ea868294a8bb2d97a0bc1073fa226511ccccdfcdb2335a291df40b4cfd",
+    "package_version": "9.2.0",
+    "seed": 71,
+    "split_sha256": "c8b5a5e0aa26570b3e4bdf9a9986098db36d5fb37c41555726bacbf796baf53f",
+    "train_cap": 256
+  },
+  {
+    "checkpoint_identifier": "tabicl-classifier-v2-20260212.ckpt",
+    "checkpoint_revision_confirmed": false,
+    "checkpoint_sha256": "NOT_VERIFIED",
+    "dataset": "credit",
+    "device": {
+      "cuda": true,
+      "gpu": "Tesla T4",
+      "torch": "2.11.0+cu130"
+    },
+    "fold": 0,
+    "model": "tabiclv2",
+    "npz_sha256": "b212ef8005ee3c2fde6afac43cbf47a298924231f9cb07f8d223c8b2151f4d36",
+    "package_version": "2.2.0",
+    "seed": 23,
+    "split_sha256": "7035b4bd25b6729a4fc66f8eb5d37336a24c43cf45001e637be301e4dd343e80",
+    "train_cap": 128
+  },
+  {
+    "checkpoint_identifier": "tabicl-classifier-v2-20260212.ckpt",
+    "checkpoint_revision_confirmed": false,
+    "checkpoint_sha256": "NOT_VERIFIED",
+    "dataset": "credit",
+    "device": {
+      "cuda": true,
+      "gpu": "Tesla T4",
+      "torch": "2.11.0+cu130"
+    },
+    "fold": 0,
+    "model": "tabiclv2",
+    "npz_sha256": "a32d8c0bcc49a5e8b451f3a916c8fd6fd731aae3dba98a456bff2e3e11f85d88",
+    "package_version": "2.2.0",
+    "seed": 23,
+    "split_sha256": "7035b4bd25b6729a4fc66f8eb5d37336a24c43cf45001e637be301e4dd343e80",
+    "train_cap": 256
+  },
+  {
+    "checkpoint_identifier": "tabicl-classifier-v2-20260212.ckpt",
+    "checkpoint_revision_confirmed": false,
+    "checkpoint_sha256": "NOT_VERIFIED",
+    "dataset": "credit",
+    "device": {
+      "cuda": true,
+      "gpu": "Tesla T4",
+      "torch": "2.11.0+cu130"
+    },
+    "fold": 1,
+    "model": "tabiclv2",
+    "npz_sha256": "7d26cee3a238f17ae0788eaf1b3a52ff8e309d326f2befa6070d4713dba1a2c9",
+    "package_version": "2.2.0",
+    "seed": 23,
+    "split_sha256": "e243d9f4c906ec522efce7fc2211a29e4702f07983522b62a2c22725dacbc44c",
+    "train_cap": 128
+  },
+  {
+    "checkpoint_identifier": "tabicl-classifier-v2-20260212.ckpt",
+    "checkpoint_revision_confirmed": false,
+    "checkpoint_sha256": "NOT_VERIFIED",
+    "dataset": "credit",
+    "device": {
+      "cuda": true,
+      "gpu": "Tesla T4",
+      "torch": "2.11.0+cu130"
+    },
+    "fold": 1,
+    "model": "tabiclv2",
+    "npz_sha256": "199865fb2673a0e99ae57c0508de5bbee52f8db44cca3cedcbfafd59502a2578",
+    "package_version": "2.2.0",
+    "seed": 23,
+    "split_sha256": "e243d9f4c906ec522efce7fc2211a29e4702f07983522b62a2c22725dacbc44c",
+    "train_cap": 256
+  },
+  {
+    "checkpoint_identifier": "tabicl-classifier-v2-20260212.ckpt",
+    "checkpoint_revision_confirmed": false,
+    "checkpoint_sha256": "NOT_VERIFIED",
+    "dataset": "credit",
+    "device": {
+      "cuda": true,
+      "gpu": "Tesla T4",
+      "torch": "2.11.0+cu130"
+    },
+    "fold": 0,
+    "model": "tabiclv2",
+    "npz_sha256": "335968bb836731b51b93ad9b8b400f6a86f8dfd0531a09f15a264f96f05eeacc",
+    "package_version": "2.2.0",
+    "seed": 42,
+    "split_sha256": "b9b659a90ffadc867a940aa9b1c809fe6e0b5cda4a9f796854d334f47bf130e1",
+    "train_cap": 128
+  },
+  {
+    "checkpoint_identifier": "tabicl-classifier-v2-20260212.ckpt",
+    "checkpoint_revision_confirmed": false,
+    "checkpoint_sha256": "NOT_VERIFIED",
+    "dataset": "credit",
+    "device": {
+      "cuda": true,
+      "gpu": "Tesla T4",
+      "torch": "2.11.0+cu130"
+    },
+    "fold": 0,
+    "model": "tabiclv2",
+    "npz_sha256": "9c96eec592a2ff6b688e6b2e1db71c33a3642b442f34c63d010ddf3afb2d59e7",
+    "package_version": "2.2.0",
+    "seed": 42,
+    "split_sha256": "b9b659a90ffadc867a940aa9b1c809fe6e0b5cda4a9f796854d334f47bf130e1",
+    "train_cap": 256
+  },
+  {
+    "checkpoint_identifier": "tabicl-classifier-v2-20260212.ckpt",
+    "checkpoint_revision_confirmed": false,
+    "checkpoint_sha256": "NOT_VERIFIED",
+    "dataset": "credit",
+    "device": {
+      "cuda": true,
+      "gpu": "Tesla T4",
+      "torch": "2.11.0+cu130"
+    },
+    "fold": 0,
+    "model": "tabiclv2",
+    "npz_sha256": "7bfc3275cf8a679d452c85b83598638cf04fa6c188dde39231923ee145ba2c57",
+    "package_version": "2.2.0",
+    "seed": 71,
+    "split_sha256": "497aadf6f9251c6da2e31c7f5fb000d406827362a6863abdcb96e6f81ab4efcd",
+    "train_cap": 128
+  },
+  {
+    "checkpoint_identifier": "tabicl-classifier-v2-20260212.ckpt",
+    "checkpoint_revision_confirmed": false,
+    "checkpoint_sha256": "NOT_VERIFIED",
+    "dataset": "credit",
+    "device": {
+      "cuda": true,
+      "gpu": "Tesla T4",
+      "torch": "2.11.0+cu130"
+    },
+    "fold": 0,
+    "model": "tabiclv2",
+    "npz_sha256": "a84b76ef00de6cfd938f398511cf715af25b5b411d4697153a21c5c8a78d4bef",
+    "package_version": "2.2.0",
+    "seed": 71,
+    "split_sha256": "497aadf6f9251c6da2e31c7f5fb000d406827362a6863abdcb96e6f81ab4efcd",
+    "train_cap": 256
+  },
+  {
+    "checkpoint_identifier": "ModelVersion.V3",
+    "checkpoint_revision_confirmed": false,
+    "checkpoint_sha256": "NOT_VERIFIED",
+    "dataset": "credit",
+    "device": {
+      "cuda": true,
+      "gpu": "Tesla T4",
+      "torch": "2.11.0+cu130"
+    },
+    "fold": 0,
+    "model": "tabpfn3",
+    "npz_sha256": "51bcc964fc56c18951b8af7a86ca878a915fe7aab5829ed6575a98ea86b9c466",
+    "package_version": "9.2.0",
+    "seed": 23,
+    "split_sha256": "7035b4bd25b6729a4fc66f8eb5d37336a24c43cf45001e637be301e4dd343e80",
+    "train_cap": 128
+  },
+  {
+    "checkpoint_identifier": "ModelVersion.V3",
+    "checkpoint_revision_confirmed": false,
+    "checkpoint_sha256": "NOT_VERIFIED",
+    "dataset": "credit",
+    "device": {
+      "cuda": true,
+      "gpu": "Tesla T4",
+      "torch": "2.11.0+cu130"
+    },
+    "fold": 0,
+    "model": "tabpfn3",
+    "npz_sha256": "1da7853a2a2ba3a727b5e5af1d43e69805b04de9488ab0e945381af44b032898",
+    "package_version": "9.2.0",
+    "seed": 23,
+    "split_sha256": "7035b4bd25b6729a4fc66f8eb5d37336a24c43cf45001e637be301e4dd343e80",
+    "train_cap": 256
+  },
+  {
+    "checkpoint_identifier": "ModelVersion.V3",
+    "checkpoint_revision_confirmed": false,
+    "checkpoint_sha256": "NOT_VERIFIED",
+    "dataset": "credit",
+    "device": {
+      "cuda": true,
+      "gpu": "Tesla T4",
+      "torch": "2.11.0+cu130"
+    },
+    "fold": 1,
+    "model": "tabpfn3",
+    "npz_sha256": "939e518dcd52a34aa9565b038f8b9806bcc80bfdfd2c967425db592efdae3a03",
+    "package_version": "9.2.0",
+    "seed": 23,
+    "split_sha256": "e243d9f4c906ec522efce7fc2211a29e4702f07983522b62a2c22725dacbc44c",
+    "train_cap": 128
+  },
+  {
+    "checkpoint_identifier": "ModelVersion.V3",
+    "checkpoint_revision_confirmed": false,
+    "checkpoint_sha256": "NOT_VERIFIED",
+    "dataset": "credit",
+    "device": {
+      "cuda": true,
+      "gpu": "Tesla T4",
+      "torch": "2.11.0+cu130"
+    },
+    "fold": 1,
+    "model": "tabpfn3",
+    "npz_sha256": "ebed1669c4cbc579831a754a52b9ee7f86a82312e3531479c15fcf61aa97a401",
+    "package_version": "9.2.0",
+    "seed": 23,
+    "split_sha256": "e243d9f4c906ec522efce7fc2211a29e4702f07983522b62a2c22725dacbc44c",
+    "train_cap": 256
+  },
+  {
+    "checkpoint_identifier": "ModelVersion.V3",
+    "checkpoint_revision_confirmed": false,
+    "checkpoint_sha256": "NOT_VERIFIED",
+    "dataset": "credit",
+    "device": {
+      "cuda": true,
+      "gpu": "Tesla T4",
+      "torch": "2.11.0+cu130"
+    },
+    "fold": 0,
+    "model": "tabpfn3",
+    "npz_sha256": "e2b719fce1bd9a4dfa1a1f3318feeb18c051922be3e682e8663e7d5c79a5733c",
+    "package_version": "9.2.0",
+    "seed": 42,
+    "split_sha256": "b9b659a90ffadc867a940aa9b1c809fe6e0b5cda4a9f796854d334f47bf130e1",
+    "train_cap": 128
+  },
+  {
+    "checkpoint_identifier": "ModelVersion.V3",
+    "checkpoint_revision_confirmed": false,
+    "checkpoint_sha256": "NOT_VERIFIED",
+    "dataset": "credit",
+    "device": {
+      "cuda": true,
+      "gpu": "Tesla T4",
+      "torch": "2.11.0+cu130"
+    },
+    "fold": 0,
+    "model": "tabpfn3",
+    "npz_sha256": "2dd2de5e66f3b98d7dd40bf04a0e6dcf7696937bc039eec3689a268c52fa1103",
+    "package_version": "9.2.0",
+    "seed": 42,
+    "split_sha256": "b9b659a90ffadc867a940aa9b1c809fe6e0b5cda4a9f796854d334f47bf130e1",
+    "train_cap": 256
+  },
+  {
+    "checkpoint_identifier": "ModelVersion.V3",
+    "checkpoint_revision_confirmed": false,
+    "checkpoint_sha256": "NOT_VERIFIED",
+    "dataset": "credit",
+    "device": {
+      "cuda": true,
+      "gpu": "Tesla T4",
+      "torch": "2.11.0+cu130"
+    },
+    "fold": 0,
+    "model": "tabpfn3",
+    "npz_sha256": "ea1ee7a8c8a15a4da68552e2d671d94d409de63ff77b7d57d0952896faa938aa",
+    "package_version": "9.2.0",
+    "seed": 71,
+    "split_sha256": "497aadf6f9251c6da2e31c7f5fb000d406827362a6863abdcb96e6f81ab4efcd",
+    "train_cap": 128
+  },
+  {
+    "checkpoint_identifier": "ModelVersion.V3",
+    "checkpoint_revision_confirmed": false,
+    "checkpoint_sha256": "NOT_VERIFIED",
+    "dataset": "credit",
+    "device": {
+      "cuda": true,
+      "gpu": "Tesla T4",
+      "torch": "2.11.0+cu130"
+    },
+    "fold": 0,
+    "model": "tabpfn3",
+    "npz_sha256": "e5c39fc510a7f288b23530bdd2f035f3c973ed409af04b00604566f6bb140fc6",
+    "package_version": "9.2.0",
+    "seed": 71,
+    "split_sha256": "497aadf6f9251c6da2e31c7f5fb000d406827362a6863abdcb96e6f81ab4efcd",
+    "train_cap": 256
+  },
+  {
+    "checkpoint_identifier": "tabicl-classifier-v2-20260212.ckpt",
+    "checkpoint_revision_confirmed": false,
+    "checkpoint_sha256": "NOT_VERIFIED",
+    "dataset": "nursery",
+    "device": {
+      "cuda": true,
+      "gpu": "Tesla T4",
+      "torch": "2.11.0+cu130"
+    },
+    "fold": 0,
+    "model": "tabiclv2",
+    "npz_sha256": "8832902a73feb6d0f0cabc0776defcb2bae97f77aad318d40266c2977283eae9",
+    "package_version": "2.2.0",
+    "seed": 23,
+    "split_sha256": "1179ae56d8786a52f2fd4e5e40c8c438002ffa716981e912c387cf88b9a1fd50",
+    "train_cap": 128
+  },
+  {
+    "checkpoint_identifier": "tabicl-classifier-v2-20260212.ckpt",
+    "checkpoint_revision_confirmed": false,
+    "checkpoint_sha256": "NOT_VERIFIED",
+    "dataset": "nursery",
+    "device": {
+      "cuda": true,
+      "gpu": "Tesla T4",
+      "torch": "2.11.0+cu130"
+    },
+    "fold": 0,
+    "model": "tabiclv2",
+    "npz_sha256": "ac18891742f2a4cadda6a270d7f524cbf0d8e2b5feabc09888d404a262f503e6",
+    "package_version": "2.2.0",
+    "seed": 23,
+    "split_sha256": "1179ae56d8786a52f2fd4e5e40c8c438002ffa716981e912c387cf88b9a1fd50",
+    "train_cap": 256
+  },
+  {
+    "checkpoint_identifier": "tabicl-classifier-v2-20260212.ckpt",
+    "checkpoint_revision_confirmed": false,
+    "checkpoint_sha256": "NOT_VERIFIED",
+    "dataset": "nursery",
+    "device": {
+      "cuda": true,
+      "gpu": "Tesla T4",
+      "torch": "2.11.0+cu130"
+    },
+    "fold": 1,
+    "model": "tabiclv2",
+    "npz_sha256": "6ec983a93af16a084e72a8001c4ec4b409af41f5c8b50d6b23c5af78c7c57422",
+    "package_version": "2.2.0",
+    "seed": 23,
+    "split_sha256": "4b2081e671ccce9d393003fabe54aba0228253fb948e2c6281f4bb321187fffd",
+    "train_cap": 128
+  },
+  {
+    "checkpoint_identifier": "tabicl-classifier-v2-20260212.ckpt",
+    "checkpoint_revision_confirmed": false,
+    "checkpoint_sha256": "NOT_VERIFIED",
+    "dataset": "nursery",
+    "device": {
+      "cuda": true,
+      "gpu": "Tesla T4",
+      "torch": "2.11.0+cu130"
+    },
+    "fold": 1,
+    "model": "tabiclv2",
+    "npz_sha256": "2824cff1e2fc0980442946e890b358f8120fe3f912fe498655c633540cc7c02b",
+    "package_version": "2.2.0",
+    "seed": 23,
+    "split_sha256": "4b2081e671ccce9d393003fabe54aba0228253fb948e2c6281f4bb321187fffd",
+    "train_cap": 256
+  },
+  {
+    "checkpoint_identifier": "tabicl-classifier-v2-20260212.ckpt",
+    "checkpoint_revision_confirmed": false,
+    "checkpoint_sha256": "NOT_VERIFIED",
+    "dataset": "nursery",
+    "device": {
+      "cuda": true,
+      "gpu": "Tesla T4",
+      "torch": "2.11.0+cu130"
+    },
+    "fold": 0,
+    "model": "tabiclv2",
+    "npz_sha256": "855f0c1815efbcbee5666ef672515a2ca337195a7ea1c486b195377a5d377ce1",
+    "package_version": "2.2.0",
+    "seed": 42,
+    "split_sha256": "f27d9f7db8fd2914bd4da774eb3f00b84b650c7c86fa25b59d99ceccbd65ecc2",
+    "train_cap": 128
+  },
+  {
+    "checkpoint_identifier": "tabicl-classifier-v2-20260212.ckpt",
+    "checkpoint_revision_confirmed": false,
+    "checkpoint_sha256": "NOT_VERIFIED",
+    "dataset": "nursery",
+    "device": {
+      "cuda": true,
+      "gpu": "Tesla T4",
+      "torch": "2.11.0+cu130"
+    },
+    "fold": 0,
+    "model": "tabiclv2",
+    "npz_sha256": "fbb1c4c517dd6168d53a0abfa878a553506eb9d288919ece717ac7b9fefae751",
+    "package_version": "2.2.0",
+    "seed": 42,
+    "split_sha256": "f27d9f7db8fd2914bd4da774eb3f00b84b650c7c86fa25b59d99ceccbd65ecc2",
+    "train_cap": 256
+  },
+  {
+    "checkpoint_identifier": "tabicl-classifier-v2-20260212.ckpt",
+    "checkpoint_revision_confirmed": false,
+    "checkpoint_sha256": "NOT_VERIFIED",
+    "dataset": "nursery",
+    "device": {
+      "cuda": true,
+      "gpu": "Tesla T4",
+      "torch": "2.11.0+cu130"
+    },
+    "fold": 0,
+    "model": "tabiclv2",
+    "npz_sha256": "e9958ab68dc24daacaa11572de188f8b1ad2b03e975004f356e850a4092eb00c",
+    "package_version": "2.2.0",
+    "seed": 71,
+    "split_sha256": "90351e8fc3935b0a89a8b6aeedfaefce9a35497c73fc0ec67f8e88972a416821",
+    "train_cap": 128
+  },
+  {
+    "checkpoint_identifier": "tabicl-classifier-v2-20260212.ckpt",
+    "checkpoint_revision_confirmed": false,
+    "checkpoint_sha256": "NOT_VERIFIED",
+    "dataset": "nursery",
+    "device": {
+      "cuda": true,
+      "gpu": "Tesla T4",
+      "torch": "2.11.0+cu130"
+    },
+    "fold": 0,
+    "model": "tabiclv2",
+    "npz_sha256": "f6533add87625bdf8f6006bffe06760d3e3de54a461d52ea9f121309cd40484c",
+    "package_version": "2.2.0",
+    "seed": 71,
+    "split_sha256": "90351e8fc3935b0a89a8b6aeedfaefce9a35497c73fc0ec67f8e88972a416821",
+    "train_cap": 256
+  },
+  {
+    "checkpoint_identifier": "ModelVersion.V3",
+    "checkpoint_revision_confirmed": false,
+    "checkpoint_sha256": "NOT_VERIFIED",
+    "dataset": "nursery",
+    "device": {
+      "cuda": true,
+      "gpu": "Tesla T4",
+      "torch": "2.11.0+cu130"
+    },
+    "fold": 0,
+    "model": "tabpfn3",
+    "npz_sha256": "e2050d2b4b41df64eb7760e4e4499788b61712021b547337de94984c252b862b",
+    "package_version": "9.2.0",
+    "seed": 23,
+    "split_sha256": "1179ae56d8786a52f2fd4e5e40c8c438002ffa716981e912c387cf88b9a1fd50",
+    "train_cap": 128
+  },
+  {
+    "checkpoint_identifier": "ModelVersion.V3",
+    "checkpoint_revision_confirmed": false,
+    "checkpoint_sha256": "NOT_VERIFIED",
+    "dataset": "nursery",
+    "device": {
+      "cuda": true,
+      "gpu": "Tesla T4",
+      "torch": "2.11.0+cu130"
+    },
+    "fold": 0,
+    "model": "tabpfn3",
+    "npz_sha256": "b82875d1680f08257563ca84b0320f5592a08c96e1b72f574c4d37d0f0ba94e0",
+    "package_version": "9.2.0",
+    "seed": 23,
+    "split_sha256": "1179ae56d8786a52f2fd4e5e40c8c438002ffa716981e912c387cf88b9a1fd50",
+    "train_cap": 256
+  },
+  {
+    "checkpoint_identifier": "ModelVersion.V3",
+    "checkpoint_revision_confirmed": false,
+    "checkpoint_sha256": "NOT_VERIFIED",
+    "dataset": "nursery",
+    "device": {
+      "cuda": true,
+      "gpu": "Tesla T4",
+      "torch": "2.11.0+cu130"
+    },
+    "fold": 1,
+    "model": "tabpfn3",
+    "npz_sha256": "a603b11b4b4022e229496f9dd1e56fa651d781409a7db54a5219eb215c276ee8",
+    "package_version": "9.2.0",
+    "seed": 23,
+    "split_sha256": "4b2081e671ccce9d393003fabe54aba0228253fb948e2c6281f4bb321187fffd",
+    "train_cap": 128
+  },
+  {
+    "checkpoint_identifier": "ModelVersion.V3",
+    "checkpoint_revision_confirmed": false,
+    "checkpoint_sha256": "NOT_VERIFIED",
+    "dataset": "nursery",
+    "device": {
+      "cuda": true,
+      "gpu": "Tesla T4",
+      "torch": "2.11.0+cu130"
+    },
+    "fold": 1,
+    "model": "tabpfn3",
+    "npz_sha256": "c20fd2e4e09dfc391216b01ae8aed13be10ee6a03cb77174eb9f929b0b2f297e",
+    "package_version": "9.2.0",
+    "seed": 23,
+    "split_sha256": "4b2081e671ccce9d393003fabe54aba0228253fb948e2c6281f4bb321187fffd",
+    "train_cap": 256
+  },
+  {
+    "checkpoint_identifier": "ModelVersion.V3",
+    "checkpoint_revision_confirmed": false,
+    "checkpoint_sha256": "NOT_VERIFIED",
+    "dataset": "nursery",
+    "device": {
+      "cuda": true,
+      "gpu": "Tesla T4",
+      "torch": "2.11.0+cu130"
+    },
+    "fold": 0,
+    "model": "tabpfn3",
+    "npz_sha256": "705b15b71257ef166e8d612b0a1da24429bf513bb9530da155933cd6e450b1b8",
+    "package_version": "9.2.0",
+    "seed": 42,
+    "split_sha256": "f27d9f7db8fd2914bd4da774eb3f00b84b650c7c86fa25b59d99ceccbd65ecc2",
+    "train_cap": 128
+  },
+  {
+    "checkpoint_identifier": "ModelVersion.V3",
+    "checkpoint_revision_confirmed": false,
+    "checkpoint_sha256": "NOT_VERIFIED",
+    "dataset": "nursery",
+    "device": {
+      "cuda": true,
+      "gpu": "Tesla T4",
+      "torch": "2.11.0+cu130"
+    },
+    "fold": 0,
+    "model": "tabpfn3",
+    "npz_sha256": "c4aa292ced5a5c5081068fe3ed1d297c3f10d03cfd3dd08daf4bdbc6006bf536",
+    "package_version": "9.2.0",
+    "seed": 42,
+    "split_sha256": "f27d9f7db8fd2914bd4da774eb3f00b84b650c7c86fa25b59d99ceccbd65ecc2",
+    "train_cap": 256
+  },
+  {
+    "checkpoint_identifier": "ModelVersion.V3",
+    "checkpoint_revision_confirmed": false,
+    "checkpoint_sha256": "NOT_VERIFIED",
+    "dataset": "nursery",
+    "device": {
+      "cuda": true,
+      "gpu": "Tesla T4",
+      "torch": "2.11.0+cu130"
+    },
+    "fold": 0,
+    "model": "tabpfn3",
+    "npz_sha256": "58387a2064153317fbda3442265392fa2f480d6f51c88fd2fa4ec5f11f4e037f",
+    "package_version": "9.2.0",
+    "seed": 71,
+    "split_sha256": "90351e8fc3935b0a89a8b6aeedfaefce9a35497c73fc0ec67f8e88972a416821",
+    "train_cap": 128
+  },
+  {
+    "checkpoint_identifier": "ModelVersion.V3",
+    "checkpoint_revision_confirmed": false,
+    "checkpoint_sha256": "NOT_VERIFIED",
+    "dataset": "nursery",
+    "device": {
+      "cuda": true,
+      "gpu": "Tesla T4",
+      "torch": "2.11.0+cu130"
+    },
+    "fold": 0,
+    "model": "tabpfn3",
+    "npz_sha256": "d21ee7c6b37860dfc0af3df2b5878d44a696a676d0a7fdf1587e73abd457e640",
+    "package_version": "9.2.0",
+    "seed": 71,
+    "split_sha256": "90351e8fc3935b0a89a8b6aeedfaefce9a35497c73fc0ec67f8e88972a416821",
+    "train_cap": 256
+  },
+  {
+    "checkpoint_identifier": "tabicl-classifier-v2-20260212.ckpt",
+    "checkpoint_revision_confirmed": false,
+    "checkpoint_sha256": "NOT_VERIFIED",
+    "dataset": "phishing",
+    "device": {
+      "cuda": true,
+      "gpu": "Tesla T4",
+      "torch": "2.11.0+cu130"
+    },
+    "fold": 0,
+    "model": "tabiclv2",
+    "npz_sha256": "2fa86b60625e69dc906b475879eea9724e94e0475052565429057f2c9eade000",
+    "package_version": "2.2.0",
+    "seed": 23,
+    "split_sha256": "a766ad62c094e891cf11566ee63133806d89cdff7b343078801fec57e6be01ca",
+    "train_cap": 128
+  },
+  {
+    "checkpoint_identifier": "tabicl-classifier-v2-20260212.ckpt",
+    "checkpoint_revision_confirmed": false,
+    "checkpoint_sha256": "NOT_VERIFIED",
+    "dataset": "phishing",
+    "device": {
+      "cuda": true,
+      "gpu": "Tesla T4",
+      "torch": "2.11.0+cu130"
+    },
+    "fold": 0,
+    "model": "tabiclv2",
+    "npz_sha256": "da9b480ac6dee42d66df6918237f6830146ad68d46ac8966d730b215c51fe1bb",
+    "package_version": "2.2.0",
+    "seed": 23,
+    "split_sha256": "a766ad62c094e891cf11566ee63133806d89cdff7b343078801fec57e6be01ca",
+    "train_cap": 256
+  },
+  {
+    "checkpoint_identifier": "tabicl-classifier-v2-20260212.ckpt",
+    "checkpoint_revision_confirmed": false,
+    "checkpoint_sha256": "NOT_VERIFIED",
+    "dataset": "phishing",
+    "device": {
+      "cuda": true,
+      "gpu": "Tesla T4",
+      "torch": "2.11.0+cu130"
+    },
+    "fold": 1,
+    "model": "tabiclv2",
+    "npz_sha256": "96afe4f37007b062f3c077d699accf15187d80dd33c66ec0f6dc855b094e0c67",
+    "package_version": "2.2.0",
+    "seed": 23,
+    "split_sha256": "a98e1363d01a86001857a9481df0b84651afd8ef14450595e539c7d3d49ab810",
+    "train_cap": 128
+  },
+  {
+    "checkpoint_identifier": "tabicl-classifier-v2-20260212.ckpt",
+    "checkpoint_revision_confirmed": false,
+    "checkpoint_sha256": "NOT_VERIFIED",
+    "dataset": "phishing",
+    "device": {
+      "cuda": true,
+      "gpu": "Tesla T4",
+      "torch": "2.11.0+cu130"
+    },
+    "fold": 1,
+    "model": "tabiclv2",
+    "npz_sha256": "ad1900aa30d679f8d96855fd36ceb41cc2bc6ae548277a1db345972f4a63c4ff",
+    "package_version": "2.2.0",
+    "seed": 23,
+    "split_sha256": "a98e1363d01a86001857a9481df0b84651afd8ef14450595e539c7d3d49ab810",
+    "train_cap": 256
+  },
+  {
+    "checkpoint_identifier": "tabicl-classifier-v2-20260212.ckpt",
+    "checkpoint_revision_confirmed": false,
+    "checkpoint_sha256": "NOT_VERIFIED",
+    "dataset": "phishing",
+    "device": {
+      "cuda": true,
+      "gpu": "Tesla T4",
+      "torch": "2.11.0+cu130"
+    },
+    "fold": 0,
+    "model": "tabiclv2",
+    "npz_sha256": "f5b1feb4d46345585eaa45ec8e7d58ab88a1fff7e78e10a5f3c13d86a3f4a634",
+    "package_version": "2.2.0",
+    "seed": 42,
+    "split_sha256": "465f31d79b1de1f24cca91a92bee5fd0a190b1d802c5419e013024d8d6234332",
+    "train_cap": 128
+  },
+  {
+    "checkpoint_identifier": "tabicl-classifier-v2-20260212.ckpt",
+    "checkpoint_revision_confirmed": false,
+    "checkpoint_sha256": "NOT_VERIFIED",
+    "dataset": "phishing",
+    "device": {
+      "cuda": true,
+      "gpu": "Tesla T4",
+      "torch": "2.11.0+cu130"
+    },
+    "fold": 0,
+    "model": "tabiclv2",
+    "npz_sha256": "ec5ae37781c54cba325a90cc40ca49563c64ef7db4e6441f3e70739b9ef880c1",
+    "package_version": "2.2.0",
+    "seed": 42,
+    "split_sha256": "465f31d79b1de1f24cca91a92bee5fd0a190b1d802c5419e013024d8d6234332",
+    "train_cap": 256
+  },
+  {
+    "checkpoint_identifier": "tabicl-classifier-v2-20260212.ckpt",
+    "checkpoint_revision_confirmed": false,
+    "checkpoint_sha256": "NOT_VERIFIED",
+    "dataset": "phishing",
+    "device": {
+      "cuda": true,
+      "gpu": "Tesla T4",
+      "torch": "2.11.0+cu130"
+    },
+    "fold": 0,
+    "model": "tabiclv2",
+    "npz_sha256": "4c4c48c10343f26ccc2404c58b4d5c7136a5e390a54f01d1738c0d96d2e11a24",
+    "package_version": "2.2.0",
+    "seed": 71,
+    "split_sha256": "a8b63d813804c8f00b2ffdd8bb7f9596ec4dd2dc052904677c559c861bc1171d",
+    "train_cap": 128
+  },
+  {
+    "checkpoint_identifier": "tabicl-classifier-v2-20260212.ckpt",
+    "checkpoint_revision_confirmed": false,
+    "checkpoint_sha256": "NOT_VERIFIED",
+    "dataset": "phishing",
+    "device": {
+      "cuda": true,
+      "gpu": "Tesla T4",
+      "torch": "2.11.0+cu130"
+    },
+    "fold": 0,
+    "model": "tabiclv2",
+    "npz_sha256": "35459c09ff8374e04675457a49cfa84d9eafc6788f6eed2e94bbae481bd2399a",
+    "package_version": "2.2.0",
+    "seed": 71,
+    "split_sha256": "a8b63d813804c8f00b2ffdd8bb7f9596ec4dd2dc052904677c559c861bc1171d",
+    "train_cap": 256
+  },
+  {
+    "checkpoint_identifier": "ModelVersion.V3",
+    "checkpoint_revision_confirmed": false,
+    "checkpoint_sha256": "NOT_VERIFIED",
+    "dataset": "phishing",
+    "device": {
+      "cuda": true,
+      "gpu": "Tesla T4",
+      "torch": "2.11.0+cu130"
+    },
+    "fold": 0,
+    "model": "tabpfn3",
+    "npz_sha256": "220fd156e40955bbc1991cee9cc36e6ea027ccc63695ce2daaa06e23355dd06e",
+    "package_version": "9.2.0",
+    "seed": 23,
+    "split_sha256": "a766ad62c094e891cf11566ee63133806d89cdff7b343078801fec57e6be01ca",
+    "train_cap": 128
+  },
+  {
+    "checkpoint_identifier": "ModelVersion.V3",
+    "checkpoint_revision_confirmed": false,
+    "checkpoint_sha256": "NOT_VERIFIED",
+    "dataset": "phishing",
+    "device": {
+      "cuda": true,
+      "gpu": "Tesla T4",
+      "torch": "2.11.0+cu130"
+    },
+    "fold": 0,
+    "model": "tabpfn3",
+    "npz_sha256": "fdef94c48765ee565db0b95527f2c9c48f46c40c99782304dff16de4d44d4cb5",
+    "package_version": "9.2.0",
+    "seed": 23,
+    "split_sha256": "a766ad62c094e891cf11566ee63133806d89cdff7b343078801fec57e6be01ca",
+    "train_cap": 256
+  },
+  {
+    "checkpoint_identifier": "ModelVersion.V3",
+    "checkpoint_revision_confirmed": false,
+    "checkpoint_sha256": "NOT_VERIFIED",
+    "dataset": "phishing",
+    "device": {
+      "cuda": true,
+      "gpu": "Tesla T4",
+      "torch": "2.11.0+cu130"
+    },
+    "fold": 1,
+    "model": "tabpfn3",
+    "npz_sha256": "3945bf9a48b39ddb8f6e361eb64e8a9560826de7425a511609f27b9f8fb4cc6a",
+    "package_version": "9.2.0",
+    "seed": 23,
+    "split_sha256": "a98e1363d01a86001857a9481df0b84651afd8ef14450595e539c7d3d49ab810",
+    "train_cap": 128
+  },
+  {
+    "checkpoint_identifier": "ModelVersion.V3",
+    "checkpoint_revision_confirmed": false,
+    "checkpoint_sha256": "NOT_VERIFIED",
+    "dataset": "phishing",
+    "device": {
+      "cuda": true,
+      "gpu": "Tesla T4",
+      "torch": "2.11.0+cu130"
+    },
+    "fold": 1,
+    "model": "tabpfn3",
+    "npz_sha256": "ff245a0d73b0a6755e6700e168c2f7bd0538caa241f59d3f22b5cb415bf86d85",
+    "package_version": "9.2.0",
+    "seed": 23,
+    "split_sha256": "a98e1363d01a86001857a9481df0b84651afd8ef14450595e539c7d3d49ab810",
+    "train_cap": 256
+  },
+  {
+    "checkpoint_identifier": "ModelVersion.V3",
+    "checkpoint_revision_confirmed": false,
+    "checkpoint_sha256": "NOT_VERIFIED",
+    "dataset": "phishing",
+    "device": {
+      "cuda": true,
+      "gpu": "Tesla T4",
+      "torch": "2.11.0+cu130"
+    },
+    "fold": 0,
+    "model": "tabpfn3",
+    "npz_sha256": "1e347fc0b7d07ae8c5851be7c57c92b4e4f1617a09191b5fbd54aa816016a18d",
+    "package_version": "9.2.0",
+    "seed": 42,
+    "split_sha256": "465f31d79b1de1f24cca91a92bee5fd0a190b1d802c5419e013024d8d6234332",
+    "train_cap": 128
+  },
+  {
+    "checkpoint_identifier": "ModelVersion.V3",
+    "checkpoint_revision_confirmed": false,
+    "checkpoint_sha256": "NOT_VERIFIED",
+    "dataset": "phishing",
+    "device": {
+      "cuda": true,
+      "gpu": "Tesla T4",
+      "torch": "2.11.0+cu130"
+    },
+    "fold": 0,
+    "model": "tabpfn3",
+    "npz_sha256": "5824300ca2489bb1e253536630f91980c3cb012bbe3e40f5a35955d267ab78e7",
+    "package_version": "9.2.0",
+    "seed": 42,
+    "split_sha256": "465f31d79b1de1f24cca91a92bee5fd0a190b1d802c5419e013024d8d6234332",
+    "train_cap": 256
+  },
+  {
+    "checkpoint_identifier": "ModelVersion.V3",
+    "checkpoint_revision_confirmed": false,
+    "checkpoint_sha256": "NOT_VERIFIED",
+    "dataset": "phishing",
+    "device": {
+      "cuda": true,
+      "gpu": "Tesla T4",
+      "torch": "2.11.0+cu130"
+    },
+    "fold": 0,
+    "model": "tabpfn3",
+    "npz_sha256": "e988102103c7c4f24ff8af18967ca993374a3f30cc3d8557587ea204b06f76d9",
+    "package_version": "9.2.0",
+    "seed": 71,
+    "split_sha256": "a8b63d813804c8f00b2ffdd8bb7f9596ec4dd2dc052904677c559c861bc1171d",
+    "train_cap": 128
+  },
+  {
+    "checkpoint_identifier": "ModelVersion.V3",
+    "checkpoint_revision_confirmed": false,
+    "checkpoint_sha256": "NOT_VERIFIED",
+    "dataset": "phishing",
+    "device": {
+      "cuda": true,
+      "gpu": "Tesla T4",
+      "torch": "2.11.0+cu130"
+    },
+    "fold": 0,
+    "model": "tabpfn3",
+    "npz_sha256": "ee0eb27a4228be72be9cedbbc4119e8376840d15b021bf8a4dd883b511913f47",
+    "package_version": "9.2.0",
+    "seed": 71,
+    "split_sha256": "a8b63d813804c8f00b2ffdd8bb7f9596ec4dd2dc052904677c559c861bc1171d",
+    "train_cap": 256
+  },
+  {
+    "checkpoint_identifier": "tabicl-classifier-v2-20260212.ckpt",
+    "checkpoint_revision_confirmed": false,
+    "checkpoint_sha256": "NOT_VERIFIED",
+    "dataset": "wine",
+    "device": {
+      "cuda": true,
+      "gpu": "Tesla T4",
+      "torch": "2.11.0+cu130"
+    },
+    "fold": 0,
+    "model": "tabiclv2",
+    "npz_sha256": "3cce71c32c0c22d324e55ba1451eac18964346bc1ce52b99fcda9cb367a9b7fb",
+    "package_version": "2.2.0",
+    "seed": 23,
+    "split_sha256": "6f49549cf50858dadc16977629d3046dedf9d82680411f955131b17cd747a981",
+    "train_cap": 128
+  },
+  {
+    "checkpoint_identifier": "tabicl-classifier-v2-20260212.ckpt",
+    "checkpoint_revision_confirmed": false,
+    "checkpoint_sha256": "NOT_VERIFIED",
+    "dataset": "wine",
+    "device": {
+      "cuda": true,
+      "gpu": "Tesla T4",
+      "torch": "2.11.0+cu130"
+    },
+    "fold": 0,
+    "model": "tabiclv2",
+    "npz_sha256": "73699639cbaac8d96dbe7a7c5a2cedaf6afbc2dd75ef30e7ec4b20c62f81bbb0",
+    "package_version": "2.2.0",
+    "seed": 23,
+    "split_sha256": "6f49549cf50858dadc16977629d3046dedf9d82680411f955131b17cd747a981",
+    "train_cap": 256
+  },
+  {
+    "checkpoint_identifier": "tabicl-classifier-v2-20260212.ckpt",
+    "checkpoint_revision_confirmed": false,
+    "checkpoint_sha256": "NOT_VERIFIED",
+    "dataset": "wine",
+    "device": {
+      "cuda": true,
+      "gpu": "Tesla T4",
+      "torch": "2.11.0+cu130"
+    },
+    "fold": 1,
+    "model": "tabiclv2",
+    "npz_sha256": "c5abc32a0abf3afae40f4c36c2b35ffe8879f0a5d4952fd73ed506296564c5b1",
+    "package_version": "2.2.0",
+    "seed": 23,
+    "split_sha256": "9292b8bb1114a29d6e962172df94d001cd5a7fa1a83f65917a4d650b23aa0ff8",
+    "train_cap": 128
+  },
+  {
+    "checkpoint_identifier": "tabicl-classifier-v2-20260212.ckpt",
+    "checkpoint_revision_confirmed": false,
+    "checkpoint_sha256": "NOT_VERIFIED",
+    "dataset": "wine",
+    "device": {
+      "cuda": true,
+      "gpu": "Tesla T4",
+      "torch": "2.11.0+cu130"
+    },
+    "fold": 1,
+    "model": "tabiclv2",
+    "npz_sha256": "b106f8a0a619af4d2cb1b84b82752a881c1e2433b2d203e409f22fd38de606a4",
+    "package_version": "2.2.0",
+    "seed": 23,
+    "split_sha256": "9292b8bb1114a29d6e962172df94d001cd5a7fa1a83f65917a4d650b23aa0ff8",
+    "train_cap": 256
+  },
+  {
+    "checkpoint_identifier": "tabicl-classifier-v2-20260212.ckpt",
+    "checkpoint_revision_confirmed": false,
+    "checkpoint_sha256": "NOT_VERIFIED",
+    "dataset": "wine",
+    "device": {
+      "cuda": true,
+      "gpu": "Tesla T4",
+      "torch": "2.11.0+cu130"
+    },
+    "fold": 0,
+    "model": "tabiclv2",
+    "npz_sha256": "3b0d4b5f394c2782884fdb4dd627bbe2d6b78e43824dffb2cda1e05fdf4fb5d9",
+    "package_version": "2.2.0",
+    "seed": 42,
+    "split_sha256": "f7c5c58b3f378d44a25d69007c7a3ac2055e260f96f1df3b847f19ec06ff9dbb",
+    "train_cap": 128
+  },
+  {
+    "checkpoint_identifier": "tabicl-classifier-v2-20260212.ckpt",
+    "checkpoint_revision_confirmed": false,
+    "checkpoint_sha256": "NOT_VERIFIED",
+    "dataset": "wine",
+    "device": {
+      "cuda": true,
+      "gpu": "Tesla T4",
+      "torch": "2.11.0+cu130"
+    },
+    "fold": 0,
+    "model": "tabiclv2",
+    "npz_sha256": "cdf45fb92bf331ab99edb01de1176ea6cf266fc0b28f089efa5630b75b2bd143",
+    "package_version": "2.2.0",
+    "seed": 42,
+    "split_sha256": "f7c5c58b3f378d44a25d69007c7a3ac2055e260f96f1df3b847f19ec06ff9dbb",
+    "train_cap": 256
+  },
+  {
+    "checkpoint_identifier": "tabicl-classifier-v2-20260212.ckpt",
+    "checkpoint_revision_confirmed": false,
+    "checkpoint_sha256": "NOT_VERIFIED",
+    "dataset": "wine",
+    "device": {
+      "cuda": true,
+      "gpu": "Tesla T4",
+      "torch": "2.11.0+cu130"
+    },
+    "fold": 0,
+    "model": "tabiclv2",
+    "npz_sha256": "1c1a354b8b2043023ce00e09928b34d44878bfe454ef87c52ca845ab8c320c57",
+    "package_version": "2.2.0",
+    "seed": 71,
+    "split_sha256": "8cdaedbcd32e5e5f57b1e9393dbe804aa7fadd7dde4dd9743f91b06d9bc5bf48",
+    "train_cap": 128
+  },
+  {
+    "checkpoint_identifier": "tabicl-classifier-v2-20260212.ckpt",
+    "checkpoint_revision_confirmed": false,
+    "checkpoint_sha256": "NOT_VERIFIED",
+    "dataset": "wine",
+    "device": {
+      "cuda": true,
+      "gpu": "Tesla T4",
+      "torch": "2.11.0+cu130"
+    },
+    "fold": 0,
+    "model": "tabiclv2",
+    "npz_sha256": "cc2dcc5376ab7170cb64be87d7c3f7dc191a9d641a1e469f5b96bc9f1224edf6",
+    "package_version": "2.2.0",
+    "seed": 71,
+    "split_sha256": "8cdaedbcd32e5e5f57b1e9393dbe804aa7fadd7dde4dd9743f91b06d9bc5bf48",
+    "train_cap": 256
+  },
+  {
+    "checkpoint_identifier": "ModelVersion.V3",
+    "checkpoint_revision_confirmed": false,
+    "checkpoint_sha256": "NOT_VERIFIED",
+    "dataset": "wine",
+    "device": {
+      "cuda": true,
+      "gpu": "Tesla T4",
+      "torch": "2.11.0+cu130"
+    },
+    "fold": 0,
+    "model": "tabpfn3",
+    "npz_sha256": "fe21d72dc36eee9997716f312f64cb3189d0fb251cbad5aa198ba4407dd62817",
+    "package_version": "9.2.0",
+    "seed": 23,
+    "split_sha256": "6f49549cf50858dadc16977629d3046dedf9d82680411f955131b17cd747a981",
+    "train_cap": 128
+  },
+  {
+    "checkpoint_identifier": "ModelVersion.V3",
+    "checkpoint_revision_confirmed": false,
+    "checkpoint_sha256": "NOT_VERIFIED",
+    "dataset": "wine",
+    "device": {
+      "cuda": true,
+      "gpu": "Tesla T4",
+      "torch": "2.11.0+cu130"
+    },
+    "fold": 0,
+    "model": "tabpfn3",
+    "npz_sha256": "7e7f92acafd5752e29229faa1e3ed9e9be20b34b8073cca1743827eeebc3aad3",
+    "package_version": "9.2.0",
+    "seed": 23,
+    "split_sha256": "6f49549cf50858dadc16977629d3046dedf9d82680411f955131b17cd747a981",
+    "train_cap": 256
+  },
+  {
+    "checkpoint_identifier": "ModelVersion.V3",
+    "checkpoint_revision_confirmed": false,
+    "checkpoint_sha256": "NOT_VERIFIED",
+    "dataset": "wine",
+    "device": {
+      "cuda": true,
+      "gpu": "Tesla T4",
+      "torch": "2.11.0+cu130"
+    },
+    "fold": 1,
+    "model": "tabpfn3",
+    "npz_sha256": "1a64b7cdf1831bb765e9b33864cbf22835fec73ae9cda62a11fe567c741fc1a5",
+    "package_version": "9.2.0",
+    "seed": 23,
+    "split_sha256": "9292b8bb1114a29d6e962172df94d001cd5a7fa1a83f65917a4d650b23aa0ff8",
+    "train_cap": 128
+  },
+  {
+    "checkpoint_identifier": "ModelVersion.V3",
+    "checkpoint_revision_confirmed": false,
+    "checkpoint_sha256": "NOT_VERIFIED",
+    "dataset": "wine",
+    "device": {
+      "cuda": true,
+      "gpu": "Tesla T4",
+      "torch": "2.11.0+cu130"
+    },
+    "fold": 1,
+    "model": "tabpfn3",
+    "npz_sha256": "046913a49a23e359d9dc0bbe63ce6e203a5781779018d8140b5f76339978b7d7",
+    "package_version": "9.2.0",
+    "seed": 23,
+    "split_sha256": "9292b8bb1114a29d6e962172df94d001cd5a7fa1a83f65917a4d650b23aa0ff8",
+    "train_cap": 256
+  },
+  {
+    "checkpoint_identifier": "ModelVersion.V3",
+    "checkpoint_revision_confirmed": false,
+    "checkpoint_sha256": "NOT_VERIFIED",
+    "dataset": "wine",
+    "device": {
+      "cuda": true,
+      "gpu": "Tesla T4",
+      "torch": "2.11.0+cu130"
+    },
+    "fold": 0,
+    "model": "tabpfn3",
+    "npz_sha256": "2643914b9eff404581799984b2239060b69d135d80a6800ac84bea4648f909f3",
+    "package_version": "9.2.0",
+    "seed": 42,
+    "split_sha256": "f7c5c58b3f378d44a25d69007c7a3ac2055e260f96f1df3b847f19ec06ff9dbb",
+    "train_cap": 128
+  },
+  {
+    "checkpoint_identifier": "ModelVersion.V3",
+    "checkpoint_revision_confirmed": false,
+    "checkpoint_sha256": "NOT_VERIFIED",
+    "dataset": "wine",
+    "device": {
+      "cuda": true,
+      "gpu": "Tesla T4",
+      "torch": "2.11.0+cu130"
+    },
+    "fold": 0,
+    "model": "tabpfn3",
+    "npz_sha256": "62d255e239bfd6262b7387053ebdcc2e45017a95941abaa1cae9e233305c13f7",
+    "package_version": "9.2.0",
+    "seed": 42,
+    "split_sha256": "f7c5c58b3f378d44a25d69007c7a3ac2055e260f96f1df3b847f19ec06ff9dbb",
+    "train_cap": 256
+  },
+  {
+    "checkpoint_identifier": "ModelVersion.V3",
+    "checkpoint_revision_confirmed": false,
+    "checkpoint_sha256": "NOT_VERIFIED",
+    "dataset": "wine",
+    "device": {
+      "cuda": true,
+      "gpu": "Tesla T4",
+      "torch": "2.11.0+cu130"
+    },
+    "fold": 0,
+    "model": "tabpfn3",
+    "npz_sha256": "4234712e3247b785cfdfa1ddce65d24eb1e276a5c02d786cad3681862bbee4ab",
+    "package_version": "9.2.0",
+    "seed": 71,
+    "split_sha256": "8cdaedbcd32e5e5f57b1e9393dbe804aa7fadd7dde4dd9743f91b06d9bc5bf48",
+    "train_cap": 128
+  },
+  {
+    "checkpoint_identifier": "ModelVersion.V3",
+    "checkpoint_revision_confirmed": false,
+    "checkpoint_sha256": "NOT_VERIFIED",
+    "dataset": "wine",
+    "device": {
+      "cuda": true,
+      "gpu": "Tesla T4",
+      "torch": "2.11.0+cu130"
+    },
+    "fold": 0,
+    "model": "tabpfn3",
+    "npz_sha256": "dd688dfe0e46a670fb2a33b711c55098cefb9af353f320b89df98ebd9235e999",
+    "package_version": "9.2.0",
+    "seed": 71,
+    "split_sha256": "8cdaedbcd32e5e5f57b1e9393dbe804aa7fadd7dde4dd9743f91b06d9bc5bf48",
+    "train_cap": 256
+  }
+]

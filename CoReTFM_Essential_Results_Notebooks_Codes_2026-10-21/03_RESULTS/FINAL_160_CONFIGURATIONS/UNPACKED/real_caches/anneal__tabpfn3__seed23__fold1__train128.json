@@ -1,0 +1,74 @@
+{
+  "artifact_kind": "real_tfm",
+  "checkpoint_identifier": "ModelVersion.V3",
+  "checkpoint_revision_confirmed": false,
+  "checkpoint_sha256": "NOT_VERIFIED",
+  "classes_a": [
+    "1",
+    "2",
+    "3",
+    "5",
+    "U"
+  ],
+  "classes_b": [
+    "A",
+    "K",
+    "M",
+    "R",
+    "S",
+    "V",
+    "W",
+    "not_applicable"
+  ],
+  "created_utc": "2026-10-20T10:32:00.605772+00:00",
+  "dataset": "anneal",
+  "device": {
+    "cuda": true,
+    "gpu": "Tesla T4",
+    "torch": "2.11.0+cu130"
+  },
+  "elapsed_s": 7.218082071000026,
+  "evidence_caveat": "Checkpoint filename recorded; actual weight-byte SHA256 not obtained.",
+  "fold": 1,
+  "model": "tabpfn3",
+  "n_probabilities": 32096,
+  "n_test": 128,
+  "n_train": 128,
+  "n_val": 205,
+  "npz_sha256": "2b3d21af0311734c1bae92c2814c317c10c6a0a4c77a1194b29f12ef4dadf5ab",
+  "package_version": "9.2.0",
+  "protocol": "coretfm-v2-independent-fixed-test-2026-10-19",
+  "seed": 23,
+  "source": {
+    "openml_id": 46906,
+    "target_a": "classes",
+    "target_b": "steel"
+  },
+  "split_sha256": "96b74dee2767d425d8e1ed6b74f314a3b7636db7ae696abb07b00a4fb9df7f78",
+  "test_ids_sha": "d260a1c0ad214b74b0f922e97c51dce1173724086914ce18ac8204af29326dcf",
+  "timing": {
+    "a": {
+      "fit_with_load_sec": 0.22566725199999382,
+      "n_predict_calls": 2,
+      "predict_sec": 0.35409485399986806
+    },
+    "a_given_b": {
+      "fit_with_load_sec": 0.2360566759998619,
+      "n_predict_calls": 16,
+      "predict_sec": 2.8646272999999383
+    },
+    "b": {
+      "fit_with_load_sec": 0.22603882299995348,
+      "n_predict_calls": 2,
+      "predict_sec": 0.34004987100001927
+    },
+    "b_given_a": {
+      "fit_with_load_sec": 0.23374145599996154,
+      "n_predict_calls": 10,
+      "predict_sec": 1.870663279999917
+    }
+  },
+  "train_cap": 128,
+  "train_ids_sha": "32b12277917d52526ac1852db7497e887c223ec856b25beef02868ef72adf68e",
+  "val_ids_sha": "fa173f3930950b4f9cdb4e2e0ed17f1924e4e56bd534de48c8165feabdf10312"
+}

@@ -11,22 +11,24 @@ This checklist follows the current JMLR author information and formatting guidan
 - [x] Condensed running title is below 50 characters (current: 46 characters).
 - [x] Author-year citations via the JMLR/natbib bibliography style.
 - [x] Hyperlinks are hidden rather than colored or boxed.
-- [x] Reproducible figures are generated from the committed final evidence package.
+- [ ] Synchronize the manuscript tables and figures with the completed S2 evidence.
 - [x] Acknowledgments/disclosures are positioned before appendices/references in the draft structure.
-- [x] Fresh 18-page PDF compiled from the synchronized source with all citations and cross-references resolved; every page was visually checked.
+- [x] A pre-S2 18-page working PDF was compiled with citations and cross-references resolved and visually checked.
 
 ## Scientific blockers before submission
 
-- [x] Complete the bounded five-fold, ten-dataset benchmark on TabICLv2 and TabPFN-3, with CatBoost clearly separated as a non-TFM boundary baseline.
+- [x] Complete and publish the S2 evidence release: 160 configurations, 40 frozen split specifications, and six targeted clean reruns; Zenodo DOI [10.5281/zenodo.23507196](https://doi.org/10.5281/zenodo.23507196).
+- [x] Complete the legacy bounded five-fold, ten-dataset benchmark on TabICLv2 and TabPFN-3, with CatBoost clearly separated as a non-TFM boundary baseline.
 - [x] Report package versions, bounded inference budgets, hardware, and weight-license conditions.
 - [x] Run all adaptive choices using validation data disjoint from final test folds.
 - [x] Add dataset-blocked paired comparisons and effect sizes for NLL, Brier, ECE, and marginal distortion.
-- [ ] Repeat constrained sampling with at least three independent seeds.
+- [ ] Complete independent full-matrix sampling-seed sensitivity; the six seed-23 reruns are targeted clean checks, not full-matrix replications.
 - [ ] Add 256/512/1,024/full-feasible training-context sensitivity on representative datasets.
 - [ ] Resolve Marketing and Nursery rare-class robustness, including an exclusion sensitivity.
 - [ ] Add a third released TFM or narrow all cross-TFM claims explicitly to the two evaluated models.
 - [ ] Recheck August 2026 and later literature immediately before submission.
-- [ ] Freeze experiment seeds/configuration and create a tagged reproducibility release.
+- [ ] Verify exact checkpoint-weight bytes or explicitly bound claims to the recorded checkpoint provenance.
+- [ ] Freeze experiment seeds/configuration and create a tagged Git reproducibility release.
 
 ## Author/submission metadata blockers
 
@@ -43,6 +45,6 @@ This checklist follows the current JMLR author information and formatting guidan
 - Do not present zero post-repair incompatibility as an accuracy result.
 - Do not claim invention of conditional compatibility, KL projection, IPF, or Sinkhorn scaling.
 - Do not claim the first post-hoc TFM probability correction; DistPFN addresses a different problem (label shift).
-- Do not claim average Selective-CoRe gains on TFMs; the completed primary result favors arithmetic pooling.
-- Treat the 30-cell analysis as descriptive. The confirmatory unit is the dataset after averaging the two TFMs.
+- Keep conclusions specific to the evidence set named. The legacy five-fold benchmark favors arithmetic pooling; report S2 from its own analysis tables.
+- Treat split settings as repeated tests within datasets. The dataset is the independent unit for dataset-level inference.
 - Keep coherence, calibration, proper scoring, truth distance, and dependence fidelity as distinct evaluation axes.

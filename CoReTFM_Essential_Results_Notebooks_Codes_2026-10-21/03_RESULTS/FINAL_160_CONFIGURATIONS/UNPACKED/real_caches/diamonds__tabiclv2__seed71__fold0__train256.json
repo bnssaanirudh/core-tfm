@@ -1,0 +1,73 @@
+{
+  "artifact_kind": "real_tfm",
+  "checkpoint_identifier": "tabicl-classifier-v2-20260212.ckpt",
+  "checkpoint_revision_confirmed": false,
+  "checkpoint_sha256": "NOT_VERIFIED",
+  "classes_a": [
+    "Very Good",
+    "Fair",
+    "Good",
+    "Ideal",
+    "Premium"
+  ],
+  "classes_b": [
+    "D",
+    "E",
+    "F",
+    "G",
+    "H",
+    "I",
+    "J"
+  ],
+  "created_utc": "2026-10-20T10:10:51.852156+00:00",
+  "dataset": "diamonds",
+  "device": {
+    "cuda": true,
+    "gpu": "Tesla T4",
+    "torch": "2.11.0+cu130"
+  },
+  "elapsed_s": 4.366784571999972,
+  "evidence_caveat": "Checkpoint filename recorded; actual weight-byte SHA256 not obtained.",
+  "fold": 0,
+  "model": "tabiclv2",
+  "n_probabilities": 28561,
+  "n_test": 128,
+  "n_train": 256,
+  "n_val": 205,
+  "npz_sha256": "c76b618e5700e4bbdc473598c52bed0d51481fbc953cf0c7a7a348cfc1da92f1",
+  "package_version": "2.2.0",
+  "protocol": "coretfm-v2-independent-fixed-test-2026-10-19",
+  "seed": 71,
+  "source": {
+    "openml_id": 42225,
+    "target_a": "cut",
+    "target_b": "color"
+  },
+  "split_sha256": "a545053481c803762e76723ba82c945464afeaa2243bdc0fd5172dd157159acd",
+  "test_ids_sha": "7435b058d5f2eff22e401475a845451af83bfda09bb30fabd98d981363fd509b",
+  "timing": {
+    "a": {
+      "fit_with_load_sec": 0.4364700219999804,
+      "n_predict_calls": 2,
+      "predict_sec": 0.13340079599998944
+    },
+    "a_given_b": {
+      "fit_with_load_sec": 0.4568650269999921,
+      "n_predict_calls": 14,
+      "predict_sec": 1.0128261090000024
+    },
+    "b": {
+      "fit_with_load_sec": 0.4449501970000256,
+      "n_predict_calls": 2,
+      "predict_sec": 0.13590455000002066
+    },
+    "b_given_a": {
+      "fit_with_load_sec": 0.4378415689999997,
+      "n_predict_calls": 10,
+      "predict_sec": 0.6793671410000002
+    }
+  },
+  "train_cap": 256,
+  "train_ids_sha": "b70464459271b8509c042a95cd2a4f4519b2e35bef416f30850719f7b6eba260",
+  "val_ids_sha": "601146756faa37d2f83626c44cedb1235e59e492408d6bae80083a323b06650b"
+}

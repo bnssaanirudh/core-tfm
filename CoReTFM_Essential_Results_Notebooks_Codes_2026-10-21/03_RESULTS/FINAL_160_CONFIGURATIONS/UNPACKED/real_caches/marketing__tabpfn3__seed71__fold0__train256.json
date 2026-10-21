@@ -1,0 +1,71 @@
+{
+  "artifact_kind": "real_tfm",
+  "checkpoint_identifier": "ModelVersion.V3",
+  "checkpoint_revision_confirmed": false,
+  "checkpoint_sha256": "NOT_VERIFIED",
+  "classes_a": [
+    "No",
+    "Yes"
+  ],
+  "classes_b": [
+    "Absurd",
+    "Alone",
+    "Divorced",
+    "Married",
+    "Single",
+    "Together",
+    "Widow",
+    "YOLO"
+  ],
+  "created_utc": "2026-10-20T10:34:13.119228+00:00",
+  "dataset": "marketing",
+  "device": {
+    "cuda": true,
+    "gpu": "Tesla T4",
+    "torch": "2.11.0+cu130"
+  },
+  "elapsed_s": 5.47871770200004,
+  "evidence_caveat": "Checkpoint filename recorded; actual weight-byte SHA256 not obtained.",
+  "fold": 0,
+  "model": "tabpfn3",
+  "n_probabilities": 15241,
+  "n_test": 128,
+  "n_train": 256,
+  "n_val": 205,
+  "npz_sha256": "56653daadd5985081b308b6a1705a82393ae8f5f05923a34909b27e433a97472",
+  "package_version": "9.2.0",
+  "protocol": "coretfm-v2-independent-fixed-test-2026-10-19",
+  "seed": 71,
+  "source": {
+    "openml_id": 46940,
+    "target_a": "Response",
+    "target_b": "Marital_Status"
+  },
+  "split_sha256": "9913ff678cd6c042535e11ceb53b077aad8b5e6dba8ce09189e3235a1331e9f1",
+  "test_ids_sha": "e7bee0fdbbb6ad683f9dbfb1e085bcbf140516959d7bcb93c18b10b59668b217",
+  "timing": {
+    "a": {
+      "fit_with_load_sec": 0.20878957000013543,
+      "n_predict_calls": 2,
+      "predict_sec": 0.33083425199993144
+    },
+    "a_given_b": {
+      "fit_with_load_sec": 0.22866198699989582,
+      "n_predict_calls": 16,
+      "predict_sec": 2.4942417899999327
+    },
+    "b": {
+      "fit_with_load_sec": 0.20134785300001568,
+      "n_predict_calls": 2,
+      "predict_sec": 0.31296523500009243
+    },
+    "b_given_a": {
+      "fit_with_load_sec": 0.207033261000106,
+      "n_predict_calls": 4,
+      "predict_sec": 0.6376783210000667
+    }
+  },
+  "train_cap": 256,
+  "train_ids_sha": "ce974d14d6edc96c675123c45a635b718e90351219949c84d5194c3f2eeb84d9",
+  "val_ids_sha": "44d05264c310a0e6ea64f7c482fe8fbc633de302ad948c54af36eeed605d0414"
+}

@@ -1,0 +1,7 @@
+{
+  "errors": [],
+  "methods": "validation-only quantile threshold + conservative NLL guard",
+  "note": "Test labels used only to evaluate frozen selected prediction, not to fit thresholds/temperature.",
+  "rows": 160,
+  "status": "SELECTIVE_REPAIR_EVALUATED"
+}

@@ -22,6 +22,8 @@ jobs:
         run: pytest -q
       - name: Synthetic smoke test
         run: python experiments/smoke_synthetic.py
+      - name: Validate S2 cache manifests
+        run: python experiments/validate_s2_evidence.py
       - name: Audit committed benchmark
         run: python experiments/analyze_q1_benchmark.py > benchmark-audit.json
       - name: Ensure primary conclusion is unchanged

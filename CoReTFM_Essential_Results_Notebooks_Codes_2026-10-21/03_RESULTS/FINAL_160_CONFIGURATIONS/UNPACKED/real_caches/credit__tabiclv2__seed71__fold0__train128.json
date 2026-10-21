@@ -1,0 +1,67 @@
+{
+  "artifact_kind": "real_tfm",
+  "checkpoint_identifier": "tabicl-classifier-v2-20260212.ckpt",
+  "checkpoint_revision_confirmed": false,
+  "checkpoint_sha256": "NOT_VERIFIED",
+  "classes_a": [
+    "bad",
+    "good"
+  ],
+  "classes_b": [
+    "0 <= ... < 200 DM",
+    "<0 DM",
+    ">= 200 DM / salary assignments for >= 1 year",
+    "no checking account"
+  ],
+  "created_utc": "2026-10-19T18:58:56.482495+00:00",
+  "dataset": "credit",
+  "device": {
+    "cuda": true,
+    "gpu": "Tesla T4",
+    "torch": "2.11.0+cu130"
+  },
+  "elapsed_s": 3.95160369600012,
+  "evidence_caveat": "Checkpoint filename recorded; actual weight-byte SHA256 not obtained.",
+  "fold": 0,
+  "model": "tabiclv2",
+  "n_probabilities": 8453,
+  "n_test": 128,
+  "n_train": 128,
+  "n_val": 205,
+  "npz_sha256": "7bfc3275cf8a679d452c85b83598638cf04fa6c188dde39231923ee145ba2c57",
+  "package_version": "2.2.0",
+  "protocol": "coretfm-v2-independent-fixed-test-2026-10-19",
+  "seed": 71,
+  "source": {
+    "openml_id": 46918,
+    "target_a": "good_or_bad_customer",
+    "target_b": "checking_status"
+  },
+  "split_sha256": "497aadf6f9251c6da2e31c7f5fb000d406827362a6863abdcb96e6f81ab4efcd",
+  "test_ids_sha": "becf6fb808220856ebb64421b59216136978689bab842ee32c1cc72289123641",
+  "timing": {
+    "a": {
+      "fit_with_load_sec": 0.4919687229998999,
+      "n_predict_calls": 2,
+      "predict_sec": 0.14853735999986384
+    },
+    "a_given_b": {
+      "fit_with_load_sec": 0.4823386529999425,
+      "n_predict_calls": 8,
+      "predict_sec": 0.6209963759999937
+    },
+    "b": {
+      "fit_with_load_sec": 0.4624145629998111,
+      "n_predict_calls": 2,
+      "predict_sec": 0.1490307210001447
+    },
+    "b_given_a": {
+      "fit_with_load_sec": 0.4687067960001059,
+      "n_predict_calls": 4,
+      "predict_sec": 0.30147557200007213
+    }
+  },
+  "train_cap": 128,
+  "train_ids_sha": "e549addd092c617e2daef6fd849660a599052a35bdd03fa5f065827249818b31",
+  "val_ids_sha": "0b7fdce3c5e4f5f7a9add75770677f9dce86487973042f409e892db18e278677"
+}

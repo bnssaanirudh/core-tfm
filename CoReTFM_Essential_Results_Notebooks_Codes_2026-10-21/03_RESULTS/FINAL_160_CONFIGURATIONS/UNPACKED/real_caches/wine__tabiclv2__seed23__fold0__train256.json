@@ -1,0 +1,74 @@
+{
+  "artifact_kind": "real_tfm",
+  "checkpoint_identifier": "tabicl-classifier-v2-20260212.ckpt",
+  "checkpoint_revision_confirmed": false,
+  "checkpoint_sha256": "NOT_VERIFIED",
+  "classes_a": [
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6",
+    "7",
+    "8"
+  ],
+  "classes_b": [
+    "red",
+    "white"
+  ],
+  "created_utc": "2026-10-19T18:50:55.236930+00:00",
+  "dataset": "wine",
+  "device": {
+    "cuda": true,
+    "gpu": "Tesla T4",
+    "torch": "2.11.0+cu130"
+  },
+  "elapsed_s": 4.333172633999993,
+  "evidence_caveat": "Checkpoint filename recorded; actual weight-byte SHA256 not obtained.",
+  "fold": 0,
+  "model": "tabiclv2",
+  "n_probabilities": 15241,
+  "n_test": 128,
+  "n_train": 256,
+  "n_val": 205,
+  "npz_sha256": "73699639cbaac8d96dbe7a7c5a2cedaf6afbc2dd75ef30e7ec4b20c62f81bbb0",
+  "package_version": "2.2.0",
+  "protocol": "coretfm-v2-independent-fixed-test-2026-10-19",
+  "seed": 23,
+  "source": {
+    "openml_ids": [
+      40691,
+      40498
+    ],
+    "target_a": "class",
+    "target_b": "color"
+  },
+  "split_sha256": "6f49549cf50858dadc16977629d3046dedf9d82680411f955131b17cd747a981",
+  "test_ids_sha": "581371b8bbbbaefa4cd53c7f2e03391326b68a117e555e615e6f0a0993052941",
+  "timing": {
+    "a": {
+      "fit_with_load_sec": 0.44178481599999486,
+      "n_predict_calls": 2,
+      "predict_sec": 0.15840281399994183
+    },
+    "a_given_b": {
+      "fit_with_load_sec": 0.46362659800001893,
+      "n_predict_calls": 4,
+      "predict_sec": 0.35145585000009305
+    },
+    "b": {
+      "fit_with_load_sec": 0.46797780299993974,
+      "n_predict_calls": 2,
+      "predict_sec": 0.1405367219999789
+    },
+    "b_given_a": {
+      "fit_with_load_sec": 0.5084343900000476,
+      "n_predict_calls": 16,
+      "predict_sec": 1.1514956360000497
+    }
+  },
+  "train_cap": 256,
+  "train_ids_sha": "bc07336374804893dffddb9ab278883333339af018530a68edcf98e37c546b09",
+  "val_ids_sha": "1203a45a6e5720675eff83fbd3af18eb68ba3971cc22a6efaa24f546d40a808a"
+}

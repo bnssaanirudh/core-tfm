@@ -1,0 +1,35 @@
+{
+  "attempted": 1,
+  "completed": true,
+  "events": [
+    {
+      "details": {
+        "elapsed_sec": 5.914317429999983,
+        "n_test": 128,
+        "n_train": 128,
+        "n_val": 205,
+        "status": "REAL_MODEL_CACHE_WRITTEN"
+      },
+      "duration_sec": 5.972,
+      "job": [
+        "diamonds",
+        "tabpfn3",
+        71,
+        0,
+        128
+      ],
+      "message": "",
+      "status": "REAL_MODEL_CACHE_WRITTEN"
+    }
+  ],
+  "model": "tabpfn3",
+  "new_jobs": 1,
+  "status": "BATCH_FINISHED",
+  "target": 80,
+  "utc": "2026-10-20T10:34:58.671882+00:00",
+  "verified_by_model": {
+    "tabiclv2": 40,
+    "tabpfn3": 40
+  },
+  "verified_total": 80
+}

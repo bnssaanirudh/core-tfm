@@ -1,0 +1,11 @@
+dataset,openml_id,target_a,target_b,dataset_version_online_verified,raw_arff_sha256_online_verified,processed_pickle_present,processed_pickle_sha256,real_cache_configs
+anneal,46906,classes,steel,NO,NO,True,23f0f67d164d131355087d7b6654d3cd4265cef8547578e972bcfe2e167f914e,16
+car,40975,class,safety,NO,NO,False,,16
+credit,46918,good_or_bad_customer,checking_status,NO,NO,False,,16
+customer,46938,bad_client_target,education,NO,NO,True,61d98370284ce6d91aa34784e0c835d32816f01cf14ec9ac69b3c5d52c55fdd1,16
+diamonds,42225,cut,color,NO,NO,True,00142e780fa10ecb3da405fc716b3a3707003d6512b5900ef8b9a093a12ca463,16
+marketing,46940,Response,Marital_Status,NO,NO,True,95666f10de193a79a4d36dff382079149186cb318976f354f73622e6aaca1276,16
+mic,46980,LET_IS,ASP_S_n,NO,NO,True,fce88737bc447ef1e9a6f828ff3297fcd5ef85854dcc3def1b3bbb338c0fbea0,16
+nursery,26,class,health,NO,NO,False,,16
+phishing,46963,WebsiteType,SFH,NO,NO,False,,16
+wine,"[40691, 40498]",class,color,NO,NO,False,,16

@@ -1,0 +1,97 @@
+[
+  {
+    "path": "main.tex",
+    "sha256": "838a8217c8bb940ebb82e3f2e2c9249db6cc97e3a946e292f822679092da1069",
+    "bytes": 86521
+  },
+  {
+    "path": "references.bib",
+    "sha256": "ce5f33ad1c5969f0b28b06c5e70c93ed8bf626103ef414807c915b2d6d0dc0e8",
+    "bytes": 12896
+  },
+  {
+    "path": "main.bbl",
+    "sha256": "388e4fbc2738fce4ece16a434ec51af5a98c31051d8f04482e8f4d02fc09246f",
+    "bytes": 19597
+  },
+  {
+    "path": "README_DOI.md",
+    "sha256": "e5992357bf0b87ac2257853ee331765fbd9e068283f3f1c4f570fed15a6eb7f0",
+    "bytes": 396
+  },
+  {
+    "path": "DOI_RELEASE_CHECKLIST.md",
+    "sha256": "ab0550d3ae2ffdbf327fa588c7054cc52413d5427d7eb145da483f2091ebfc52",
+    "bytes": 2028
+  },
+  {
+    "path": "Fig1_coretfm_workflow.pdf",
+    "sha256": "0b0d483cc5b2aaf56f1b39aab8be8ced3920a7fa2161158cff34089f275d4ad1",
+    "bytes": 278809
+  },
+  {
+    "path": "Fig2_reliability_mechanism.pdf",
+    "sha256": "b03b0e08a9adcb0228f6c58866e6436d1e63dd68d7e0eedc3bc1ed451ae0689c",
+    "bytes": 247416
+  },
+  {
+    "path": "Fig3_controlled_benchmark.pdf",
+    "sha256": "037f3ed45415dddd4432335d440c0dc4c46d5619354a55fce9258d9f84829f83",
+    "bytes": 249347
+  },
+  {
+    "path": "Fig4_multiseed_dataset_effects.pdf",
+    "sha256": "b98dac9b2dcb0157e5aa1971ae18667cb45e1b784d709d8cf5ac149a51989340",
+    "bytes": 245714
+  },
+  {
+    "path": "Fig5_budget_transition.pdf",
+    "sha256": "31420fa8259aa376c4deb3aa190fd11c7ba4e0bc751dcb0d94723e3afc6b7c7c",
+    "bytes": 245728
+  },
+  {
+    "path": "Fig6_model_specific_budget.pdf",
+    "sha256": "6277c103568b15dcfb3692735ba5021b00f8743c9672eb921b4cafbbeabe6423",
+    "bytes": 222532
+  },
+  {
+    "path": "Fig7_candidate_complexity.pdf",
+    "sha256": "6553c592a03944c195941ddd4a5e6dd27e5127cd504dd41ecd3166549b3add8d",
+    "bytes": 167438
+  },
+  {
+    "path": "Fig8_seed_robustness.pdf",
+    "sha256": "c232663097238fe2b50a528ff659ebc23cd1100a5051e236a0e4e56ceaf6ee1b",
+    "bytes": 219435
+  },
+  {
+    "path": "05_CONSISTENCY_ACCURACY_tabiclv2.png",
+    "sha256": "f90d8225bd2d6fcc062117b2dd50125123bb47000f8e6f40c114f16834f8bc5e",
+    "bytes": 65206
+  },
+  {
+    "path": "05_CONSISTENCY_ACCURACY_tabpfn3.png",
+    "sha256": "3873773b365b81614afa5506e425cf790a432af5452d057ff969b4905f5b5473",
+    "bytes": 63338
+  },
+  {
+    "path": "05_HARD_REPAIR_NLL_DELTA.png",
+    "sha256": "b4fe00e766917c710c60b69db023c95c74f5f1a6300438f3fd571460712110a6",
+    "bytes": 74193
+  },
+  {
+    "path": "05_NLL_DATASETS_tabiclv2.png",
+    "sha256": "31ad7bc251a220894719bc6ad7ba42f5eb87091f16659d584582c0c222cff2e1",
+    "bytes": 68527
+  },
+  {
+    "path": "05_NLL_DATASETS_tabpfn3.png",
+    "sha256": "dabcc33f51b2988781d10c0292864ec75272650065b6a3fac0466d97c5cf135d",
+    "bytes": 68261
+  },
+  {
+    "path": "CoRe_TFM_V1_Zenodo_DOI_23507196.pdf",
+    "sha256": "8396620d542f3b241898fc08a2617f379dd5c70e4e5ce267bfe5f072a77cee10",
+    "bytes": 2249346
+  }
+]

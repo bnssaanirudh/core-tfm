@@ -1,0 +1,18 @@
+{
+  "checkpoint_weight_sha_not_established_for_loaded_models": true,
+  "full_paper_submission_ready": false,
+  "primary_cap_256_tabicl_datasets": 5,
+  "primary_cap_256_tabpfn_datasets": 5,
+  "priority1_total": 7,
+  "priority1_verified": 7,
+  "protocol": "coretfm-v5-2026-10-19-matched-multisplit",
+  "status": "MULTI_DATASET_PILOT_COMPLETE",
+  "tabicl_three_splits_per_dataset": true,
+  "valid_real_cache_count": 80,
+  "warnings": [
+    "No statistical claim unless there are sufficient independent datasets.",
+    "Prior model weights may have noncommercial license conditions.",
+    "Nested training sizes and repeated splits are not independent studies.",
+    "Validation budget 205 with train cap 64 is decoupled protocol, not 64-total-label regime."
+  ]
+}

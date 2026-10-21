@@ -1,0 +1,72 @@
+{
+  "artifact_kind": "real_tfm",
+  "checkpoint_identifier": "ModelVersion.V3",
+  "checkpoint_revision_confirmed": false,
+  "checkpoint_sha256": "NOT_VERIFIED",
+  "classes_a": [
+    "alive",
+    "asystole",
+    "cardiogenic_shock",
+    "myocardial_rupture",
+    "progress_congestive_heart_failure",
+    "pulmonary_edema",
+    "thromboembolism",
+    "ventricular_fibrillation"
+  ],
+  "classes_b": [
+    "0.0",
+    "1.0",
+    "nan"
+  ],
+  "created_utc": "2026-10-20T10:30:19.114082+00:00",
+  "dataset": "mic",
+  "device": {
+    "cuda": true,
+    "gpu": "Tesla T4",
+    "torch": "2.11.0+cu130"
+  },
+  "elapsed_s": 8.43385672699992,
+  "evidence_caveat": "Checkpoint filename recorded; actual weight-byte SHA256 not obtained.",
+  "fold": 0,
+  "model": "tabpfn3",
+  "n_probabilities": 20902,
+  "n_test": 128,
+  "n_train": 256,
+  "n_val": 205,
+  "npz_sha256": "17b2cc972803fe553985bb6a1915d6e3fae958cc9f18853be17e7dd69e240663",
+  "package_version": "9.2.0",
+  "protocol": "coretfm-v2-independent-fixed-test-2026-10-19",
+  "seed": 23,
+  "source": {
+    "openml_id": 46980,
+    "target_a": "LET_IS",
+    "target_b": "ASP_S_n"
+  },
+  "split_sha256": "49aecd2c6468dd6f98d818c8ff122e4df89b7d44fed426a66e6363e226ab4554",
+  "test_ids_sha": "3a2219e97872c66c9814c286e0fccb9d01e6e7dc3f9068d8dccff450322738e6",
+  "timing": {
+    "a": {
+      "fit_with_load_sec": 0.4091165539998656,
+      "n_predict_calls": 2,
+      "predict_sec": 0.4933777789999567
+    },
+    "a_given_b": {
+      "fit_with_load_sec": 0.357095739999977,
+      "n_predict_calls": 6,
+      "predict_sec": 1.4098350570000093
+    },
+    "b": {
+      "fit_with_load_sec": 0.35674776800010477,
+      "n_predict_calls": 2,
+      "predict_sec": 0.47288065499992626
+    },
+    "b_given_a": {
+      "fit_with_load_sec": 0.3502096550000715,
+      "n_predict_calls": 16,
+      "predict_sec": 3.675908540999899
+    }
+  },
+  "train_cap": 256,
+  "train_ids_sha": "cff20027d16f197fe592f4eb61be3dcbc68186c45c07b68625325bdf3e4c83ae",
+  "val_ids_sha": "c39af0ad9539d255a3a9eeef9202c7927637a3d62219aa90ca344639f7787455"
+}

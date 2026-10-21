@@ -1,0 +1,54 @@
+{
+  "attempted": 3,
+  "events": [
+    {
+      "elapsed_sec": 10.611667928999964,
+      "job": [
+        "car",
+        "tabiclv2",
+        23,
+        0,
+        128
+      ],
+      "n_test": 128,
+      "n_train": 128,
+      "n_val": 205,
+      "path": "/content/drive/MyDrive/CoRe_TFM_Resumable_v2/real_caches/car__tabiclv2__seed23__fold0__train128.npz",
+      "status": "REAL_MODEL_CACHE_WRITTEN"
+    },
+    {
+      "elapsed_sec": 3.7166600030000154,
+      "job": [
+        "car",
+        "tabiclv2",
+        23,
+        0,
+        256
+      ],
+      "n_test": 128,
+      "n_train": 256,
+      "n_val": 205,
+      "path": "/content/drive/MyDrive/CoRe_TFM_Resumable_v2/real_caches/car__tabiclv2__seed23__fold0__train256.npz",
+      "status": "REAL_MODEL_CACHE_WRITTEN"
+    },
+    {
+      "elapsed_sec": 3.9592121400000337,
+      "job": [
+        "credit",
+        "tabiclv2",
+        23,
+        0,
+        128
+      ],
+      "n_test": 128,
+      "n_train": 128,
+      "n_val": 205,
+      "path": "/content/drive/MyDrive/CoRe_TFM_Resumable_v2/real_caches/credit__tabiclv2__seed23__fold0__train128.npz",
+      "status": "REAL_MODEL_CACHE_WRITTEN"
+    }
+  ],
+  "new_jobs": 3,
+  "repeat_cell_to_resume": true,
+  "stage": "bootstrap",
+  "status": "QUEUE_PASS_COMPLETE"
+}

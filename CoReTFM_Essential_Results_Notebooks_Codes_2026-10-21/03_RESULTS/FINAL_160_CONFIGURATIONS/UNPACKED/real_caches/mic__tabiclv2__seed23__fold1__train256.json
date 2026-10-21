@@ -1,0 +1,72 @@
+{
+  "artifact_kind": "real_tfm",
+  "checkpoint_identifier": "tabicl-classifier-v2-20260212.ckpt",
+  "checkpoint_revision_confirmed": false,
+  "checkpoint_sha256": "NOT_VERIFIED",
+  "classes_a": [
+    "alive",
+    "asystole",
+    "cardiogenic_shock",
+    "myocardial_rupture",
+    "progress_congestive_heart_failure",
+    "pulmonary_edema",
+    "thromboembolism",
+    "ventricular_fibrillation"
+  ],
+  "classes_b": [
+    "0.0",
+    "1.0",
+    "nan"
+  ],
+  "created_utc": "2026-10-20T10:08:37.982450+00:00",
+  "dataset": "mic",
+  "device": {
+    "cuda": true,
+    "gpu": "Tesla T4",
+    "torch": "2.11.0+cu130"
+  },
+  "elapsed_s": 7.808671193000009,
+  "evidence_caveat": "Checkpoint filename recorded; actual weight-byte SHA256 not obtained.",
+  "fold": 1,
+  "model": "tabiclv2",
+  "n_probabilities": 20902,
+  "n_test": 128,
+  "n_train": 256,
+  "n_val": 205,
+  "npz_sha256": "de830b8da642e90f0dc826c2b056dc8f8658cec50164e268aeb0817c51dab7bb",
+  "package_version": "2.2.0",
+  "protocol": "coretfm-v2-independent-fixed-test-2026-10-19",
+  "seed": 23,
+  "source": {
+    "openml_id": 46980,
+    "target_a": "LET_IS",
+    "target_b": "ASP_S_n"
+  },
+  "split_sha256": "67a58f96899638fcd3cdbe3921cb8e2ff510c131adb03589f757bfa77d892d35",
+  "test_ids_sha": "bb470dd12fa31e4b06b40de4c9b245a1417e0f160833b56eb97232082f65137d",
+  "timing": {
+    "a": {
+      "fit_with_load_sec": 0.6848302909999688,
+      "n_predict_calls": 2,
+      "predict_sec": 0.3396031940000057
+    },
+    "a_given_b": {
+      "fit_with_load_sec": 0.7216611399999806,
+      "n_predict_calls": 6,
+      "predict_sec": 1.0031186020000291
+    },
+    "b": {
+      "fit_with_load_sec": 0.6646025640000062,
+      "n_predict_calls": 2,
+      "predict_sec": 0.3372907340000211
+    },
+    "b_given_a": {
+      "fit_with_load_sec": 0.6750305040000057,
+      "n_predict_calls": 16,
+      "predict_sec": 2.7079425679999645
+    }
+  },
+  "train_cap": 256,
+  "train_ids_sha": "19c33a07ba4cf29146964f4d6637345cc2264dcfdc90603c870bb69f0dfb2e76",
+  "val_ids_sha": "e5e82057c2c98e2a987e4fb81ab63d0336ef494c33c11acd183248b686178066"
+}

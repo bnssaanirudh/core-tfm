@@ -1,0 +1,69 @@
+{
+  "artifact_kind": "real_tfm",
+  "checkpoint_identifier": "tabicl-classifier-v2-20260212.ckpt",
+  "checkpoint_revision_confirmed": false,
+  "checkpoint_sha256": "NOT_VERIFIED",
+  "classes_a": [
+    "No",
+    "Yes"
+  ],
+  "classes_b": [
+    "Higher education",
+    "Incomplete higher education",
+    "Incomplete secondary education",
+    "PhD degree",
+    "Secondary education",
+    "Secondary special education"
+  ],
+  "created_utc": "2026-10-20T10:08:43.083131+00:00",
+  "dataset": "customer",
+  "device": {
+    "cuda": true,
+    "gpu": "Tesla T4",
+    "torch": "2.11.0+cu130"
+  },
+  "elapsed_s": 4.13067950300001,
+  "evidence_caveat": "Checkpoint filename recorded; actual weight-byte SHA256 not obtained.",
+  "fold": 1,
+  "model": "tabiclv2",
+  "n_probabilities": 11911,
+  "n_test": 128,
+  "n_train": 256,
+  "n_val": 205,
+  "npz_sha256": "e13a9f2a745d99836cab82fc65f847c9ee433d0b3a117eb49f1fc3776603011b",
+  "package_version": "2.2.0",
+  "protocol": "coretfm-v2-independent-fixed-test-2026-10-19",
+  "seed": 23,
+  "source": {
+    "openml_id": 46938,
+    "target_a": "bad_client_target",
+    "target_b": "education"
+  },
+  "split_sha256": "9fdab3a0a9184fac25ccdc33cf5ba67a4f35947348afbad207a81102d0c1b5d7",
+  "test_ids_sha": "cdf501137f2982f7febe5cf19f85d2118c49be9c57802310828601c5115ae0fa",
+  "timing": {
+    "a": {
+      "fit_with_load_sec": 0.48672723600003565,
+      "n_predict_calls": 2,
+      "predict_sec": 0.1496415880000086
+    },
+    "a_given_b": {
+      "fit_with_load_sec": 0.469526855999959,
+      "n_predict_calls": 12,
+      "predict_sec": 0.9317296549999696
+    },
+    "b": {
+      "fit_with_load_sec": 0.47656307099998685,
+      "n_predict_calls": 2,
+      "predict_sec": 0.16707696100002067
+    },
+    "b_given_a": {
+      "fit_with_load_sec": 0.48662566799998785,
+      "n_predict_calls": 4,
+      "predict_sec": 0.29613711700000067
+    }
+  },
+  "train_cap": 256,
+  "train_ids_sha": "5605e75191a209d51a656937e01535f9d8d6ed5c14132dae6c2425cac7064243",
+  "val_ids_sha": "3ec83fe06ca614895d7fc3678afe9eae98ec5fbb321d6665e524cf011f59aa0c"
+}

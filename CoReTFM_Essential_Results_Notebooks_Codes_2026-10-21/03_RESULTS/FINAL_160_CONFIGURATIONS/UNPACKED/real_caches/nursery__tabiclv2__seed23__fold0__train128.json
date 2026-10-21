@@ -1,0 +1,69 @@
+{
+  "artifact_kind": "real_tfm",
+  "checkpoint_identifier": "tabicl-classifier-v2-20260212.ckpt",
+  "checkpoint_revision_confirmed": false,
+  "checkpoint_sha256": "NOT_VERIFIED",
+  "classes_a": [
+    "not_recom",
+    "priority",
+    "recommend",
+    "spec_prior",
+    "very_recom"
+  ],
+  "classes_b": [
+    "not_recom",
+    "priority",
+    "recommended"
+  ],
+  "created_utc": "2026-10-19T18:52:13.088742+00:00",
+  "dataset": "nursery",
+  "device": {
+    "cuda": true,
+    "gpu": "Tesla T4",
+    "torch": "2.11.0+cu130"
+  },
+  "elapsed_s": 3.953066888999956,
+  "evidence_caveat": "Checkpoint filename recorded; actual weight-byte SHA256 not obtained.",
+  "fold": 0,
+  "model": "tabiclv2",
+  "n_probabilities": 13781,
+  "n_test": 128,
+  "n_train": 128,
+  "n_val": 205,
+  "npz_sha256": "8832902a73feb6d0f0cabc0776defcb2bae97f77aad318d40266c2977283eae9",
+  "package_version": "2.2.0",
+  "protocol": "coretfm-v2-independent-fixed-test-2026-10-19",
+  "seed": 23,
+  "source": {
+    "openml_id": 26,
+    "target_a": "class",
+    "target_b": "health"
+  },
+  "split_sha256": "1179ae56d8786a52f2fd4e5e40c8c438002ffa716981e912c387cf88b9a1fd50",
+  "test_ids_sha": "82811303d67f622dbd2a9984e7857aa29d874df222de97f519df4137c7de72d6",
+  "timing": {
+    "a": {
+      "fit_with_load_sec": 0.5016774460000306,
+      "n_predict_calls": 2,
+      "predict_sec": 0.16588236100005815
+    },
+    "a_given_b": {
+      "fit_with_load_sec": 0.47875654799997847,
+      "n_predict_calls": 6,
+      "predict_sec": 0.42190888400000404
+    },
+    "b": {
+      "fit_with_load_sec": 0.47779576699997506,
+      "n_predict_calls": 2,
+      "predict_sec": 0.14145328800009338
+    },
+    "b_given_a": {
+      "fit_with_load_sec": 0.45214152199991986,
+      "n_predict_calls": 10,
+      "predict_sec": 0.6519245670000373
+    }
+  },
+  "train_cap": 128,
+  "train_ids_sha": "83ed5033ed3dc6911cfdf8f43f47f504a5c3eaa8699e52669cd99f4fcc4956af",
+  "val_ids_sha": "29d1f9a6046d0dc8d19dd2fc556d2af4525a56c41e366098dd9da7dcbae26f2b"
+}

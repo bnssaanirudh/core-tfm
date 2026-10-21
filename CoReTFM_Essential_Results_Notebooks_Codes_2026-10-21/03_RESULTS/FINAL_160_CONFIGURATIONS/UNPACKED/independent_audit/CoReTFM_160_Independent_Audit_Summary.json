@@ -1,0 +1,58 @@
+{
+  "archive_integrity_checks": {
+    "CoReTFM_V5_Matched_Research_Evidence (4).zip": 208,
+    "CoReTFM_NEXT_ONLY_20261020T103510Z.zip": 197
+  },
+  "valid_configurations": 160,
+  "new": 80,
+  "old": 80,
+  "datasets": [
+    "anneal",
+    "car",
+    "credit",
+    "customer",
+    "diamonds",
+    "marketing",
+    "mic",
+    "nursery",
+    "phishing",
+    "wine"
+  ],
+  "models": [
+    "tabiclv2",
+    "tabpfn3"
+  ],
+  "same_protocol": true,
+  "same_test_ids_across_models_and_caps": true,
+  "nested_training_contexts": true,
+  "error_count": 0,
+  "errors": [],
+  "checkpoint_weight_hash_verified": false,
+  "primary_setting": "train_cap=256; validation_selection_budget=52; n_test=128; four split settings per dataset",
+  "full_selected_repair_count_80_primary": 12,
+  "main_reconciliation_delta_by_model": [
+    {
+      "model": "tabiclv2",
+      "n_datasets": 10,
+      "n_repeats": 40,
+      "mean_delta_nll_hard_vs_pool": 0.018310459172693923,
+      "datasets_harmed": 9,
+      "split_settings_harmed": 36,
+      "dataset_block_bootstrap95_low": 0.008925340064387267,
+      "dataset_block_bootstrap95_high": 0.028323769763902124,
+      "exploratory_wilcoxon_two_sided_p": 0.009765625
+    },
+    {
+      "model": "tabpfn3",
+      "n_datasets": 10,
+      "n_repeats": 40,
+      "mean_delta_nll_hard_vs_pool": 0.011780765116861358,
+      "datasets_harmed": 9,
+      "split_settings_harmed": 31,
+      "dataset_block_bootstrap95_low": 0.00405896334743673,
+      "dataset_block_bootstrap95_high": 0.019413610639173046,
+      "exploratory_wilcoxon_two_sided_p": 0.01953125
+    }
+  ],
+  "paper_submission_ready": false
+}

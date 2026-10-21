@@ -4,26 +4,25 @@ Research implementation for **post-hoc reconciliation of incompatible probabilit
 
 ## Paper status
 
-The repository now contains a complete bounded-context benchmark: 10 datasets,
-five outer folds, two primary released TFMs (TabICLv2 and TabPFN-3), and CatBoost
-as a non-TFM boundary baseline. Every fold uses at most 256 training, 52 validation,
-and 128 test observations. The evidence package, exact notebook, protocol amendment,
-checksums, environment record, and generated plots are under
-[`results/q1_fast_complete_256_v1/`](results/q1_fast_complete_256_v1/) and
-[`notebooks/`](notebooks/).
+The current empirical release is the completed **S2 protocol** in
+[`CoReTFM_Essential_Results_Notebooks_Codes_2026-10-21/`](CoReTFM_Essential_Results_Notebooks_Codes_2026-10-21/): 10 datasets × 2
+TFMs × 4 held-out split settings × 2 training caps (128 and 256), for **160
+configurations**. It includes 160 NPZ prediction caches, 160 JSON sidecars, and
+40 frozen split specifications. The main setting uses a 52-example validation
+selection budget and 128 test examples. The S2 data release is published at
+[Zenodo DOI 10.5281/zenodo.23507196](https://doi.org/10.5281/zenodo.23507196).
 
-The result is scientifically informative but not a performance win. Averaging the
-two TFMs within each dataset, Selective CoRe is worse than arithmetic pooling by
-`+0.001831` joint NLL (95% bootstrap CI `[+0.000548, +0.003301]`; 2/10 wins;
-two-sided Wilcoxon `p=0.02734`). It reduces marginal distortion by `0.003855` but
-worsens Brier score by `0.000646`. The manuscripts therefore frame CoRe-TFM as a
-diagnostic reliability and consistency--accuracy trade-off, not as an unconditional
-improvement over pooling.
+The package also contains **six targeted clean replication runs**: three datasets
+(Car, Nursery, Diamonds) × two TFMs, at seed 23 and training cap 256. These runs
+are separate clean environment reruns, not six repeats of the full 160-configuration
+matrix. The archive's current-status note explains how to read its preserved
+historical reports and README files.
 
-The draft remains **not submission-ready** until sampling-seed and training-size
-sensitivity are completed, the rare-class dataset choice is resolved, and author
-metadata/disclosures are finalized. A third released TFM is strongly recommended
-for broad cross-TFM claims; CatBoost is not treated as its substitute.
+The S2 evidence collection, checksum manifest, and public data release are complete.
+This describes the research evidence status; journal-specific author details and
+submission checks remain tracked in [`paper/jmlr/SUBMISSION_CHECKLIST.md`](paper/jmlr/SUBMISSION_CHECKLIST.md).
+The earlier five-fold benchmark under `results/q1_fast_complete_256_v1/` is retained
+as a historical study, not the current S2 result set.
 
 ## Core problem
 
@@ -65,12 +64,10 @@ The repository now contains three complementary controlled studies:
    oracle is `0.000710`. Controlled validation-size experiments reduce oracle regret
    from `0.005602` at 100 labels to `0.001155` at 800 labels.
 
-The real benchmark confirms measurable incompatibility (mean factorization TV
-`0.06249` across the primary TFMs) but shows that a 48-candidate selector can
-overfit a 52-example validation set. Pool-only selection has slightly lower mean
-NLL than the full family, while Hard CoRe removes marginal distortion at a clear
-proper-score cost. Effects reverse by model: Selective CoRe is worse on TabICLv2
-by `0.006694` and better on TabPFN-3 by `0.003031` on average.
+The earlier five-fold real benchmark remains archived for context. Current S2
+configuration-level results and independent audit summaries are in the dated
+evidence package linked above; S2 uses four split settings per dataset, which are
+repeated tests within datasets rather than independent dataset-level units.
 
 ## Reliability-aware research extension
 
@@ -135,6 +132,13 @@ PYTHONPATH=src python experiments/run_selective_mixture.py
 PYTHONPATH=src python experiments/run_selective_validation_size.py
 PYTHONPATH=src python experiments/analyze_q1_benchmark.py
 PYTHONPATH=src python experiments/run_reliability_aware_suite.py
+```
+
+Validate every S2 cache and JSON sidecar against the package's uploaded SHA-256
+manifests (including the six clean reruns) with:
+
+```bash
+python experiments/validate_s2_evidence.py
 ```
 
 ## Research guardrail

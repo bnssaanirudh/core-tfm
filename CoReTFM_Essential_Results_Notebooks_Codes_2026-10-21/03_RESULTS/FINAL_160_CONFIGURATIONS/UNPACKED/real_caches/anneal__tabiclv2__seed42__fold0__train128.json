@@ -1,0 +1,74 @@
+{
+  "artifact_kind": "real_tfm",
+  "checkpoint_identifier": "tabicl-classifier-v2-20260212.ckpt",
+  "checkpoint_revision_confirmed": false,
+  "checkpoint_sha256": "NOT_VERIFIED",
+  "classes_a": [
+    "1",
+    "2",
+    "3",
+    "5",
+    "U"
+  ],
+  "classes_b": [
+    "A",
+    "K",
+    "M",
+    "R",
+    "S",
+    "V",
+    "W",
+    "not_applicable"
+  ],
+  "created_utc": "2026-10-20T10:09:58.011180+00:00",
+  "dataset": "anneal",
+  "device": {
+    "cuda": true,
+    "gpu": "Tesla T4",
+    "torch": "2.11.0+cu130"
+  },
+  "elapsed_s": 5.349730429000033,
+  "evidence_caveat": "Checkpoint filename recorded; actual weight-byte SHA256 not obtained.",
+  "fold": 0,
+  "model": "tabiclv2",
+  "n_probabilities": 32096,
+  "n_test": 128,
+  "n_train": 128,
+  "n_val": 205,
+  "npz_sha256": "fe500331a8ba903c48b35fb258f26352b999d5db923cd3b40f779af79de35d67",
+  "package_version": "2.2.0",
+  "protocol": "coretfm-v2-independent-fixed-test-2026-10-19",
+  "seed": 42,
+  "source": {
+    "openml_id": 46906,
+    "target_a": "classes",
+    "target_b": "steel"
+  },
+  "split_sha256": "1e7786c15e8ff6a10ef4a457fe971337ccd2e1e8797537debb1606e05b61609d",
+  "test_ids_sha": "67bd335af5d1236489c828dbcd41bbdcbcebf1b1f8ae0e858ddfc7b05f133704",
+  "timing": {
+    "a": {
+      "fit_with_load_sec": 0.4971906349999813,
+      "n_predict_calls": 2,
+      "predict_sec": 0.16757921399999987
+    },
+    "a_given_b": {
+      "fit_with_load_sec": 0.5062775769999917,
+      "n_predict_calls": 16,
+      "predict_sec": 1.401697893000005
+    },
+    "b": {
+      "fit_with_load_sec": 0.5585397269999817,
+      "n_predict_calls": 2,
+      "predict_sec": 0.19137212900000122
+    },
+    "b_given_a": {
+      "fit_with_load_sec": 0.5111975190000067,
+      "n_predict_calls": 10,
+      "predict_sec": 0.8725700200000119
+    }
+  },
+  "train_cap": 128,
+  "train_ids_sha": "839a0f3a66f332a4e444bde03e9615a6336ac7036b791083c10116960fae1af4",
+  "val_ids_sha": "6b28a9aab874822340d344f8dee47ade234eb97494f42c3d9f9100ed71be9db8"
+}

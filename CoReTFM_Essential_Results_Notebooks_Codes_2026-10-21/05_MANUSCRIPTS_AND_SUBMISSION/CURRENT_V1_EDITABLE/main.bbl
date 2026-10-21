@@ -1,0 +1,381 @@
+\begin{thebibliography}{40}
+\expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
+\providecommand{\url}[1]{\texttt{#1}}
+\providecommand{\href}[2]{#2}
+\providecommand{\path}[1]{#1}
+\providecommand{\DOIprefix}{doi:}
+\providecommand{\ArXivprefix}{arXiv:}
+\providecommand{\URLprefix}{URL: }
+\providecommand{\Pubmedprefix}{pmid:}
+\providecommand{\doi}[1]{\href{http://dx.doi.org/#1}{\path{#1}}}
+\providecommand{\Pubmed}[1]{\href{pmid:#1}{\path{#1}}}
+\providecommand{\bibinfo}[2]{#2}
+\ifx\xfnm\relax \def\xfnm[#1]{\unskip,\space#1}\fi
+%Type = Article
+\bibitem[{Benamou et~al.(2015)Benamou, Carlier, Cuturi, Nenna and
+  Peyre}]{benamou2015bregman}
+\bibinfo{author}{Benamou, J.}, \bibinfo{author}{Carlier, G.},
+  \bibinfo{author}{Cuturi, M.}, \bibinfo{author}{Nenna, L.},
+  \bibinfo{author}{Peyre, G.}, \bibinfo{year}{2015}.
+\newblock \bibinfo{title}{Iterative bregman projections for regularized
+  transportation problems}.
+\newblock \bibinfo{journal}{SIAM Journal on Scientific Computing}
+  \bibinfo{volume}{37}, \bibinfo{pages}{A1111--A1138}.
+\newblock \DOIprefix\doi{10.1137/141000439}.
+%Type = Misc
+\bibitem[{Bohanec(1988)}]{bohanec1988car}
+\bibinfo{author}{Bohanec, M.}, \bibinfo{year}{1988}.
+\newblock \bibinfo{title}{Car evaluation}.
+\newblock \bibinfo{howpublished}{UCI Machine Learning Repository}.
+\newblock \DOIprefix\doi{10.24432/C5JP48}.
+%Type = Article
+\bibitem[{Brier(1950)}]{brier1950}
+\bibinfo{author}{Brier, G.}, \bibinfo{year}{1950}.
+\newblock \bibinfo{title}{Verification of forecasts expressed in terms of
+  probability}.
+\newblock \bibinfo{journal}{Monthly Weather Review} \bibinfo{volume}{78},
+  \bibinfo{pages}{1--3}.
+\newblock \URLprefix
+  \url{https://journals.ametsoc.org/view/journals/mwre/78/1/1520-0493_1950_078_0001_vofeit_2_0_co_2.xml}.
+%Type = Article
+\bibitem[{Cawley and Talbot(2010)}]{cawley2010overfitting}
+\bibinfo{author}{Cawley, G.}, \bibinfo{author}{Talbot, N.},
+  \bibinfo{year}{2010}.
+\newblock \bibinfo{title}{On over-fitting in model selection and subsequent
+  selection bias in performance evaluation}.
+\newblock \bibinfo{journal}{Journal of Machine Learning Research}
+  \bibinfo{volume}{11}, \bibinfo{pages}{2079--2107}.
+%Type = Article
+\bibitem[{Chizat et~al.(2018)Chizat, Peyre, Schmitzer and
+  Vialard}]{chizat2018scaling}
+\bibinfo{author}{Chizat, L.}, \bibinfo{author}{Peyre, G.},
+  \bibinfo{author}{Schmitzer, B.}, \bibinfo{author}{Vialard, F.},
+  \bibinfo{year}{2018}.
+\newblock \bibinfo{title}{Scaling algorithms for unbalanced optimal transport
+  problems}.
+\newblock \bibinfo{journal}{Mathematics of Computation} \bibinfo{volume}{87},
+  \bibinfo{pages}{2563--2609}.
+\newblock \DOIprefix\doi{10.1090/mcom/3303}.
+%Type = Article
+\bibitem[{Cortez et~al.(2009)Cortez, Cerdeira, Almeida, Matos and
+  Reis}]{cortez2009wine}
+\bibinfo{author}{Cortez, P.}, \bibinfo{author}{Cerdeira, A.},
+  \bibinfo{author}{Almeida, F.}, \bibinfo{author}{Matos, T.},
+  \bibinfo{author}{Reis, J.}, \bibinfo{year}{2009}.
+\newblock \bibinfo{title}{Modeling wine preferences by data mining from
+  physicochemical properties}.
+\newblock \bibinfo{journal}{Decision Support Systems} \bibinfo{volume}{47},
+  \bibinfo{pages}{547--553}.
+\newblock \DOIprefix\doi{10.1016/j.dss.2009.05.016}.
+%Type = Misc
+\bibitem[{Costa et~al.(2026)Costa, Popineau, Rimmel and
+  Doan}]{costa2026lowreliability}
+\bibinfo{author}{Costa, J.L.d.M.}, \bibinfo{author}{Popineau, F.},
+  \bibinfo{author}{Rimmel, A.}, \bibinfo{author}{Doan, B.L.},
+  \bibinfo{year}{2026}.
+\newblock \bibinfo{title}{High performance, low reliability: Uncertainty
+  benchmarking for tabular foundation models}.
+\newblock \URLprefix \url{https://arxiv.org/abs/2605.28554},
+  \href{http://arxiv.org/abs/2605.28554}{\tt arXiv:2605.28554}.
+%Type = Article
+\bibitem[{Csiszár(1975)}]{csiszar1975idiv}
+\bibinfo{author}{Csiszár, I.}, \bibinfo{year}{1975}.
+\newblock \bibinfo{title}{I-divergence geometry of probability distributions
+  and minimization problems}.
+\newblock \bibinfo{journal}{The Annals of Probability} \bibinfo{volume}{3},
+  \bibinfo{pages}{146--158}.
+\newblock \DOIprefix\doi{10.1214/aop/1176996454}.
+%Type = Inproceedings
+\bibitem[{Cuturi(2013)}]{cuturi2013sinkhorn}
+\bibinfo{author}{Cuturi, M.}, \bibinfo{year}{2013}.
+\newblock \bibinfo{title}{Sinkhorn distances: Lightspeed computation of optimal
+  transport}, in: \bibinfo{booktitle}{Advances in Neural Information Processing
+  Systems}.
+%Type = Article
+\bibitem[{Deming and Stephan(1940)}]{deming1940ipf}
+\bibinfo{author}{Deming, W.}, \bibinfo{author}{Stephan, F.},
+  \bibinfo{year}{1940}.
+\newblock \bibinfo{title}{On a least squares adjustment of a sampled frequency
+  table when the expected marginal totals are known}.
+\newblock \bibinfo{journal}{The Annals of Mathematical Statistics}
+  \bibinfo{volume}{11}, \bibinfo{pages}{427--444}.
+\newblock \DOIprefix\doi{10.1214/aoms/1177731829}.
+%Type = Article
+\bibitem[{Demšar(2006)}]{demsar2006comparisons}
+\bibinfo{author}{Demšar, J.}, \bibinfo{year}{2006}.
+\newblock \bibinfo{title}{Statistical comparisons of classifiers over multiple
+  data sets}.
+\newblock \bibinfo{journal}{Journal of Machine Learning Research}
+  \bibinfo{volume}{7}, \bibinfo{pages}{1--30}.
+%Type = Inproceedings
+\bibitem[{Erickson et~al.(2025)Erickson, Purucker, Tschalzev, Holzmüller,
+  Desai, Salinas and Hutter}]{erickson2025tabarena}
+\bibinfo{author}{Erickson, N.}, \bibinfo{author}{Purucker, L.},
+  \bibinfo{author}{Tschalzev, A.}, \bibinfo{author}{Holzmüller, D.},
+  \bibinfo{author}{Desai, P.M.}, \bibinfo{author}{Salinas, D.},
+  \bibinfo{author}{Hutter, F.}, \bibinfo{year}{2025}.
+\newblock \bibinfo{title}{{{TabArena}}: A living benchmark for machine learning
+  on tabular data}, in: \bibinfo{booktitle}{Advances in Neural Information
+  Processing Systems}.
+\newblock \URLprefix
+  \url{https://mlanthology.org/neurips/2025/erickson2025neurips-tabarena/}.
+%Type = Article
+\bibitem[{Genest and Zidek(1986)}]{genest1986combining}
+\bibinfo{author}{Genest, C.}, \bibinfo{author}{Zidek, J.},
+  \bibinfo{year}{1986}.
+\newblock \bibinfo{title}{Combining probability distributions: A critique and
+  an annotated bibliography}.
+\newblock \bibinfo{journal}{Statistical Science} \bibinfo{volume}{1},
+  \bibinfo{pages}{114--135}.
+\newblock \DOIprefix\doi{10.1214/SS/1177013825}.
+%Type = Article
+\bibitem[{Gneiting et~al.(2007)Gneiting, Balabdaoui and
+  Raftery}]{gneiting2007calibration}
+\bibinfo{author}{Gneiting, T.}, \bibinfo{author}{Balabdaoui, F.},
+  \bibinfo{author}{Raftery, A.}, \bibinfo{year}{2007}.
+\newblock \bibinfo{title}{Probabilistic forecasts, calibration and sharpness}.
+\newblock \bibinfo{journal}{Journal of the Royal Statistical Society: Series B}
+  \bibinfo{volume}{69}, \bibinfo{pages}{243--268}.
+\newblock \DOIprefix\doi{10.1111/j.1467-9868.2007.00587.x}.
+%Type = Article
+\bibitem[{Gneiting and Raftery(2007)}]{gneiting2007strictly}
+\bibinfo{author}{Gneiting, T.}, \bibinfo{author}{Raftery, A.},
+  \bibinfo{year}{2007}.
+\newblock \bibinfo{title}{Strictly proper scoring rules, prediction, and
+  estimation}.
+\newblock \bibinfo{journal}{Journal of the American Statistical Association}
+  \bibinfo{volume}{102}, \bibinfo{pages}{359--378}.
+\newblock \DOIprefix\doi{10.1198/016214506000001437}.
+%Type = Article
+\bibitem[{Gneiting and Ranjan(2013)}]{gneiting2013combining}
+\bibinfo{author}{Gneiting, T.}, \bibinfo{author}{Ranjan, R.},
+  \bibinfo{year}{2013}.
+\newblock \bibinfo{title}{Combining predictive distributions}.
+\newblock \bibinfo{journal}{Electronic Journal of Statistics}
+  \bibinfo{volume}{7}, \bibinfo{pages}{1747--1782}.
+\newblock \DOIprefix\doi{10.1214/13-EJS823}.
+%Type = Inproceedings
+\bibitem[{Gorishniy et~al.(2021)Gorishniy, Rubachev, Khrulkov and
+  Babenko}]{gorishniy2021revisiting}
+\bibinfo{author}{Gorishniy, Y.}, \bibinfo{author}{Rubachev, I.},
+  \bibinfo{author}{Khrulkov, V.}, \bibinfo{author}{Babenko, A.},
+  \bibinfo{year}{2021}.
+\newblock \bibinfo{title}{Revisiting deep learning models for tabular data},
+  in: \bibinfo{booktitle}{Advances in Neural Information Processing Systems}.
+%Type = Misc
+\bibitem[{Grinsztajn et~al.(2025)Grinsztajn, Flöge, Key, Birkel, Jund, Roof,
+  Jäger, Safaric, Alessi, Hayler et~al.}]{grinsztajn2025tabpfn25}
+\bibinfo{author}{Grinsztajn, L.}, \bibinfo{author}{Flöge, K.},
+  \bibinfo{author}{Key, O.}, \bibinfo{author}{Birkel, F.},
+  \bibinfo{author}{Jund, P.}, \bibinfo{author}{Roof, B.},
+  \bibinfo{author}{Jäger, B.}, \bibinfo{author}{Safaric, D.},
+  \bibinfo{author}{Alessi, S.}, \bibinfo{author}{Hayler, A.}, et~al.,
+  \bibinfo{year}{2025}.
+\newblock \bibinfo{title}{{{TabPFN}-2.5}: Advancing the state of the art in
+  tabular foundation models}.
+\newblock \URLprefix \url{https://arxiv.org/abs/2511.08667},
+  \href{http://arxiv.org/abs/2511.08667}{\tt arXiv:2511.08667}.
+%Type = Misc
+\bibitem[{Grinsztajn et~al.(2026)Grinsztajn, Flöge, Key, Birkel, Jund, Roof
+  et~al.}]{grinsztajn2026tabpfn3}
+\bibinfo{author}{Grinsztajn, L.}, \bibinfo{author}{Flöge, K.},
+  \bibinfo{author}{Key, O.}, \bibinfo{author}{Birkel, F.},
+  \bibinfo{author}{Jund, P.}, \bibinfo{author}{Roof, B.}, et~al.,
+  \bibinfo{year}{2026}.
+\newblock \bibinfo{title}{{{TabPFN}-3}: Technical report}.
+\newblock \URLprefix \url{https://arxiv.org/abs/2605.13986},
+  \href{http://arxiv.org/abs/2605.13986}{\tt arXiv:2605.13986}.
+%Type = Inproceedings
+\bibitem[{Grinsztajn et~al.(2022)Grinsztajn, Oyallon and
+  Varoquaux}]{grinsztajn2022trees}
+\bibinfo{author}{Grinsztajn, L.}, \bibinfo{author}{Oyallon, E.},
+  \bibinfo{author}{Varoquaux, G.}, \bibinfo{year}{2022}.
+\newblock \bibinfo{title}{Why do tree-based models still outperform deep
+  learning on typical tabular data?}, in: \bibinfo{booktitle}{Advances in
+  Neural Information Processing Systems}.
+%Type = Inproceedings
+\bibitem[{Guo et~al.(2017)Guo, Pleiss, Sun and Weinberger}]{guo2017calibration}
+\bibinfo{author}{Guo, C.}, \bibinfo{author}{Pleiss, G.}, \bibinfo{author}{Sun,
+  Y.}, \bibinfo{author}{Weinberger, K.}, \bibinfo{year}{2017}.
+\newblock \bibinfo{title}{On calibration of modern neural networks}, in:
+  \bibinfo{booktitle}{Proceedings of the 34th International Conference on
+  Machine Learning}, pp. \bibinfo{pages}{1321--1330}.
+\newblock \URLprefix \url{https://proceedings.mlr.press/v70/guo17a.html}.
+%Type = Inproceedings
+\bibitem[{Heskes(1997)}]{heskes1997opinion}
+\bibinfo{author}{Heskes, T.}, \bibinfo{year}{1997}.
+\newblock \bibinfo{title}{Selecting weighting factors in logarithmic opinion
+  pools}, in: \bibinfo{booktitle}{Advances in Neural Information Processing
+  Systems}.
+%Type = Inproceedings
+\bibitem[{Hollmann et~al.(2023)Hollmann, Müller, Eggensperger and
+  Hutter}]{hollmann2023tabpfn}
+\bibinfo{author}{Hollmann, N.}, \bibinfo{author}{Müller, S.},
+  \bibinfo{author}{Eggensperger, K.}, \bibinfo{author}{Hutter, F.},
+  \bibinfo{year}{2023}.
+\newblock \bibinfo{title}{Tabpfn: A transformer that solves small tabular
+  classification problems in a second}, in: \bibinfo{booktitle}{International
+  Conference on Learning Representations}.
+%Type = Article
+\bibitem[{Hollmann et~al.(2025)Hollmann, Müller, Purucker, Krishnakumar,
+  Körfer, Hoo, Schirrmeister and Hutter}]{hollmann2025tabpfn}
+\bibinfo{author}{Hollmann, N.}, \bibinfo{author}{Müller, S.},
+  \bibinfo{author}{Purucker, L.}, \bibinfo{author}{Krishnakumar, A.},
+  \bibinfo{author}{Körfer, M.}, \bibinfo{author}{Hoo, S.},
+  \bibinfo{author}{Schirrmeister, R.}, \bibinfo{author}{Hutter, F.},
+  \bibinfo{year}{2025}.
+\newblock \bibinfo{title}{Accurate predictions on small data with a tabular
+  foundation model}.
+\newblock \bibinfo{journal}{Nature} \bibinfo{volume}{637},
+  \bibinfo{pages}{319--326}.
+\newblock \DOIprefix\doi{10.1038/s41586-024-08328-6}.
+%Type = Article
+\bibitem[{Hunter and Summerton(2006)}]{hunter2006merging}
+\bibinfo{author}{Hunter, A.}, \bibinfo{author}{Summerton, R.},
+  \bibinfo{year}{2006}.
+\newblock \bibinfo{title}{A knowledge-based approach to merging information}.
+\newblock \bibinfo{journal}{Knowledge-Based Systems} \bibinfo{volume}{19},
+  \bibinfo{pages}{647--674}.
+\newblock \DOIprefix\doi{10.1016/j.knosys.2006.05.007}.
+%Type = Misc
+\bibitem[{Johnson et~al.(2026)Johnson, Ben-Jacob, Negarandeh, Vendrell-Gallart
+  and Bostanabad}]{johnson2026uq}
+\bibinfo{author}{Johnson, T.R.}, \bibinfo{author}{Ben-Jacob, K.},
+  \bibinfo{author}{Negarandeh, N.}, \bibinfo{author}{Vendrell-Gallart, O.},
+  \bibinfo{author}{Bostanabad, R.}, \bibinfo{year}{2026}.
+\newblock \bibinfo{title}{On the uncertainty quantification ability of tabular
+  foundation models}.
+\newblock \URLprefix \url{https://arxiv.org/abs/2606.01427},
+  \href{http://arxiv.org/abs/2606.01427}{\tt arXiv:2606.01427}.
+%Type = Misc
+\bibitem[{Klötergens et~al.(2026)Klötergens, Yalavarthi, Schmidt-Thieme and
+  Hanika}]{klotergens2026agree}
+\bibinfo{author}{Klötergens, C.}, \bibinfo{author}{Yalavarthi, V.},
+  \bibinfo{author}{Schmidt-Thieme, L.}, \bibinfo{author}{Hanika, T.},
+  \bibinfo{year}{2026}.
+\newblock \bibinfo{title}{Do tabular foundation models agree with themselves?}
+\newblock \URLprefix \url{https://arxiv.org/abs/2608.06004},
+  \href{http://arxiv.org/abs/2608.06004}{\tt arXiv:2608.06004}.
+%Type = Inproceedings
+\bibitem[{Kull et~al.(2019)Kull, Perello-Nieto, Kängsepp, Silva~Filho, Song
+  and Flach}]{kull2019dirichlet}
+\bibinfo{author}{Kull, M.}, \bibinfo{author}{Perello-Nieto, M.},
+  \bibinfo{author}{Kängsepp, M.}, \bibinfo{author}{Silva~Filho, T.},
+  \bibinfo{author}{Song, H.}, \bibinfo{author}{Flach, P.},
+  \bibinfo{year}{2019}.
+\newblock \bibinfo{title}{Beyond temperature scaling: Obtaining well-calibrated
+  multi-class probabilities with {Dirichlet} calibration}, in:
+  \bibinfo{booktitle}{Advances in Neural Information Processing Systems}, pp.
+  \bibinfo{pages}{12316--12326}.
+\newblock \URLprefix
+  \url{https://mlanthology.org/neurips/2019/kull2019neurips-beyond/}.
+%Type = Inproceedings
+\bibitem[{Kull et~al.(2017)Kull, Silva~Filho and Flach}]{kull2017beta}
+\bibinfo{author}{Kull, M.}, \bibinfo{author}{Silva~Filho, T.},
+  \bibinfo{author}{Flach, P.}, \bibinfo{year}{2017}.
+\newblock \bibinfo{title}{Beta calibration: A well-founded and easily
+  implemented improvement on logistic calibration for binary classifiers}, in:
+  \bibinfo{booktitle}{Proceedings of the 20th International Conference on
+  Artificial Intelligence and Statistics}, pp. \bibinfo{pages}{623--631}.
+\newblock \URLprefix \url{https://proceedings.mlr.press/v54/kull17a.html}.
+%Type = Misc
+\bibitem[{Landsgesell and Knoll(2026)}]{landsgesell2026scoringbench}
+\bibinfo{author}{Landsgesell, J.}, \bibinfo{author}{Knoll, P.},
+  \bibinfo{year}{2026}.
+\newblock \bibinfo{title}{{{ScoringBench}}: A benchmark for evaluating tabular
+  foundation models with proper scoring rules}.
+\newblock \URLprefix \url{https://arxiv.org/abs/2603.29928},
+  \href{http://arxiv.org/abs/2603.29928}{\tt arXiv:2603.29928}.
+%Type = Inproceedings
+\bibitem[{Majid et~al.(2025)Majid, Pukdee, Agrawal, Varici and
+  Ravikumar}]{majid2025consistent}
+\bibinfo{author}{Majid, M.}, \bibinfo{author}{Pukdee, R.},
+  \bibinfo{author}{Agrawal, V.}, \bibinfo{author}{Varici, B.},
+  \bibinfo{author}{Ravikumar, P.K.}, \bibinfo{year}{2025}.
+\newblock \bibinfo{title}{On the consistent recovery of joint distributions
+  from conditionals}, in: \bibinfo{booktitle}{Proceedings of the 28th
+  International Conference on Artificial Intelligence and Statistics}, pp.
+  \bibinfo{pages}{4708--4716}.
+\newblock \URLprefix \url{https://proceedings.mlr.press/v258/majid25a.html}.
+%Type = Article
+\bibitem[{Muré(2019)}]{mure2019compromise}
+\bibinfo{author}{Muré, J.}, \bibinfo{year}{2019}.
+\newblock \bibinfo{title}{Optimal compromise between incompatible conditional
+  probability distributions, with application to objective bayesian kriging}.
+\newblock \bibinfo{journal}{ESAIM: Probability and Statistics}
+  \bibinfo{volume}{23}, \bibinfo{pages}{271--309}.
+\newblock \DOIprefix\doi{10.1051/ps/2018023}.
+%Type = Inproceedings
+\bibitem[{Müller et~al.(2022)Müller, Hollmann, Pineda~Arango, Grabocka and
+  Hutter}]{muller2022pfns}
+\bibinfo{author}{Müller, S.}, \bibinfo{author}{Hollmann, N.},
+  \bibinfo{author}{Pineda~Arango, S.}, \bibinfo{author}{Grabocka, J.},
+  \bibinfo{author}{Hutter, F.}, \bibinfo{year}{2022}.
+\newblock \bibinfo{title}{Transformers can do bayesian inference}, in:
+  \bibinfo{booktitle}{International Conference on Learning Representations}.
+%Type = Inproceedings
+\bibitem[{Qu et~al.(2026)Qu, Holzmüller, Varoquaux and
+  Le~Morvan}]{qu2026tabiclv2}
+\bibinfo{author}{Qu, J.}, \bibinfo{author}{Holzmüller, D.},
+  \bibinfo{author}{Varoquaux, G.}, \bibinfo{author}{Le~Morvan, M.},
+  \bibinfo{year}{2026}.
+\newblock \bibinfo{title}{{{TabICL}v2}: A better, faster, scalable, and open
+  tabular foundation model}, in: \bibinfo{booktitle}{Proceedings of the 43rd
+  International Conference on Machine Learning}, \bibinfo{publisher}{PMLR}. pp.
+  \bibinfo{pages}{102477--102555}.
+\newblock \URLprefix \url{https://proceedings.mlr.press/v306/qu26a.html}.
+%Type = Article
+\bibitem[{Ranjan and Gneiting(2010)}]{ranjan2010combining}
+\bibinfo{author}{Ranjan, R.}, \bibinfo{author}{Gneiting, T.},
+  \bibinfo{year}{2010}.
+\newblock \bibinfo{title}{Combining probability forecasts}.
+\newblock \bibinfo{journal}{Journal of the Royal Statistical Society: Series B}
+  \bibinfo{volume}{72}, \bibinfo{pages}{71--91}.
+\newblock \DOIprefix\doi{10.1111/j.1467-9868.2009.00726.x}.
+%Type = Article
+\bibitem[{Shaker and Hüllermeier(2025)}]{shaker2025rfcalibration}
+\bibinfo{author}{Shaker, M.}, \bibinfo{author}{Hüllermeier, E.},
+  \bibinfo{year}{2025}.
+\newblock \bibinfo{title}{Random forest calibration}.
+\newblock \bibinfo{journal}{Knowledge-Based Systems} \bibinfo{volume}{328},
+  \bibinfo{pages}{114143}.
+\newblock \DOIprefix\doi{10.1016/j.knosys.2025.114143}.
+%Type = Article
+\bibitem[{Sinkhorn(1964)}]{sinkhorn1964scaling}
+\bibinfo{author}{Sinkhorn, R.}, \bibinfo{year}{1964}.
+\newblock \bibinfo{title}{A relationship between arbitrary positive matrices
+  and doubly stochastic matrices}.
+\newblock \bibinfo{journal}{The Annals of Mathematical Statistics}
+  \bibinfo{volume}{35}, \bibinfo{pages}{876--879}.
+\newblock \DOIprefix\doi{10.1214/aoms/1177703591}.
+%Type = Misc
+\bibitem[{Tanna et~al.(2026)Tanna, Desai, Seth, Bouadi, Bouarour and
+  Sankarapu}]{tanna2026ensembling}
+\bibinfo{author}{Tanna, A.}, \bibinfo{author}{Desai, Y.},
+  \bibinfo{author}{Seth, P.}, \bibinfo{author}{Bouadi, M.},
+  \bibinfo{author}{Bouarour, N.}, \bibinfo{author}{Sankarapu, V.},
+  \bibinfo{year}{2026}.
+\newblock \bibinfo{title}{Ensembling tabular foundation models - a diversity
+  ceiling and a calibration trap}.
+\newblock \URLprefix \url{https://arxiv.org/abs/2605.18696},
+  \href{http://arxiv.org/abs/2605.18696}{\tt arXiv:2605.18696}.
+%Type = Article
+\bibitem[{Vanschoren et~al.(2014)Vanschoren, Rijn, Bischl and
+  Torgo}]{vanschoren2014openml}
+\bibinfo{author}{Vanschoren, J.}, \bibinfo{author}{Rijn, J.},
+  \bibinfo{author}{Bischl, B.}, \bibinfo{author}{Torgo, L.},
+  \bibinfo{year}{2014}.
+\newblock \bibinfo{title}{{{OpenML}}: Networked science in machine learning}.
+\newblock \bibinfo{journal}{SIGKDD Explorations} \bibinfo{volume}{15},
+  \bibinfo{pages}{49--60}.
+\newblock \DOIprefix\doi{10.1145/2641190.2641198}.
+%Type = Article
+\bibitem[{Zhang and Lin(2025)}]{zhang2025dynamicfusion}
+\bibinfo{author}{Zhang, X.}, \bibinfo{author}{Lin, J.}, \bibinfo{year}{2025}.
+\newblock \bibinfo{title}{A supervised learning approach to dynamic weighted
+  fusion in multi-source ordered decision systems}.
+\newblock \bibinfo{journal}{Knowledge-Based Systems} \bibinfo{volume}{330},
+  \bibinfo{pages}{114485}.
+\newblock \DOIprefix\doi{10.1016/j.knosys.2025.114485}.
+
+\end{thebibliography}
