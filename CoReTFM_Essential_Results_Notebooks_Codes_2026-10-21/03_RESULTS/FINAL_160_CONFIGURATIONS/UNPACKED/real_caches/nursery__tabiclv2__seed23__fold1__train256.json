@@ -1,0 +1,69 @@
+{
+  "artifact_kind": "real_tfm",
+  "checkpoint_identifier": "tabicl-classifier-v2-20260212.ckpt",
+  "checkpoint_revision_confirmed": false,
+  "checkpoint_sha256": "NOT_VERIFIED",
+  "classes_a": [
+    "not_recom",
+    "priority",
+    "recommend",
+    "spec_prior",
+    "very_recom"
+  ],
+  "classes_b": [
+    "not_recom",
+    "priority",
+    "recommended"
+  ],
+  "created_utc": "2026-10-19T18:53:59.189509+00:00",
+  "dataset": "nursery",
+  "device": {
+    "cuda": true,
+    "gpu": "Tesla T4",
+    "torch": "2.11.0+cu130"
+  },
+  "elapsed_s": 4.187593344000106,
+  "evidence_caveat": "Checkpoint filename recorded; actual weight-byte SHA256 not obtained.",
+  "fold": 1,
+  "model": "tabiclv2",
+  "n_probabilities": 13909,
+  "n_test": 128,
+  "n_train": 256,
+  "n_val": 205,
+  "npz_sha256": "2824cff1e2fc0980442946e890b358f8120fe3f912fe498655c633540cc7c02b",
+  "package_version": "2.2.0",
+  "protocol": "coretfm-v2-independent-fixed-test-2026-10-19",
+  "seed": 23,
+  "source": {
+    "openml_id": 26,
+    "target_a": "class",
+    "target_b": "health"
+  },
+  "split_sha256": "4b2081e671ccce9d393003fabe54aba0228253fb948e2c6281f4bb321187fffd",
+  "test_ids_sha": "cae20d02fdf5b50f28850c5067bf000615c0987fc1dc4b13cbf3d837fc09a5ea",
+  "timing": {
+    "a": {
+      "fit_with_load_sec": 0.4670721180000328,
+      "n_predict_calls": 2,
+      "predict_sec": 0.22322207699994578
+    },
+    "a_given_b": {
+      "fit_with_load_sec": 0.4669891910000388,
+      "n_predict_calls": 6,
+      "predict_sec": 0.4796301300000323
+    },
+    "b": {
+      "fit_with_load_sec": 0.4741440689999763,
+      "n_predict_calls": 2,
+      "predict_sec": 0.19731447000003755
+    },
+    "b_given_a": {
+      "fit_with_load_sec": 0.4462907180000002,
+      "n_predict_calls": 10,
+      "predict_sec": 0.7494163060000574
+    }
+  },
+  "train_cap": 256,
+  "train_ids_sha": "0f2f0fc912175ad4f2ea3e4bd6ca77490961ff4475f8429861b209bcfcfdb1c9",
+  "val_ids_sha": "48310d24dc5ac0c8b4476a3d13e065aa22b8adf53d5397ddf0fde4a7f3775271"
+}

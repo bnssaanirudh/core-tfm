@@ -1,0 +1,1 @@
+CoRe-TFM V1 refined submission manuscript. Compile CoRe_TFM_V1_Refined.tex after renaming it to main.tex, using cas-sc.cls and the installed cas-model2-names bibliography style. Run pdflatex, bibtex.original (or working bibtex), and pdflatex twice. A public evidence DOI is still pending. See TECHNICAL_STYLE_AND_CITATION_AUDIT.md for scientific qualifications.

@@ -1,0 +1,71 @@
+{
+  "artifact_kind": "real_tfm",
+  "checkpoint_identifier": "tabicl-classifier-v2-20260212.ckpt",
+  "checkpoint_revision_confirmed": false,
+  "checkpoint_sha256": "NOT_VERIFIED",
+  "classes_a": [
+    "No",
+    "Yes"
+  ],
+  "classes_b": [
+    "Absurd",
+    "Alone",
+    "Divorced",
+    "Married",
+    "Single",
+    "Together",
+    "Widow",
+    "YOLO"
+  ],
+  "created_utc": "2026-10-20T10:08:18.867659+00:00",
+  "dataset": "marketing",
+  "device": {
+    "cuda": true,
+    "gpu": "Tesla T4",
+    "torch": "2.11.0+cu130"
+  },
+  "elapsed_s": 4.48354576700001,
+  "evidence_caveat": "Checkpoint filename recorded; actual weight-byte SHA256 not obtained.",
+  "fold": 0,
+  "model": "tabiclv2",
+  "n_probabilities": 15113,
+  "n_test": 128,
+  "n_train": 128,
+  "n_val": 205,
+  "npz_sha256": "0a6386b2479d5bff3fd4f744fd2cc7cc45fb5398d8fda8e7523c8d0ddb2581ee",
+  "package_version": "2.2.0",
+  "protocol": "coretfm-v2-independent-fixed-test-2026-10-19",
+  "seed": 23,
+  "source": {
+    "openml_id": 46940,
+    "target_a": "Response",
+    "target_b": "Marital_Status"
+  },
+  "split_sha256": "271f21619b96e71b6a67ca6fd9609587f01cce427e45c0db3172cfc8c6422815",
+  "test_ids_sha": "f96c2465cbcbfb5d53edd450a7f8378069283bccc1806c910ab90437ab05b6c9",
+  "timing": {
+    "a": {
+      "fit_with_load_sec": 0.46827600699998584,
+      "n_predict_calls": 2,
+      "predict_sec": 0.14977220800000168
+    },
+    "a_given_b": {
+      "fit_with_load_sec": 0.5042427460000454,
+      "n_predict_calls": 16,
+      "predict_sec": 1.2583979240000076
+    },
+    "b": {
+      "fit_with_load_sec": 0.4822937409999781,
+      "n_predict_calls": 2,
+      "predict_sec": 0.17919247699995822
+    },
+    "b_given_a": {
+      "fit_with_load_sec": 0.48738020499996537,
+      "n_predict_calls": 4,
+      "predict_sec": 0.3111956970000165
+    }
+  },
+  "train_cap": 128,
+  "train_ids_sha": "a1e9a492b3d0dfdcbe1a53e00485e0157a7a075f72a705493b436334d0068d36",
+  "val_ids_sha": "a79810b3c804f5fa62f9c876c48b6f4657c7c6938798963729e0d516f16582df"
+}

@@ -1,0 +1,67 @@
+{
+  "artifact_kind": "real_tfm",
+  "checkpoint_identifier": "ModelVersion.V3",
+  "checkpoint_revision_confirmed": false,
+  "checkpoint_sha256": "NOT_VERIFIED",
+  "classes_a": [
+    "Legitimate",
+    "Phishy",
+    "Suspicious"
+  ],
+  "classes_b": [
+    "Legitimate",
+    "Phishy",
+    "Suspicious"
+  ],
+  "created_utc": "2026-10-19T19:15:13.065930+00:00",
+  "dataset": "phishing",
+  "device": {
+    "cuda": true,
+    "gpu": "Tesla T4",
+    "torch": "2.11.0+cu130"
+  },
+  "elapsed_s": 4.066224706999947,
+  "evidence_caveat": "Checkpoint filename recorded; actual weight-byte SHA256 not obtained.",
+  "fold": 1,
+  "model": "tabpfn3",
+  "n_probabilities": 9119,
+  "n_test": 128,
+  "n_train": 128,
+  "n_val": 205,
+  "npz_sha256": "3945bf9a48b39ddb8f6e361eb64e8a9560826de7425a511609f27b9f8fb4cc6a",
+  "package_version": "9.2.0",
+  "protocol": "coretfm-v2-independent-fixed-test-2026-10-19",
+  "seed": 23,
+  "source": {
+    "openml_id": 46963,
+    "target_a": "WebsiteType",
+    "target_b": "SFH"
+  },
+  "split_sha256": "a98e1363d01a86001857a9481df0b84651afd8ef14450595e539c7d3d49ab810",
+  "test_ids_sha": "0cacb6eb522839502fc7d75c5c67ac457fbf58a7e1ef5609f2033ba4547e0b69",
+  "timing": {
+    "a": {
+      "fit_with_load_sec": 0.2056001149999247,
+      "n_predict_calls": 2,
+      "predict_sec": 0.29065220699976635
+    },
+    "a_given_b": {
+      "fit_with_load_sec": 0.21040255899970361,
+      "n_predict_calls": 6,
+      "predict_sec": 0.9103628960001515
+    },
+    "b": {
+      "fit_with_load_sec": 0.2144559470002605,
+      "n_predict_calls": 2,
+      "predict_sec": 0.2938938130000679
+    },
+    "b_given_a": {
+      "fit_with_load_sec": 0.22261537399981535,
+      "n_predict_calls": 6,
+      "predict_sec": 0.8876797170000827
+    }
+  },
+  "train_cap": 128,
+  "train_ids_sha": "25965eda7038e8e73abb51e231cc19e41cc07c01ea1c69e9389a403c93f7009f",
+  "val_ids_sha": "11d8eeafe818cd7f5c0894ec9b3395da7324f9ace5c78429485f744620c93fdf"
+}

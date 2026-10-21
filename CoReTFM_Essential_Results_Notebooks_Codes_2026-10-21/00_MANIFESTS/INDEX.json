@@ -1,0 +1,36 @@
+{
+  "title": "CoRe-TFM ChatGPT conversation recovery bundle: research artifacts not tracked in GitHub",
+  "created_utc": "2026-10-21T00:38:06.110162+00:00",
+  "mode": "essential",
+  "github_repository": "https://github.com/bnssaanirudh/core-tfm",
+  "github_branch_heads": {
+    "main": "57c3fdc4a4be73d64e01edf35dedf4dddfc79a20",
+    "research/reliability-aware-enhancements": "4117951d9be035634c264a8289cb94f4ad32e385",
+    "results/submission-robustness-v1": "e4335be75eda2fae7c19d90418175011b0a701bf",
+    "temp-check": "99089ee07a68e982530d79fc8ce20fa8195c030a"
+  },
+  "github_tree_counts": {
+    "main": 518,
+    "research/reliability-aware-enhancements": 160,
+    "results/submission-robustness-v1": 518,
+    "temp-check": 58,
+    "unique_content_git_blobs": 524
+  },
+  "github_crosscheck": {
+    "top_level_artifacts_compared": 80,
+    "content_matches": 0,
+    "algorithm": "Git blob SHA-1 of exact file bytes, compared by first 12 hex characters to all tracked blobs in all four branches (false match probability negligible; any positives would require full-length comparison)",
+    "name_check": "All distinctive NB35\u2013NB50 and v3\u2013v8 generated artifact names absent from the four branch trees. Generic main.tex/references.bib differ by full git-blob SHA1."
+  },
+  "zenodo_published_dataset": "https://doi.org/10.5281/zenodo.23507196",
+  "limitations": [
+    "This contains conversation artifacts available in the current session. It is not a dump of every historical ChatGPT conversation outside this project.",
+    "The GitHub comparison checks branch HEADs, not unreachable past Git commits, Git LFS hidden data, private forks or content outside the repository.",
+    "Some archived snapshots are superseded and intentionally redundant; the completed 160-cache evidence is the master.",
+    "Two contaminated snapshots containing an unrelated sepsis PDF were excluded; clean equivalent results remain included.",
+    "Exact package file hashes, origins and exclusions are recorded here."
+  ],
+  "included_items": 612,
+  "excluded_or_deduplicated": 10,
+  "archive_member_records": 1488
+}

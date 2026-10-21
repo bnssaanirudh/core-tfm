@@ -1,0 +1,84 @@
+{
+  "attempted": 5,
+  "events": [
+    {
+      "elapsed_sec": 5.351718509999955,
+      "job": [
+        "wine",
+        "tabpfn3",
+        71,
+        0,
+        256
+      ],
+      "n_test": 128,
+      "n_train": 256,
+      "n_val": 205,
+      "path": "/content/drive/MyDrive/CoRe_TFM_Resumable_v2/real_caches/wine__tabpfn3__seed71__fold0__train256.npz",
+      "status": "REAL_MODEL_CACHE_WRITTEN"
+    },
+    {
+      "elapsed_sec": 4.086480868000308,
+      "job": [
+        "phishing",
+        "tabpfn3",
+        71,
+        0,
+        128
+      ],
+      "n_test": 128,
+      "n_train": 128,
+      "n_val": 205,
+      "path": "/content/drive/MyDrive/CoRe_TFM_Resumable_v2/real_caches/phishing__tabpfn3__seed71__fold0__train128.npz",
+      "status": "REAL_MODEL_CACHE_WRITTEN"
+    },
+    {
+      "elapsed_sec": 4.080673529000251,
+      "job": [
+        "phishing",
+        "tabpfn3",
+        71,
+        0,
+        256
+      ],
+      "n_test": 128,
+      "n_train": 256,
+      "n_val": 205,
+      "path": "/content/drive/MyDrive/CoRe_TFM_Resumable_v2/real_caches/phishing__tabpfn3__seed71__fold0__train256.npz",
+      "status": "REAL_MODEL_CACHE_WRITTEN"
+    },
+    {
+      "elapsed_sec": 4.590655735999917,
+      "job": [
+        "nursery",
+        "tabpfn3",
+        71,
+        0,
+        128
+      ],
+      "n_test": 128,
+      "n_train": 128,
+      "n_val": 205,
+      "path": "/content/drive/MyDrive/CoRe_TFM_Resumable_v2/real_caches/nursery__tabpfn3__seed71__fold0__train128.npz",
+      "status": "REAL_MODEL_CACHE_WRITTEN"
+    },
+    {
+      "elapsed_sec": 4.626849469000263,
+      "job": [
+        "nursery",
+        "tabpfn3",
+        71,
+        0,
+        256
+      ],
+      "n_test": 128,
+      "n_train": 256,
+      "n_val": 205,
+      "path": "/content/drive/MyDrive/CoRe_TFM_Resumable_v2/real_caches/nursery__tabpfn3__seed71__fold0__train256.npz",
+      "status": "REAL_MODEL_CACHE_WRITTEN"
+    }
+  ],
+  "new_jobs": 5,
+  "repeat_cell_to_resume": true,
+  "stage": "priority4",
+  "status": "QUEUE_PASS_COMPLETE"
+}

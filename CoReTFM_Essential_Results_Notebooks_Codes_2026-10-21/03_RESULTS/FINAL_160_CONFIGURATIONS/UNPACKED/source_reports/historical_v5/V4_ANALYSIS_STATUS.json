@@ -1,0 +1,33 @@
+{
+  "checkpoint_bytes_verified": false,
+  "datasets": [
+    "car",
+    "credit",
+    "nursery",
+    "phishing",
+    "wine"
+  ],
+  "invalid_caches": [],
+  "models": [
+    "tabiclv2",
+    "tabpfn3"
+  ],
+  "note": "Dataset-block inference exploratory; no post-hoc best-policy p-value is confirmatory.",
+  "paper_ready": false,
+  "primary_cap": 256,
+  "primary_comparison_dataset_counts": {
+    "tabiclv2_full_family": 5,
+    "tabiclv2_pool_only": 5,
+    "tabiclv2_temperature_pool": 5,
+    "tabiclv2_weighted_pool": 5,
+    "tabiclv2_weighted_temperature_pool": 5,
+    "tabpfn3_full_family": 5,
+    "tabpfn3_pool_only": 5,
+    "tabpfn3_temperature_pool": 5,
+    "tabpfn3_weighted_pool": 5,
+    "tabpfn3_weighted_temperature_pool": 5
+  },
+  "primary_validation_budget": 52,
+  "real_cache_count": 80,
+  "status": "EXPLORATORY_REAL_MODEL_ANALYSIS"
+}

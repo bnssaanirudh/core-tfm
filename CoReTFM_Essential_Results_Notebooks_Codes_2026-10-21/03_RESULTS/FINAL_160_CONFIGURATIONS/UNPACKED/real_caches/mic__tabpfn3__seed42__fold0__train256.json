@@ -1,0 +1,72 @@
+{
+  "artifact_kind": "real_tfm",
+  "checkpoint_identifier": "ModelVersion.V3",
+  "checkpoint_revision_confirmed": false,
+  "checkpoint_sha256": "NOT_VERIFIED",
+  "classes_a": [
+    "alive",
+    "asystole",
+    "cardiogenic_shock",
+    "myocardial_rupture",
+    "progress_congestive_heart_failure",
+    "pulmonary_edema",
+    "thromboembolism",
+    "ventricular_fibrillation"
+  ],
+  "classes_b": [
+    "0.0",
+    "1.0",
+    "nan"
+  ],
+  "created_utc": "2026-10-20T10:32:46.810084+00:00",
+  "dataset": "mic",
+  "device": {
+    "cuda": true,
+    "gpu": "Tesla T4",
+    "torch": "2.11.0+cu130"
+  },
+  "elapsed_s": 8.180268167999884,
+  "evidence_caveat": "Checkpoint filename recorded; actual weight-byte SHA256 not obtained.",
+  "fold": 0,
+  "model": "tabpfn3",
+  "n_probabilities": 20902,
+  "n_test": 128,
+  "n_train": 256,
+  "n_val": 205,
+  "npz_sha256": "0fcde5fa42190d5850da7e759026fd380dc40ab3fd7e993c86d7b616da65b5b5",
+  "package_version": "9.2.0",
+  "protocol": "coretfm-v2-independent-fixed-test-2026-10-19",
+  "seed": 42,
+  "source": {
+    "openml_id": 46980,
+    "target_a": "LET_IS",
+    "target_b": "ASP_S_n"
+  },
+  "split_sha256": "52e7347f54855d3e487ad99d5a51f60c6a4d5cb43346aa19ca77866caeafa23e",
+  "test_ids_sha": "1f2b84ea80ac1641a6935cb04b95619244b05c6f711a2b0a8967eaf5f2e26bd2",
+  "timing": {
+    "a": {
+      "fit_with_load_sec": 0.3388817139998537,
+      "n_predict_calls": 2,
+      "predict_sec": 0.49589882899999793
+    },
+    "a_given_b": {
+      "fit_with_load_sec": 0.3230339490000915,
+      "n_predict_calls": 6,
+      "predict_sec": 1.3558142540000517
+    },
+    "b": {
+      "fit_with_load_sec": 0.3352328519999901,
+      "n_predict_calls": 2,
+      "predict_sec": 0.465424387999974
+    },
+    "b_given_a": {
+      "fit_with_load_sec": 0.33132983600012267,
+      "n_predict_calls": 16,
+      "predict_sec": 3.600096026000074
+    }
+  },
+  "train_cap": 256,
+  "train_ids_sha": "ce6691f79400ca729f92bd43a27c4a97cb51228c71ab115a6b60e663c1706006",
+  "val_ids_sha": "61aa8a825a74e93b41f1b138d4aacc37c45ff29bf26bf5e09acc233565fb533d"
+}

@@ -1,0 +1,60 @@
+{
+  "checkpoint_identifiers": {
+    "tabiclv2": "tabicl-classifier-v2-20260212.ckpt",
+    "tabpfn3": "ModelVersion.V3"
+  },
+  "created_utc": "2026-10-20T10:35:09.531358+00:00",
+  "dataset_version_note": "OpenML dataset ID + processed snapshot hash recorded; raw source file/version must be independently confirmed.",
+  "explicit_checkpoint_file_hashes": {},
+  "gpu": {
+    "cuda": true,
+    "gpu": "Tesla T4",
+    "torch": "2.11.0+cu130"
+  },
+  "model_weight_note": "Model names and candidate checkpoint hashes are not proof of the actual bytes loaded.",
+  "nvidia_smi": "Tesla T4, 580.82.07, 15360 MiB",
+  "package_versions": {
+    "numpy": "2.1.3",
+    "openml": "not_installed",
+    "pandas": "2.2.3",
+    "scikit-learn": "1.6.1",
+    "scipy": "1.16.3",
+    "tabicl": "2.2.0",
+    "tabpfn": "9.2.0",
+    "torch": "2.11.0+cu130"
+  },
+  "platform": "Linux-6.6.122+-x86_64-with-glibc2.39",
+  "processed_data_snapshots": {
+    "anneal": {
+      "WARNING": "Not a raw OpenML-byte hash; confirm source version independently.",
+      "openml_data_id": 46906,
+      "processed_pickle_bytes": 79589,
+      "processed_pickle_sha256": "23f0f67d164d131355087d7b6654d3cd4265cef8547578e972bcfe2e167f914e"
+    },
+    "customer": {
+      "WARNING": "Not a raw OpenML-byte hash; confirm source version independently.",
+      "openml_data_id": 46938,
+      "processed_pickle_bytes": 87831,
+      "processed_pickle_sha256": "61d98370284ce6d91aa34784e0c835d32816f01cf14ec9ac69b3c5d52c55fdd1"
+    },
+    "diamonds": {
+      "WARNING": "Not a raw OpenML-byte hash; confirm source version independently.",
+      "openml_data_id": 42225,
+      "processed_pickle_bytes": 2752921,
+      "processed_pickle_sha256": "00142e780fa10ecb3da405fc716b3a3707003d6512b5900ef8b9a093a12ca463"
+    },
+    "marketing": {
+      "WARNING": "Not a raw OpenML-byte hash; confirm source version independently.",
+      "openml_data_id": 46940,
+      "processed_pickle_bytes": 323366,
+      "processed_pickle_sha256": "95666f10de193a79a4d36dff382079149186cb318976f354f73622e6aaca1276"
+    },
+    "mic": {
+      "WARNING": "Not a raw OpenML-byte hash; confirm source version independently.",
+      "openml_data_id": 46980,
+      "processed_pickle_bytes": 204038,
+      "processed_pickle_sha256": "fce88737bc447ef1e9a6f828ff3297fcd5ef85854dcc3def1b3bbb338c0fbea0"
+    }
+  },
+  "python": "3.13.15"
+}

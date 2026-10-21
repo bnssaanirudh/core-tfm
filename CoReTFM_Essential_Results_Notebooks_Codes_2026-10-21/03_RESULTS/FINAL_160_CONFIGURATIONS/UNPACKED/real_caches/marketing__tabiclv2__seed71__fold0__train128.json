@@ -1,0 +1,71 @@
+{
+  "artifact_kind": "real_tfm",
+  "checkpoint_identifier": "tabicl-classifier-v2-20260212.ckpt",
+  "checkpoint_revision_confirmed": false,
+  "checkpoint_sha256": "NOT_VERIFIED",
+  "classes_a": [
+    "No",
+    "Yes"
+  ],
+  "classes_b": [
+    "Absurd",
+    "Alone",
+    "Divorced",
+    "Married",
+    "Single",
+    "Together",
+    "Widow",
+    "YOLO"
+  ],
+  "created_utc": "2026-10-20T10:11:15.173462+00:00",
+  "dataset": "marketing",
+  "device": {
+    "cuda": true,
+    "gpu": "Tesla T4",
+    "torch": "2.11.0+cu130"
+  },
+  "elapsed_s": 4.4034285590000195,
+  "evidence_caveat": "Checkpoint filename recorded; actual weight-byte SHA256 not obtained.",
+  "fold": 0,
+  "model": "tabiclv2",
+  "n_probabilities": 15113,
+  "n_test": 128,
+  "n_train": 128,
+  "n_val": 205,
+  "npz_sha256": "997ae2e6c24c1e0f49a390603c27a18c015ab718a6bc1fdcacc077062a281c58",
+  "package_version": "2.2.0",
+  "protocol": "coretfm-v2-independent-fixed-test-2026-10-19",
+  "seed": 71,
+  "source": {
+    "openml_id": 46940,
+    "target_a": "Response",
+    "target_b": "Marital_Status"
+  },
+  "split_sha256": "9913ff678cd6c042535e11ceb53b077aad8b5e6dba8ce09189e3235a1331e9f1",
+  "test_ids_sha": "e7bee0fdbbb6ad683f9dbfb1e085bcbf140516959d7bcb93c18b10b59668b217",
+  "timing": {
+    "a": {
+      "fit_with_load_sec": 0.4982060529999899,
+      "n_predict_calls": 2,
+      "predict_sec": 0.14579624499998545
+    },
+    "a_given_b": {
+      "fit_with_load_sec": 0.4837419620000105,
+      "n_predict_calls": 16,
+      "predict_sec": 1.2004546949999622
+    },
+    "b": {
+      "fit_with_load_sec": 0.46937033900002234,
+      "n_predict_calls": 2,
+      "predict_sec": 0.16697204299998702
+    },
+    "b_given_a": {
+      "fit_with_load_sec": 0.4726602380000031,
+      "n_predict_calls": 4,
+      "predict_sec": 0.3277862260000006
+    }
+  },
+  "train_cap": 128,
+  "train_ids_sha": "ab0dfffca28e6e64a7ebc36cda69cf2b6a37ce9a302dcf38c2094ff58d553269",
+  "val_ids_sha": "44d05264c310a0e6ea64f7c482fe8fbc633de302ad948c54af36eeed605d0414"
+}

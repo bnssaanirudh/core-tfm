@@ -1,0 +1,16 @@
+{
+  "completion": true,
+  "dataset_count": 5,
+  "expected": 80,
+  "invalid": [],
+  "models": [
+    "tabiclv2",
+    "tabpfn3"
+  ],
+  "primary_cap": 256,
+  "primary_validation_budget": 52,
+  "rows": 1120,
+  "status": "ANALYZED_80_CONFIGS",
+  "valid_caches": 80,
+  "warning": "Exploratory statistics use independent datasets, not folds. No paper-readiness claim."
+}

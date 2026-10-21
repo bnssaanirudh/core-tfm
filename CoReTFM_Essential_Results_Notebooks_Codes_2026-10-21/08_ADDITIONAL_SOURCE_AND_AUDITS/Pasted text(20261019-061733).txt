@@ -1,0 +1,249 @@
+===========================================================
+[1/8] NB35_Colab_Environment_And_Frozen_Splits.ipynb
+============================================================
+
+============================================================
+[2/8] NB36_Real_TabICLv2_Four_View_Pilot.ipynb
+============================================================
+ython3.13/concurrent/futures/_base.py", line 460, in result
+    return self.__get_result()
+           ~~~~~~~~~~~~~~~~~^^
+  File "/usr/lib/python3.13/concurrent/futures/_base.py", line 402, in __get_result
+    raise self._exception
+  File "/usr/local/lib/python3.13/dist-packages/nbclient/client.py", line 709, in async_execute
+    await self.async_execute_cell(
+        cell, index, execution_count=self.code_cells_executed + 1
+    )
+  File "/usr/local/lib/python3.13/dist-packages/nbclient/client.py", line 1062, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/usr/local/lib/python3.13/dist-packages/nbclient/client.py", line 918, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+subprocess.run([sys.executable,'-m','pip','install','-q','tabicl'],check=True)
+print('tabicl version:',im.version('tabicl'))
+import inspect
+from tabicl import TabICLClassifier
+args=inspect.signature(TabICLClassifier)
+assert 'kv_cache' in args.parameters, f'TabICL API changed: {args}'
+assert 'checkpoint_version' in args.parameters, f'TabICL checkpoint selection unavailable: {args}'
+if DEVICE!='cuda':raise RuntimeError('No CUDA GPU. Switch Colab to GPU to avoid long/failed model runs.')
+
+------------------
+
+----- stdout -----
+tabicl version: 2.2.0
+------------------
+
+---------------------------------------------------------------------------
+RuntimeError                              Traceback (most recent call last)
+/tmp/ipykernel_5515/432949017.py in <cell line: 0>()
+      6 assert 'kv_cache' in args.parameters, f'TabICL API changed: {args}'
+      7 assert 'checkpoint_version' in args.parameters, f'TabICL checkpoint selection unavailable: {args}'
+----> 8 if DEVICE!='cuda':raise RuntimeError('No CUDA GPU. Switch Colab to GPU to avoid long/failed model runs.')
+
+RuntimeError: No CUDA GPU. Switch Colab to GPU to avoid long/failed model runs.
+
+
+
+============================================================
+[3/8] NB37_Real_TabPFN3_Four_View_Pilot.ipynb
+============================================================
+60, in result
+    return self.__get_result()
+           ~~~~~~~~~~~~~~~~~^^
+  File "/usr/lib/python3.13/concurrent/futures/_base.py", line 402, in __get_result
+    raise self._exception
+  File "/usr/local/lib/python3.13/dist-packages/nbclient/client.py", line 709, in async_execute
+    await self.async_execute_cell(
+        cell, index, execution_count=self.code_cells_executed + 1
+    )
+  File "/usr/local/lib/python3.13/dist-packages/nbclient/client.py", line 1062, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/usr/local/lib/python3.13/dist-packages/nbclient/client.py", line 918, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+subprocess.run([sys.executable,'-m','pip','install','-q','tabpfn'],check=True)
+from tabpfn import TabPFNClassifier
+from tabpfn.constants import ModelVersion
+assert hasattr(ModelVersion,'V3'), 'This tabpfn installation cannot explicitly select TabPFN-3.'
+print('tabpfn version:',im.version('tabpfn'),'selected model:',ModelVersion.V3)
+if DEVICE!='cuda':raise RuntimeError('CUDA GPU required for the planned real-model run.')
+
+------------------
+
+----- stdout -----
+tabpfn version: 9.2.0 selected model: ModelVersion.V3
+------------------
+
+---------------------------------------------------------------------------
+RuntimeError                              Traceback (most recent call last)
+/tmp/ipykernel_6079/2191013089.py in <cell line: 0>()
+      4 assert hasattr(ModelVersion,'V3'), 'This tabpfn installation cannot explicitly select TabPFN-3.'
+      5 print('tabpfn version:',im.version('tabpfn'),'selected model:',ModelVersion.V3)
+----> 6 if DEVICE!='cuda':raise RuntimeError('CUDA GPU required for the planned real-model run.')
+
+RuntimeError: CUDA GPU required for the planned real-model run.
+
+
+
+============================================================
+[4/8] NB38_TabFM_Real_Third_Model_Preflight.ipynb
+============================================================
+e "/usr/local/lib/python3.13/dist-packages/jupyter_core/utils/__init__.py", line 128, in run
+    return fut.result(None)
+           ~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3.13/concurrent/futures/_base.py", line 460, in result
+    return self.__get_result()
+           ~~~~~~~~~~~~~~~~~^^
+  File "/usr/lib/python3.13/concurrent/futures/_base.py", line 402, in __get_result
+    raise self._exception
+  File "/usr/local/lib/python3.13/dist-packages/nbclient/client.py", line 709, in async_execute
+    await self.async_execute_cell(
+        cell, index, execution_count=self.code_cells_executed + 1
+    )
+  File "/usr/local/lib/python3.13/dist-packages/nbclient/client.py", line 1062, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/usr/local/lib/python3.13/dist-packages/nbclient/client.py", line 918, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+print('Official repo: https://github.com/google-research/tabfm')
+print('Official weight terms: tabfm-non-commercial-v1.0. Only run if permitted.')
+I_HAVE_REVIEWED_NONCOMMERCIAL_WEIGHT_TERMS=False
+if not I_HAVE_REVIEWED_NONCOMMERCIAL_WEIGHT_TERMS:
+    raise RuntimeError('Please read model-weight terms and set I_HAVE_REVIEWED_NONCOMMERCIAL_WEIGHT_TERMS=True to continue.')
+
+------------------
+
+----- stdout -----
+Official repo: https://github.com/google-research/tabfm
+Official weight terms: tabfm-non-commercial-v1.0. Only run if permitted.
+------------------
+
+---------------------------------------------------------------------------
+RuntimeError                              Traceback (most recent call last)
+/tmp/ipykernel_6655/3031868672.py in <cell line: 0>()
+      3 I_HAVE_REVIEWED_NONCOMMERCIAL_WEIGHT_TERMS=False
+      4 if not I_HAVE_REVIEWED_NONCOMMERCIAL_WEIGHT_TERMS:
+----> 5     raise RuntimeError('Please read model-weight terms and set I_HAVE_REVIEWED_NONCOMMERCIAL_WEIGHT_TERMS=True to continue.')
+
+RuntimeError: Please read model-weight terms and set I_HAVE_REVIEWED_NONCOMMERCIAL_WEIGHT_TERMS=True to continue.
+
+
+
+============================================================
+[5/8] NB39_Resumable_Real_Model_Queue.ipynb
+============================================================
+  await self.async_execute_cell(
+        cell, index, execution_count=self.code_cells_executed + 1
+    )
+  File "/usr/local/lib/python3.13/dist-packages/nbclient/client.py", line 1062, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/usr/local/lib/python3.13/dist-packages/nbclient/client.py", line 918, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+if DEVICE!='cuda':raise RuntimeError('No GPU detected. Use Colab T4/L4 before running this queue.')
+package={'tabiclv2':'tabicl','tabpfn3':'tabpfn','tabfm':'tabfm'}[MODEL]
+print('Model release:',MODEL, im.version(package))
+prep=q.prepare(datasets=DATASETS,seeds=SEEDS,folds=FOLDS)
+print(prep.to_string(index=False))
+
+------------------
+
+
+---------------------------------------------------------------------------
+RuntimeError                              Traceback (most recent call last)
+/tmp/ipykernel_7188/3282536592.py in <cell line: 0>()
+----> 1 if DEVICE!='cuda':raise RuntimeError('No GPU detected. Use Colab T4/L4 before running this queue.')
+      2 package={'tabiclv2':'tabicl','tabpfn3':'tabpfn','tabfm':'tabfm'}[MODEL]
+      3 print('Model release:',MODEL, im.version(package))
+      4 prep=q.prepare(datasets=DATASETS,seeds=SEEDS,folds=FOLDS)
+      5 print(prep.to_string(index=False))
+
+RuntimeError: No GPU detected. Use Colab T4/L4 before running this queue.
+
+
+
+============================================================
+[6/8] NB40_Fixed_Test_Factorial_And_Provenance_Gate.ipynb
+============================================================
+t
+    raise self._exception
+  File "/usr/local/lib/python3.13/dist-packages/nbclient/client.py", line 709, in async_execute
+    await self.async_execute_cell(
+        cell, index, execution_count=self.code_cells_executed + 1
+    )
+  File "/usr/local/lib/python3.13/dist-packages/nbclient/client.py", line 1062, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/usr/local/lib/python3.13/dist-packages/nbclient/client.py", line 918, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+import pandas as pd,numpy as np
+caches=sorted((q.OUTPUT/'real_caches').glob('*.npz'))
+if not caches:raise RuntimeError('No authentic model caches. Run NB36/37 before NB40.')
+print('Genuine model caches:',len(caches))
+metas=[]
+for p in caches:
+    data,meta=q.cache_data(p)
+    metas.append(meta)
+provenance=pd.DataFrame(metas)
+display(provenance[['dataset','model','seed','fold','train_cap','checkpoint_revision_confirmed']].head(20))
+print('Unconfirmed weights:',int((~provenance.checkpoint_revision_confirmed).sum()))
+
+------------------
+
+
+---------------------------------------------------------------------------
+RuntimeError                              Traceback (most recent call last)
+/tmp/ipykernel_7722/2210207341.py in <cell line: 0>()
+      1 import pandas as pd,numpy as np
+      2 caches=sorted((q.OUTPUT/'real_caches').glob('*.npz'))
+----> 3 if not caches:raise RuntimeError('No authentic model caches. Run NB36/37 before NB40.')
+      4 print('Genuine model caches:',len(caches))
+      5 metas=[]
+
+RuntimeError: No authentic model caches. Run NB36/37 before NB40.
+
+
+
+============================================================
+[7/8] NB41_Final_Evidence_And_Results_ZIP.ipynb
+============================================================
+
+============================================================
+[8/8] NB42_Real_End_To_End_Cost_Comparison.ipynb
+============================================================
+ror('Only the two primary TFMs in this timing comparison')
+if DEVICE!='cuda':raise RuntimeError('Select a GPU runtime to produce comparable model timing evidence.')
+q.prepare(datasets=['car'],seeds=[23],folds=[0])
+print('Model:',MODEL,'package:',im.version({'tabiclv2':'tabicl','tabpfn3':'tabpfn'}[MODEL]),'GPU:',torch.cuda.get_device_name(0))
+
+------------------
+
+
+---------------------------------------------------------------------------
+RuntimeError                              Traceback (most recent call last)
+/tmp/ipykernel_8785/3052429033.py in <cell line: 0>()
+      3 elif MODEL=='tabpfn3':subprocess.run([sys.executable,'-m','pip','install','-q','tabpfn'],check=True)
+      4 else:raise ValueError('Only the two primary TFMs in this timing comparison')
+----> 5 if DEVICE!='cuda':raise RuntimeError('Select a GPU runtime to produce comparable model timing evidence.')
+      6 q.prepare(datasets=['car'],seeds=[23],folds=[0])
+      7 print('Model:',MODEL,'package:',im.version({'tabiclv2':'tabicl','tabpfn3':'tabpfn'}[MODEL]),'GPU:',torch.cuda.get_device_name(0))
+
+RuntimeError: Select a GPU runtime to produce comparable model timing evidence.
+
+
+
+FINAL STATUS
+SUCCESS NB35_Colab_Environment_And_Frozen_Splits.ipynb
+FAILED NB36_Real_TabICLv2_Four_View_Pilot.ipynb
+FAILED NB37_Real_TabPFN3_Four_View_Pilot.ipynb
+FAILED NB38_TabFM_Real_Third_Model_Preflight.ipynb
+FAILED NB39_Resumable_Real_Model_Queue.ipynb
+FAILED NB40_Fixed_Test_Factorial_And_Provenance_Gate.ipynb
+SUCCESS NB41_Final_Evidence_And_Results_ZIP.ipynb
+FAILED NB42_Real_End_To_End_Cost_Comparison.ipynb

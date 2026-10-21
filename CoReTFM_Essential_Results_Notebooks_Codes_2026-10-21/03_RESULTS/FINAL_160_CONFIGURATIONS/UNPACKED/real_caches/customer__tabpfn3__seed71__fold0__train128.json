@@ -1,0 +1,69 @@
+{
+  "artifact_kind": "real_tfm",
+  "checkpoint_identifier": "ModelVersion.V3",
+  "checkpoint_revision_confirmed": false,
+  "checkpoint_sha256": "NOT_VERIFIED",
+  "classes_a": [
+    "No",
+    "Yes"
+  ],
+  "classes_b": [
+    "Higher education",
+    "Incomplete higher education",
+    "Incomplete secondary education",
+    "PhD degree",
+    "Secondary education",
+    "Secondary special education"
+  ],
+  "created_utc": "2026-10-20T10:34:42.633402+00:00",
+  "dataset": "customer",
+  "device": {
+    "cuda": true,
+    "gpu": "Tesla T4",
+    "torch": "2.11.0+cu130"
+  },
+  "elapsed_s": 4.648485125999969,
+  "evidence_caveat": "Checkpoint filename recorded; actual weight-byte SHA256 not obtained.",
+  "fold": 0,
+  "model": "tabpfn3",
+  "n_probabilities": 11783,
+  "n_test": 128,
+  "n_train": 128,
+  "n_val": 205,
+  "npz_sha256": "0517f046acea60231333daed6e48cf19095dbb017dc9efe0718d4fd754beb7b4",
+  "package_version": "9.2.0",
+  "protocol": "coretfm-v2-independent-fixed-test-2026-10-19",
+  "seed": 71,
+  "source": {
+    "openml_id": 46938,
+    "target_a": "bad_client_target",
+    "target_b": "education"
+  },
+  "split_sha256": "95d9beddd05c60e09fe23bb9dea4af1e26035c04a609919f75c67d0c113d0c4b",
+  "test_ids_sha": "7c87086367c0af1aeb5aeec12efac920d9aed775bebcfc68b2db3a5769f720b5",
+  "timing": {
+    "a": {
+      "fit_with_load_sec": 0.21412140100005672,
+      "n_predict_calls": 2,
+      "predict_sec": 0.30605886000012106
+    },
+    "a_given_b": {
+      "fit_with_load_sec": 0.18728834599983202,
+      "n_predict_calls": 12,
+      "predict_sec": 1.7808523659998627
+    },
+    "b": {
+      "fit_with_load_sec": 0.19691088899980969,
+      "n_predict_calls": 2,
+      "predict_sec": 0.3159714979999535
+    },
+    "b_given_a": {
+      "fit_with_load_sec": 0.18723520899993673,
+      "n_predict_calls": 4,
+      "predict_sec": 0.6333230230000026
+    }
+  },
+  "train_cap": 128,
+  "train_ids_sha": "d9ab82fa068eb90d56f5960325024fee74d11b698ce2b8a6c3891ac5393d4ec7",
+  "val_ids_sha": "c5e10df30ec4f4becd857804e65876d0b4602e2faae163787a07ddaa837596fa"
+}

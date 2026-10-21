@@ -1,0 +1,67 @@
+{
+  "artifact_kind": "real_tfm",
+  "checkpoint_identifier": "tabicl-classifier-v2-20260212.ckpt",
+  "checkpoint_revision_confirmed": false,
+  "checkpoint_sha256": "NOT_VERIFIED",
+  "classes_a": [
+    "bad",
+    "good"
+  ],
+  "classes_b": [
+    "0 <= ... < 200 DM",
+    "<0 DM",
+    ">= 200 DM / salary assignments for >= 1 year",
+    "no checking account"
+  ],
+  "created_utc": "2026-10-19T18:53:06.306747+00:00",
+  "dataset": "credit",
+  "device": {
+    "cuda": true,
+    "gpu": "Tesla T4",
+    "torch": "2.11.0+cu130"
+  },
+  "elapsed_s": 4.550765950000027,
+  "evidence_caveat": "Checkpoint filename recorded; actual weight-byte SHA256 not obtained.",
+  "fold": 1,
+  "model": "tabiclv2",
+  "n_probabilities": 8581,
+  "n_test": 128,
+  "n_train": 256,
+  "n_val": 205,
+  "npz_sha256": "199865fb2673a0e99ae57c0508de5bbee52f8db44cca3cedcbfafd59502a2578",
+  "package_version": "2.2.0",
+  "protocol": "coretfm-v2-independent-fixed-test-2026-10-19",
+  "seed": 23,
+  "source": {
+    "openml_id": 46918,
+    "target_a": "good_or_bad_customer",
+    "target_b": "checking_status"
+  },
+  "split_sha256": "e243d9f4c906ec522efce7fc2211a29e4702f07983522b62a2c22725dacbc44c",
+  "test_ids_sha": "311f04816961e37b9fdc3ebdbaab41be5a8aacb6f19d881e3bf9c34f90f8576c",
+  "timing": {
+    "a": {
+      "fit_with_load_sec": 0.5517497700000149,
+      "n_predict_calls": 2,
+      "predict_sec": 0.27406260700001894
+    },
+    "a_given_b": {
+      "fit_with_load_sec": 0.5396718719999853,
+      "n_predict_calls": 8,
+      "predict_sec": 0.826776298000027
+    },
+    "b": {
+      "fit_with_load_sec": 0.4875421680000045,
+      "n_predict_calls": 2,
+      "predict_sec": 0.20203556299998127
+    },
+    "b_given_a": {
+      "fit_with_load_sec": 0.5147388340000134,
+      "n_predict_calls": 4,
+      "predict_sec": 0.3980742830000281
+    }
+  },
+  "train_cap": 256,
+  "train_ids_sha": "3d076a65395b2694d2d5c72d453a4c3d7da59bdfadf77e425f889226ea5f1fab",
+  "val_ids_sha": "f7b31f8f48b80795950bb4d65a704701db32894aa014185816cf6690b556f4f5"
+}

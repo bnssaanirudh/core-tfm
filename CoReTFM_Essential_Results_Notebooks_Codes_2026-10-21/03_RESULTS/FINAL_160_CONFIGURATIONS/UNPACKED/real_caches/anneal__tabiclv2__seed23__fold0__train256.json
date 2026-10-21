@@ -1,0 +1,74 @@
+{
+  "artifact_kind": "real_tfm",
+  "checkpoint_identifier": "tabicl-classifier-v2-20260212.ckpt",
+  "checkpoint_revision_confirmed": false,
+  "checkpoint_sha256": "NOT_VERIFIED",
+  "classes_a": [
+    "1",
+    "2",
+    "3",
+    "5",
+    "U"
+  ],
+  "classes_b": [
+    "A",
+    "K",
+    "M",
+    "R",
+    "S",
+    "V",
+    "W",
+    "not_applicable"
+  ],
+  "created_utc": "2026-10-20T10:07:34.224829+00:00",
+  "dataset": "anneal",
+  "device": {
+    "cuda": true,
+    "gpu": "Tesla T4",
+    "torch": "2.11.0+cu130"
+  },
+  "elapsed_s": 13.521715626000002,
+  "evidence_caveat": "Checkpoint filename recorded; actual weight-byte SHA256 not obtained.",
+  "fold": 0,
+  "model": "tabiclv2",
+  "n_probabilities": 32224,
+  "n_test": 128,
+  "n_train": 256,
+  "n_val": 205,
+  "npz_sha256": "1b5202a783806bd4e5751d783818af53bae44cdfe85b3c8c0da76b4968c202b5",
+  "package_version": "2.2.0",
+  "protocol": "coretfm-v2-independent-fixed-test-2026-10-19",
+  "seed": 23,
+  "source": {
+    "openml_id": 46906,
+    "target_a": "classes",
+    "target_b": "steel"
+  },
+  "split_sha256": "743aae3a80c83b39bdaaf48528d8f76e40e5889dda17ab1e70ee8546cf4bef1d",
+  "test_ids_sha": "408903e4f579c634b4497ebab872af4b09419ab2578c3342761d1064ae338a34",
+  "timing": {
+    "a": {
+      "fit_with_load_sec": 5.052747602000011,
+      "n_predict_calls": 2,
+      "predict_sec": 1.4877580579999972
+    },
+    "a_given_b": {
+      "fit_with_load_sec": 0.540987653000002,
+      "n_predict_calls": 16,
+      "predict_sec": 1.7185612089999722
+    },
+    "b": {
+      "fit_with_load_sec": 0.5871572109999761,
+      "n_predict_calls": 2,
+      "predict_sec": 0.224756975000048
+    },
+    "b_given_a": {
+      "fit_with_load_sec": 0.5330974849999848,
+      "n_predict_calls": 10,
+      "predict_sec": 1.041826704000016
+    }
+  },
+  "train_cap": 256,
+  "train_ids_sha": "989ebf3d3d8b8df8466cee3da93e97a639450032ca5b549355e9287d543b890c",
+  "val_ids_sha": "99fac66da6cff80d4673495311eaca416346bad675357311e8f7cd9c52b787de"
+}

@@ -1,0 +1,680 @@
+% CoRe-TFM, Elsevier CAS single-column (cas-sc) layout.
+% Formatting reference: user-supplied FaulTrace_RAG_IPM_V1_Author(1).pdf
+% Template matches that paper, but all CoRe-TFM study content is retained.
+% Author contribution allocations are a proposed author-review statement; authors should verify that the roles match their actual contributions.
+\PassOptionsToPackage{hypertexnames=false}{hyperref}
+\documentclass[a4paper,fleqn]{cas-sc}
+\usepackage[authoryear,round]{natbib}
+\usepackage{amsmath,amsfonts,amssymb}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{multirow}
+\usepackage{array}
+\usepackage{tikz}
+\usetikzlibrary{positioning,arrows.meta}
+\usepackage{url}
+\usepackage{microtype}
+\usepackage{enumitem}
+\usepackage{flafter}
+\usepackage{float}
+\usepackage{xurl}
+\emergencystretch=3em
+\Urlmuskip=0mu plus 1mu
+\hypersetup{pdftitle={Coherence Is Not Accuracy: Evaluating Reconciliation, Calibration, and Reliability-Aware View Selection in Tabular Foundation Models},pdfauthor={Badampudi Agasthya Anirudh; Harshita Bogineni; Sri Preethaa K R},hidelinks,pdfborder={0 0 0}}
+
+\newcommand{\TV}{\operatorname{TV}}
+\newcommand{\KL}{\operatorname{KL}}
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\Jone}{J^{B\rightarrow A}}
+\newcommand{\Jtwo}{J^{A\rightarrow B}}
+\newcommand{\Qhard}{Q_{\mathrm{hard}}}
+\newcommand{\Qsoft}{Q_{\mathrm{soft}}}
+\newcommand{\Cset}{\mathcal{C}}
+\newcommand{\Sel}{Q_{\mathrm{sel}}}
+\newcommand{\Arith}{Q_{\mathrm{arith}}}
+% Do not print a blank ORCID(s) footnote when no ORCID has been supplied.
+\RenewDocumentCommand{\printorcid}{}{}
+
+\begin{document}
+\shorttitle{CoRe-TFM}
+\shortauthors{Badampudi et al.}
+\title[mode=title]{Coherence Is Not Accuracy: Evaluating Reconciliation, Calibration, and Reliability-Aware View Selection in Tabular Foundation Models}
+
+\author[vit]{Badampudi Agasthya Anirudh}
+\author[vit]{Harshita Bogineni}
+\author[vit]{Sri Preethaa K R}
+\cormark[1]
+\ead{sripreethaa.kr@vit.ac.in}
+\cortext[cor1]{Corresponding author}
+\affiliation[vit]{organization={School of Computer Science and Engineering, Vellore Institute of Technology},
+            city={Vellore},state={Tamil Nadu},country={India}}
+
+\begin{abstract}
+A tabular foundation model (TFM) can give incompatible answers to direct marginal and conditional probability queries, yet repairing those incompatibilities need not improve its forecast. We revisit CoRe-TFM, a post-hoc family combining two chain-rule joint estimates, arithmetic or geometric pooling, hard marginal projection, soft reconciliation, and validation-based selection. The original controlled studies showed that exact marginal preservation can improve or harm proper scores according to the reliability of the marginals; an earlier real-data robustness study reported near-parity rather than a robust predictive gain. We add an independently audited, fixed-test evaluation of 160 genuine TabICLv2 and TabPFN-3 configurations across ten paired-target datasets, four randomized held-out splits, and training contexts of 128 and 256 examples. At 256 examples, hard projection decreased marginal inconsistency in all 80 matched configurations but increased test negative log-likelihood (NLL) in 67; dataset-averaged changes were +0.01831 for TabICLv2 and +0.01178 for TabPFN-3. Raw-or-pool selection attained the lowest descriptive mean NLL (1.33919 and 1.33926), but its improvement over arithmetic pooling was small and not statistically established. Exploratory dataset-level hard-repair tests did not retain conventional significance after the documented multiple-comparison correction. The guarded repair policy did not activate in the audited evaluation, and one dataset, Diamonds, showed heterogeneous exceptions. The new protocol decouples training context from validation size but is not interchangeable with the earlier five-fold, five-seed benchmark. Together, the evidence supports a substantive distinction between distributional compatibility and predictive quality, not a claim of universally beneficial reconciliation.
+\end{abstract}
+
+\begin{keywords}
+Tabular foundation models \sep Probabilistic consistency \sep Probability reconciliation \sep Reliability \sep Proper scoring rules \sep Model selection
+\end{keywords}
+
+\maketitle
+
+\section{Introduction}
+A tabular model can be asked several related questions about the same observation: How likely is outcome $A$? How likely is outcome $B$? What changes if one outcome is known? In probability theory, those answers must obey a set of joint-distribution identities. A model trained to answer each query accurately, however, need not satisfy those identities across separate calls. As a result, individually plausible probabilities may not describe one coherent joint forecast.
+
+Tabular in-context learning has made this issue timely. Prior-Data Fitted Networks and TabPFN brought inference through pretrained tabular models into practical use \citep{muller2022pfns,hollmann2023tabpfn,hollmann2025tabpfn}; subsequent TabPFN releases and TabICLv2 broadened their coverage and performance \citep{grinsztajn2025tabpfn25,grinsztajn2026tabpfn3,qu2026tabiclv2}. TabArena provides an evolving benchmark context \citep{erickson2025tabarena}, while recent studies of proper scores and uncertainty show that strong task performance does not settle probabilistic reliability \citep{landsgesell2026scoringbench,johnson2026uq,costa2026lowreliability,tanna2026ensembling}.
+
+Let $A$ and $B$ be categorical outcomes associated with features $X$. Four repeated queries give
+\begin{equation}
+p(A\mid X),\qquad p(B\mid X),\qquad p(A\mid B,X),\qquad p(B\mid A,X).
+\end{equation}
+Using the chain rule in two directions produces
+\begin{align}
+\Jone(a,b\mid x)&=p_B(b\mid x)p_{A\mid B}(a\mid b,x),\\
+\Jtwo(a,b\mid x)&=p_A(a\mid x)p_{B\mid A}(b\mid a,x).
+\end{align}
+If all four views arise from a common joint distribution, the two expressions agree and marginalize to the corresponding direct predictions. Recent work measures precisely these failures of factorization and marginalization consistency in TFMs \citep{klotergens2026agree}; compatibility of separately specified conditionals is also well established in probability theory \citep{majid2025consistent,mure2017compromise}.
+
+Coherence does not, by itself, guarantee a better forecast. A projection can remove every algebraic contradiction and still move probability away from the outcomes that occur. Proper scoring rules and the forecast-combination literature provide the relevant test: whether a distribution assigns appropriate probabilities to observations \citep{brier1950,gneiting2007strictly,gneiting2007calibration,genest1986combining,ranjan2010combining,gneiting2013combining}. Our question is therefore practical: \emph{when does a reconciliation help, and when is it safer to retain a simple pool?}
+
+CoRe-TFM compares two raw chain-rule factorizations with pooling and KL-based marginal reconciliation. A validation-selected version can decline reconciliation altogether. The experimental design then separates controlled settings, where the true joint is known and reliability can be manipulated, from real-model settings, where selection must rely on a limited number of labels. The latter is important: the most flexible candidate family may offer more potential improvement but also more opportunities to select the wrong candidate \citep{cawley2010overfitting}.
+
+\paragraph{Contributions.}
+\begin{enumerate}
+\item We evaluate coherence and predictive quality as separate properties of a TFM's multiple probability views, rather than assuming that eliminating a structural defect improves accuracy.
+\item We present hard marginal projection, softly penalized reconciliation, and outcome-gated selection in a common post-hoc framework. The optimization primitives are established; the contribution is their reliability-sensitive comparison in the TFM setting.
+\item With known truth, we identify opposite reliability regimes in which exact marginal preservation helps or harms, and a heterogeneous mixture in which validation-selected candidates outperform a fixed pool.
+\item The historical ten-dataset, five-seed evaluation and proportional training/validation budget study show how finite validation evidence changes the value of candidate selection.
+\item We add a distinct, audited ten-dataset, two-model experiment with 160 genuine prediction caches, fixed validation/test IDs, independent training-context changes, calibration controls, and repeated randomized hold-outs.
+\item In this fixed-test experiment, we quantify the structural improvement and proper-score cost of forced repair and compare the larger candidate family against a simpler raw-or-pool policy. We identify the limits of a guarded-repair rule that never activates.
+\end{enumerate}
+
+\begin{figure}
+\centering
+\includegraphics[width=0.98\textwidth]{Fig1_coretfm_workflow.pdf}
+\caption{CoRe-TFM workflow. Four overlapping probability views induce two chain-rule joints. Pooling and reconciliation candidates are constructed without retraining the TFM, and a held-out validation set decides whether the final prediction should use a raw order, a pool, or a reconciliation.}
+\label{fig:framework}
+\end{figure}
+
+\section{Related Work}
+\subsection{Tabular foundation models and reliability}
+The modern TFM line grew from Prior-Data Fitted Networks, which learn an amortized inference procedure from synthetic tasks \citep{muller2022pfns}, to TabPFN and later large-scale releases \citep{hollmann2023tabpfn,hollmann2025tabpfn,grinsztajn2025tabpfn25,grinsztajn2026tabpfn3}. TabICLv2 develops a separate open and scalable route to tabular in-context learning \citep{qu2026tabiclv2}. These models enter a tabular-learning literature in which no single inductive bias dominates every dataset: strong tree ensembles and neural architectures remain competitive in different regimes \citep{gorishniy2021revisiting,grinsztajn2022trees}. TabArena formalizes this moving comparison through a maintained benchmark \citep{erickson2025tabarena}.
+
+The present paper is concerned with the predictive distributions produced by these models rather than only their top-1 decisions. ScoringBench evaluates TFMs with proper scoring rules \citep{landsgesell2026scoringbench}, while recent uncertainty studies report that strong predictive performance does not automatically imply reliable uncertainty estimates \citep{johnson2026uq,costa2026lowreliability}. Recent TFM ensembling work reaches a related conclusion: combining accurate models can improve classification while degrading log loss when the combination sharpens probabilities too aggressively \citep{tanna2026ensembling}. The closest diagnostic study to ours measures whether TFMs agree with themselves under factorization and marginalization identities \citep{klotergens2026agree}. CoRe-TFM begins from the same defect but asks a different question: whether correcting it improves the predictive distribution.
+
+\subsection{Probability pooling, calibration, and knowledge fusion}
+Combining uncertain information has a long history in statistics and knowledge-based systems. Classical work distinguishes linear, logarithmic, Bayesian, and axiomatic pooling rules \citep{genest1986combining,heskes1997opinion}. Forecast-combination studies show that a linear pool can lose calibration even when its components are calibrated, motivating transformed or recalibrated pools \citep{ranjan2010combining,gneiting2013combining}. These results are directly relevant to CoRe-TFM because arithmetic and geometric pools are not neutral bookkeeping operations; they change the predictive distribution and must be judged against outcomes.
+
+Calibration provides a second line of related work. Proper scores such as the logarithmic and Brier scores reward probabilistic accuracy rather than only decision accuracy \citep{brier1950,gneiting2007strictly}. Calibration and sharpness are complementary properties of a useful probabilistic forecast \citep{gneiting2007calibration}. Post-hoc calibration methods, including temperature scaling, beta calibration, and Dirichlet calibration, use held-out data to correct systematic probability distortions \citep{guo2017calibration,kull2017beta,kull2019dirichlet}. Recent KBS studies likewise show that post-hoc calibration can be strongly data-dependent \citep{shaker2025rfcalibration}.
+
+From a knowledge-based-systems perspective, the four TFM outputs are overlapping probabilistic knowledge views. Conflict-aware merging has been studied explicitly as a knowledge-fusion problem \citep{hunter2006merging}, and recent KBS work learns data-dependent weights for multi-source decision systems \citep{zhang2025dynamicfusion}. CoRe-TFM differs in one important respect: the views are not independent sources. They are direct marginals and conditionals produced by the same frozen model, so the reconciliation objective must account for their statistical overlap rather than treating them as independent experts.
+
+\subsection{Compatibility of conditionals}
+Compatibility of separately specified conditionals is a classical problem. A collection of conditionals may fail to correspond to any common joint distribution, and useful compromises can exist even when exact compatibility is impossible \citep{mure2017compromise}. Recent learning-theoretic work studies recovery of a joint from conditional information \citep{majid2025consistent}. In CoRe-TFM, compatibility is observable through chain-rule and marginalization identities, but compatibility is not the final target. We evaluate every repaired distribution with held-out proper scores because an internally compatible joint can still be predictively inferior.
+
+\subsection{Information projection, matrix scaling, and finite-sample selection}
+Hard CoRe is an information projection onto the transportation polytope defined by the queried marginals. Its roots include iterative proportional fitting \citep{deming1940ipf}, I-divergence projection onto convex sets \citep{csiszar1975idiv}, and matrix scaling \citep{sinkhorn1964scaling}. Modern entropic optimal-transport work provides efficient Bregman and Sinkhorn-style algorithms for related projections \citep{cuturi2013sinkhorn,benamou2015bregman,chizat2018scaling}. Geometric pooling is also connected to logarithmic opinion pools \citep{heskes1997opinion}. These projection and scaling procedures are well-established; CoRe-TFM does not claim them as new optimization algorithms.
+
+The methodological novelty lies in deciding whether those primitives should be applied to repeated TFM probability views. Once multiple raw, pooled, and reconciled candidates are available, the problem becomes finite-sample model selection. Validation-based choice can itself overfit when the selection criterion is noisy \citep{cawley2010overfitting}. This motivates the candidate-family ablations and oracle-regret decomposition reported later in the paper. Statistical comparisons across datasets follow the non-parametric paired-testing perspective common in machine-learning benchmark studies \citep{demsar2006comparisons}.
+
+\begin{table}
+\centering
+\caption{Positioning of CoRe-TFM relative to neighboring lines of work. ``Outcome-gated'' means that held-out labels can determine whether the transformation is used.}
+\label{tab:positioning}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{lccccc}
+\toprule
+Approach & Multiple probability views & Enforces joint compatibility & Uses held-out labels & Outcome-gated & Primary target\\
+\midrule
+Calibration methods & No & No & Yes & No & Calibration / proper score\\
+Opinion pooling & Yes & No & Optional & No & Consensus forecast\\
+TFM self-consistency diagnostics & Yes & No & No & No & Detect inconsistency\\
+Hard marginal projection & Yes & Yes & No & No & Structural coherence\\
+CoRe-TFM & Yes & Optional & Yes & Yes & Reliability-aware predictive quality\\
+\bottomrule
+\end{tabular}%
+}
+\end{table}
+
+\section{Problem Formulation}
+Let $A\in\{1,\ldots,K_A\}$ and $B\in\{1,\ldots,K_B\}$. For an input $x$, a frozen predictor supplies the four views described above. We define the factorization inconsistency
+\begin{equation}
+\Delta_{\mathrm{fac}}(x)=\TV\!\left(\Jone,\Jtwo\right)
+=\frac{1}{2}\sum_{a,b}\left|\Jone(a,b\mid x)-\Jtwo(a,b\mid x)\right|.
+\end{equation}
+The two induced joints preserve different direct marginals automatically: $\Jone$ preserves $p_B$ and $\Jtwo$ preserves $p_A$. Their opposite marginals may disagree with the direct queries.
+
+Our objective is a normalized joint $Q(A,B\mid X)$ that balances three different notions:
+\begin{enumerate}
+\item \emph{compatibility}: structural agreement among the queried views;
+\item \emph{fidelity}: closeness of the post-processed joint to the model's queried distributions; and
+\item \emph{predictive quality}: proper-score performance against held-out outcomes.
+\end{enumerate}
+These notions need not agree. In particular, zero post-repair inconsistency is not evidence that $Q$ is more accurate.
+
+The four views are repeated predictions from one frozen model and therefore overlap statistically. They must not be interpreted as independent Bayesian experts. CoRe objectives are regularized compatibility objectives, not likelihood multiplication under conditional independence.
+
+\section{CoRe-TFM}
+\subsection{Pooling baselines}
+For a direction weight $w\in[0,1]$, the arithmetic pool is
+\begin{equation}
+Q_{\mathrm{arith},w}=w\Jone+(1-w)\Jtwo.
+\end{equation}
+It minimizes $w\KL(\Jone\Vert Q)+(1-w)\KL(\Jtwo\Vert Q)$. The normalized geometric pool is
+\begin{equation}
+M_w(a,b)=\frac{\Jone(a,b)^w\Jtwo(a,b)^{1-w}}
+{\sum_{a',b'}\Jone(a',b')^w\Jtwo(a',b')^{1-w}},
+\end{equation}
+which is the corresponding reverse-KL barycenter.
+
+\subsection{Hard CoRe}
+Define the transportation polytope with prescribed direct marginals
+\begin{equation}
+\mathcal{T}(p_A,p_B)=\left\{Q\ge0:\sum_bQ(a,b)=p_A(a),\;\sum_aQ(a,b)=p_B(b)\right\}.
+\end{equation}
+Hard CoRe is the information projection
+\begin{equation}
+\Qhard=\arg\min_{Q\in\mathcal{T}(p_A,p_B)}\KL(Q\Vert M_w).
+\end{equation}
+The feasible set is nonempty because $p_Ap_B$ is feasible. With strictly positive $M_w$, the solution is unique and can be obtained by iterative proportional fitting. Hard CoRe encodes a strong reliability assumption: the two direct marginals should be preserved exactly.
+
+\subsection{Soft CoRe}
+To relax that assumption, Soft CoRe solves
+\begin{align}
+\Qsoft=\arg\min_Q\;&w\KL(Q\Vert\Jone)+(1-w)\KL(Q\Vert\Jtwo)\nonumber\\
+&+\lambda_A\KL(Q_A\Vert p_A)+\lambda_B\KL(Q_B\Vert p_B).
+\end{align}
+The chain rule for KL divergence yields
+\begin{align}
+\KL(Q\Vert\Jone)&=\KL(Q_B\Vert p_B)+\E_{b\sim Q_B}\KL(Q_{A\mid B=b}\Vert p_{A\mid B=b}),\\
+\KL(Q\Vert\Jtwo)&=\KL(Q_A\Vert p_A)+\E_{a\sim Q_A}\KL(Q_{B\mid A=a}\Vert p_{B\mid A=a}),
+\end{align}
+showing that all four predictive views enter the objective. Generalized scaling uses exponents
+\begin{equation}
+\tau_A=\frac{\lambda_A}{1+\lambda_A},\qquad
+\tau_B=\frac{\lambda_B}{1+\lambda_B}.
+\end{equation}
+As $\lambda_A,\lambda_B\rightarrow\infty$, the method approaches hard marginal preservation; at small penalties it stays closer to the factorized consensus.
+
+\subsection{Selective CoRe}
+Selective CoRe treats reconciliation as optional. The candidate family includes the two raw orders, equal and weighted arithmetic/geometric pools, weighted Hard CoRe, and weighted Soft CoRe. The implemented grid uses five direction weights
+\begin{equation}
+\{0,0.25,0.5,0.75,1\}
+\end{equation}
+and seven marginal penalties
+\begin{equation}
+\{0.03,0.1,0.3,1,3,10,30\}.
+\end{equation}
+After duplicate removal, the full family contains 48 candidates. The candidate with the lowest held-out validation NLL is frozen before test evaluation.
+
+For a fixed finite candidate family $\Cset$ of size $M$, let all candidates be specified independently of the validation labels, with per-example negative log-likelihood bounded by $B=-\log\epsilon$ after a positive probability floor $\epsilon$. If the validation observations are i.i.d. and $L$ is the corresponding population loss, a union-bound/Hoeffding argument gives
+\begin{equation}
+L(\hat Q)\le\min_{Q\in\Cset}L(Q)+2B\sqrt{\frac{\log(2M/\delta)}{2n_v}},
+\end{equation}
+with probability at least $1-\delta$. This is a conservative finite-class bound for the selection stage, not a guarantee about the upstream foundation model, non-independent examples, adaptively constructed candidates, or out-of-distribution deployment. The dependence on both $M$ and the validation size $n_v$ motivates the candidate-family and validation-fraction analyses.
+
+\subsection{Opportunity and selection regret}
+To separate method headroom from selection failure, let $L_{\mathrm{arith}}$ be arithmetic-pool loss, $L_{\mathrm{sel}}$ the selected loss, and $L_{\mathrm{oracle}}$ the minimum test loss over the candidate family. We report
+\begin{align}
+\text{oracle opportunity} &= L_{\mathrm{arith}}-L_{\mathrm{oracle}},\\
+\text{selection regret} &= L_{\mathrm{sel}}-L_{\mathrm{oracle}},\\
+\text{net effect} &= L_{\mathrm{sel}}-L_{\mathrm{arith}}.
+\end{align}
+The oracle is analysis-only and is never used to choose a deployable candidate.
+
+\section{Experimental Design}
+\subsection{Controlled known-truth studies}
+We use three controlled layers. First, a multiclass surrogate data-generating process provides exact $P^*(A,B\mid X)$ and therefore exact expected proper scores. Second, an exact-view perturbation benchmark independently corrupts the two direct marginals and the two conditional families, isolating the reliability assumptions encoded by reconciliation. Third, a heterogeneous 100-task mixture varies view reliability from task to task and compares Selective CoRe with fixed methods and a full-family oracle. A separate validation-size study varies the number of labels available to the selector.
+
+\subsection{Real-model benchmark}
+The real-data analysis includes Anneal, Car, Credit, Customer, Diamonds, Marketing, MIC, Nursery, Phishing, and Wine. The Car and Wine benchmarks follow the UCI and wine-quality sources, respectively \citep{bohanec1988car,cortez2009wine}. Two released TFMs form the primary model comparison: TabICLv2 2.1.1 and TabPFN 8.4.0 using the TabPFN-3 interface. CatBoost 1.2.10 is an explicitly non-TFM boundary baseline and is excluded from estimates labeled ``primary TFM.''
+
+TabFM was excluded from the frozen experimental protocol for recorded runtime and operational compatibility reasons, not for unfavorable predictive performance. The release required by the adapter was not fully exercised in this bounded execution environment, and no controlled TabFM timing comparison exists in the evidence archive. It would therefore be inappropriate to infer a slowdown factor or relative accuracy from its absence.
+
+The evaluation uses five outer folds per dataset and model, disjoint training, validation and test partitions, training-set coverage of the target classes, and no more than 128 test observations in a fold. At a 256-row training cap there are 52 validation observations per fold. For one seed the three-model matrix has 10 datasets $\times$ 3 models $\times$ 5 folds $=150$ model--fold tasks and 1,200 reported method rows (eight retained method summaries per task). The 48 candidate distributions inside Selective CoRe should not be confused with those eight reported methods.
+
+\subsection{Seed and data-budget robustness}
+The archived supplementary evidence contains five complete runs at the 256-row cap, using constrained-sampling seeds 11, 23, 42, 71 and 101. Four additional caps (64, 128, 512 and 1024) were evaluated with each of three matched seeds (23, 42 and 71), for a total of 17 runs. The archived aggregate contains 20,400 method-result rows: 17 runs $\times$ 10 datasets $\times$ 3 models $\times$ 5 folds $\times$ 8 methods. We used a fixed validation fraction of approximately 20\%, giving 13, 26, 52 and 103 validation observations at caps of 64, 128, 256 and 512, respectively. At a nominal cap of 1024, available training data limited the actual cap to 718--1024 observations and validation support to 144--205 (mean 194.4).
+
+The budget experiment is deliberately described as \emph{combined upstream-and-selection evidence sensitivity}: changes to training context and validation support cannot be causally disentangled. The 256-row row uses five seeds unless explicitly marked as the matched-three-seed subset; other caps use three.
+
+
+\subsection{Additional fixed-test, matched-context evaluation (October 2026 audit)}
+\label{sec:fixedtest}
+The October 19--20 experimental series was constructed to address two limitations of the historical results: increasing training context and selector labels together, and comparing candidate families without a strong calibrated-pooling reference. It is a \emph{second, separately identified protocol}; its cells must not be numerically pooled with the historical five-fold/five-seed analysis. The new archive comprises ten dataset pairs (the same named benchmark collection), two released TFMs (TabICLv2 2.2.0 and TabPFN package 9.2.0 using \texttt{ModelVersion.V3}), four randomized held-out split settings per dataset (seed/fold $23/0$, $23/1$, $42/0$, $71/0$), and two nested training contexts of 128 and 256 examples. This yields $10\times2\times4\times2=160$ real-model prediction caches. The split setting named ``fold'' is a randomized repeat, not a classical disjoint $K$-fold partition. The newer model versions and feature-pair handling, including a corrected Diamonds \texttt{cut}/\texttt{color} pairing, are recorded as protocol changes.
+
+For each dataset and split setting, 205 held-out validation examples and 128 held-out test examples are reserved independently of the context cap. Both TFMs and both context sizes use identical validation and test identifiers within the setting; nested context subsets protect the paired comparison. The 205-label validation pool alongside 128 or 256 context examples deliberately \emph{decouples} upstream training context from selection evidence; it is not a 128-total-label learning scenario. We report the prespecified central comparison at the 256-example cap and the first 52 validation labels, and use the 128-example cap as a context sensitivity analysis. Per-example NLL, multiclass joint Brier and classification accuracy are scored on the unchanged test set; top-label ECE is descriptive.
+
+Four probabilistic queries are inferred using separately fitted marginal and conditional estimators. The independent audit reconstructs each raw chain-rule joint and the arithmetic/geometric pools, hard marginal projection, partial soft repair, and validation-fitted selectors. The newer eight-base-candidate family is a restricted, explicitly documented counterpart of the original 48-candidate research formulation; results labeled \emph{full-family} below refer to the \emph{new audit's} eight-base-candidate selector, not to the historical 48-way comparison. The validation-only baselines include raw-or-pool selection, temperature-fitted pooling, and a guarded repair option. Temperature and policy choice use no test labels. For a given split, all candidate losses are scored on the same fixed held-out examples.
+
+For the principal inferential contrasts, we first average four repeated split effects within each dataset separately for each model, then report the unweighted mean over ten datasets. We give paired dataset-resampling bootstrap intervals and exploratory two-sided Wilcoxon tests, followed by Holm adjustment over the documented primary exploratory policy family. The 160 caches and their 1,920 reconstructed method rows are not interchangeable statistical sample sizes; only ten datasets are treated as independent experimental units for dataset-blocked comparisons. The second-protocol package version, checkpoint identifier, frozen split hash and cache SHA-256 are recorded, but historical loaded-checkpoint weight bytes and original raw OpenML dataset revisions remain unauthenticated.
+
+\begin{table}[t]
+\centering
+\caption{Two real-model experimental protocols retained as separate evidence streams. The second protocol isolates changes in training context at fixed validation/test IDs; its four randomized split settings are not independent datasets.}
+\label{tab:protocols}
+\resizebox{\textwidth}{!}{\begin{tabular}{p{2.3cm}p{3.2cm}p{3.4cm}p{4.2cm}}
+\toprule
+Component & Original 12 October archival protocol & New 19--20 October protocol & Interpretive consequence\\
+\midrule
+Models & TabICLv2 2.1.1; TabPFN 8.4.0/V3 interface & TabICLv2 2.2.0; TabPFN 9.2.0/V3 & Do not pool model-version estimates\\
+Datasets & Ten paired-target datasets & Ten paired-target datasets & Paired identities require feature/preprocessing review\\
+Sampling & Five outer folds; five seeds at 256 & Four randomized held-out settings & Different replication units and split construction\\
+Contexts & 64--1024 in budget study & 128 and 256 with nested context & New context contrast keeps test IDs fixed\\
+Selection labels & Proportional to context (52 at 256) & 205 reserved; primary first 52 & New protocol separates selection and context budgets\\
+Selector family & Up to 48 candidates & Eight base candidates plus calibration policies & Different method-family sizes\\
+Statistical unit & Dataset (ten) & Dataset (ten) & Multiple runs do not create independent datasets\\
+\bottomrule
+\end{tabular}}
+\end{table}
+
+\subsection{Outcomes, aggregation and inference}
+Joint negative log-likelihood (NLL) and joint Brier score are the principal proper scores. Additional diagnostics include conditional NLL, expected calibration error (ECE), total variation between the two factorizations, and distortion of the direct marginals. ECE depends on the selected binning and is descriptive here; known-truth experiments also permit exact expected loss, truth distance and oracle regret.
+
+For a method comparison, we first form the paired score difference within each dataset--model--fold--seed cell. Differences are averaged over folds, over the two TFMs, and then over seeds within each dataset. Thus the confirmatory real-data unit is the \emph{dataset} ($n=10$), not the individual fold, row, seed, or model cell. The two-sided Wilcoxon signed-rank test is applied to the ten dataset-level paired effects. We report model-specific and budget comparisons as exploratory; no family-wise confirmatory inference is claimed for the many additional contrasts \citep{demsar2006comparisons}. The five-seed 256-row bootstrap interval reported below resamples ten datasets with replacement (20,000 percentile replicates; fixed analysis seed 20261012); it is a sensitivity interval, not a pre-registered equivalence test. Positive ``Selective-minus-arithmetic'' NLL differences favor arithmetic pooling.
+
+\paragraph{Display precision and practical scale.} Displayed losses and differences are rounded for readability. The source CSV/JSON files in S1 retain the unrounded values used in the real-model analyses. An NLL difference also has a direct multiplicative interpretation. If $\Delta=L_{\mathrm{method}}-L_{\mathrm{baseline}}$, then $\exp(-\Delta)$ is the ratio of the geometric-mean probability assigned to the observed class by the method and the baseline. Thus, the controlled Selective-CoRe improvement of about $0.0067$ NLL corresponds to roughly a $0.67\%$ increase in geometric-mean probability on the observed class, whereas the five-seed real-data disadvantage of about $0.0009$ corresponds to only about a $0.09\%$ decrease. The larger $0.1505$-NLL failure of compulsory Hard CoRe corresponds to about a $14.0\%$ decrease. These are multiplicative probability interpretations, not absolute percentage-point changes, and downstream practical value remains application- and decision-cost-dependent.
+
+\section{Results}
+\subsection{Exact-view perturbations expose the reliability assumption}
+Table~\ref{tab:exactview} summarizes the frozen, known-truth perturbation analysis reported in the original controlled-study artifacts. These controlled results are distinguished from the 17-run real-model archive audit; a fresh end-to-end synthetic rerun is not claimed here.
+
+\begin{table}
+\caption{Best mean exact expected NLL in each exact-view perturbation regime (50 paired seeds).}
+\label{tab:exactview}
+\centering
+\begin{tabular}{lll}
+\toprule
+Regime & Best method & Expected NLL\\
+\midrule
+Uniform low noise & Geometric pool & 1.4786\\
+Direct marginals reliable & Soft CoRe ($\lambda=10$) & 1.4868\\
+Conditionals reliable & Arithmetic pool & 1.5088\\
+$B\rightarrow A$ reliable & $\Jone$ & 1.4753\\
+$A\rightarrow B$ reliable & $\Jtwo$ & 1.4753\\
+All four views noisy & Arithmetic pool & 1.5387\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+When the direct marginals are reliable, Hard CoRe improves over arithmetic pooling by 0.0133 NLL on average ($p_{\mathrm{Holm}}=7.11\times10^{-15}$). When the conditionals are reliable but direct marginals are noisy, Hard CoRe is worse by 0.1505 ($p_{\mathrm{Holm}}=7.11\times10^{-15}$). Exact marginal preservation therefore transfers the quality of the marginals into the joint; it is not intrinsically beneficial.
+
+\begin{figure}
+\centering
+\includegraphics[width=0.94\textwidth]{Fig2_reliability_mechanism.pdf}
+\caption{Reliability mechanism in the exact-view perturbation study. The vertical axis is arithmetic NLL minus Hard-CoRe NLL, so positive values favor exact marginal preservation. Hard CoRe helps when direct marginals are reliable and fails sharply when the conditionals are reliable but the direct marginals are noisy.}
+\label{fig:exactview}
+\end{figure}
+
+\subsection{Heterogeneous reliability can reward adaptive selection}
+Table~\ref{tab:mixture} presents the original heterogeneous 100-task controlled benchmark. Its task-level evidence is analyzed separately from the ten-dataset, dataset-blocked real-model comparison.
+
+\begin{table}
+\caption{Heterogeneous 100-task controlled benchmark.}
+\label{tab:mixture}
+\centering
+\begin{tabular}{lrrr}
+\toprule
+Method & Mean NLL & SE & Mean oracle regret\\
+\midrule
+Selective CoRe & \textbf{1.4837} & 0.0055 & \textbf{0.0007}\\
+Arithmetic & 1.4903 & 0.0056 & 0.0074\\
+Geometric & 1.4914 & 0.0056 & 0.0084\\
+Soft CoRe ($\lambda=1$) & 1.5006 & 0.0060 & 0.0176\\
+$\Jtwo$ & 1.5068 & 0.0070 & 0.0239\\
+$\Jone$ & 1.5144 & 0.0067 & 0.0315\\
+Hard CoRe & 1.5383 & 0.0085 & 0.0554\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Selective CoRe improves over arithmetic pooling by 0.0067 mean exact NLL, wins 68/100 tasks, and has a paired Wilcoxon $p=1.25\times10^{-11}$. It selects Soft CoRe 38 times, geometric pooling 33 times, raw orders 19 times, arithmetic pooling 10 times, and Hard CoRe zero times. Its mean regret to the non-deployable full-family oracle is only 0.0007. The controlled validation-size study is consistent with the finite-selection interpretation: mean oracle regret falls from 0.0056 with 100 validation labels to 0.0012 with 800 labels.
+
+\begin{figure}
+\centering
+\includegraphics[width=0.90\textwidth]{Fig3_controlled_benchmark.pdf}
+\caption{Mean exact expected NLL in the 100-task heterogeneous known-truth benchmark. Selective CoRe has the lowest mean NLL and mean oracle regret, while compulsory Hard CoRe is the worst fixed strategy in this deliberately heterogeneous reliability mixture.}
+\label{fig:mixture}
+\end{figure}
+
+\subsection{Frozen real benchmark: coherence improves while proper scores worsen}
+The original frozen 256-row run produced the result in Table~\ref{tab:frozen}. This is retained because it was the first prespecified real-model analysis and because the later robustness study changes its interpretation rather than invalidating its execution.
+
+\begin{table}
+\centering
+\caption{Frozen single-seed dataset-blocked Selective-CoRe effects relative to arithmetic pooling across the two primary TFMs ($n=10$ datasets). Positive proper-score differences are worse.}
+\label{tab:frozen}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{lrrrr}
+\toprule
+Metric & Mean difference & 95\% bootstrap CI & Wins & $p$\\
+\midrule
+Joint NLL & $+0.0018$ & $[+0.0005,+0.0033]$ & 2/10 & 0.02734\\
+Joint Brier & $+0.0006$ & --- & 1/10 & 0.00586\\
+Marginal distortion & $-0.0039$ & --- & 9/10 & 0.00391\\
+\bottomrule
+\end{tabular}%
+}
+\end{table}
+
+Selective CoRe improves agreement with the direct marginals while worsening both proper scores in this frozen run. The result demonstrates the main conceptual point: a structurally more faithful joint can be predictively worse. Mean factorization TV in the primary TFM cells is nonzero, so the finding is not caused by a trivial absence of incompatibility.
+
+The effect is strongly model dependent. In the frozen run, Selective CoRe is worse than arithmetic by 0.0067 NLL on TabICLv2 but better by 0.0030 on TabPFN-3. The paired difference between model-specific effects is 0.0097 ($p=0.00977$, exploratory).
+
+\begin{figure}
+\centering
+\includegraphics[width=0.90\textwidth]{Fig4_multiseed_dataset_effects.pdf}
+\caption{Dataset-level Selective-minus-arithmetic joint-NLL effects at the 256-row cap across five constrained-sampling seeds. Points show the seed mean and horizontal bars show one standard deviation across seeds. Negative values favor Selective CoRe.}
+\label{fig:realeffects}
+\end{figure}
+
+\subsection{Five-seed robustness attenuates the frozen negative result}
+The completed multi-seed analysis repeats the 256-row protocol for five constrained-sampling seeds. After averaging folds, the two primary TFMs and the five seeds within each dataset, the mean Selective-minus-arithmetic effect is $+0.000851$ NLL. Selective CoRe is better on two datasets and worse on eight. The two-sided dataset-blocked Wilcoxon result is $p=0.10547$. An exploratory percentile bootstrap over the ten dataset means gives a 95\% interval of approximately $[-0.00157,\,+0.00291]$ (20,000 replicates, fixed seed 20261012). This interval includes both small benefits and small harms and should not be read as establishing equivalence. The five seed-level mean effects are $+0.0004$, $+0.0009$, $+0.0018$, $+0.0009$, and $+0.0002$ for seeds 11, 23, 42, 71, and 101, respectively.
+
+\begin{figure}
+\centering
+\includegraphics[width=0.93\textwidth]{Fig8_seed_robustness.pdf}
+\caption{Seed-level Selective-minus-arithmetic NLL effects at the 256-row training cap. All five sampling seeds yield a small positive mean effect, but the magnitude varies materially across seeds.}
+\label{fig:seedrobust}
+\end{figure}
+
+This robustness result does not establish equivalence between Selective CoRe and arithmetic pooling. It does show that the magnitude and inferential strength of the original single-seed disadvantage were sensitive to the sampling realization. The defensible 256-row conclusion is therefore that Selective CoRe has a small average disadvantage under this bounded protocol, with substantial data-set and model heterogeneity and without dataset-blocked significance over the five-seed aggregate.
+
+\subsection{Data-budget sensitivity reveals a sign transition}
+Table~\ref{tab:context} summarizes the primary TFM effect over the available data budgets. For the 64, 128, 512, and 1024 caps, three matched seeds are available; the 256 row contains five seeds. A matched-three-seed calculation gives 0.0012 rather than 0.0009 at 256 and leaves the qualitative sequence unchanged.
+
+\begin{table}
+\centering
+\caption{Selective-minus-arithmetic joint-NLL effect as the training cap and proportional validation pool increase. Positive values favor arithmetic pooling. The 256-row aggregate uses five seeds; other rows use three.}
+\label{tab:context}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{rrrrr}
+\toprule
+Train cap & Typical validation & Mean effect & TFM cells & Direction\\
+\midrule
+64 & 13 & $+0.0065$ & 60 & Arithmetic better\\
+128 & 26 & $+0.0025$ & 60 & Arithmetic better\\
+256 & 52 & $+0.0009$ & 100 & Near parity\\
+512 & 103 & $-0.0013$ & 60 & Selective better\\
+1024 & $\approx194$ & $-0.0034$ & 60 & Selective better\\
+\bottomrule
+\end{tabular}%
+}
+\end{table}
+
+\begin{figure}
+\centering
+\includegraphics[width=0.88\textwidth]{Fig5_budget_transition.pdf}
+\caption{Evidence-budget transition. Positive values favor arithmetic pooling; negative values favor Selective CoRe. Training context and the held-out validation pool grow together, so this is an evidence-budget trend rather than a causal context-size effect.}
+\label{fig:budgettransition}
+\end{figure}
+
+These are descriptive comparisons, not five separate confirmatory claims of improvement. The experiment contains ten dataset units, some datasets cannot supply the nominal 1024 training rows, and each larger context also supplies more held-out validation examples. The negative difference at the largest cap is therefore evidence of a budget-dependent association in this benchmark, not a causal demonstration that either training context or validation size alone makes reconciliation profitable.
+
+The model-specific pattern strengthens the reliability interpretation (Table~\ref{tab:modelcontext}). TabPFN-3 is near parity at 64 rows and favors Selective CoRe at every larger budget in the aggregate. TabICLv2 begins with a substantially larger selector penalty and crosses to a small selector advantage only at 512 rows.
+
+\begin{table}
+\centering
+\caption{Model-specific mean Selective-minus-arithmetic NLL difference.}
+\label{tab:modelcontext}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{lrrrrr}
+\toprule
+Model & 64 & 128 & 256 & 512 & 1024\\
+\midrule
+TabICLv2 & $+0.0120$ & $+0.0056$ & $+0.0044$ & $-0.0004$ & $-0.0027$\\
+TabPFN-3 & $+0.0009$ & $-0.0005$ & $-0.0026$ & $-0.0023$ & $-0.0041$\\
+\bottomrule
+\end{tabular}%
+}
+\end{table}
+
+\begin{figure}
+\centering
+\includegraphics[width=0.88\textwidth]{Fig6_model_specific_budget.pdf}
+\caption{Model-specific evidence-budget effects. TabPFN-3 reaches a Selective-CoRe advantage earlier, while TabICLv2 pays a much larger small-budget selection cost and crosses the zero-effect line only at larger budgets.}
+\label{fig:modelbudget}
+\end{figure}
+
+\subsection{Inconsistency is not a universal reconciliation-gain signal}
+Factorization TV decreases as the evidence budget grows for both TFMs. For TabICLv2, mean TV falls from 0.1237 at the 64-row cap to 0.0560 at 1024; for TabPFN-3 it falls from 0.0601 to 0.0403. Direct and conditional NLLs also improve with increasing budget.
+
+Crucially, the relationship between inconsistency and Selective-CoRe benefit is not stable across models. In a frozen benchmark reliability analysis, the Pearson correlation between factorization TV and arithmetic-minus-selective gain is approximately $-0.421$ for TabICLv2 and $+0.310$ for TabPFN-3, with an overall correlation of only about $-0.133$ across all model cells. A high factorization TV therefore does not, by itself, tell us whether reconciliation will improve proper-score performance. The diagnostic must be interpreted together with model- and view-specific reliability.
+
+This conclusion is also supported analytically: one can construct pairs of factorizations with large TV where one factorization is already equal to the truth and pooling necessarily hurts, as well as pairs with arbitrarily small disagreement symmetrically bracketing the truth where pooling helps. Inconsistency is a structural defect statistic, not an accuracy statistic.
+
+\subsection{Candidate-family complexity is measurable}
+The full 48-candidate selector is not uniformly superior to a smaller family. Table~\ref{tab:families} reports mean joint NLL for nested candidate-family ablations aggregated over the robustness runs.
+
+\begin{table}
+\centering
+\caption{Mean joint NLL of validation-selected candidate families. Lower is better.}
+\label{tab:families}
+\begin{tabular}{rllll}
+\toprule
+Train cap & Full & Pool only & Raw only & Repair only\\
+\midrule
+64 & 1.6884 & \textbf{1.6867} & 1.6906 & 1.6885\\
+128 & 1.4913 & \textbf{1.4911} & 1.4932 & 1.4912\\
+256 & 1.3786 & \textbf{1.3779} & 1.3802 & 1.3788\\
+512 & 1.2854 & \textbf{1.2853} & 1.2868 & 1.2854\\
+1024 & \textbf{1.2089} & 1.2093 & 1.2103 & 1.2089\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}
+\centering
+\includegraphics[width=0.88\textwidth]{Fig7_candidate_complexity.pdf}
+\caption{Candidate-family selection cost relative to the pool-only selector. Values above zero are worse than pool-only selection. The full 48-candidate family pays a measurable finite-evidence penalty at small and moderate budgets and becomes slightly better only at the largest budget.}
+\label{fig:candidatecost}
+\end{figure}
+
+Pool-only selection is slightly better than the full family from 64 through 512 rows, while the full family becomes marginally best at 1024. This is consistent with a bias--variance trade-off in candidate selection: a larger family creates more oracle opportunity but also more ways to overfit a finite validation set.
+
+At the 256-row cap, a separate nested-validation sensitivity gives mean NLL 1.3805, 1.3798, and 1.3786 when using 25\%, 50\%, and 100\% of the available validation pool, respectively. At the 64-row cap, using the full validation pool also improves mean NLL relative to the two smaller fractions. These ablations support the role of validation evidence while avoiding the stronger claim that every increase in validation size must improve every dataset.
+
+\subsection{Rare classes do not explain the 256-row effect}
+Some paired-target datasets contain very small target-class supports. We therefore perform a post-hoc exclusion sensitivity using data-set-level minimum target-class support. At the 256-row cap, keeping all ten datasets gives mean Selective-minus-arithmetic NLL $+0.0009$. Requiring minimum support of at least 2 leaves nine datasets and yields $+0.0008$; requiring at least 5 leaves six datasets and yields $+0.0010$; requiring at least 10 leaves five datasets and yields $+0.0007$. None of the filtered analyses reverses the direction. Rare-class datasets therefore do not appear to be the sole explanation for the small 256-row disadvantage.
+
+\subsection{A conservative Safe-Selective rule is a negative control, not a win}
+The repository includes a Safe Selective CoRe rule based on structural-risk penalties. It falls back to arithmetic pooling unless a validation improvement exceeds the candidate-family complexity penalty. In 100 controlled known-truth tasks, the current rule selects the arithmetic fallback in all 100 cases, has zero mean difference from arithmetic, and mean oracle regret 0.0065. This establishes a useful negative control: a theoretically motivated guardrail can be so conservative that it eliminates both selection risk and selection benefit. We therefore do not present the current Safe-Selective rule as a performance contribution.
+
+
+\subsection{Audited ten-dataset fixed-test evaluation: predictive losses}
+\label{sec:newprimary}
+We audited all 160 real-model cache/metadata pairs from the second protocol, checked 40 frozen split specifications, and recomputed each method's test scores directly from saved probability arrays. The primary comparison uses training cap 256, validation budget 52, four matched split settings per dataset, and ten dataset-blocked means per TFM. Table~\ref{tab:newprimary} gives mean joint NLL, with lower values indicating better proper-score performance.
+
+\begin{table}[t]
+\centering
+\caption{New fixed-test benchmark: unweighted mean over ten datasets of joint NLL at training cap 256 and validation budget 52 (four paired split settings per dataset). \emph{Full-family} denotes the newer restricted eight-candidate selector, not the older 48-candidate method. Bold denotes the lowest descriptive mean in each model column, not a significant win.}
+\label{tab:newprimary}
+\begin{tabular}{lrr}
+\toprule
+Policy & TabICLv2 & TabPFN-3\\
+\midrule
+Arithmetic pool & 1.34000 & 1.34147\\
+Raw-or-pool selector & \textbf{1.33919} & \textbf{1.33926}\\
+Full-family selector & 1.33994 & 1.33944\\
+Temperature-calibrated pool & 1.35350 & 1.35492\\
+Hard reconciliation & 1.35831 & 1.35325\\
+Halfway soft repair & 1.34654 & 1.34524\\
+Guarded calibrated repair & 1.35350 & 1.35492\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The raw-or-pool selector shows the smallest mean NLL in both models, but the margin relative to fixed arithmetic pooling is only $-0.000813$ in TabICLv2 and $-0.002212$ in TabPFN-3. Dataset-blocked exploratory Wilcoxon $p$-values for these differences are 0.6953 and 0.2324, respectively, and their bootstrap intervals include zero. Hence the data do not establish reliable predictive superiority of the selector. Nor does the new full-family selection produce a demonstrable gain over the smaller raw-or-pool family. Notably, temperature fitting on a 52-example validation subset \emph{worsens mean test NLL} under the current grid and splits; this is a finding about the implemented finite-label calibration procedure, not a general argument against calibration. Brier, accuracy and descriptive ECE estimates are retained in the accompanying auditable report rather than substituted for NLL.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.84\textwidth]{05_HARD_REPAIR_NLL_DELTA.png}
+\caption{Independent fixed-test audit of hard-reconciliation NLL change by dataset and model at training cap 256. Positive differences indicate degraded predictive log loss after repair. Each dataset value is averaged across four randomized split settings.}
+\label{fig:newdelta}
+\end{figure}
+
+\subsection{Direct structural intervention: coherence is not accuracy}
+\label{sec:ablation}
+For each fixed test prediction, we apply iterative marginal projection to the arithmetic joint, holding the queried direct marginal distributions fixed. We independently measure whether this intervention decreases mean marginal total variation and whether the resulting held-out NLL improves. All $80$ primary model--dataset--split configurations show reduced marginal discrepancy, but $67/80$ show \emph{increased} NLL. This isolates a substantive distinction: enforcing the selected marginal constraints changes the joint as intended, but the constraints may not be the most reliable information available about the true joint.
+
+\begin{table}[t]
+\centering
+\caption{Audited paired hard-reconciliation effects relative to arithmetic pooling. Positive $\Delta$NLL/$\Delta$Brier means worse predictive scoring. Bootstrap intervals and exploratory tests use ten dataset-level average effects; Holm correction covers the documented exploratory contrast family.}
+\label{tab:newablation}
+\small
+\begin{tabular}{lrrrrr}
+\toprule
+Model & Mean $\Delta$NLL & Bootstrap 95\% CI & Harmed & Wilcoxon $p$ & Holm $p$\\
+\midrule
+TabICLv2 & +0.01831 & [+0.00893, +0.02832] & 9/10 & 0.00977 & 0.06836\\
+TabPFN-3 & +0.01178 & [+0.00397, +0.01954] & 9/10 & 0.01953 & 0.13672\\
+\bottomrule
+\end{tabular}
+\normalsize
+\end{table}
+
+The corresponding mean Brier increases are +0.00324 for TabICLv2 and +0.00199 for TabPFN-3. These bootstrap intervals exclude zero and the unadjusted paired $p$-values are below 0.05, yet both Holm-adjusted $p$-values exceed 0.05. Consequently we treat the widespread hard-repair penalty as a strong descriptive pattern with exploratory statistical support, rather than a family-wise-confirmed positive finding. Partial ($50\%$) soft repair reduces but does not eliminate the mean harm: its dataset-blocked $\Delta$NLL is +0.00654 for TabICLv2 and +0.00377 for TabPFN-3. The intervention demonstrates a mechanism, but does not establish that all possible coherence-enforcing maps have the same effect.
+
+\subsection{Dataset heterogeneity and the Diamonds exception}
+The sign of the repair effect is not universal. Across the ten datasets, hard projection harms mean NLL on nine datasets per model but improves it on Diamonds (mean $\Delta$NLL $-0.00513$ for TabICLv2 and $-0.01028$ for TabPFN-3). Split-level analysis shows that TabICLv2's Diamonds improvement is driven by a large gain in the $71/0$ split ($-0.04562$), while its other three splits are harmed. TabPFN-3 improves in three of the four Diamonds splits. Class-pair subgroup sizes can be sparse, so the observed advantage is an informative heterogeneous case, \emph{not} proof of a broadly identifiable beneficial-repair regime. No dataset-specific rule was learned from test outcomes.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.81\textwidth]{05_CONSISTENCY_ACCURACY_tabiclv2.png}
+\caption{TabICLv2 consistency--accuracy diagnostic from the new 160-cache audit. Changes in marginal discrepancy and changes in NLL are tracked separately; no monotonic performance interpretation is imposed on structural consistency.}
+\label{fig:mech-tabicl}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.81\textwidth]{05_CONSISTENCY_ACCURACY_tabpfn3.png}
+\caption{Corresponding TabPFN-3 consistency--accuracy diagnostic. Direction and scale of the relationship can be model- and dataset-dependent even when the projection is structurally successful.}
+\label{fig:mech-tabpfn}
+\end{figure}
+
+\subsection{Guarded repair and evidence-budget findings}
+The new validation-guarded repair policy did not activate in its recorded runs and exactly matched its temperature-calibrated-pool fallback. It is therefore inappropriate to call the guard \emph{effective at identifying beneficial repairs}; its observed behavior demonstrates nonactivation and an inability to outperform the fallback, not a safety guarantee under distribution shift. Likewise, the historical 48-candidate selection results and the newer eight-base-candidate results refer to different candidate sets and environment versions. Both experiments caution against treating a larger candidate family as intrinsically better when validation evidence is limited.
+
+The two evidence-budget designs provide complementary, noninterchangeable evidence. In the historical protocol, training context and selection support increase together and the Selective-minus-arithmetic trend changes sign by the largest cap. In the audited fixed-test protocol, 128 versus 256 training contexts are nested within an unchanged 205-example validation pool and unchanged 128-example test pool, allowing context-size sensitivity to be studied independently of label availability for policy selection. Neither design constitutes a prospective deployment or independent-hospital evaluation, and neither is a confirmation that calibration or selection dominates all other post-processing strategies.
+
+\clearpage
+\section{Discussion}
+The most consequential update to the original manuscript is the availability of a second ten-dataset, two-model audit with fixed held-out targets. This makes the central thesis a directly observed contrast: marginal consistency was improved under an explicit intervention in all 80 primary comparisons, while predictive NLL deteriorated in 67. The result is neither a tautology nor a statistical guarantee of harm: marginal projection answers a structural constraint problem, whereas proper scoring rules assess forecast quality against realized outcomes. The two quantities therefore solve different objectives. The Diamonds exception is an important restraint on claims that repair is always harmful.
+
+The newer audit also changes the relative emphasis among methods. Raw-or-pool selection has the best descriptive mean NLL but only a tiny, statistically unresolved margin over arithmetic pooling. The guarded method reverts to its calibration baseline throughout. Thus the manuscript's demonstrated contribution is a careful, reproducible \emph{evaluation} and the identification of reliability-dependent failure modes, not a validated universal accuracy-improvement algorithm. These new conclusions coexist with, rather than replace, the older controlled and robustness findings, and should not be aggregated across their differing checkpoint, split and candidate-family protocols.
+
+The experiments point to a simple distinction that is easy to miss when probabilities are post-processed: compatibility describes the representation, while predictive quality describes how that representation behaves against outcomes. Those properties can move together, but they do not have to. This is consistent with the broader probabilistic-forecasting literature, where calibration, sharpness, pooling, and proper-score performance are related but not interchangeable criteria \citep{gneiting2007calibration,ranjan2010combining,gneiting2013combining}.
+
+The controlled perturbation study makes the mechanism visible. Hard CoRe is effective when its equality constraints are attached to trustworthy direct marginals because the projection prevents the joint from drifting away from accurate marginal information. The same projection becomes harmful when the direct marginals are the unreliable views. Soft CoRe is useful because it turns that binary assumption into a continuum. Selective CoRe goes one step further and asks the validation data which reliability regime appears to be present.
+
+The real-model results introduce a second consideration: the cost of selecting a method with few validation labels. A 48-candidate family contains more ways to improve on arithmetic pooling, but a larger family also gives a noisy validation set more opportunities to select the wrong candidate. This is a concrete instance of finite-sample overfitting in model selection \citep{cawley2010overfitting}. The oracle decomposition separates these two forces. In the frozen 256-row benchmark, TabICLv2 has mean oracle opportunity of about 0.0070 but selection regret of about 0.0137, so the available headroom is more than consumed by selection error. TabPFN-3 shows the opposite ordering: opportunity is about 0.0104 and regret about 0.0073. The same selector can therefore lose on one upstream model and win on another without any contradiction.
+
+The multi-seed experiment is important for the interpretation of the original result. The single-seed 256-row benchmark produced a statistically detectable disadvantage for Selective CoRe. Averaging five constrained-sampling seeds nearly halves that effect and moves the paired dataset-level $p$-value above 0.05. This does not invalidate the first run. It shows that the first run characterized one bounded sampling regime and was too narrow to support a universal conclusion. The result also reinforces why benchmark claims should be stated at the dataset level and checked for sensitivity to randomness rather than inferred from a large number of correlated fold rows \citep{demsar2006comparisons}.
+
+The 64--1024 study adds an evidence dimension. At the smallest budgets, pool-only families are favored; at the largest budget, the full family becomes marginally best. The direction of the Selective-minus-arithmetic effect also moves from positive to negative. The protocol, however, increases the TFM training context and the selector validation pool together. Better upstream probabilities and better candidate selection therefore cannot be separated in this experiment. We describe the pattern as evidence-budget sensitivity, not as proof that context length alone causes reconciliation to become beneficial.
+
+Recent TFM reliability studies make this distinction increasingly relevant. High predictive performance can coexist with weaker uncertainty behavior \citep{costa2026lowreliability,johnson2026uq}, and recent ensembling results show that apparently sensible combinations can worsen log loss through calibration effects \citep{tanna2026ensembling}. CoRe-TFM reaches a related conclusion inside a single model: logically related probability views can contain useful complementary information, but combining or constraining them is itself a statistical decision.
+
+Factorization TV should therefore be treated as a defect indicator, not as a reward signal. Its association with reconciliation gain changes sign between TabICLv2 and TabPFN-3, and analytic counterexamples rule out a model-free monotone relationship. A practical gate should use richer evidence: per-view proper scores, calibration diagnostics, repeated-inference stability, class support, and possibly a learned model-specific policy. Viewed as knowledge integration, the difficulty is not merely to merge inconsistent information. It is to identify which model outputs are reliable enough to constrain a final distribution.
+
+\section{Limitations and Threats to Validity}
+The formulation is pairwise and categorical. Global compatibility among three or more targets can impose constraints that are not visible in pairwise reconciliation, and mixed continuous targets require different numerical treatment. Extending CoRe-TFM to graphical multi-target reconciliation is future work.
+
+The primary real-model claim covers only two released TFMs. CatBoost is intentionally treated as a boundary baseline rather than a third TFM. TabFM support exists in the codebase, but the frozen protocol excluded it before comparative outcome inspection for recorded operational-compatibility and runtime reasons. Because the archive contains neither completed TabFM folds nor a controlled TabFM timing study, the paper makes no claim about TabFM accuracy or intrinsic computational efficiency. Broad statements about all TFMs would therefore be unsupported, and replication with additional released TFMs remains a priority.
+
+The datasets are small to medium tabular benchmarks and the protocol is explicitly bounded. The 1024-row cap is not attainable for every dataset, causing the effective training/validation counts to vary at the largest budget. The context experiment also couples upstream training context with validation size, preventing causal separation of the two effects.
+
+Only ten datasets define the primary inferential unit. The context-size rows above 256 use three seeds, and the numerical sign transition should therefore be treated as descriptive robustness evidence, not as a powered proof of monotonic improvement. The multiple exploratory analyses in this paper are used for mechanism discovery; the primary confirmatory interpretation remains dataset-blocked and focused on proper scoring rules.
+
+Rare classes remain challenging despite the exclusion sensitivity. Post-hoc support filtering cannot replace a purpose-built rare-event benchmark. Likewise, ECE is binning dependent and is not used as the main inferential endpoint. The controlled reliability mixture is a designed stress test, not an estimate of how frequently different reliability regimes occur in deployed applications.
+
+The candidate-family oracle is non-deployable because it uses test outcomes and is reported only to quantify headroom. Safe Selective CoRe currently collapses to the arithmetic fallback and therefore requires redesign before it can be proposed as an improvement.
+
+
+\paragraph{Limitations specific to the independently audited 160-cache extension.}
+The second study is a saved-prediction re-evaluation of GPU inference outputs rather than a fresh, pinned-environment model reproduction. It verifies NPZ checksums, query probability normalization, split identities, and score recomputation, but not historical model-weight byte hashes. Only five processed dataset pickle snapshots accompany the extension; these are not authenticated raw OpenML downloads, and the feature/pair processing change on Diamonds requires a cross-protocol schema audit. The old and new studies use different model package versions, split construction and candidate sets. No inference in this manuscript pools their rows. The new fixed validation reservation is intentionally large relative to the smallest training contexts; performance in low-total-label settings may differ substantially. Repeated splits share datasets and may overlap, so results are aggregated to ten dataset effects before statistical testing. The exploratory multiple-comparison correction prevents presenting the hard-projection harm result as conventionally significant across the full family of tests. The confidence intervals describe dataset-resampling variability but cannot eliminate provenance risk. Any claims about steady-state speed, verified model releases, online drift, or deployment benefit require new experiments.
+
+\section{Reproducibility and Evidence Audit}
+The implementation is organized into model adapters, probability extraction, proper-score metrics, reconciliation modules, benchmark auditing, robustness runners, and reliability-analysis utilities. Unit tests cover reconciliation, soft scaling, selective policies, metrics, synthetic truth, benchmark auditing, robustness execution, and research extensions.
+
+The original frozen benchmark records 1,200 method rows over 150 fold tasks, version information, fold manifests and checksums. Such provenance is in the spirit of documented machine-learning benchmarking infrastructures such as OpenML \citep{vanschoren2014openml}. Supplementary Material S1 extends this evidence to five 256-row seeds and twelve additional context-budget runs (three seeds at each of four other caps), plus selection-family ablations, validation-fraction studies, reliability summaries, rare-class analyses and CPU-only controls. Across all 17 runs it records 20,400 method rows. Dataset--model--fold--seed cells appear eight times, once for each summarized method; those rows are not independent observations for significance tests.
+
+The robustness preflight records Python 3.13.15, PyTorch 2.11.0 with CUDA 12.8, TabICL 2.1.1, TabPFN 8.4.0, CatBoost 1.2.10, and an NVIDIA Tesla T4 environment for the archived execution. The benchmark source commit is pinned independently of later manuscript and analysis revisions.
+
+The project code is available at \url{https://github.com/bnssaanirudh/core-tfm}. The numerical robustness claims in this version were checked against the separately archived \emph{Supplementary Material S1}, rather than inferred from the public repository's older completion-status summary. S1 includes the complete 17-run aggregate, individual fold-result tables, run-completion records, ablations and environment details. Its 169 listed file SHA-256 values and sizes match the corresponding archived files, and recomputation of the ten dataset effects at the 256-row cap reproduces $+0.0008510181$ and $p=0.10546875$. This checks archive integrity and the arithmetic of stored results; it does not constitute a fresh rerun of model inference. For a reproducible submission, the final supplementary archive should be permanently linked to an immutable public source revision or repository release.
+
+
+\paragraph{October 2026 fixed-test archive and independent audit.}
+The newly completed series provides two complementary archived objects: a combined evidence ZIP retaining 160 original per-configuration NPZ/JSON prediction caches, 40 frozen split descriptions and associated summaries, and a separate manuscript-audit ZIP containing directly reconstructed policy scores, paired intervention effects, dataset-blocked uncertainty, figures, integrity records and environment/provenance-gap reports. The combined manifest lists 414 verified source entries, while the audit bundle lists 23 verified output artifacts. The saved-output audit reproduces 1,920 method-level evaluation rows. The supplementary two-model audit preflight records TabICL 2.2.0, TabPFN package 9.2.0, PyTorch 2.11.0+cu130 and Tesla T4 hardware (these are not the older benchmark's versions). Hash and score agreement establish artifact integrity and arithmetic reproducibility, \emph{not} that the exact original weights or raw dataset bytes were independently identified. Both archives should be published immutably with clear provenance boundaries and without sensitive authentication material. The independent-audit procedure does not unpickle untrusted processed-data files.
+
+\section{Conclusion}
+This study distinguishes algebraic compatibility from the statistical quality of a forecast. The historical controlled experiments show that hard marginal projection can help when direct marginals are reliable and harm when they are not; the original five-seed benchmark found near parity for a broad Selective-CoRe policy. A subsequent, separate fixed-test analysis adds 160 authentic model prediction configurations across ten datasets, two TFMs, four randomized held-out splits and nested 128/256-example contexts. Its decisive structural intervention reduced marginal inconsistency in all 80 primary cases but worsened held-out NLL in 67. Dataset-mean hard-repair NLL changes were +0.01831 (TabICLv2) and +0.01178 (TabPFN-3), although exploratory multiple-testing-adjusted comparisons did not clear a conventional significance threshold.
+
+Simple raw-view-or-pool selection and arithmetic pooling remained competitive; the larger selection family provided no reliable additional advantage, and the guarded repair rule never activated on the recorded evidence. The Diamonds exception shows that the value of reconciliation depends on the dataset and the reliability of its probability views. Taken together, the findings justify evaluating internal consistency and proper scoring as separate axes, and disfavor the indiscriminate use of marginal projection solely to remove visible inconsistency.
+
+Before the work is represented as a fully reproducible release, historical checkpoint bytes and raw OpenML revisions must be authenticated and a small, pinned-environment inference rerun should be completed. Learning a reliably beneficial selective repair gate---rather than simply guarding against repair---remains an open research direction, together with further independent dataset families and multi-target extensions.
+
+\appendix
+\section{Rare-class sensitivity}
+\begin{table}
+\centering
+\caption{Rare-class exclusion sensitivity at the 256-row cap. Positive effects mean Selective CoRe is worse than arithmetic pooling.}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{rrrrr}
+\toprule
+Minimum support & Datasets kept & Mean effect & Wins & Wilcoxon $p$\\
+\midrule
+1 & 10 & $+0.0009$ & 2 & 0.105\\
+2 & 9 & $+0.0008$ & 2 & 0.164\\
+5 & 6 & $+0.0010$ & 1 & 0.438\\
+10 & 5 & $+0.0007$ & 1 & 0.625\\
+\bottomrule
+\end{tabular}%
+}
+\end{table}
+
+\section{Dataset-level primary comparison}
+The following paired effects are computed from the archived 256-row real-model results after averaging over folds, both primary TFMs and the five seeds within each dataset. The test uses these ten dataset effects, not the 500 underlying TFM model--fold--seed cells.
+\begin{table}
+\centering
+\caption{Five-seed dataset-level Selective-CoRe minus arithmetic joint NLL at the 256-row training cap. Negative values favor Selective CoRe. Values are shown with additional precision to facilitate an independent reconstruction of the paired statistic.}
+\label{tab:datasetprimary}
+\begin{tabular}{lr}
+\toprule
+Dataset & Mean paired difference\\
+\midrule
+Car & $-0.007898733$\\
+Nursery & $-0.000549423$\\
+Wine & $+0.000845628$\\
+Customer & $+0.000921804$\\
+Diamonds & $+0.001012085$\\
+Marketing & $+0.001264137$\\
+Credit & $+0.001606358$\\
+MIC & $+0.001727603$\\
+Anneal & $+0.002186410$\\
+Phishing & $+0.007394310$\\
+\midrule
+Dataset mean & $+0.000851018$\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section*{Data and code availability}
+The implementation is hosted at \url{https://github.com/bnssaanirudh/core-tfm}. Historical Supplement S1 comprises the earlier 17-run benchmark and its method/seed robustness analyses. The separately derived October 2026 supplementary evidence (S2) comprises \texttt{CoReTFM\_FULL160\_Combined\_Verified\_Evidence.zip} (the 160-cache combined archive) and \texttt{CoReTFM\_v7\_FINAL\_PAPER\_AUDIT.zip} (the independent score-reconstruction and manuscript audit). The two protocols must remain separately labeled. A stable public archival DOI and the source revision executing the new notebook series have not yet been established; these are required before formal submission. The saved-output audits do not authenticate the original checkpoint bytes or raw OpenML downloads.
+
+\section*{CRediT authorship contribution statement}
+\textbf{Badampudi Agasthya Anirudh:} Conceptualization, Methodology, Software, Formal analysis, Investigation, Data curation, Visualization, Writing -- original draft, Writing -- review \& editing. \textbf{Harshita Bogineni:} Methodology, Investigation, Validation, Data curation, Formal analysis, Writing -- review \& editing. \textbf{Sri Preethaa K R:} Supervision, Methodology, Project administration, Validation, Writing -- review \& editing.
+
+\section*{Funding}
+This research received no external funding.
+
+\section*{Declaration of competing interest}
+The authors declare that they have no known competing financial interests or personal relationships that could have appeared to influence the work reported in this paper.
+
+\section*{Declaration of generative AI and AI-assisted technologies in the manuscript preparation process}
+During the preparation of this manuscript, OpenAI ChatGPT was used to assist with English-language editing, manuscript organization and formatting. Language-review tools were also consulted for selected passages. AI-assisted text was not treated as independent scientific evidence; the experimental findings and their interpretation are supported by the cited sources and accompanying research artifacts. The authors remain responsible for the scientific content, accuracy and integrity of the article.
+
+
+\clearpage
+\bibliographystyle{cas-model2-names}
+\bibliography{references}
+\end{document}

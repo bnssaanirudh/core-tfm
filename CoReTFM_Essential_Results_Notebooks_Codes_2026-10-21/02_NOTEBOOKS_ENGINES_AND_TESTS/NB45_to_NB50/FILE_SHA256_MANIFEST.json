@@ -1,0 +1,77 @@
+[
+  {
+    "path": "ENGINE_SHA256.txt",
+    "sha256": "09e2c0adf630a95d145c1f978f208b48db5272ffd343c9ef8f6c869ab304e56c",
+    "bytes": 177
+  },
+  {
+    "path": "README.md",
+    "sha256": "e77415b4827f0080183f6357ce17f3b9fa702ae2b76122a1975bbbd981d28a57",
+    "bytes": 7944
+  },
+  {
+    "path": "engine/coretfm_engine.py",
+    "sha256": "13c645e341846f2c0234569eae76a4ed07d29f78c41c92b91623c221f8307757",
+    "bytes": 33575
+  },
+  {
+    "path": "engine/research_v4.py",
+    "sha256": "1fedec1af1cb40d929d0de6f3da80298cc4ae17f1b889dbb4a775d6c06a0f923",
+    "bytes": 26370
+  },
+  {
+    "path": "notebooks/CoReTFM_V4_ALL_IN_ONE.ipynb",
+    "sha256": "1785d56da5255a1c5d5ab8aee6ac9f6e2b8ecae5ea2c065e58dce003d4d74e84",
+    "bytes": 81364
+  },
+  {
+    "path": "notebooks/NB45_Recovery_Protocol_And_Coverage.ipynb",
+    "sha256": "57fc1f204a42ef0e5fa1b873484736b107d0ae82b1b8dd7fe1bed816dfed1226",
+    "bytes": 74858
+  },
+  {
+    "path": "notebooks/NB46_Real_TFM_GPU_Queue.ipynb",
+    "sha256": "af23803d6dc5cf79e4c22f0c902b0437aff72791c7a7aa1d0298ab204597db1c",
+    "bytes": 77430
+  },
+  {
+    "path": "notebooks/NB47_Strong_Baselines_And_Calibration.ipynb",
+    "sha256": "fa9395244cbe87bf36feb1acb2db54f0db341dd13805377d2f1ee0c7aa97942c",
+    "bytes": 76114
+  },
+  {
+    "path": "notebooks/NB48_Dataset_Blocked_Statistics_And_Figures.ipynb",
+    "sha256": "f2ebec32735240a6b24c0d2cecd7c0ced9f4345fc608dae9578f543fc8b99750",
+    "bytes": 76407
+  },
+  {
+    "path": "notebooks/NB49_Evidence_Audit_And_Download.ipynb",
+    "sha256": "ded989bdf982123d004825a4fe5e04cbc5dc56a817bba81ff7e86525f57327ce",
+    "bytes": 75888
+  },
+  {
+    "path": "notebooks/NB50_Optional_TabFM_Third_Model_Preflight.ipynb",
+    "sha256": "359554145e8cb666b467b5e278f12d3a9a3e406b392c5d6840f5de2093d84982",
+    "bytes": 4321
+  },
+  {
+    "path": "tests/test_cpu_four_views.py",
+    "sha256": "0521300df86d0cfacd8415ea10c41920884794b47957ea26f4df29b6894e4584",
+    "bytes": 1111
+  },
+  {
+    "path": "tests/test_methodology.py",
+    "sha256": "bf6185e762a3d4aadfb4d650f38548d37dc0d7ef7883428ae51e38492892bbe8",
+    "bytes": 2175
+  },
+  {
+    "path": "tests/test_modular.py",
+    "sha256": "8de00a2d09ccaa599d320b58f459d4fc004186da5cd2a55565bfde411525d8a6",
+    "bytes": 1132
+  },
+  {
+    "path": "tests/test_notebooks.py",
+    "sha256": "0926be1e0addfcc2cb03b3726140212ba2996883774cf397ea828dc14a0634b7",
+    "bytes": 1721
+  }
+]

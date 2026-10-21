@@ -1,0 +1,71 @@
+{
+  "artifact_kind": "real_tfm",
+  "checkpoint_identifier": "ModelVersion.V3",
+  "checkpoint_revision_confirmed": false,
+  "checkpoint_sha256": "NOT_VERIFIED",
+  "classes_a": [
+    "No",
+    "Yes"
+  ],
+  "classes_b": [
+    "Absurd",
+    "Alone",
+    "Divorced",
+    "Married",
+    "Single",
+    "Together",
+    "Widow",
+    "YOLO"
+  ],
+  "created_utc": "2026-10-20T10:32:22.274535+00:00",
+  "dataset": "marketing",
+  "device": {
+    "cuda": true,
+    "gpu": "Tesla T4",
+    "torch": "2.11.0+cu130"
+  },
+  "elapsed_s": 5.628834392000044,
+  "evidence_caveat": "Checkpoint filename recorded; actual weight-byte SHA256 not obtained.",
+  "fold": 1,
+  "model": "tabpfn3",
+  "n_probabilities": 15113,
+  "n_test": 128,
+  "n_train": 128,
+  "n_val": 205,
+  "npz_sha256": "b5b5662385eb2ed7f29b16250b54b6efb4ec84adb8ab01ead9a0e869abc82d84",
+  "package_version": "9.2.0",
+  "protocol": "coretfm-v2-independent-fixed-test-2026-10-19",
+  "seed": 23,
+  "source": {
+    "openml_id": 46940,
+    "target_a": "Response",
+    "target_b": "Marital_Status"
+  },
+  "split_sha256": "f255d3b18ea537a8b942256078a0f11875683ac671476d3c9bbe2e72acabd490",
+  "test_ids_sha": "989eacb2afe2185c4c807b346d4adccd99436027c1f97d706a70559ce6e61297",
+  "timing": {
+    "a": {
+      "fit_with_load_sec": 0.20979729600003338,
+      "n_predict_calls": 2,
+      "predict_sec": 0.36955892499986476
+    },
+    "a_given_b": {
+      "fit_with_load_sec": 0.20279866300006688,
+      "n_predict_calls": 16,
+      "predict_sec": 2.60136108100005
+    },
+    "b": {
+      "fit_with_load_sec": 0.20647655599987047,
+      "n_predict_calls": 2,
+      "predict_sec": 0.3265306309999687
+    },
+    "b_given_a": {
+      "fit_with_load_sec": 0.20558375299992804,
+      "n_predict_calls": 4,
+      "predict_sec": 0.6585557379999045
+    }
+  },
+  "train_cap": 128,
+  "train_ids_sha": "8a8ac0b63f1ab3a45576a97eb85de35fe91e8e84ddc29727bb2469e5785b7896",
+  "val_ids_sha": "6eff2884658d8be7baec16327003b3786a8664a0d3069149333fca75067d475e"
+}

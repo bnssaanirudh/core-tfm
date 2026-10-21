@@ -1,0 +1,73 @@
+{
+  "artifact_kind": "real_tfm",
+  "checkpoint_identifier": "ModelVersion.V3",
+  "checkpoint_revision_confirmed": false,
+  "checkpoint_sha256": "NOT_VERIFIED",
+  "classes_a": [
+    "Very Good",
+    "Fair",
+    "Good",
+    "Ideal",
+    "Premium"
+  ],
+  "classes_b": [
+    "D",
+    "E",
+    "F",
+    "G",
+    "H",
+    "I",
+    "J"
+  ],
+  "created_utc": "2026-10-20T10:32:28.429753+00:00",
+  "dataset": "diamonds",
+  "device": {
+    "cuda": true,
+    "gpu": "Tesla T4",
+    "torch": "2.11.0+cu130"
+  },
+  "elapsed_s": 5.92540257099995,
+  "evidence_caveat": "Checkpoint filename recorded; actual weight-byte SHA256 not obtained.",
+  "fold": 1,
+  "model": "tabpfn3",
+  "n_probabilities": 28433,
+  "n_test": 128,
+  "n_train": 128,
+  "n_val": 205,
+  "npz_sha256": "fc5a85646057e2e3293886e8fa2bd8666860402a4c3e3f7562fdb91be7c5ed88",
+  "package_version": "9.2.0",
+  "protocol": "coretfm-v2-independent-fixed-test-2026-10-19",
+  "seed": 23,
+  "source": {
+    "openml_id": 42225,
+    "target_a": "cut",
+    "target_b": "color"
+  },
+  "split_sha256": "292b89db8141d9ca4e8880bc184397d0a9fd54bdf0a64bb902db3b1657dff2bc",
+  "test_ids_sha": "562439b85b847aa2348aafd239c2f95ceeac1f03bbedd3cff7c96bf364233656",
+  "timing": {
+    "a": {
+      "fit_with_load_sec": 0.1844454960000803,
+      "n_predict_calls": 2,
+      "predict_sec": 0.31517817700000705
+    },
+    "a_given_b": {
+      "fit_with_load_sec": 0.19155666000006022,
+      "n_predict_calls": 14,
+      "predict_sec": 2.1739673479999055
+    },
+    "b": {
+      "fit_with_load_sec": 0.18129041099996357,
+      "n_predict_calls": 2,
+      "predict_sec": 0.3077949839998837
+    },
+    "b_given_a": {
+      "fit_with_load_sec": 0.18037524600003962,
+      "n_predict_calls": 10,
+      "predict_sec": 1.5817361899999014
+    }
+  },
+  "train_cap": 128,
+  "train_ids_sha": "e41245e04e825259a4f803939ae21046776b27c35001b23bb35302ea20de3805",
+  "val_ids_sha": "5d1bf4f58cefd8ee2ab67ffbb12206e1d364efa37941b91d4ef5e45c3f5e630d"
+}

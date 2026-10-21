@@ -1,0 +1,74 @@
+{
+  "artifact_kind": "real_tfm",
+  "checkpoint_identifier": "tabicl-classifier-v2-20260212.ckpt",
+  "checkpoint_revision_confirmed": false,
+  "checkpoint_sha256": "NOT_VERIFIED",
+  "classes_a": [
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6",
+    "7",
+    "8"
+  ],
+  "classes_b": [
+    "red",
+    "white"
+  ],
+  "created_utc": "2026-10-19T18:59:14.592407+00:00",
+  "dataset": "wine",
+  "device": {
+    "cuda": true,
+    "gpu": "Tesla T4",
+    "torch": "2.11.0+cu130"
+  },
+  "elapsed_s": 6.3122168729998975,
+  "evidence_caveat": "Checkpoint filename recorded; actual weight-byte SHA256 not obtained.",
+  "fold": 0,
+  "model": "tabiclv2",
+  "n_probabilities": 15113,
+  "n_test": 128,
+  "n_train": 128,
+  "n_val": 205,
+  "npz_sha256": "1c1a354b8b2043023ce00e09928b34d44878bfe454ef87c52ca845ab8c320c57",
+  "package_version": "2.2.0",
+  "protocol": "coretfm-v2-independent-fixed-test-2026-10-19",
+  "seed": 71,
+  "source": {
+    "openml_ids": [
+      40691,
+      40498
+    ],
+    "target_a": "class",
+    "target_b": "color"
+  },
+  "split_sha256": "8cdaedbcd32e5e5f57b1e9393dbe804aa7fadd7dde4dd9743f91b06d9bc5bf48",
+  "test_ids_sha": "090487c5ab06f280a21c751c4c7392f951006d8970d8ab039801c68c6bcf2d3d",
+  "timing": {
+    "a": {
+      "fit_with_load_sec": 0.48670763300015096,
+      "n_predict_calls": 2,
+      "predict_sec": 0.17091210800003864
+    },
+    "a_given_b": {
+      "fit_with_load_sec": 0.461891223000066,
+      "n_predict_calls": 4,
+      "predict_sec": 0.32083029099999294
+    },
+    "b": {
+      "fit_with_load_sec": 0.45582442099998843,
+      "n_predict_calls": 2,
+      "predict_sec": 0.1742314499999793
+    },
+    "b_given_a": {
+      "fit_with_load_sec": 1.066013116000022,
+      "n_predict_calls": 16,
+      "predict_sec": 2.0905927209998936
+    }
+  },
+  "train_cap": 128,
+  "train_ids_sha": "c247942332d2a6486df85b89649b79e790dcf86d487c03d8699500752e7f0ed9",
+  "val_ids_sha": "5893165e5636059e2401135816a5a523fc90e5f4422cf1692f1f27fa56a4645c"
+}

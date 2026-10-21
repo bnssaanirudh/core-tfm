@@ -1,0 +1,74 @@
+{
+  "artifact_kind": "real_tfm",
+  "checkpoint_identifier": "tabicl-classifier-v2-20260212.ckpt",
+  "checkpoint_revision_confirmed": false,
+  "checkpoint_sha256": "NOT_VERIFIED",
+  "classes_a": [
+    "1",
+    "2",
+    "3",
+    "5",
+    "U"
+  ],
+  "classes_b": [
+    "A",
+    "K",
+    "M",
+    "R",
+    "S",
+    "V",
+    "W",
+    "not_applicable"
+  ],
+  "created_utc": "2026-10-20T10:08:59.490296+00:00",
+  "dataset": "anneal",
+  "device": {
+    "cuda": true,
+    "gpu": "Tesla T4",
+    "torch": "2.11.0+cu130"
+  },
+  "elapsed_s": 5.5232770740000205,
+  "evidence_caveat": "Checkpoint filename recorded; actual weight-byte SHA256 not obtained.",
+  "fold": 1,
+  "model": "tabiclv2",
+  "n_probabilities": 32096,
+  "n_test": 128,
+  "n_train": 128,
+  "n_val": 205,
+  "npz_sha256": "799156bcd208c581f28df936bdffe71b9b92f7b0ba3d2da7944d35509009b014",
+  "package_version": "2.2.0",
+  "protocol": "coretfm-v2-independent-fixed-test-2026-10-19",
+  "seed": 23,
+  "source": {
+    "openml_id": 46906,
+    "target_a": "classes",
+    "target_b": "steel"
+  },
+  "split_sha256": "96b74dee2767d425d8e1ed6b74f314a3b7636db7ae696abb07b00a4fb9df7f78",
+  "test_ids_sha": "d260a1c0ad214b74b0f922e97c51dce1173724086914ce18ac8204af29326dcf",
+  "timing": {
+    "a": {
+      "fit_with_load_sec": 0.5255337450000184,
+      "n_predict_calls": 2,
+      "predict_sec": 0.23148532300001534
+    },
+    "a_given_b": {
+      "fit_with_load_sec": 0.5098200680000105,
+      "n_predict_calls": 16,
+      "predict_sec": 1.4255037899999934
+    },
+    "b": {
+      "fit_with_load_sec": 0.4988103559999786,
+      "n_predict_calls": 2,
+      "predict_sec": 0.21024887300001183
+    },
+    "b_given_a": {
+      "fit_with_load_sec": 0.5306999929999847,
+      "n_predict_calls": 10,
+      "predict_sec": 0.8828469700000028
+    }
+  },
+  "train_cap": 128,
+  "train_ids_sha": "32b12277917d52526ac1852db7497e887c223ec856b25beef02868ef72adf68e",
+  "val_ids_sha": "fa173f3930950b4f9cdb4e2e0ed17f1924e4e56bd534de48c8165feabdf10312"
+}

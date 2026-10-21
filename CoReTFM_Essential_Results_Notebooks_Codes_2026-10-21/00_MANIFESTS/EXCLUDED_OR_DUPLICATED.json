@@ -1,0 +1,52 @@
+[
+  {
+    "path": "/mnt/data/CoReTFM_V1_DOI_Integrated_2026-10-20/TECHNICAL_STYLE_AND_CITATION_AUDIT.md",
+    "reason": "exact_SHA256_duplicate",
+    "identical_to": "06_AUDIT_REPORTS_DATA_TABLES/CoRe_TFM_V1_Refined_Audit_2026-10-20.md"
+  },
+  {
+    "path": "/mnt/data/CoReTFM_V1_Full_Editorial_Review_2026-10-20/FULL_TECHNICAL_AND_STYLE_AUDIT.md",
+    "reason": "exact_SHA256_duplicate",
+    "identical_to": "06_AUDIT_REPORTS_DATA_TABLES/CoRe_TFM_V1_Full_Editorial_Audit_2026-10-20.md"
+  },
+  {
+    "path": "/mnt/data/CoReTFM_V1_Full_Editorial_Review_2026-10-20/REFERENCE_CROSSCHECK_40.csv",
+    "reason": "exact_SHA256_duplicate",
+    "identical_to": "06_AUDIT_REPORTS_DATA_TABLES/CoRe_TFM_V1_Reference_Crosscheck_40.csv"
+  },
+  {
+    "path": "/mnt/data/CoReTFM_V1_Refined_2026-10-20/README.md",
+    "reason": "exact_SHA256_duplicate",
+    "identical_to": "08_ADDITIONAL_SOURCE_AND_AUDITS/CoReTFM_V1_DOI_Integrated_2026-10-20/README.md"
+  },
+  {
+    "path": "/mnt/data/CoReTFM_V1_Refined_2026-10-20/REFERENCE_AUDIT_40_UPDATED.csv",
+    "reason": "exact_SHA256_duplicate",
+    "identical_to": "08_ADDITIONAL_SOURCE_AND_AUDITS/CoReTFM_V1_DOI_Integrated_2026-10-20/REFERENCE_AUDIT_40_UPDATED.csv"
+  },
+  {
+    "path": "/mnt/data/CoReTFM_V1_Refined_2026-10-20/TECHNICAL_STYLE_AND_CITATION_AUDIT.md",
+    "reason": "exact_SHA256_duplicate",
+    "identical_to": "06_AUDIT_REPORTS_DATA_TABLES/CoRe_TFM_V1_Refined_Audit_2026-10-20.md"
+  },
+  {
+    "path": "/mnt/data/coretfm_editorial_v2/FULL_TECHNICAL_AND_STYLE_AUDIT.md",
+    "reason": "exact_SHA256_duplicate",
+    "identical_to": "06_AUDIT_REPORTS_DATA_TABLES/CoRe_TFM_V1_Full_Editorial_Audit_2026-10-20.md"
+  },
+  {
+    "path": "/mnt/data/coretfm_editorial_v2/README.md",
+    "reason": "exact_SHA256_duplicate",
+    "identical_to": "08_ADDITIONAL_SOURCE_AND_AUDITS/CoReTFM_V1_Full_Editorial_Review_2026-10-20/README.md"
+  },
+  {
+    "path": "/mnt/data/coretfm_editorial_v2/REFERENCE_CROSSCHECK_40.csv",
+    "reason": "exact_SHA256_duplicate",
+    "identical_to": "06_AUDIT_REPORTS_DATA_TABLES/CoRe_TFM_V1_Reference_Crosscheck_40.csv"
+  },
+  {
+    "path": "/mnt/data/coretfm_v5_audit_recomputed_cache_scores.csv",
+    "reason": "exact_SHA256_duplicate",
+    "identical_to": "06_AUDIT_REPORTS_DATA_TABLES/coretfm_v5_audit_recomputed_cache_scores.csv"
+  }
+]

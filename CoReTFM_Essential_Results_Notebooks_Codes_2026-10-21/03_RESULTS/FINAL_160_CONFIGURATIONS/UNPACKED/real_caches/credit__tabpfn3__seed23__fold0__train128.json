@@ -1,0 +1,67 @@
+{
+  "artifact_kind": "real_tfm",
+  "checkpoint_identifier": "ModelVersion.V3",
+  "checkpoint_revision_confirmed": false,
+  "checkpoint_sha256": "NOT_VERIFIED",
+  "classes_a": [
+    "bad",
+    "good"
+  ],
+  "classes_b": [
+    "0 <= ... < 200 DM",
+    "<0 DM",
+    ">= 200 DM / salary assignments for >= 1 year",
+    "no checking account"
+  ],
+  "created_utc": "2026-10-19T19:00:06.066436+00:00",
+  "dataset": "credit",
+  "device": {
+    "cuda": true,
+    "gpu": "Tesla T4",
+    "torch": "2.11.0+cu130"
+  },
+  "elapsed_s": 4.285967036999864,
+  "evidence_caveat": "Checkpoint filename recorded; actual weight-byte SHA256 not obtained.",
+  "fold": 0,
+  "model": "tabpfn3",
+  "n_probabilities": 8453,
+  "n_test": 128,
+  "n_train": 128,
+  "n_val": 205,
+  "npz_sha256": "51bcc964fc56c18951b8af7a86ca878a915fe7aab5829ed6575a98ea86b9c466",
+  "package_version": "9.2.0",
+  "protocol": "coretfm-v2-independent-fixed-test-2026-10-19",
+  "seed": 23,
+  "source": {
+    "openml_id": 46918,
+    "target_a": "good_or_bad_customer",
+    "target_b": "checking_status"
+  },
+  "split_sha256": "7035b4bd25b6729a4fc66f8eb5d37336a24c43cf45001e637be301e4dd343e80",
+  "test_ids_sha": "53165b029fee237e1a7fd2575b546dcbdd2339de0b2038f2bbd42003640b6fa9",
+  "timing": {
+    "a": {
+      "fit_with_load_sec": 0.21738367200009634,
+      "n_predict_calls": 2,
+      "predict_sec": 0.3226995850000094
+    },
+    "a_given_b": {
+      "fit_with_load_sec": 0.21887463999996726,
+      "n_predict_calls": 8,
+      "predict_sec": 1.28261458399993
+    },
+    "b": {
+      "fit_with_load_sec": 0.21377712000003157,
+      "n_predict_calls": 2,
+      "predict_sec": 0.308046240000067
+    },
+    "b_given_a": {
+      "fit_with_load_sec": 0.20548052399999506,
+      "n_predict_calls": 4,
+      "predict_sec": 0.6439625809998688
+    }
+  },
+  "train_cap": 128,
+  "train_ids_sha": "6d9553dbe2e055158884abc8a7061787260b5680a28890fe39728f9417ada116",
+  "val_ids_sha": "b3a002c40aa65d4df3b70887aa3f4ad3a35888484edade8abcb8fa96d45811a0"
+}

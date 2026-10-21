@@ -1,0 +1,69 @@
+{
+  "artifact_kind": "real_tfm",
+  "checkpoint_identifier": "tabicl-classifier-v2-20260212.ckpt",
+  "checkpoint_revision_confirmed": false,
+  "checkpoint_sha256": "NOT_VERIFIED",
+  "classes_a": [
+    "not_recom",
+    "priority",
+    "recommend",
+    "spec_prior",
+    "very_recom"
+  ],
+  "classes_b": [
+    "not_recom",
+    "priority",
+    "recommended"
+  ],
+  "created_utc": "2026-10-19T18:58:01.843222+00:00",
+  "dataset": "nursery",
+  "device": {
+    "cuda": true,
+    "gpu": "Tesla T4",
+    "torch": "2.11.0+cu130"
+  },
+  "elapsed_s": 4.29601799299985,
+  "evidence_caveat": "Checkpoint filename recorded; actual weight-byte SHA256 not obtained.",
+  "fold": 0,
+  "model": "tabiclv2",
+  "n_probabilities": 13909,
+  "n_test": 128,
+  "n_train": 256,
+  "n_val": 205,
+  "npz_sha256": "fbb1c4c517dd6168d53a0abfa878a553506eb9d288919ece717ac7b9fefae751",
+  "package_version": "2.2.0",
+  "protocol": "coretfm-v2-independent-fixed-test-2026-10-19",
+  "seed": 42,
+  "source": {
+    "openml_id": 26,
+    "target_a": "class",
+    "target_b": "health"
+  },
+  "split_sha256": "f27d9f7db8fd2914bd4da774eb3f00b84b650c7c86fa25b59d99ceccbd65ecc2",
+  "test_ids_sha": "40b76a9d6d84f1d9bcf4c45a1e912be72400c6191150dec9a466747c996041c4",
+  "timing": {
+    "a": {
+      "fit_with_load_sec": 0.5264384179999979,
+      "n_predict_calls": 2,
+      "predict_sec": 0.1470055140000568
+    },
+    "a_given_b": {
+      "fit_with_load_sec": 0.4767872869999792,
+      "n_predict_calls": 6,
+      "predict_sec": 0.4635278029998062
+    },
+    "b": {
+      "fit_with_load_sec": 0.4678156970001055,
+      "n_predict_calls": 2,
+      "predict_sec": 0.1569008369999665
+    },
+    "b_given_a": {
+      "fit_with_load_sec": 0.500004441000101,
+      "n_predict_calls": 10,
+      "predict_sec": 0.7716458400000192
+    }
+  },
+  "train_cap": 256,
+  "train_ids_sha": "29274f8dfd42da81076ad518c75b62bc39e9f6be70bd113aabd656acfac96264",
+  "val_ids_sha": "078c696d890ef478964ca705f8929d8a21b6f308827b1d64f7639f6a34abeca3"
+}

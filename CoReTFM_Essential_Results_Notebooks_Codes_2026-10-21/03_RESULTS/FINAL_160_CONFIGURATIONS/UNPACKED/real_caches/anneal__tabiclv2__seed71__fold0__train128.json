@@ -1,0 +1,74 @@
+{
+  "artifact_kind": "real_tfm",
+  "checkpoint_identifier": "tabicl-classifier-v2-20260212.ckpt",
+  "checkpoint_revision_confirmed": false,
+  "checkpoint_sha256": "NOT_VERIFIED",
+  "classes_a": [
+    "1",
+    "2",
+    "3",
+    "5",
+    "U"
+  ],
+  "classes_b": [
+    "A",
+    "K",
+    "M",
+    "R",
+    "S",
+    "V",
+    "W",
+    "not_applicable"
+  ],
+  "created_utc": "2026-10-20T10:10:57.307657+00:00",
+  "dataset": "anneal",
+  "device": {
+    "cuda": true,
+    "gpu": "Tesla T4",
+    "torch": "2.11.0+cu130"
+  },
+  "elapsed_s": 5.272085560999983,
+  "evidence_caveat": "Checkpoint filename recorded; actual weight-byte SHA256 not obtained.",
+  "fold": 0,
+  "model": "tabiclv2",
+  "n_probabilities": 32096,
+  "n_test": 128,
+  "n_train": 128,
+  "n_val": 205,
+  "npz_sha256": "9373a12e665284fd318bdc68283ea09946d1d9b0a8631916d2992202be4f9c52",
+  "package_version": "2.2.0",
+  "protocol": "coretfm-v2-independent-fixed-test-2026-10-19",
+  "seed": 71,
+  "source": {
+    "openml_id": 46906,
+    "target_a": "classes",
+    "target_b": "steel"
+  },
+  "split_sha256": "198d8aa36fb186d037282691a34a5c9e4698a42be19befcbea3fe6385c277e39",
+  "test_ids_sha": "a6d1cc0c2bad0b83a08f7b7f29a35509d5b240e8f03ee02b5192ee3f6d97575e",
+  "timing": {
+    "a": {
+      "fit_with_load_sec": 0.5132142169999838,
+      "n_predict_calls": 2,
+      "predict_sec": 0.16723137799999677
+    },
+    "a_given_b": {
+      "fit_with_load_sec": 0.49091060900002503,
+      "n_predict_calls": 16,
+      "predict_sec": 1.4265440279999666
+    },
+    "b": {
+      "fit_with_load_sec": 0.4989591279999672,
+      "n_predict_calls": 2,
+      "predict_sec": 0.17327044099999966
+    },
+    "b_given_a": {
+      "fit_with_load_sec": 0.5017856029999734,
+      "n_predict_calls": 10,
+      "predict_sec": 0.8572185740000009
+    }
+  },
+  "train_cap": 128,
+  "train_ids_sha": "435474b2b50d1a61bcf705c8bbb275937111955154bcf638a596c792f5e6d1cb",
+  "val_ids_sha": "53e3dc295a13ad3b91ca360909d2939d8039fe30a896cb4a46104612dce0c9e2"
+}

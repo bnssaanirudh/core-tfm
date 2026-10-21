@@ -1,0 +1,71 @@
+{
+  "artifact_kind": "real_tfm",
+  "checkpoint_identifier": "ModelVersion.V3",
+  "checkpoint_revision_confirmed": false,
+  "checkpoint_sha256": "NOT_VERIFIED",
+  "classes_a": [
+    "No",
+    "Yes"
+  ],
+  "classes_b": [
+    "Absurd",
+    "Alone",
+    "Divorced",
+    "Married",
+    "Single",
+    "Together",
+    "Widow",
+    "YOLO"
+  ],
+  "created_utc": "2026-10-20T10:33:34.941834+00:00",
+  "dataset": "marketing",
+  "device": {
+    "cuda": true,
+    "gpu": "Tesla T4",
+    "torch": "2.11.0+cu130"
+  },
+  "elapsed_s": 5.44986550800013,
+  "evidence_caveat": "Checkpoint filename recorded; actual weight-byte SHA256 not obtained.",
+  "fold": 0,
+  "model": "tabpfn3",
+  "n_probabilities": 15113,
+  "n_test": 128,
+  "n_train": 128,
+  "n_val": 205,
+  "npz_sha256": "b9d2f63961442b6978c801b2f8656779c912f899e0b2e2569fa37c48b6470492",
+  "package_version": "9.2.0",
+  "protocol": "coretfm-v2-independent-fixed-test-2026-10-19",
+  "seed": 42,
+  "source": {
+    "openml_id": 46940,
+    "target_a": "Response",
+    "target_b": "Marital_Status"
+  },
+  "split_sha256": "ada88947d95b03266a20a836cea4758345d7fc46a5ddb301b84bc18e22a28199",
+  "test_ids_sha": "428a30965cc2695b6535387bb92bc5c791135a96e4d98c600e3ae6240cc21300",
+  "timing": {
+    "a": {
+      "fit_with_load_sec": 0.2021604290000596,
+      "n_predict_calls": 2,
+      "predict_sec": 0.3242831360000764
+    },
+    "a_given_b": {
+      "fit_with_load_sec": 0.2173157980000724,
+      "n_predict_calls": 16,
+      "predict_sec": 2.5411706960001084
+    },
+    "b": {
+      "fit_with_load_sec": 0.20054931599997872,
+      "n_predict_calls": 2,
+      "predict_sec": 0.31165954400012197
+    },
+    "b_given_a": {
+      "fit_with_load_sec": 0.20432204400003684,
+      "n_predict_calls": 4,
+      "predict_sec": 0.638925104000009
+    }
+  },
+  "train_cap": 128,
+  "train_ids_sha": "f24a6e97982e8c9a4a6e1846482ad48ad1ec81910e7dba8860b5e5a3df243e11",
+  "val_ids_sha": "62ac68817f51f9b8d7ad33b4954bb8ac146bcf339397d43cd63925cff35eaaf5"
+}

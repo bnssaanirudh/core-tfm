@@ -1,0 +1,74 @@
+{
+  "artifact_kind": "real_tfm",
+  "checkpoint_identifier": "tabicl-classifier-v2-20260212.ckpt",
+  "checkpoint_revision_confirmed": false,
+  "checkpoint_sha256": "NOT_VERIFIED",
+  "classes_a": [
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6",
+    "7",
+    "8"
+  ],
+  "classes_b": [
+    "red",
+    "white"
+  ],
+  "created_utc": "2026-10-19T18:57:11.558574+00:00",
+  "dataset": "wine",
+  "device": {
+    "cuda": true,
+    "gpu": "Tesla T4",
+    "torch": "2.11.0+cu130"
+  },
+  "elapsed_s": 5.039470833999985,
+  "evidence_caveat": "Checkpoint filename recorded; actual weight-byte SHA256 not obtained.",
+  "fold": 0,
+  "model": "tabiclv2",
+  "n_probabilities": 15241,
+  "n_test": 128,
+  "n_train": 256,
+  "n_val": 205,
+  "npz_sha256": "cdf45fb92bf331ab99edb01de1176ea6cf266fc0b28f089efa5630b75b2bd143",
+  "package_version": "2.2.0",
+  "protocol": "coretfm-v2-independent-fixed-test-2026-10-19",
+  "seed": 42,
+  "source": {
+    "openml_ids": [
+      40691,
+      40498
+    ],
+    "target_a": "class",
+    "target_b": "color"
+  },
+  "split_sha256": "f7c5c58b3f378d44a25d69007c7a3ac2055e260f96f1df3b847f19ec06ff9dbb",
+  "test_ids_sha": "3464587a1bca82508d2c20e4d0d4d6052cf54974ffc0139e75a47a09172e7f65",
+  "timing": {
+    "a": {
+      "fit_with_load_sec": 0.5721711169999253,
+      "n_predict_calls": 2,
+      "predict_sec": 0.22680022300005476
+    },
+    "a_given_b": {
+      "fit_with_load_sec": 0.5015404690000196,
+      "n_predict_calls": 4,
+      "predict_sec": 0.37117498500003876
+    },
+    "b": {
+      "fit_with_load_sec": 0.47077459199999794,
+      "n_predict_calls": 2,
+      "predict_sec": 0.16840710200006015
+    },
+    "b_given_a": {
+      "fit_with_load_sec": 0.516516734999982,
+      "n_predict_calls": 16,
+      "predict_sec": 1.36997343500002
+    }
+  },
+  "train_cap": 256,
+  "train_ids_sha": "d00b0499098941c1d01ae0968be107d937b50ec4401f69cb67052b0ec75a3eb8",
+  "val_ids_sha": "6f0b6e823f8d7b26d0ee6f8bcb71ce3975387acec5c0e3dd9403dcf63c61a50e"
+}

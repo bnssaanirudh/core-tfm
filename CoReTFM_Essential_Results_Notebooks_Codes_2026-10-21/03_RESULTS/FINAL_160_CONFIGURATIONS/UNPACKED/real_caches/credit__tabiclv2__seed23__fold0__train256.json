@@ -1,0 +1,67 @@
+{
+  "artifact_kind": "real_tfm",
+  "checkpoint_identifier": "tabicl-classifier-v2-20260212.ckpt",
+  "checkpoint_revision_confirmed": false,
+  "checkpoint_sha256": "NOT_VERIFIED",
+  "classes_a": [
+    "bad",
+    "good"
+  ],
+  "classes_b": [
+    "0 <= ... < 200 DM",
+    "<0 DM",
+    ">= 200 DM / salary assignments for >= 1 year",
+    "no checking account"
+  ],
+  "created_utc": "2026-10-19T18:50:35.621728+00:00",
+  "dataset": "credit",
+  "device": {
+    "cuda": true,
+    "gpu": "Tesla T4",
+    "torch": "2.11.0+cu130"
+  },
+  "elapsed_s": 4.158068417999971,
+  "evidence_caveat": "Checkpoint filename recorded; actual weight-byte SHA256 not obtained.",
+  "fold": 0,
+  "model": "tabiclv2",
+  "n_probabilities": 8581,
+  "n_test": 128,
+  "n_train": 256,
+  "n_val": 205,
+  "npz_sha256": "a32d8c0bcc49a5e8b451f3a916c8fd6fd731aae3dba98a456bff2e3e11f85d88",
+  "package_version": "2.2.0",
+  "protocol": "coretfm-v2-independent-fixed-test-2026-10-19",
+  "seed": 23,
+  "source": {
+    "openml_id": 46918,
+    "target_a": "good_or_bad_customer",
+    "target_b": "checking_status"
+  },
+  "split_sha256": "7035b4bd25b6729a4fc66f8eb5d37336a24c43cf45001e637be301e4dd343e80",
+  "test_ids_sha": "53165b029fee237e1a7fd2575b546dcbdd2339de0b2038f2bbd42003640b6fa9",
+  "timing": {
+    "a": {
+      "fit_with_load_sec": 0.5498490080000238,
+      "n_predict_calls": 2,
+      "predict_sec": 0.24946621300000515
+    },
+    "a_given_b": {
+      "fit_with_load_sec": 0.5217638780000016,
+      "n_predict_calls": 8,
+      "predict_sec": 0.6836428929999556
+    },
+    "b": {
+      "fit_with_load_sec": 0.46252062899998236,
+      "n_predict_calls": 2,
+      "predict_sec": 0.21374735599999894
+    },
+    "b_given_a": {
+      "fit_with_load_sec": 0.4759420059999684,
+      "n_predict_calls": 4,
+      "predict_sec": 0.340091353000048
+    }
+  },
+  "train_cap": 256,
+  "train_ids_sha": "9a2359469a7a3c1193c6dd5dc1f0b42e90d22513ec5fc8c7dd1e578ed6e2c65a",
+  "val_ids_sha": "b3a002c40aa65d4df3b70887aa3f4ad3a35888484edade8abcb8fa96d45811a0"
+}

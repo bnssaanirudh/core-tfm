@@ -1,0 +1,71 @@
+{
+  "artifact_kind": "real_tfm",
+  "checkpoint_identifier": "tabicl-classifier-v2-20260212.ckpt",
+  "checkpoint_revision_confirmed": false,
+  "checkpoint_sha256": "NOT_VERIFIED",
+  "classes_a": [
+    "No",
+    "Yes"
+  ],
+  "classes_b": [
+    "Absurd",
+    "Alone",
+    "Divorced",
+    "Married",
+    "Single",
+    "Together",
+    "Widow",
+    "YOLO"
+  ],
+  "created_utc": "2026-10-20T10:08:48.160874+00:00",
+  "dataset": "marketing",
+  "device": {
+    "cuda": true,
+    "gpu": "Tesla T4",
+    "torch": "2.11.0+cu130"
+  },
+  "elapsed_s": 4.886168604999966,
+  "evidence_caveat": "Checkpoint filename recorded; actual weight-byte SHA256 not obtained.",
+  "fold": 1,
+  "model": "tabiclv2",
+  "n_probabilities": 15241,
+  "n_test": 128,
+  "n_train": 256,
+  "n_val": 205,
+  "npz_sha256": "62940f0fd0236549de3e613b867a16b078f0f19a6388b33b3f47f988bda45691",
+  "package_version": "2.2.0",
+  "protocol": "coretfm-v2-independent-fixed-test-2026-10-19",
+  "seed": 23,
+  "source": {
+    "openml_id": 46940,
+    "target_a": "Response",
+    "target_b": "Marital_Status"
+  },
+  "split_sha256": "f255d3b18ea537a8b942256078a0f11875683ac671476d3c9bbe2e72acabd490",
+  "test_ids_sha": "989eacb2afe2185c4c807b346d4adccd99436027c1f97d706a70559ce6e61297",
+  "timing": {
+    "a": {
+      "fit_with_load_sec": 0.5232981350000045,
+      "n_predict_calls": 2,
+      "predict_sec": 0.1851605070000346
+    },
+    "a_given_b": {
+      "fit_with_load_sec": 0.5027001739999832,
+      "n_predict_calls": 16,
+      "predict_sec": 1.4737182210000128
+    },
+    "b": {
+      "fit_with_load_sec": 0.5010292389999904,
+      "n_predict_calls": 2,
+      "predict_sec": 0.18477819999998246
+    },
+    "b_given_a": {
+      "fit_with_load_sec": 0.48860998300000347,
+      "n_predict_calls": 4,
+      "predict_sec": 0.36620679300000347
+    }
+  },
+  "train_cap": 256,
+  "train_ids_sha": "bc017dccde713833b98501832634ff15c98ca2618eb518b157ece01756d6a2b4",
+  "val_ids_sha": "6eff2884658d8be7baec16327003b3786a8664a0d3069149333fca75067d475e"
+}

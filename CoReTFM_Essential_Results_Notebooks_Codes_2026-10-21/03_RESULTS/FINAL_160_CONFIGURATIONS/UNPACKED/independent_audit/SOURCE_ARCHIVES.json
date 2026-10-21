@@ -1,0 +1,16 @@
+[
+  {
+    "source": "historical_v5",
+    "original_filename": "CoReTFM_V5_Matched_Research_Evidence (4).zip",
+    "original_zip_sha256": "a458b046249e24e97230bd29ea13acd029197304f27d0d6e333aebbb6584b5a7",
+    "original_zip_bytes": 6985856,
+    "manifest_path": "ARCHIVE_SHA256_MANIFEST.json"
+  },
+  {
+    "source": "standalone_extension",
+    "original_filename": "CoReTFM_NEXT_ONLY_20261020T103510Z.zip",
+    "original_zip_sha256": "36314af4309322292987d54a5b67ba8d800da53f4fd7d8b52cd1e86f99ff55b2",
+    "original_zip_bytes": 14173521,
+    "manifest_path": "NEXT_SHA256_MANIFEST.json"
+  }
+]

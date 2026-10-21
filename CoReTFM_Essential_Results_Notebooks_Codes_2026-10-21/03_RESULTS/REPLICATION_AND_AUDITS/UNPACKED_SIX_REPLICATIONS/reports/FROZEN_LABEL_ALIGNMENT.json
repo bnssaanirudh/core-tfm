@@ -1,0 +1,50 @@
+[
+  {
+    "dataset": "car",
+    "model": "tabiclv2",
+    "status": "ALIGNED_VALIDATION_TEST_LABELS",
+    "split_sha256": "dbbb2dca277cf4c9af8e549c8c57ac68dbbea2a934cdbe78ba92deb5861bdd0b",
+    "n_rows": 1728,
+    "n_features": 5
+  },
+  {
+    "dataset": "car",
+    "model": "tabpfn3",
+    "status": "ALIGNED_VALIDATION_TEST_LABELS",
+    "split_sha256": "dbbb2dca277cf4c9af8e549c8c57ac68dbbea2a934cdbe78ba92deb5861bdd0b",
+    "n_rows": 1728,
+    "n_features": 5
+  },
+  {
+    "dataset": "nursery",
+    "model": "tabiclv2",
+    "status": "ALIGNED_VALIDATION_TEST_LABELS",
+    "split_sha256": "1179ae56d8786a52f2fd4e5e40c8c438002ffa716981e912c387cf88b9a1fd50",
+    "n_rows": 12960,
+    "n_features": 7
+  },
+  {
+    "dataset": "nursery",
+    "model": "tabpfn3",
+    "status": "ALIGNED_VALIDATION_TEST_LABELS",
+    "split_sha256": "1179ae56d8786a52f2fd4e5e40c8c438002ffa716981e912c387cf88b9a1fd50",
+    "n_rows": 12960,
+    "n_features": 7
+  },
+  {
+    "dataset": "diamonds",
+    "model": "tabiclv2",
+    "status": "ALIGNED_VALIDATION_TEST_LABELS",
+    "split_sha256": "dbe42ced826e99b85f2b16e6cc0a1a5fa57cb5f29988b4a52a6849f356962fcd",
+    "n_rows": 53940,
+    "n_features": 7
+  },
+  {
+    "dataset": "diamonds",
+    "model": "tabpfn3",
+    "status": "ALIGNED_VALIDATION_TEST_LABELS",
+    "split_sha256": "dbe42ced826e99b85f2b16e6cc0a1a5fa57cb5f29988b4a52a6849f356962fcd",
+    "n_rows": 53940,
+    "n_features": 7
+  }
+]

@@ -1,0 +1,74 @@
+{
+  "artifact_kind": "real_tfm",
+  "checkpoint_identifier": "tabicl-classifier-v2-20260212.ckpt",
+  "checkpoint_revision_confirmed": false,
+  "checkpoint_sha256": "NOT_VERIFIED",
+  "classes_a": [
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6",
+    "7",
+    "8"
+  ],
+  "classes_b": [
+    "red",
+    "white"
+  ],
+  "created_utc": "2026-10-19T18:53:11.432682+00:00",
+  "dataset": "wine",
+  "device": {
+    "cuda": true,
+    "gpu": "Tesla T4",
+    "torch": "2.11.0+cu130"
+  },
+  "elapsed_s": 4.483920375000025,
+  "evidence_caveat": "Checkpoint filename recorded; actual weight-byte SHA256 not obtained.",
+  "fold": 1,
+  "model": "tabiclv2",
+  "n_probabilities": 15113,
+  "n_test": 128,
+  "n_train": 128,
+  "n_val": 205,
+  "npz_sha256": "c5abc32a0abf3afae40f4c36c2b35ffe8879f0a5d4952fd73ed506296564c5b1",
+  "package_version": "2.2.0",
+  "protocol": "coretfm-v2-independent-fixed-test-2026-10-19",
+  "seed": 23,
+  "source": {
+    "openml_ids": [
+      40691,
+      40498
+    ],
+    "target_a": "class",
+    "target_b": "color"
+  },
+  "split_sha256": "9292b8bb1114a29d6e962172df94d001cd5a7fa1a83f65917a4d650b23aa0ff8",
+  "test_ids_sha": "bff9899b8f96f7fe3859c907d77dc797d7f2fcc1f111661b77daefc2cf53cf88",
+  "timing": {
+    "a": {
+      "fit_with_load_sec": 0.4875895259999652,
+      "n_predict_calls": 2,
+      "predict_sec": 0.1345126530000016
+    },
+    "a_given_b": {
+      "fit_with_load_sec": 0.5104081939999787,
+      "n_predict_calls": 4,
+      "predict_sec": 0.30386575600005017
+    },
+    "b": {
+      "fit_with_load_sec": 0.5094103600000608,
+      "n_predict_calls": 2,
+      "predict_sec": 0.15514043500002117
+    },
+    "b_given_a": {
+      "fit_with_load_sec": 0.4809636179999188,
+      "n_predict_calls": 16,
+      "predict_sec": 1.174571066999988
+    }
+  },
+  "train_cap": 128,
+  "train_ids_sha": "bb2c46ec8398d5a926633f81119ae9d1a8be5d24a5e75cdb54a27b222dbc0175",
+  "val_ids_sha": "07c7e1456b28ffe169482aab487ec055cc7fa64a55a2139b829ef3931acc6540"
+}
