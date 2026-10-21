@@ -1,6 +1,10 @@
 import hashlib
 import json
+import sys
 from pathlib import Path
+
+# The validator is an executable under experiments, not an installed package.
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from experiments.validate_s2_evidence import audit_cache_bundle
 
