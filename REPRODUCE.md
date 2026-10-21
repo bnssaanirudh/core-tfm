@@ -1,113 +1,86 @@
-# Reproduction guide
+# Reproduce CoRe-TFM S2 evidence
 
-## Core method validation
+## Current evidence release
 
-Requires Python 3.10+.
+The completed S2 protocol and its source artifacts are stored in
+[`CoReTFM_Essential_Results_Notebooks_Codes_2026-10-21/`](CoReTFM_Essential_Results_Notebooks_Codes_2026-10-21/).
+The public S2 dataset is deposited at
+[Zenodo DOI 10.5281/zenodo.23507196](https://doi.org/10.5281/zenodo.23507196).
+
+The primary matrix contains 10 datasets × 2 TFMs × 4 held-out split settings × 2
+training caps (128 and 256), totaling **160 configurations**. The four split
+settings are repeated tests within each dataset, not 40 independent datasets. Each
+configuration has an NPZ prediction cache and a JSON metadata sidecar. The release
+also contains 40 frozen split specifications. The primary analysis setting uses a
+training cap of 256, a validation selection budget of 52, and 128 held-out test
+examples. Model package identifiers recorded in the evidence are TabICLv2 2.2.0
+and TabPFN 9.2.0 (V3).
+
+Six targeted clean environment reruns are included for Car, Nursery, and Diamonds
+with both TFMs (seed 23, training cap 256). They verify cache generation in a clean
+environment; they are not six replications of the whole 160-configuration matrix.
+The detailed run events, environment record, split files, and checksums are under
+`03_RESULTS/REPLICATION_AND_AUDITS/UNPACKED_SIX_REPLICATIONS/`.
+
+## Validate the released caches
+
+From the repository root, run:
+
+```bash
+python experiments/validate_s2_evidence.py
+```
+
+The check validates the 160 primary NPZ caches and their 160 JSON sidecars against
+`COMBINED_SHA256_MANIFEST.json`, then validates the six clean-run caches and their
+sidecars against `NEW_REPLICATION_SHA256_MANIFEST.json`. It fails on a missing
+cache, missing sidecar, unlisted cache file, incorrect file size, or SHA-256
+mismatch. GitHub Actions runs this check on pushes and pull requests.
+
+To validate a copy of the evidence package at another path:
+
+```bash
+python experiments/validate_s2_evidence.py --package-root /path/to/CoReTFM_Essential_Results_Notebooks_Codes_2026-10-21
+```
+
+## Run software checks
+
+Requires Python 3.10 or newer:
 
 ```bash
 python -m venv .venv
-source .venv/bin/activate  # Windows: .venv\\Scripts\\activate
+source .venv/bin/activate  # Windows: .venv\Scripts\activate
 pip install -e '.[test]'
-pytest
-PYTHONPATH=src python experiments/smoke_synthetic.py
+pytest -q
+python experiments/smoke_synthetic.py
+python experiments/validate_s2_evidence.py
 ```
 
-The smoke experiment uses an inner validation split for adaptive weighting and a disjoint test split for all reported scores.
+The cache validation does not download model checkpoints or rerun inference. To
+reproduce model inference separately, follow the pinned environment, checkpoint,
+and license information in the S2 evidence package; never place access tokens in
+notebooks, logs, or the repository.
 
-## Completed bounded-context benchmark
+## Historical five-fold benchmark
 
-The exact Colab notebook is
-`notebooks/CoRe_TFM_Q1_FAST_COMPLETE_256_Colab.ipynb`. Its evidence archive is
-expanded under `results/q1_fast_complete_256_v1/`. The completed profile uses:
-
-- ten datasets and five deterministic outer folds;
-- at most 256 training, 52 validation, and 128 test observations per fold;
-- TabICLv2 2.1.1 with two estimators and disabled KV cache;
-- TabPFN 8.4.0 as the TabPFN-3 interface; and
-- CatBoost 1.2.10 as a boundary baseline, excluded from TFM-only inference.
-
-TabPFN weights require prior acceptance of the model license and a valid
-`TABPFN_TOKEN`. Never store that token in the notebook, logs, or repository.
-
-Validate the committed matrix and reproduce the dataset-blocked statistics with:
+The earlier bounded-context five-fold study is retained under
+`results/q1_fast_complete_256_v1/` and `notebooks/`. Its audit command is:
 
 ```bash
 PYTHONPATH=src python experiments/analyze_q1_benchmark.py
 ```
 
-The expected primary joint-NLL effect is Selective CoRe minus arithmetic pooling
-`+0.0018312632`, based on ten dataset units after averaging TabICLv2 and TabPFN-3.
-Negative values would favor Selective CoRe; this completed result therefore favors
-arithmetic pooling.
+That study is historical context and is not the S2 protocol. The old README files
+inside the dated recovery collection are preserved as source artifacts so their
+recorded checksums remain valid. See the package-root `CURRENT_STATUS.md` for the
+current status and how to interpret those older notes.
 
-## Reliability-aware extension: immediately runnable
+## Claim guardrails
 
-The extension notebook is:
-
-`notebooks/CoRe_TFM_RELIABILITY_AWARE_EXPERIMENTS.ipynb`
-
-It reuses the archived benchmark and does not require downloading TFM checkpoints for
-its first analysis block. Run the equivalent CLI pipeline with:
-
-```bash
-PYTHONPATH=src python experiments/run_reliability_aware_suite.py \
-  --fold-results results/q1_fast_complete_256_v1/fold_results.csv \
-  --output results/reliability_aware_v1
-```
-
-This writes only derived results into `results/reliability_aware_v1/` and never
-modifies the frozen Q1 evidence package. Outputs include:
-
-- oracle opportunity vs validation-selection-regret decomposition;
-- factorization-TV vs reconciliation-gain correlations;
-- analytic counterexamples showing that inconsistency is not an accuracy metric;
-- model-specific raw-view reliability proxies;
-- candidate-family headroom summaries;
-- method-transfer proxies across datasets/models.
-
-The notebook also demonstrates reusable utilities for inference-dispersion weighting,
-support-adaptive rare-class penalties, structural-risk complexity penalties, and
-known-truth decision regret. Those demonstrations are mechanisms, not new empirical
-claims about the TFMs.
-
-## Fresh-inference experiment protocol
-
-Canonical settings are in `configs/reliability_aware_experiments.yaml`. Before a
-revised journal submission, run and archive the following as a new evidence package:
-
-1. five independent constrained-sampling seeds across the ten datasets and five folds;
-2. context-size sensitivity at 64, 128, 256, 512, and 1,024 examples where supported;
-3. at least one third released TFM after an operational preflight;
-4. direct-marginal and conditional NLL/Brier/ECE plus per-class reliability metrics;
-5. per-example factorization TV, marginalization defects, predictive entropy, and
-   inference dispersion under admissible perturbations;
-6. complete validation candidate-score traces, enabling Safe Selective CoRe to be
-   evaluated without test leakage;
-7. rare-class exclusion and support-adaptive penalty sensitivity;
-8. leave-one-dataset-out/model-global policy-transfer evaluation; and
-9. downstream expected-utility regret on controlled tasks where the true joint is known.
-
-Do not reuse the current test set to tune candidate-family complexity, dispersion
-temperatures, class-adaptive penalties, or any new policy. These must be chosen in an
-inner validation/cross-fitting layer or pre-registered before comparative test scores
-are examined.
-
-## Follow-up research kept outside the main submission
-
-The current extension intentionally does not mix in every promising direction. The
-following are tracked as separate follow-up projects unless the pairwise reliability
-story is complete first:
-
-- Chow-Liu/tree-structured multi-target reconciliation;
-- learned per-instance gating/meta-reconciliation;
-- online/streaming policy adaptation;
-- conformalized reconciled predictive sets; and
-- Wasserstein/optimal-transport reconciliation for ordinal or embedded categories.
-
-## Reproduction caveat
-
-The source TFM-consistency study specifies five-fold cross-testing but does not
-publish a split seed. CoRe-TFM therefore uses deterministic stratified splits and
-records them explicitly. The completed run is evidence about a bounded small-context
-deployment regime, not a replacement for the earlier full-training Car and Wine
-pilots or an exact numerical replication of the source study.
+- Report the four split settings as repeated tests within datasets; use datasets as
+  the independent units for dataset-level inference.
+- Keep the six targeted clean reruns distinct from independent full-matrix
+  replications.
+- Do not infer checkpoint-weight byte identity from a checkpoint identifier alone;
+  the evidence package records the outstanding checkpoint-hash limitation.
+- Do not treat reduced factorization inconsistency as evidence of improved
+  predictive accuracy.
